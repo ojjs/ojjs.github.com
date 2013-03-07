@@ -1,10 +1,13 @@
-<html>
+<html lang="en">
 	
 	<head>
-		<title>oj -- Unified web templating for the people. Thirsty people.</title>
-		<script src="scripts/jquery.js" type="text/javascript"></script>
 		<link href="styles/reset.css" rel="stylesheet" type="text/css">
-		<link href="styles/gg.css" rel="stylesheet" type="text/css">
+		<script src="scripts/jquery.js" type="text/javascript"></script>
+		<script src="scripts/coffee-script.js" type="text/javascript"></script>
+		<script src="scripts/ace/ace.js" type="text/javascript"></script>
+		<meta charset="UTF-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+		<title>Try OJ</title>
 	<style>
 h1 {
 	color:#666;
@@ -73,47 +76,184 @@ textarea {
 	position:relative;
 	width:100%;
 }
+.editor-source {
+	background-color:#fefaf3;
+	border:2px solid #fbcb7c;
+	box-shadow:2px 2px 4px RGBA(0,0,0,0.15);
+	display:block;
+	height:30%;
+	padding:10px;
+	position:relative;
+	width:100%;
+}
+.editor-source-cs {
+	display:block;
+	height:100%;
+	width:100%;
+}
+.editor-source-cs.hidden {
+	display:none;
+}
+.editor-source-js {
+	display:block;
+	height:100%;
+	width:100%;
+}
+.editor-source-js.hidden {
+	display:none;
+}
+.editor-source-css {
+	display:block;
+	height:100%;
+	width:100%;
+}
+.editor-source-html {
+	display:block;
+	height:100%;
+	width:100%;
+}
+.editor-frame {
+	display:block;
+	height:65%;
+	position:relative;
+	width:100%;
+}
+.editor-iframe {
+	display:block;
+	height:100%;
+	width:100%;
+}
+.editor-console {
+	background-color:RGBA(255,255,255,0.9);
+	color:darkorange;
+	font-size:18px;
+	height:100%;
+	left:0;
+	margin:0px 0px 10px 0px;
+	padding:14px 4px;
+	position:absolute;
+	text-align:center;
+	top:0;
+	width:100%;
+}
+.editor-resizer {
+	background-color:#FFBA4D;
+	height:10px;
+	width:100%;
+	z-index:10;
+}
+.editor-bar {
+	height:21px;
+	margin:8px 8px 0 0;
+	position:absolute;
+	right:0px;
+	top:0px;
+	z-index:5;
+}
+.editor-example-chooser {
+	float:right;
+	font-size:20px;
+	height:100%;
+	margin-left:8px;
+	position:relative;
+	z-index:10;
+}
+.editor-language-tab {
+	background-color:white;
+	border:1px solid gray;
+	border-radius:3px;
+	display:inline-block;
+	float:right;
+	height:100%;
+	margin-left:0px;
+	width:30px;
+	z-index:10;
+}
+.editor-language-tab.selected {
+	background-color:#FECD78;
+}
 
 </style></head>
-	<body class="gg">
-		<h2>What is OJ?</h2>
-		<p>It is the future and the past. The hope. The essence of dreams.</p>
-	<script>
+	<body><div class="editor">
+			
+			<div class="editor-bar">
+				<select class="editor-example-chooser">
+					<option value="0"></option>
+					<option value="1">Headers and Paragraphs</option>
+					<option value="2">Markdown</option>
+					<option value="3">Defining ID and Class</option>
+					<option value="4">Tags with Inline Styles</option>
+					<option value="5">Tags with Click Events</option>
+					<option value="6">Tags with Several Attributes</option>
+					<option value="7">Create a Checkbox</option>
+					<option value="8">Create a TextBox</option>
+					<option value="9">Create a TextArea</option>
+					<option value="10">Creating a Template</option>
+					<option value="11">Create a Partial</option>
+					<option value="12">Create a Table</option>
+					<option value="13">Create a Table Partial</option>
+				</select>
+				<button class="editor-language-tab js">JS</button>
+				<button class="selected editor-language-tab cs">CS</button>
+			</div>
+			<div class="editor-source">
+				<div class="editor-source-cs" id="ojjI8tEjXA"></div>
+				<div class="editor-source-js hidden" id="oj4fS4XHQf"></div>
+			</div>
+			<div class="editor-frame">
+				<div class="editor-console"></div>
+				<iframe class="editor-iframe"></iframe>
+			</div>
+		</div><script>
 
 // Generated with oj v0.0.8
 (function(){ var F = {}, M = {}, R = {}, P, G, RR;
 
-M['/node_modules'] = {"underscore":"underscore.js"};
-F['/index.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){var examples, siteCSS, _;
+M['/node_modules'] = {"underscore":"underscore.js","oj-markdown":"src/oj.markdown.js"};
+M['/node_modules/oj-markdown/node_modules'] = {"marked":"lib/marked.js"};
+F['/try.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){var siteCSS, _, _editor, _snippet;
 
 _ = require('underscore');
 
-examples = require('./_examples');
+oj.use(require('oj-markdown'));
 
 siteCSS = require('./_styles');
 
-module.exports = html(function() {
+_snippet = require('./_snippet');
+
+_editor = require('./_editor');
+
+module.exports = html({
+  lang: 'en'
+}, function() {
   siteCSS();
   head(function() {
-    title('oj -- Unified web templating for the people. Thirsty people.');
-    script({
-      url: 'scripts/jquery.js'
-    });
     link({
       url: 'styles/reset.css'
     });
-    return link({
-      url: 'styles/gg.css'
+    script({
+      url: 'scripts/jquery.js'
     });
+    script({
+      url: 'scripts/coffee-script.js'
+    });
+    script({
+      url: 'scripts/ace/ace.js'
+    });
+    meta({
+      charset: 'UTF-8'
+    });
+    meta({
+      'http-equiv': "X-UA-Compatible",
+      content: 'IE=edge,chrome=1'
+    });
+    return title('Try OJ');
   });
-  return body({
-    c: 'gg'
-  }, function() {
-    h2('What is OJ?');
-    return p('It is the future and the past. The hope. The essence of dreams.');
+  return body(function() {
+    return _editor("");
   });
 });
-}}).call(this);})(RR('/index.ojc'),P,G,'/','index.ojc');});
+}}).call(this);})(RR('/try.ojc'),P,G,'/','try.ojc');});
 F['/node_modules/underscore/underscore.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){//     Underscore.js 1.3.3
 //     (c) 2009-2012 Jeremy Ashkenas, DocumentCloud Inc.
 //     Underscore is freely distributable under the MIT license.
@@ -1174,66 +1314,1096 @@ F['/node_modules/underscore/underscore.js'] = (function(module,exports){(functio
 
 }).call(this);
 })(RR('/node_modules/underscore/underscore.js'),P,G,'/node_modules/underscore','underscore.js');});
-F['/_examples.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){
-module.exports = [
-  {
-    name: '',
-    cs: "",
-    js: ""
-  }, {
-    name: 'Headers and Paragraphs',
-    cs: "h1 'Headers and Paragraphs'\np 'Paragraphs and headers can be made by simply using tag functions.'\np 'Live change this text to see how it works!'",
-    js: "h1('Headers and Paragraphs');\np('Paragraphs and headers can be made by simply using tag functions.');\np(' Live change this text to see how it works!');"
-  }, {
-    name: 'Markdown',
-    cs: "# Use the markdown plugin\nuse require 'oj-markdown'\n\n# The plugin enables this function:\nmarkdown \"\"\"\n  # Markdown\n\n  It is _so easy_ to use markdown with oj:\n\n  1. Just `use` the plugin\n  2. Then call the `markdown` function!\n\"\"\"",
-    js: "// Use the markdown plugin\nuse(require('oj-markdown'));\n\n// The plugin enables this function:\nmarkdown(\n  \"# Markdown                                  \\n\" +\n  \"                                            \\n\" +\n  \"It is _so easy_ to use markdown with oj:    \\n\" +\n  \"                                            \\n\" +\n  \"1. Just `use` the plugin                    \\n\" +\n  \"2. Then call the `markdown` function!       \\n\"\n);"
-  }, {
-    name: 'Defining ID and Class',
-    cs: "# Define id with 'id'\ndiv id:'my-id', 'This div has id \"my-id\".'\n\n# Define class with 'c' or 'class'\ndiv c:'my-class', 'This div has class \"my-class\"',\n\ncss\n  '#my-id': color: 'purple'\n  '.my-class': color: 'blue'",
-    js: "// Define id with 'id'\ndiv({id:'my-id'}, 'This div has id \"my-id\".');\n\n// Define class with 'c' or 'class'\ndiv({c:'my-class'}, 'This div has class \"my-class\"');\n\ncss({\n  '#my-id': {color: 'purple'},\n  '.my-class': {color: 'blue'}\n});"
-  }, {
-    name: 'Tags with Inline Styles',
-    cs: "div 'This div has an inline styles',\n\n  # Inline styles are defined with and object\n  style:\n\n    border:'1px solid lightgrey'\n    padding: '15px'\n\n    # camalCase is automatically seperated-by-dashes\n    borderRadius: '5px'",
-    js: "div('This div has an inline styles', {\n\n  // Inline styles are defined with and object\n  style: {\n\n    border:'1px solid lightgrey',\n    padding: '15px',\n\n    // camalCase is automatically seperated-by-dashes\n    borderRadius: '5px'\n  }\n});"
-  }, {
-    name: 'Tags with Click Events',
-    cs: "div c:'button', 'Click Me',\n  # Click event binds automatically through jquery!\n  click: ->\n    alert 'Click works!'\n\n# Make it look like a button\ncss\n  '.button':\n    border:'1px solid black'\n    width: 100\n    borderRadius: 5\n    padding: 5\n    boxShadow: '3px 3px 5px #999'\n    cursor:'pointer'",
-    js: "div({c:'button'}, 'Click Me', {\n  // Click event binds automatically through jquery!\n  click: function(){\n    alert('Click works!');\n  }\n});\n\n// Make it look like a button\ncss ({\n  '.button': {\n    border:'1px solid black',\n    width: 100,\n    borderRadius: 5,\n    padding: 5,\n    boxShadow: '3px 3px 5px #999',\n    cursor:'pointer'\n  }\n});"
-  }, {
-    name: 'Tags with Several Attributes',
-    cs: "div c:'my-class', id: 'my-id',\n  'This div has three attributes (click me to see)',\n\n  # Attributes can be defined before or after the content\n  'data-id': '1234'\n\n  click: (e) ->\n    $target = $(e.target)\n    alert \"\"\"\n      data-id: #\{$target.attr('data-id')\}\n      class:   #\{$target.attr('class')\}\n      id:      #\{$target.attr('id')\}\n    \"\"\"",
-    js: "div({c:'my-class', id: 'my-id'},\n  'This div has three attributes (click me to see)', {\n  // Attributes can be defined before or after the content\n  'data-id': '1234',\n\n  click: function(e) {\n    $target = $(e.target)\n    alert( \"data-id: \" + $target.attr('data-id') + \"\\n\" +\n           \"class: \"   + $target.attr('class')   + \"\\n\" +\n           \"id: \"      + $target.attr('id') );\n  }\n});"
-  }, {
-    name: 'Create a Checkbox',
-    cs: "CheckBox value:true, change: (control) ->\n  alert \"The checkbox changed to: \#{control.value}\"",
-    js: "CheckBox({value:true, change: function(control){\n  alert(\"The checkbox changed to: \" + control.value);\n}});"
-  }, {
-    name: 'Create a TextBox',
-    cs: "TextBox value:'The text goes here', change: (control) ->\n  alert \"The textbox changed to: \#{control.value}\"",
-    js: "TextBox({value:'The text goes here', change: function(control){\n  alert(\"The textbox changed to: \" + control.value);\n}});"
-  }, {
-    name: 'Create a TextArea',
-    cs: "TextArea value:'The text goes here', change: (control) ->\n  alert \"The textarea changed to: \#{control.value}\"",
-    js: "TextArea({value:'The text goes here', change: function(control){\n  alert(\"The textarea changed to: \" + control.value);\n}});"
-  }, {
-    name: 'Creating a Template',
-    cs: "# Define a simple template with a title and a content function\n# Create a template that takes data as input and outputs the page\nmyTemplate = (data) ->\n  html ->\n    head ->\n      # Template the title\n      title data.title\n    body ->\n      h1 data.header\n      # Template the content\n      data.content()\n\n# Run the template\nmyTemplate title:'My Title', header:'Creating a Template', content:->\n  p 'Templates are just functions that call html, head and body. Presto, they just work!'",
-    js: "// Define a simple template with a title and a content function\n// Create a template that takes data as input and outputs the page\nmyTemplate = function(data){ return [\n  html,\n    [head,\n      [title, data.title]\n    ],\n    [body,\n      [h1, data.header],\n      // Template the content\n      data.content\n    ]\n  ];\n}\n// Run the template\nmyTemplate({ title:'My Title', header:'Creating a Template', content:function(){\n  p('Templates are just functions that call html, head and body. Presto, they just work!');\n}});"
-  }, {
-    name: 'Create a Partial',
-    cs: "# Define a partial that creates a twitter link for a user\n_userTwitterLink = (user) ->\n  a \"Follow \#{user.name} on Twitter\",\n    href: \"http://twitter.com/\#{user.twitter}\"\n\n# Define some users\nusers = [\n  {name:'Evan', twitter:'evanmoran'}\n  {name:'James', twitter:'iamthelawton'}\n  {name:'Laura', twitter:'savinola'}\n]\n\np 'Partials are just functions. This function turns a user into a Twitter link:'\n\nfor user in users\n  # Use the partial!\n  p _userTwitterLink user",
-    js: "// Define a partial that creates a twitter link for a user\n_userTwitterLink = function(user){\n  a(\"Follow \" + user.name + \" on Twitter\", {\n    href: \"http://twitter.com/\" + user.twitter});\n};\n// Define some users\nusers = [\n  {name:'Evan', twitter:'evanmoran'},\n  {name:'James', twitter:'iamthelawton'},\n  {name:'Laura', twitter:'savinola'}\n];\n\np('Partials are just functions. This function turns a user into a Twitter link:');\n\nvar user;\nfor(var ix = 0; ix < users.length; ix++){\n  user = users[ix];\n  // Use the partial!\n  p(_userTwitterLink(user));\n}"
-  }, {
-    name: 'Create a Table',
-    cs: "table ->\n  tbody ->\n    tr ->\n      td 'A1'\n      td 'A2'\n      td 'A3'\n      td 'A4'\n    tr ->\n      # Loops work as you would hope!\n      for cell in ['B1','B2','B3','B4']\n        td cell\n\n  css\n    td:\n      border: '1px solid darkorange'\n      padding: 10",
-    js: "table(\n  [tbody,\n    [tr,\n      [td, 'A1'],\n      [td, 'A2'],\n      [td, 'A3'],\n      [td, 'A4']\n    ],\n    function(){\n      var cells = ['B1','B2','B3','B4'];\n      for(var ix = 0; ix < cells.length; ix++) {\n        td(cells[ix]);\n      }\n    }\n  ]\n);\ncss({\n  td:{\n    border: '1px solid darkorange',\n    padding: 10\n  }\n});"
-  }, {
-    name: 'Create a Table Partial',
-    cs: "# Create a partial that creates a table from its\n# header (a list of strings) and its rows (a list of lists)\nmakeTable = (header, rows) ->\n\n  table ->\n    # Define headers\n    thead ->\n      tr ->\n        for h in header\n          th h\n\n    # Define rows\n    tbody ->\n      for row in rows\n        tr ->\n          for column in row\n            td column\n\n# Make it by calling the function!\ndiv ->\n  makeTable ['H1', 'H2', 'H3', 'H4'], [\n    ['A1','A2','A3','A4']\n    ['B1','B2','B3','B4']\n    ['C1','C2','C3','C4']\n  ]\n  css\n    th:\n      color: 'darkorange'\n    td:\n      backgroundColor: 'orange'\n      padding:'50px'"
+F['/node_modules/oj-markdown/src/oj.markdown.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){var marked = require('marked');
+// Create a plugin by defining a function that accepts oj and returns a map of extensions to oj
+module.exports = function(oj,settings){
+  // Initialize marked options
+  if (typeof settings !== 'object')
+    settings = {}
+  marked.setOptions(settings);
+
+  // oj.markdown
+  return {markdown:function(input){
+    return oj(marked(input));
+  }};
+};})(RR('/node_modules/oj-markdown/src/oj.markdown.js'),P,G,'/node_modules/oj-markdown/src','oj.markdown.js');});
+F['/node_modules/oj-markdown/node_modules/marked/lib/marked.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){/**
+ * marked - a markdown parser
+ * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
+ * https://github.com/chjj/marked
+ */
+
+;(function() {
+
+/**
+ * Block-Level Grammar
+ */
+
+var block = {
+  newline: /^\n+/,
+  code: /^( {4}[^\n]+\n*)+/,
+  fences: noop,
+  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
+  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
+  nptable: noop,
+  lheading: /^([^\n]+)\n *(=|-){3,} *\n*/,
+  blockquote: /^( *>[^\n]+(\n[^\n]+)*\n*)+/,
+  list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+  html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
+  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
+  table: noop,
+  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
+  text: /^[^\n]+/
+};
+
+block.bullet = /(?:[*+-]|\d+\.)/;
+block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
+block.item = replace(block.item, 'gm')
+  (/bull/g, block.bullet)
+  ();
+
+block.list = replace(block.list)
+  (/bull/g, block.bullet)
+  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
+  ();
+
+block._tag = '(?!(?:'
+  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
+  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
+  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|@)\\b';
+
+block.html = replace(block.html)
+  ('comment', /<!--[\s\S]*?-->/)
+  ('closed', /<(tag)[\s\S]+?<\/\1>/)
+  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
+  (/tag/g, block._tag)
+  ();
+
+block.paragraph = replace(block.paragraph)
+  ('hr', block.hr)
+  ('heading', block.heading)
+  ('lheading', block.lheading)
+  ('blockquote', block.blockquote)
+  ('tag', '<' + block._tag)
+  ('def', block.def)
+  ();
+
+/**
+ * Normal Block Grammar
+ */
+
+block.normal = merge({}, block);
+
+/**
+ * GFM Block Grammar
+ */
+
+block.gfm = merge({}, block.normal, {
+  fences: /^ *(`{3,}|~{3,}) *(\w+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
+  paragraph: /^/
+});
+
+block.gfm.paragraph = replace(block.paragraph)
+  ('(?!', '(?!' + block.gfm.fences.source.replace('\\1', '\\2') + '|')
+  ();
+
+/**
+ * GFM + Tables Block Grammar
+ */
+
+block.tables = merge({}, block.gfm, {
+  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
+  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
+});
+
+/**
+ * Block Lexer
+ */
+
+function Lexer(options) {
+  this.tokens = [];
+  this.tokens.links = {};
+  this.options = options || marked.defaults;
+  this.rules = block.normal;
+
+  if (this.options.gfm) {
+    if (this.options.tables) {
+      this.rules = block.tables;
+    } else {
+      this.rules = block.gfm;
+    }
   }
-];
-}}).call(this);})(RR('/_examples.ojc'),P,G,'/','_examples.ojc');});
+}
+
+/**
+ * Expose Block Rules
+ */
+
+Lexer.rules = block;
+
+/**
+ * Static Lex Method
+ */
+
+Lexer.lex = function(src, options) {
+  var lexer = new Lexer(options);
+  return lexer.lex(src);
+};
+
+/**
+ * Preprocessing
+ */
+
+Lexer.prototype.lex = function(src) {
+  src = src
+    .replace(/\r\n|\r/g, '\n')
+    .replace(/\t/g, '    ')
+    .replace(/\u00a0/g, ' ')
+    .replace(/\u2424/g, '\n');
+
+  return this.token(src, true);
+};
+
+/**
+ * Lexing
+ */
+
+Lexer.prototype.token = function(src, top) {
+  var src = src.replace(/^ +$/gm, '')
+    , next
+    , loose
+    , cap
+    , bull
+    , b
+    , item
+    , space
+    , i
+    , l;
+
+  while (src) {
+    // newline
+    if (cap = this.rules.newline.exec(src)) {
+      src = src.substring(cap[0].length);
+      if (cap[0].length > 1) {
+        this.tokens.push({
+          type: 'space'
+        });
+      }
+    }
+
+    // code
+    if (cap = this.rules.code.exec(src)) {
+      src = src.substring(cap[0].length);
+      cap = cap[0].replace(/^ {4}/gm, '');
+      this.tokens.push({
+        type: 'code',
+        text: !this.options.pedantic
+          ? cap.replace(/\n+$/, '')
+          : cap
+      });
+      continue;
+    }
+
+    // fences (gfm)
+    if (cap = this.rules.fences.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'code',
+        lang: cap[2],
+        text: cap[3]
+      });
+      continue;
+    }
+
+    // heading
+    if (cap = this.rules.heading.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'heading',
+        depth: cap[1].length,
+        text: cap[2]
+      });
+      continue;
+    }
+
+    // table no leading pipe (gfm)
+    if (top && (cap = this.rules.nptable.exec(src))) {
+      src = src.substring(cap[0].length);
+
+      item = {
+        type: 'table',
+        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
+        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+        cells: cap[3].replace(/\n$/, '').split('\n')
+      };
+
+      for (i = 0; i < item.align.length; i++) {
+        if (/^ *-+: *$/.test(item.align[i])) {
+          item.align[i] = 'right';
+        } else if (/^ *:-+: *$/.test(item.align[i])) {
+          item.align[i] = 'center';
+        } else if (/^ *:-+ *$/.test(item.align[i])) {
+          item.align[i] = 'left';
+        } else {
+          item.align[i] = null;
+        }
+      }
+
+      for (i = 0; i < item.cells.length; i++) {
+        item.cells[i] = item.cells[i].split(/ *\| */);
+      }
+
+      this.tokens.push(item);
+
+      continue;
+    }
+
+    // lheading
+    if (cap = this.rules.lheading.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'heading',
+        depth: cap[2] === '=' ? 1 : 2,
+        text: cap[1]
+      });
+      continue;
+    }
+
+    // hr
+    if (cap = this.rules.hr.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'hr'
+      });
+      continue;
+    }
+
+    // blockquote
+    if (cap = this.rules.blockquote.exec(src)) {
+      src = src.substring(cap[0].length);
+
+      this.tokens.push({
+        type: 'blockquote_start'
+      });
+
+      cap = cap[0].replace(/^ *> ?/gm, '');
+
+      // Pass `top` to keep the current
+      // "toplevel" state. This is exactly
+      // how markdown.pl works.
+      this.token(cap, top);
+
+      this.tokens.push({
+        type: 'blockquote_end'
+      });
+
+      continue;
+    }
+
+    // list
+    if (cap = this.rules.list.exec(src)) {
+      src = src.substring(cap[0].length);
+
+      this.tokens.push({
+        type: 'list_start',
+        ordered: isFinite(cap[2])
+      });
+
+      // Get each top-level item.
+      cap = cap[0].match(this.rules.item);
+
+      // Get bullet.
+      if (this.options.smartLists) {
+        bull = block.bullet.exec(cap[0])[0];
+      }
+
+      next = false;
+      l = cap.length;
+      i = 0;
+
+      for (; i < l; i++) {
+        item = cap[i];
+
+        // Remove the list item's bullet
+        // so it is seen as the next token.
+        space = item.length;
+        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
+
+        // Outdent whatever the
+        // list item contains. Hacky.
+        if (~item.indexOf('\n ')) {
+          space -= item.length;
+          item = !this.options.pedantic
+            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+            : item.replace(/^ {1,4}/gm, '');
+        }
+
+        // Determine whether the next list item belongs here.
+        // Backpedal if it does not belong in this list.
+        if (this.options.smartLists && i !== l - 1) {
+          b = block.bullet.exec(cap[i+1])[0];
+          if (bull !== b && !(bull[1] === '.' && b[1] === '.')) {
+            src = cap.slice(i + 1).join('\n') + src;
+            i = l - 1;
+          }
+        }
+
+        // Determine whether item is loose or not.
+        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
+        // for discount behavior.
+        loose = next || /\n\n(?!\s*$)/.test(item);
+        if (i !== l - 1) {
+          next = item[item.length-1] === '\n';
+          if (!loose) loose = next;
+        }
+
+        this.tokens.push({
+          type: loose
+            ? 'loose_item_start'
+            : 'list_item_start'
+        });
+
+        // Recurse.
+        this.token(item, false);
+
+        this.tokens.push({
+          type: 'list_item_end'
+        });
+      }
+
+      this.tokens.push({
+        type: 'list_end'
+      });
+
+      continue;
+    }
+
+    // html
+    if (cap = this.rules.html.exec(src)) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: this.options.sanitize
+          ? 'paragraph'
+          : 'html',
+        pre: cap[1] === 'pre',
+        text: cap[0]
+      });
+      continue;
+    }
+
+    // def
+    if (top && (cap = this.rules.def.exec(src))) {
+      src = src.substring(cap[0].length);
+      this.tokens.links[cap[1].toLowerCase()] = {
+        href: cap[2],
+        title: cap[3]
+      };
+      continue;
+    }
+
+    // table (gfm)
+    if (top && (cap = this.rules.table.exec(src))) {
+      src = src.substring(cap[0].length);
+
+      item = {
+        type: 'table',
+        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
+        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
+        cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
+      };
+
+      for (i = 0; i < item.align.length; i++) {
+        if (/^ *-+: *$/.test(item.align[i])) {
+          item.align[i] = 'right';
+        } else if (/^ *:-+: *$/.test(item.align[i])) {
+          item.align[i] = 'center';
+        } else if (/^ *:-+ *$/.test(item.align[i])) {
+          item.align[i] = 'left';
+        } else {
+          item.align[i] = null;
+        }
+      }
+
+      for (i = 0; i < item.cells.length; i++) {
+        item.cells[i] = item.cells[i]
+          .replace(/^ *\| *| *\| *$/g, '')
+          .split(/ *\| */);
+      }
+
+      this.tokens.push(item);
+
+      continue;
+    }
+
+    // top-level paragraph
+    if (top && (cap = this.rules.paragraph.exec(src))) {
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'paragraph',
+        text: cap[1][cap[1].length-1] === '\n'
+          ? cap[1].slice(0, -1)
+          : cap[1]
+      });
+      continue;
+    }
+
+    // text
+    if (cap = this.rules.text.exec(src)) {
+      // Top-level should never reach here.
+      src = src.substring(cap[0].length);
+      this.tokens.push({
+        type: 'text',
+        text: cap[0]
+      });
+      continue;
+    }
+
+    if (src) {
+      throw new
+        Error('Infinite loop on byte: ' + src.charCodeAt(0));
+    }
+  }
+
+  return this.tokens;
+};
+
+/**
+ * Inline-Level Grammar
+ */
+
+var inline = {
+  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
+  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
+  url: noop,
+  tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
+  link: /^!?\[(inside)\]\(href\)/,
+  reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
+  nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
+  strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
+  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+  code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
+  br: /^ {2,}\n(?!\s*$)/,
+  del: noop,
+  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
+};
+
+inline._inside = /(?:\[[^\]]*\]|[^\]]|\](?=[^\[]*\]))*/;
+inline._href = /\s*<?([^\s]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
+
+inline.link = replace(inline.link)
+  ('inside', inline._inside)
+  ('href', inline._href)
+  ();
+
+inline.reflink = replace(inline.reflink)
+  ('inside', inline._inside)
+  ();
+
+/**
+ * Normal Inline Grammar
+ */
+
+inline.normal = merge({}, inline);
+
+/**
+ * Pedantic Inline Grammar
+ */
+
+inline.pedantic = merge({}, inline.normal, {
+  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
+  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
+});
+
+/**
+ * GFM Inline Grammar
+ */
+
+inline.gfm = merge({}, inline.normal, {
+  escape: replace(inline.escape)('])', '~|])')(),
+  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
+  del: /^~~(?=\S)([\s\S]*?\S)~~/,
+  text: replace(inline.text)
+    (']|', '~]|')
+    ('|', '|https?://|')
+    ()
+});
+
+/**
+ * GFM + Line Breaks Inline Grammar
+ */
+
+inline.breaks = merge({}, inline.gfm, {
+  br: replace(inline.br)('{2,}', '*')(),
+  text: replace(inline.gfm.text)('{2,}', '*')()
+});
+
+/**
+ * Inline Lexer & Compiler
+ */
+
+function InlineLexer(links, options) {
+  this.options = options || marked.defaults;
+  this.links = links;
+  this.rules = inline.normal;
+
+  if (!this.links) {
+    throw new
+      Error('Tokens array requires a `links` property.');
+  }
+
+  if (this.options.gfm) {
+    if (this.options.breaks) {
+      this.rules = inline.breaks;
+    } else {
+      this.rules = inline.gfm;
+    }
+  } else if (this.options.pedantic) {
+    this.rules = inline.pedantic;
+  }
+}
+
+/**
+ * Expose Inline Rules
+ */
+
+InlineLexer.rules = inline;
+
+/**
+ * Static Lexing/Compiling Method
+ */
+
+InlineLexer.output = function(src, links, options) {
+  var inline = new InlineLexer(links, options);
+  return inline.output(src);
+};
+
+/**
+ * Lexing/Compiling
+ */
+
+InlineLexer.prototype.output = function(src) {
+  var out = ''
+    , link
+    , text
+    , href
+    , cap;
+
+  while (src) {
+    // escape
+    if (cap = this.rules.escape.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += cap[1];
+      continue;
+    }
+
+    // autolink
+    if (cap = this.rules.autolink.exec(src)) {
+      src = src.substring(cap[0].length);
+      if (cap[2] === '@') {
+        text = cap[1][6] === ':'
+          ? this.mangle(cap[1].substring(7))
+          : this.mangle(cap[1]);
+        href = this.mangle('mailto:') + text;
+      } else {
+        text = escape(cap[1]);
+        href = text;
+      }
+      out += '<a href="'
+        + href
+        + '">'
+        + text
+        + '</a>';
+      continue;
+    }
+
+    // url (gfm)
+    if (cap = this.rules.url.exec(src)) {
+      src = src.substring(cap[0].length);
+      text = escape(cap[1]);
+      href = text;
+      out += '<a href="'
+        + href
+        + '">'
+        + text
+        + '</a>';
+      continue;
+    }
+
+    // tag
+    if (cap = this.rules.tag.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.options.sanitize
+        ? escape(cap[0])
+        : cap[0];
+      continue;
+    }
+
+    // link
+    if (cap = this.rules.link.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += this.outputLink(cap, {
+        href: cap[2],
+        title: cap[3]
+      });
+      continue;
+    }
+
+    // reflink, nolink
+    if ((cap = this.rules.reflink.exec(src))
+        || (cap = this.rules.nolink.exec(src))) {
+      src = src.substring(cap[0].length);
+      link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
+      link = this.links[link.toLowerCase()];
+      if (!link || !link.href) {
+        out += cap[0][0];
+        src = cap[0].substring(1) + src;
+        continue;
+      }
+      out += this.outputLink(cap, link);
+      continue;
+    }
+
+    // strong
+    if (cap = this.rules.strong.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += '<strong>'
+        + this.output(cap[2] || cap[1])
+        + '</strong>';
+      continue;
+    }
+
+    // em
+    if (cap = this.rules.em.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += '<em>'
+        + this.output(cap[2] || cap[1])
+        + '</em>';
+      continue;
+    }
+
+    // code
+    if (cap = this.rules.code.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += '<code>'
+        + escape(cap[2], true)
+        + '</code>';
+      continue;
+    }
+
+    // br
+    if (cap = this.rules.br.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += '<br>';
+      continue;
+    }
+
+    // del (gfm)
+    if (cap = this.rules.del.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += '<del>'
+        + this.output(cap[1])
+        + '</del>';
+      continue;
+    }
+
+    // text
+    if (cap = this.rules.text.exec(src)) {
+      src = src.substring(cap[0].length);
+      out += escape(cap[0]);
+      continue;
+    }
+
+    if (src) {
+      throw new
+        Error('Infinite loop on byte: ' + src.charCodeAt(0));
+    }
+  }
+
+  return out;
+};
+
+/**
+ * Compile Link
+ */
+
+InlineLexer.prototype.outputLink = function(cap, link) {
+  if (cap[0][0] !== '!') {
+    return '<a href="'
+      + escape(link.href)
+      + '"'
+      + (link.title
+      ? ' title="'
+      + escape(link.title)
+      + '"'
+      : '')
+      + '>'
+      + this.output(cap[1])
+      + '</a>';
+  } else {
+    return '<img src="'
+      + escape(link.href)
+      + '" alt="'
+      + escape(cap[1])
+      + '"'
+      + (link.title
+      ? ' title="'
+      + escape(link.title)
+      + '"'
+      : '')
+      + '>';
+  }
+};
+
+/**
+ * Mangle Links
+ */
+
+InlineLexer.prototype.mangle = function(text) {
+  var out = ''
+    , l = text.length
+    , i = 0
+    , ch;
+
+  for (; i < l; i++) {
+    ch = text.charCodeAt(i);
+    if (Math.random() > 0.5) {
+      ch = 'x' + ch.toString(16);
+    }
+    out += '&#' + ch + ';';
+  }
+
+  return out;
+};
+
+/**
+ * Parsing & Compiling
+ */
+
+function Parser(options) {
+  this.tokens = [];
+  this.token = null;
+  this.options = options || marked.defaults;
+}
+
+/**
+ * Static Parse Method
+ */
+
+Parser.parse = function(src, options) {
+  var parser = new Parser(options);
+  return parser.parse(src);
+};
+
+/**
+ * Parse Loop
+ */
+
+Parser.prototype.parse = function(src) {
+  this.inline = new InlineLexer(src.links, this.options);
+  this.tokens = src.reverse();
+
+  var out = '';
+  while (this.next()) {
+    out += this.tok();
+  }
+
+  return out;
+};
+
+/**
+ * Next Token
+ */
+
+Parser.prototype.next = function() {
+  return this.token = this.tokens.pop();
+};
+
+/**
+ * Preview Next Token
+ */
+
+Parser.prototype.peek = function() {
+  return this.tokens[this.tokens.length-1] || 0;
+};
+
+/**
+ * Parse Text Tokens
+ */
+
+Parser.prototype.parseText = function() {
+  var body = this.token.text;
+
+  while (this.peek().type === 'text') {
+    body += '\n' + this.next().text;
+  }
+
+  return this.inline.output(body);
+};
+
+/**
+ * Parse Current Token
+ */
+
+Parser.prototype.tok = function() {
+  switch (this.token.type) {
+    case 'space': {
+      return '';
+    }
+    case 'hr': {
+      return '<hr>\n';
+    }
+    case 'heading': {
+      return '<h'
+        + this.token.depth
+        + '>'
+        + this.inline.output(this.token.text)
+        + '</h'
+        + this.token.depth
+        + '>\n';
+    }
+    case 'code': {
+      if (this.options.highlight) {
+        var code = this.options.highlight(this.token.text, this.token.lang);
+        if (code != null && code !== this.token.text) {
+          this.token.escaped = true;
+          this.token.text = code;
+        }
+      }
+
+      if (!this.token.escaped) {
+        this.token.text = escape(this.token.text, true);
+      }
+
+      return '<pre><code'
+        + (this.token.lang
+        ? ' class="'
+        + this.options.langPrefix
+        + this.token.lang
+        + '"'
+        : '')
+        + '>'
+        + this.token.text
+        + '</code></pre>\n';
+    }
+    case 'table': {
+      var body = ''
+        , heading
+        , i
+        , row
+        , cell
+        , j;
+
+      // header
+      body += '<thead>\n<tr>\n';
+      for (i = 0; i < this.token.header.length; i++) {
+        heading = this.inline.output(this.token.header[i]);
+        body += this.token.align[i]
+          ? '<th align="' + this.token.align[i] + '">' + heading + '</th>\n'
+          : '<th>' + heading + '</th>\n';
+      }
+      body += '</tr>\n</thead>\n';
+
+      // body
+      body += '<tbody>\n'
+      for (i = 0; i < this.token.cells.length; i++) {
+        row = this.token.cells[i];
+        body += '<tr>\n';
+        for (j = 0; j < row.length; j++) {
+          cell = this.inline.output(row[j]);
+          body += this.token.align[j]
+            ? '<td align="' + this.token.align[j] + '">' + cell + '</td>\n'
+            : '<td>' + cell + '</td>\n';
+        }
+        body += '</tr>\n';
+      }
+      body += '</tbody>\n';
+
+      return '<table>\n'
+        + body
+        + '</table>\n';
+    }
+    case 'blockquote_start': {
+      var body = '';
+
+      while (this.next().type !== 'blockquote_end') {
+        body += this.tok();
+      }
+
+      return '<blockquote>\n'
+        + body
+        + '</blockquote>\n';
+    }
+    case 'list_start': {
+      var type = this.token.ordered ? 'ol' : 'ul'
+        , body = '';
+
+      while (this.next().type !== 'list_end') {
+        body += this.tok();
+      }
+
+      return '<'
+        + type
+        + '>\n'
+        + body
+        + '</'
+        + type
+        + '>\n';
+    }
+    case 'list_item_start': {
+      var body = '';
+
+      while (this.next().type !== 'list_item_end') {
+        body += this.token.type === 'text'
+          ? this.parseText()
+          : this.tok();
+      }
+
+      return '<li>'
+        + body
+        + '</li>\n';
+    }
+    case 'loose_item_start': {
+      var body = '';
+
+      while (this.next().type !== 'list_item_end') {
+        body += this.tok();
+      }
+
+      return '<li>'
+        + body
+        + '</li>\n';
+    }
+    case 'html': {
+      return !this.token.pre && !this.options.pedantic
+        ? this.inline.output(this.token.text)
+        : this.token.text;
+    }
+    case 'paragraph': {
+      return '<p>'
+        + this.inline.output(this.token.text)
+        + '</p>\n';
+    }
+    case 'text': {
+      return '<p>'
+        + this.parseText()
+        + '</p>\n';
+    }
+  }
+};
+
+/**
+ * Helpers
+ */
+
+function escape(html, encode) {
+  return html
+    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function replace(regex, opt) {
+  regex = regex.source;
+  opt = opt || '';
+  return function self(name, val) {
+    if (!name) return new RegExp(regex, opt);
+    val = val.source || val;
+    val = val.replace(/(^|[^\[])\^/g, '$1');
+    regex = regex.replace(name, val);
+    return self;
+  };
+}
+
+function noop() {}
+noop.exec = noop;
+
+function merge(obj) {
+  var i = 1
+    , target
+    , key;
+
+  for (; i < arguments.length; i++) {
+    target = arguments[i];
+    for (key in target) {
+      if (Object.prototype.hasOwnProperty.call(target, key)) {
+        obj[key] = target[key];
+      }
+    }
+  }
+
+  return obj;
+}
+
+/**
+ * Marked
+ */
+
+function marked(src, opt) {
+  try {
+    if (opt) opt = merge({}, marked.defaults, opt);
+    return Parser.parse(Lexer.lex(src, opt), opt);
+  } catch (e) {
+    e.message += '\nPlease report this to https://github.com/chjj/marked.';
+    if ((opt || marked.defaults).silent) {
+      return '<p>An error occured:</p><pre>'
+        + escape(e.message + '', true)
+        + '</pre>';
+    }
+    throw e;
+  }
+}
+
+/**
+ * Options
+ */
+
+marked.options =
+marked.setOptions = function(opt) {
+  merge(marked.defaults, opt);
+  return marked;
+};
+
+marked.defaults = {
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: false,
+  silent: false,
+  highlight: null,
+  langPrefix: 'lang-'
+};
+
+/**
+ * Expose
+ */
+
+marked.Parser = Parser;
+marked.parser = Parser.parse;
+
+marked.Lexer = Lexer;
+marked.lexer = Lexer.lex;
+
+marked.InlineLexer = InlineLexer;
+marked.inlineLexer = InlineLexer.output;
+
+marked.parse = marked;
+
+if (typeof exports === 'object') {
+  module.exports = marked;
+} else if (typeof define === 'function' && define.amd) {
+  define(function() { return marked; });
+} else {
+  this.marked = marked;
+}
+
+}).call(function() {
+  return this || (typeof window !== 'undefined' ? window : global);
+}());
+})(RR('/node_modules/oj-markdown/node_modules/marked/lib/marked.js'),P,G,'/node_modules/oj-markdown/node_modules/marked/lib','marked.js');});
 F['/_styles.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){
 module.exports = function() {
   return css({
@@ -1307,6 +2477,406 @@ module.exports = function() {
   });
 };
 }}).call(this);})(RR('/_styles.ojc'),P,G,'/','_styles.ojc');});
+F['/_snippet.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){
+module.exports = function(default_code) {
+  var id;
+  id = oj.id();
+  return div(function() {
+    ready(function() {
+      var editor;
+      editor = ace.edit(id);
+      editor.setTheme("ace/theme/solarized_light");
+      editor.getSession().setMode("ace/mode/coffee");
+      editor.getSession().setUseSoftTabs(true);
+      editor.getSession().setUseWorker(false);
+      editor.setDisplayIndentGuides(false);
+      editor.getSession().setTabSize(2);
+      editor.renderer.setShowGutter(false);
+      editor.setHighlightActiveLine(false);
+      editor.setReadOnly(true);
+      editor.setFontSize(14);
+      return editor.renderer.setShowPrintMargin(false);
+    });
+    return div({
+      c: 'snippet',
+      id: id
+    }, default_code);
+  });
+};
+}}).call(this);})(RR('/_snippet.ojc'),P,G,'/','_snippet.ojc');});
+F['/_editor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){var chooseExample, clickToggleNext, editor_cs_id, editor_css_id, editor_html_id, editor_js_id, error, examples, getEditor, isCS, recompile, setEditor, setupEditor, success, switchLanguageTabs;
+
+examples = require('./_examples');
+
+editor_cs_id = oj.id();
+
+editor_js_id = oj.id();
+
+editor_html_id = oj.id();
+
+editor_css_id = oj.id();
+
+module.exports = function(default_code) {
+  return div({
+    c: 'editor'
+  }, function() {
+    ready(function() {
+      setupEditor(editor_cs_id, 'ojc', recompile);
+      setupEditor(editor_js_id, 'oj', recompile);
+      return recompile();
+    });
+    css({
+      '.editor-source': {
+        position: 'relative',
+        width: '100%',
+        height: '30%',
+        border: '2px solid #fbcb7c',
+        padding: '10px',
+        display: 'block',
+        backgroundColor: '#fefaf3',
+        boxShadow: '2px 2px 4px RGBA(0,0,0,0.15)'
+      },
+      '.editor-source-cs': {
+        display: 'block',
+        width: '100%',
+        height: '100%'
+      },
+      '.editor-source-cs.hidden': {
+        display: 'none'
+      },
+      '.editor-source-js': {
+        display: 'block',
+        width: '100%',
+        height: '100%'
+      },
+      '.editor-source-js.hidden': {
+        display: 'none'
+      },
+      '.editor-source-css': {
+        display: 'block',
+        width: '100%',
+        height: '100%'
+      },
+      '.editor-source-html': {
+        display: 'block',
+        width: '100%',
+        height: '100%'
+      },
+      '.editor-frame': {
+        display: 'block',
+        position: 'relative',
+        width: '100%',
+        height: '65%'
+      },
+      '.editor-iframe': {
+        display: 'block',
+        width: '100%',
+        height: '100%'
+      },
+      '.editor-console': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        color: 'darkorange',
+        backgroundColor: 'RGBA(255,255,255,0.9)',
+        textAlign: 'center',
+        fontSize: '18px',
+        padding: '14px 4px',
+        margin: '0px 0px 10px 0px',
+        width: '100%',
+        height: '100%'
+      },
+      '.editor-resizer': {
+        width: '100%',
+        height: '10px',
+        backgroundColor: '#FFBA4D',
+        zIndex: 10
+      },
+      '.editor-bar': {
+        position: 'absolute',
+        top: '0px',
+        right: '0px',
+        margin: '8px 8px 0 0',
+        height: '21px',
+        zIndex: 5
+      },
+      '.editor-example-chooser': {
+        position: 'relative',
+        float: 'right',
+        height: '100%',
+        zIndex: 10,
+        fontSize: '20px',
+        marginLeft: '8px'
+      },
+      '.editor-language-tab': {
+        display: 'inline-block',
+        width: '30px',
+        height: '100%',
+        float: 'right',
+        marginLeft: '0px',
+        zIndex: 10,
+        backgroundColor: 'white',
+        border: '1px solid gray',
+        borderRadius: '3px'
+      },
+      '.editor-language-tab.selected': {
+        backgroundColor: '#FECD78'
+      }
+    });
+    div({
+      c: 'editor-bar'
+    }, function() {
+      select({
+        c: 'editor-example-chooser',
+        change: (function(e) {
+          return chooseExample(e);
+        })
+      }, function() {
+        var ex, ix, _i, _len, _results;
+        _results = [];
+        for (ix = _i = 0, _len = examples.length; _i < _len; ix = ++_i) {
+          ex = examples[ix];
+          _results.push(option({
+            value: ix
+          }, "" + ex.name));
+        }
+        return _results;
+      });
+      button('JS', {
+        c: 'editor-language-tab js',
+        click: function(e) {
+          switchLanguageTabs();
+          return recompile();
+        }
+      });
+      return button('CS', {
+        c: 'selected editor-language-tab cs',
+        click: function(e) {
+          switchLanguageTabs();
+          return recompile();
+        }
+      });
+    });
+    div({
+      c: 'editor-source'
+    }, function() {
+      div({
+        c: 'editor-source-cs',
+        id: editor_cs_id
+      }, default_code);
+      return div({
+        c: 'editor-source-js hidden',
+        id: editor_js_id
+      }, default_code);
+    });
+    return div({
+      c: 'editor-frame'
+    }, function() {
+      div({
+        c: 'editor-console'
+      });
+      return iframe({
+        c: 'editor-iframe'
+      });
+    });
+  });
+};
+
+isCS = function() {
+  return !$(".editor-source-cs").is(':hidden');
+};
+
+chooseExample = function() {
+  var $editorChooser, ix;
+  $editorChooser = $('.editor-example-chooser');
+  ix = $editorChooser.val();
+  if (isCS()) {
+    setEditor(editor_cs_id, examples[ix].cs);
+  } else {
+    setEditor(editor_js_id, examples[ix].js);
+  }
+};
+
+switchLanguageTabs = function() {
+  $(".editor-language-tab.cs").toggleClass('selected');
+  $(".editor-language-tab.js").toggleClass('selected');
+  $(".editor-source-cs").toggleClass('hidden');
+  $(".editor-source-js").toggleClass('hidden');
+  chooseExample();
+  return recompile();
+};
+
+recompile = function() {
+  var $editorCSS, $editorFrame, $editorHTML, $editorJS, $editorSource, code, ojml, results, wrapjs;
+  $editorFrame = $('.editor-iframe');
+  $editorSource = $('.editor-source');
+  $editorHTML = $('.editor-html');
+  $editorCSS = $('.editor-css');
+  $editorJS = $('.editor-js');
+  if (isCS()) {
+    code = getEditor(editor_cs_id);
+    try {
+      code = CoffeeScript.compile(code, {
+        bare: true
+      });
+    } catch (eCoffee) {
+      error('<b>coffee-script error:</b> ' + eCoffee.message);
+      return;
+    }
+  } else {
+    code = getEditor(editor_js_id);
+  }
+  wrapjs = "with(oj){" + code + "}";
+  try {
+    ojml = eval(wrapjs);
+  } catch (eRuntime) {
+    error('<b>runtime error:</b> ' + eRuntime.message);
+    return;
+  }
+  try {
+    results = oj.compile({
+      debug: true
+    }, ojml);
+    if (!(results.tags.html != null) && !(results.tags.head != null) && !(results.tags.body != null)) {
+      wrapjs = "with(oj){\n  html(function(){\n    head();\n    body(function(){\n      " + code + "\n    });\n  })\n}";
+      ojml = eval(wrapjs);
+      results = oj.compile({
+        debug: true
+      }, ojml);
+    }
+    if (!(results.tags.html != null)) {
+      error('<b>validation error</b>: <html> tag is missing');
+      return;
+    }
+    if (!(results.tags.head != null)) {
+      error('<b>validation error</b>: <head> tag is missing');
+      return;
+    }
+    if (!(results.tags.body != null)) {
+      error('<b>validation error</b>: <body> tag is missing');
+      return;
+    }
+  } catch (eCompile) {
+    error('<b>oj error:</b> ' + eCompile.message);
+    return;
+  }
+  $editorHTML.val(results.html);
+  $editorCSS.val(results.css);
+  $editorFrame.contents().find('html').replaceWith($(results.dom));
+  $editorFrame.contents().find('head').append("<style>" + results.css + "</style>");
+  return success();
+};
+
+error = function(message) {
+  var $editorConsole;
+  $editorConsole = $('.editor-console');
+  $editorConsole.html(message);
+  $editorConsole.show();
+};
+
+success = function() {
+  var $editorConsole;
+  $editorConsole = $('.editor-console');
+  $editorConsole.hide();
+};
+
+clickToggleNext = function() {
+  return {
+    click: function(e) {
+      return $(e.target).next().toggle();
+    }
+  };
+};
+
+setupEditor = function(editor_id, language, onChange) {
+  var editor;
+  editor = ace.edit(editor_id);
+  editor.setTheme("ace/theme/orange");
+  editor.getSession().setMode("ace/mode/" + language);
+  editor.getSession().setUseSoftTabs(true);
+  editor.getSession().setUseWorker(false);
+  editor.setDisplayIndentGuides(true);
+  editor.getSession().setTabSize(2);
+  editor.renderer.setShowGutter(false);
+  editor.setHighlightActiveLine(false);
+  editor.renderer.setShowPrintMargin(false);
+  editor.setReadOnly(false);
+  editor.setFontSize(16);
+  editor.getSession().doc.on('change', onChange);
+};
+
+setEditor = function(editor_id, code) {
+  var editor;
+  editor = ace.edit(editor_id);
+  editor.getSession().setValue(code);
+};
+
+getEditor = function(editor_id) {
+  var editor;
+  editor = ace.edit(editor_id);
+  return editor.getSession().getValue();
+};
+}}).call(this);})(RR('/_editor.ojc'),P,G,'/','_editor.ojc');});
+F['/_examples.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(require('oj').sandbox){
+module.exports = [
+  {
+    name: '',
+    cs: "",
+    js: ""
+  }, {
+    name: 'Headers and Paragraphs',
+    cs: "h1 'Headers and Paragraphs'\np 'Paragraphs and headers can be made by simply using tag functions.'\np 'Live change this text to see how it works!'",
+    js: "h1('Headers and Paragraphs');\np('Paragraphs and headers can be made by simply using tag functions.');\np(' Live change this text to see how it works!');"
+  }, {
+    name: 'Markdown',
+    cs: "# Use the markdown plugin\nuse require 'oj-markdown'\n\n# The plugin enables this function:\nmarkdown \"\"\"\n  # Markdown\n\n  It is _so easy_ to use markdown with oj:\n\n  1. Just `use` the plugin\n  2. Then call the `markdown` function!\n\"\"\"",
+    js: "// Use the markdown plugin\nuse(require('oj-markdown'));\n\n// The plugin enables this function:\nmarkdown(\n  \"# Markdown                                  \\n\" +\n  \"                                            \\n\" +\n  \"It is _so easy_ to use markdown with oj:    \\n\" +\n  \"                                            \\n\" +\n  \"1. Just `use` the plugin                    \\n\" +\n  \"2. Then call the `markdown` function!       \\n\"\n);"
+  }, {
+    name: 'Defining ID and Class',
+    cs: "# Define id with 'id'\ndiv id:'my-id', 'This div has id \"my-id\".'\n\n# Define class with 'c' or 'class'\ndiv c:'my-class', 'This div has class \"my-class\"',\n\ncss\n  '#my-id': color: 'purple'\n  '.my-class': color: 'blue'",
+    js: "// Define id with 'id'\ndiv({id:'my-id'}, 'This div has id \"my-id\".');\n\n// Define class with 'c' or 'class'\ndiv({c:'my-class'}, 'This div has class \"my-class\"');\n\ncss({\n  '#my-id': {color: 'purple'},\n  '.my-class': {color: 'blue'}\n});"
+  }, {
+    name: 'Tags with Inline Styles',
+    cs: "div 'This div has an inline styles',\n\n  # Inline styles are defined with and object\n  style:\n\n    border:'1px solid lightgrey'\n    padding: '15px'\n\n    # camalCase is automatically seperated-by-dashes\n    borderRadius: '5px'",
+    js: "div('This div has an inline styles', {\n\n  // Inline styles are defined with and object\n  style: {\n\n    border:'1px solid lightgrey',\n    padding: '15px',\n\n    // camalCase is automatically seperated-by-dashes\n    borderRadius: '5px'\n  }\n});"
+  }, {
+    name: 'Tags with Click Events',
+    cs: "div c:'button', 'Click Me',\n  # Click event binds automatically through jquery!\n  click: ->\n    alert 'Click works!'\n\n# Make it look like a button\ncss\n  '.button':\n    border:'1px solid black'\n    width: 100\n    borderRadius: 5\n    padding: 5\n    boxShadow: '3px 3px 5px #999'\n    cursor:'pointer'",
+    js: "div({c:'button'}, 'Click Me', {\n  // Click event binds automatically through jquery!\n  click: function(){\n    alert('Click works!');\n  }\n});\n\n// Make it look like a button\ncss ({\n  '.button': {\n    border:'1px solid black',\n    width: 100,\n    borderRadius: 5,\n    padding: 5,\n    boxShadow: '3px 3px 5px #999',\n    cursor:'pointer'\n  }\n});"
+  }, {
+    name: 'Tags with Several Attributes',
+    cs: "div c:'my-class', id: 'my-id',\n  'This div has three attributes (click me to see)',\n\n  # Attributes can be defined before or after the content\n  'data-id': '1234'\n\n  click: (e) ->\n    $target = $(e.target)\n    alert \"\"\"\n      data-id: #\{$target.attr('data-id')\}\n      class:   #\{$target.attr('class')\}\n      id:      #\{$target.attr('id')\}\n    \"\"\"",
+    js: "div({c:'my-class', id: 'my-id'},\n  'This div has three attributes (click me to see)', {\n  // Attributes can be defined before or after the content\n  'data-id': '1234',\n\n  click: function(e) {\n    $target = $(e.target)\n    alert( \"data-id: \" + $target.attr('data-id') + \"\\n\" +\n           \"class: \"   + $target.attr('class')   + \"\\n\" +\n           \"id: \"      + $target.attr('id') );\n  }\n});"
+  }, {
+    name: 'Create a Checkbox',
+    cs: "CheckBox value:true, change: (control) ->\n  alert \"The checkbox changed to: \#{control.value}\"",
+    js: "CheckBox({value:true, change: function(control){\n  alert(\"The checkbox changed to: \" + control.value);\n}});"
+  }, {
+    name: 'Create a TextBox',
+    cs: "TextBox value:'The text goes here', change: (control) ->\n  alert \"The textbox changed to: \#{control.value}\"",
+    js: "TextBox({value:'The text goes here', change: function(control){\n  alert(\"The textbox changed to: \" + control.value);\n}});"
+  }, {
+    name: 'Create a TextArea',
+    cs: "TextArea value:'The text goes here', change: (control) ->\n  alert \"The textarea changed to: \#{control.value}\"",
+    js: "TextArea({value:'The text goes here', change: function(control){\n  alert(\"The textarea changed to: \" + control.value);\n}});"
+  }, {
+    name: 'Creating a Template',
+    cs: "# Define a simple template with a title and a content function\n# Create a template that takes data as input and outputs the page\nmyTemplate = (data) ->\n  html ->\n    head ->\n      # Template the title\n      title data.title\n    body ->\n      h1 data.header\n      # Template the content\n      data.content()\n\n# Run the template\nmyTemplate title:'My Title', header:'Creating a Template', content:->\n  p 'Templates are just functions that call html, head and body. Presto, they just work!'",
+    js: "// Define a simple template with a title and a content function\n// Create a template that takes data as input and outputs the page\nmyTemplate = function(data){ return [\n  html,\n    [head,\n      [title, data.title]\n    ],\n    [body,\n      [h1, data.header],\n      // Template the content\n      data.content\n    ]\n  ];\n}\n// Run the template\nmyTemplate({ title:'My Title', header:'Creating a Template', content:function(){\n  p('Templates are just functions that call html, head and body. Presto, they just work!');\n}});"
+  }, {
+    name: 'Create a Partial',
+    cs: "# Define a partial that creates a twitter link for a user\n_userTwitterLink = (user) ->\n  a \"Follow \#{user.name} on Twitter\",\n    href: \"http://twitter.com/\#{user.twitter}\"\n\n# Define some users\nusers = [\n  {name:'Evan', twitter:'evanmoran'}\n  {name:'James', twitter:'iamthelawton'}\n  {name:'Laura', twitter:'savinola'}\n]\n\np 'Partials are just functions. This function turns a user into a Twitter link:'\n\nfor user in users\n  # Use the partial!\n  p _userTwitterLink user",
+    js: "// Define a partial that creates a twitter link for a user\n_userTwitterLink = function(user){\n  a(\"Follow \" + user.name + \" on Twitter\", {\n    href: \"http://twitter.com/\" + user.twitter});\n};\n// Define some users\nusers = [\n  {name:'Evan', twitter:'evanmoran'},\n  {name:'James', twitter:'iamthelawton'},\n  {name:'Laura', twitter:'savinola'}\n];\n\np('Partials are just functions. This function turns a user into a Twitter link:');\n\nvar user;\nfor(var ix = 0; ix < users.length; ix++){\n  user = users[ix];\n  // Use the partial!\n  p(_userTwitterLink(user));\n}"
+  }, {
+    name: 'Create a Table',
+    cs: "table ->\n  tbody ->\n    tr ->\n      td 'A1'\n      td 'A2'\n      td 'A3'\n      td 'A4'\n    tr ->\n      # Loops work as you would hope!\n      for cell in ['B1','B2','B3','B4']\n        td cell\n\n  css\n    td:\n      border: '1px solid darkorange'\n      padding: 10",
+    js: "table(\n  [tbody,\n    [tr,\n      [td, 'A1'],\n      [td, 'A2'],\n      [td, 'A3'],\n      [td, 'A4']\n    ],\n    function(){\n      var cells = ['B1','B2','B3','B4'];\n      for(var ix = 0; ix < cells.length; ix++) {\n        td(cells[ix]);\n      }\n    }\n  ]\n);\ncss({\n  td:{\n    border: '1px solid darkorange',\n    padding: 10\n  }\n});"
+  }, {
+    name: 'Create a Table Partial',
+    cs: "# Create a partial that creates a table from its\n# header (a list of strings) and its rows (a list of lists)\nmakeTable = (header, rows) ->\n\n  table ->\n    # Define headers\n    thead ->\n      tr ->\n        for h in header\n          th h\n\n    # Define rows\n    tbody ->\n      for row in rows\n        tr ->\n          for column in row\n            td column\n\n# Make it by calling the function!\ndiv ->\n  makeTable ['H1', 'H2', 'H3', 'H4'], [\n    ['A1','A2','A3','A4']\n    ['B1','B2','B3','B4']\n    ['C1','C2','C3','C4']\n  ]\n  css\n    th:\n      color: 'darkorange'\n    td:\n      backgroundColor: 'orange'\n      padding:'50px'"
+  }
+];
+}}).call(this);})(RR('/_examples.ojc'),P,G,'/','_examples.ojc');});
 F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){// Generated by CoffeeScript 1.3.3
 (function() {
   var ArrayP, FuncP, ObjP, coffee, exports, fs, jqueryEvents, key, oj, pass, pathNormalizeArray, pathSplit, pathSplitRe, root, slice, stripBOM, t, unshift, wrapCSMessage, wrapJS, wrapJSMessage, _, _attributeCMeansClass, _attributeClassAllowsArrays, _attributeStyleAllowsObject, _attributesFilterOutEvents, _attributesFromObject, _chars, _compileAny, _compileDeeper, _compileTag, _cssFromObject, _defaultClear, _fn, _i, _j, _len, _len1, _randomInteger, _readyOrLoad, _readyQueue, _ref, _ref1, _styleFromObject, _styleKeyFromFancy, _tagAttributes,
@@ -3164,9 +4734,9 @@ RR = function(f){
   }
 };
 
-require = RR('/index');
+require = RR('/try');
 oj = require('oj');
-oj.begin('/index');
+oj.begin('/try');
 
 }).call(this);
 

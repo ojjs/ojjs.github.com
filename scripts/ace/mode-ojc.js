@@ -170,7 +170,7 @@ $(function(){
 
             var supportFunction = (
                 // Meta
-                "oj|type|properties|methods|constructor|inherits|get|set|" +
+                "oj|type|properties|methods|constructor|inherits|get|set|use|" +
 
                 // Closed Tags
                 "a|abbr|acronym|address|applet|article|aside|audio|" +
@@ -194,7 +194,10 @@ $(function(){
 
                 // Open Tags
                 "area|base|br|col|command|css|embed|hr|img|input|" +
-                "keygen|link|meta|param|source|track|wbr"
+                "keygen|link|meta|param|source|track|wbr|" +
+
+                // Plugins
+                "markdown"
             );
 
             var keywordMapper = this.createKeywordMapper({
