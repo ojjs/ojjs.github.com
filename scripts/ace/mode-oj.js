@@ -212,7 +212,7 @@ var supportFunction = (
     "keygen|link|meta|param|source|track|wbr|" +
 
     // Plugins
-    "markdown"
+    "markdown|mustache"
 );
 
 

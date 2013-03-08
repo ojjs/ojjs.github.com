@@ -197,7 +197,7 @@ $(function(){
                 "keygen|link|meta|param|source|track|wbr|" +
 
                 // Plugins
-                "markdown"
+                "markdown|mustache"
             );
 
             var keywordMapper = this.createKeywordMapper({
