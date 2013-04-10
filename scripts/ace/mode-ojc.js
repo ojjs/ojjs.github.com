@@ -170,7 +170,7 @@ $(function(){
 
             var supportFunction = (
                 // Meta
-                "oj|type|properties|methods|constructor|inherits|get|set|use|" +
+                "oj|type|properties|methods|constructor|base|get|set|use|" +
 
                 // Closed Tags
                 "a|abbr|acronym|address|applet|article|aside|audio|" +
