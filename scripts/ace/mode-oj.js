@@ -177,10 +177,17 @@ var languageClasses = (
 
 var supportClasses = (
     // General base views
-    "View|ModelView|FormView|CollectionView|" +
+    "View|ModelView|CollectionView|ModelKeyView|" +
+
+    // Common elements
+    "List|NumberList|BulletList|Table|Button|Link|" +
+
     // Common form elements
     "Form|CheckBox|ListBox|TextBox|TextArea|FilterBox|SearchBox|" +
-    "List|Table"
+
+    // Plugins
+    "AceEditor"
+
 );
 
 var supportFunction = (

@@ -68,7 +68,6 @@ $(function(){
         };
 
         this.toggleCommentLines = function(state, doc, startRow, endRow){
-            console.log("toggle");
             var range = new Range(0, 0, 0, 0);
             for (var i = startRow; i <= endRow; ++i) {
                 var line = doc.getLine(i);
@@ -162,10 +161,16 @@ $(function(){
 
             var supportClasses = (
                 // General base views
-                "View|ModelView|FormView|CollectionView|" +
+                "View|ModelView|CollectionView|ModelKeyView|" +
+
+                // Common elements
+                "List|NumberList|BulletList|Table|Button|Link|" +
+
                 // Common form elements
                 "Form|CheckBox|ListBox|TextBox|TextArea|FilterBox|SearchBox|" +
-                "List|Table"
+
+                // Plugins
+                "AceEditor"
             );
 
             var supportFunction = (
