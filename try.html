@@ -351,11 +351,7 @@ header {
 						</div>
 						
 					</header>
-					<div class="middle gg100">
-						<div style="height: 56px;" class="oj-TryEditor" id="ojxKXoC7io"><div class="oj-TryEditor-resizer" style="width: 0px; height: 56px;"></div><div class="oj-TryEditor-inputs" style="height: 28px; display: block;"><div style="height: 20px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojmMnLYAkk"></div></div><div class="oj-TryEditor-outputs" style="height: 28px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 20px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 24px;"></iframe></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-						<br>
-						<div style="height: 56px;" class="oj-TryEditor" id="ojNMpgfEBD"><div class="oj-TryEditor-resizer" style="width: 0px; height: 56px;"></div><div class="oj-TryEditor-inputs" style="height: 28px; display: block;"><div style="height: 20px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="oj5p9KoPSt"></div></div><div class="oj-TryEditor-outputs" style="height: 28px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 20px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 24px;"></iframe></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-					</div>
+					<div class="middle gg100"><div style="height: 56px;" class="oj-TryEditor" id="ojaUguLOo7"><div class="oj-TryEditor-resizer" style="width: 0px; height: 56px;"></div><div class="oj-TryEditor-inputs" style="height: 28px; display: block;"><div style="height: 20px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="oje1lhi05s"></div></div><div class="oj-TryEditor-outputs" style="height: 28px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 20px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 24px;"></iframe></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div></div>
 					<div class="row">
 						<div class="left gg25"></div>
 						<div class="right gg75"></div>
@@ -390,11 +386,6 @@ module.exports = function() {
     styles: ['reset.css', 'gg.css', 'jquery-ui-1.10.3.custom.css'],
     scripts: ['jquery.js', 'underscore.js', 'backbone.js', 'coffee-script.js', 'ace/ace.js', 'jquery-ui-1.10.3.custom.js', 'jquery.ba-resize.min.js'],
     middle: function() {
-      TryEditor({
-        cs: "# Define id with 'id'\ndiv id:'my-id',\n  'This div has my-id'\n\n# Define class with 'c' or 'class'\ndiv c:'my-class',\n  'This div has my-class'",
-        js: "// Define id with 'id'\ndiv({id:'my-id'},\n  'This div has my-id');\n\n// Define class with 'c' or 'class'\ndiv({c:'my-class'},\n  'This div has my-class');"
-      });
-      br();
       return TryEditor({
         cs: "# Define id with 'id'\ndiv id:'my-id',\n  'This div has my-id'\n\n# Define class with 'c' or 'class'\ndiv c:'my-class',\n  'This div has my-class'",
         js: "// Define id with 'id'\ndiv({id:'my-id'},\n  'This div has my-id');\n\n// Define class with 'c' or 'class'\ndiv({c:'my-class'},\n  'This div has my-class');"
