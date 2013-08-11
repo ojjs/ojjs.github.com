@@ -1,157 +1,20 @@
-
-	<!DOCTYPE html>
-	<html lang="en">
-		<head>
-			<meta content="width=device-width" name="viewport">
-			<title>Test</title>
-			<link href="styles/reset.css" rel="stylesheet" type="text/css">
-			<link href="styles/bootstrap.css" rel="stylesheet" type="text/css">
-			<link href="styles/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css">
-			<style class="oj-Table" type="text/css">div {color:red}</style>
-			<script src="scripts/jquery.js" type="text/javascript"></script>
-			<script src="scripts/underscore.js" type="text/javascript"></script>
-			<script src="scripts/backbone.js" type="text/javascript"></script>
-			<script src="scripts/ace/ace.js" type="text/javascript"></script>
-			<script src="scripts/bootstrap.js" type="text/javascript"></script>
-			<script src="scripts/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
-			<script src="scripts/jquery.ba-resize.min.js" type="text/javascript"></script>
-			<script src="scripts/oj.AceEditor.js" type="text/javascript"></script>
-			<meta charset="UTF-8">
-			<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-		<style>
-.oj-TryEditor {
-	background-color:white;
-	border:2px solid #ffd272;
-	box-shadow:2px 2px 4px RGBA(0,0,0,0.15);
-	display:block;
-	position:relative;
-	z-index:20;
-}
-.oj-TryEditor-seperator {
-	background-color:#ffd272;
-	height:1px;
-	left:0px;
-	position:absolute;
-	top:0px;
-	width:2px;
-	z-index:100;
-}
-.oj-TryEditor-resizer {
-	height:1px;
-	left:-1px;
-	position:absolute;
-	top:-1px;
-	width:2px;
-}
-.oj-TryEditor-inputs {
-	display:inline-block;
-	position:relative;
-	z-index:30;
-}
-.oj-TryEditor-input-editor {
-	border:4px solid #fefaf3;
-	resize:none;
-}
-.oj-TryEditor-outputs {
-	display:inline-block;
-	position:relative;
-	z-index:40;
-}
-.oj-TryEditor-output-iframe {
-	background-color:white;
-	height:100%;
-	position:absolute;
-	width:100%;
-	z-index:20;
-}
-.oj-TryEditor-console {
-	background-color:RGBA(255,255,255,0.8);
-	color:darkorange;
-	display:none;
-	font-size:16px;
-	height:100%;
-	padding:4px;
-	position:absolute;
-	text-align:left;
-	width:100%;
-	z-index:30;
-}
-.oj-TryEditor-bar {
-	height:21px;
-	margin:8px 4px 0 0;
-	position:absolute;
-	right:0px;
-	top:0px;
-	z-index:100;
-}
-.oj-TryEditor-example-chooser {
-	float:right;
-	height:100%;
-	margin-left:8px;
-	position:relative;
-	z-index:10;
-}
-.oj-TryEditor-bar-state {
-	color:#D5A876;
-	cursor:pointer;
-	display:inline-block;
-	float:right;
-	font-size:12px;
-	height:100%;
-	margin-left:0px;
-	text-align:center;
-	width:25px;
-	z-index:101;
-}
-.oj-TryEditor-bar-state:hover {
-	text-decoration:underline;
-}
-.oj-TryEditor-bar-state.selected {
-	color:#E88E00;
-	font-weight:bold;
-	text-decoration:none !important;
-}
-.oj-TryEditor-bar-maximize {
-	background-image:url(media/try_popout.png);
-	cursor:pointer;
-	display:inline-block;
-	float:right;
-	height:12px;
-	width:15px;
-	z-index:101;
-}
-.oj-TryEditor-gripper {
-	background-image:url(media/try_gripper.png);
-	bottom:2px;
-	height:12px;
-	left:auto;
-	position:absolute;
-	right:2px;
-	width:12px;
-	z-index:101;
-}
-
-</style></head>
-		<body>
-			<div>test</div>
-			<div style="height: 58px;" class="oj-TryEditor" id="ojYwwHOAgV"><div class="oj-TryEditor-resizer" style="width: 0px; height: 58px;"><div class="oj-TryEditor-gripper ui-resizable-s"></div></div><div class="oj-TryEditor-inputs" style="height: 29px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 21px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojczVxQFO6"><div class="oj-AceEditor-editor" style="height: 21px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 29px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 21px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 25px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-		<script>
+<!DOCTYPE html><html lang="en"><head><meta content="width=device-width" name="viewport"><title>Test</title><link href="styles/reset.css" rel="stylesheet" type="text/css"><link href="styles/bootstrap.css" rel="stylesheet" type="text/css"><script src="scripts/jquery.js" type="text/javascript"></script><script src="scripts/jquery.event.drag.js" type="text/javascript"></script><script src="scripts/jquery.ba-resize.min.js" type="text/javascript"></script><script src="scripts/underscore.js" type="text/javascript"></script><script src="scripts/backbone.js" type="text/javascript"></script><script src="scripts/ace/ace.js" type="text/javascript"></script><script src="scripts/bootstrap.js" type="text/javascript"></script><script src="scripts/coffee-script.js" type="text/javascript"></script><meta charset="UTF-8"><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"></head><body><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=evanmoran&amp;type=follow&amp;count=true" class="oj-GitHubButton" id="ojU4CHqGNw"></iframe><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=evanmoran&amp;repo=quick&amp;type=watch&amp;count=true" class="oj-GitHubButton" id="ojYhR36Ujb"></iframe><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=evanmoran&amp;repo=quick&amp;type=fork&amp;count=true" class="oj-GitHubButton" id="ojFadwi03Y"></iframe><a class="twitter-follow-button oj-TwitterFollowButton" data-show-count="true" data-show-screen-name="true" data-size="medium" href="https://twitter.com/evanmoran" style="display:none" id="oj5NS9HUpM">Follow @evanmoran</a><script>
 
 // Generated with oj v0.0.14
 (function(){ var F = {}, M = {}, R = {}, P, G, RR;
 
-M['/node_modules'] = {"oj-markdown":"src/oj.markdown.js","oj-mustache":"src/oj.mustache.js","oj-ace-editor":"src/oj.AceEditor.js","oj-vimeo-video":"src/oj.VimeoVideo.js","oj-twitter-follow-button":"src/oj.TwitterFollowButton.js"};
-M['/node_modules/oj-markdown/node_modules'] = {"marked":"lib/marked.js"};
-M['/node_modules/oj-mustache/node_modules'] = {"mustache":"mustache.js"};
-F['/test.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){oj.use(require('oj-markdown'));
-
-oj.use(require('oj-mustache'));
+M['/node_modules'] = {"oj-bootstrap":"src/oj.Bootstrap.js","oj-ace-editor":"src/oj.AceEditor.js","oj-twitter-follow-button":"src/oj.TwitterFollowButton.js","oj-github-button":"src/oj.GitHubButton.js"};
+F['/test.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){oj.use(require('oj-bootstrap'));
 
 oj.use(require('oj-ace-editor'));
 
-oj.use(require('oj-vimeo-video'));
-
 oj.use(require('oj-twitter-follow-button'));
+
+oj.use(require('./oj.TryEditor'));
+
+oj.use(require('oj-github-button'));
+
+oj.use(require('./oj.StyledButton'));
 
 module.exports = oj(function() {
   doctype(5);
@@ -174,17 +37,16 @@ module.exports = oj(function() {
         rel: 'stylesheet',
         type: 'text/css'
       });
-      link({
-        href: 'styles/jquery-ui-1.10.3.custom.css',
-        rel: 'stylesheet',
-        type: 'text/css'
-      });
-      style({
-        c: 'oj-Table',
-        type: 'text/css'
-      }, "div {color:red}");
       script({
         src: 'scripts/jquery.js',
+        type: 'text/javascript'
+      });
+      script({
+        src: 'scripts/jquery.event.drag.js',
+        type: 'text/javascript'
+      });
+      script({
+        src: 'scripts/jquery.ba-resize.min.js',
         type: 'text/javascript'
       });
       script({
@@ -204,15 +66,7 @@ module.exports = oj(function() {
         type: 'text/javascript'
       });
       script({
-        src: 'scripts/jquery-ui-1.10.3.custom.js',
-        type: 'text/javascript'
-      });
-      script({
-        src: 'scripts/jquery.ba-resize.min.js',
-        type: 'text/javascript'
-      });
-      script({
-        src: 'scripts/oj.AceEditor.js',
+        src: 'scripts/coffee-script.js',
         type: 'text/javascript'
       });
       meta({
@@ -224,1749 +78,73 @@ module.exports = oj(function() {
       });
     });
     return body(function() {
-      var t;
-
-      div('test');
-      return t = TryEditor({
-        js: "div('this should work');"
+      GitHubButton('evanmoran');
+      GitHubButton('evanmoran', 'quick');
+      GitHubButton('evanmoran', 'quick', {
+        type: 'fork'
       });
+      return TwitterFollowButton('evanmoran');
     });
   });
 });
 }}).call(this);})(RR('/test.ojc'),P,G,'/','test.ojc');});
-F['/node_modules/oj-markdown/src/oj.markdown.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){var marked = require('marked');
-// Create a plugin by defining a function that accepts oj and returns a map of extensions to oj
-module.exports = function(oj,settings){
-  // Initialize marked options
+F['/node_modules/oj-bootstrap/src/oj.Bootstrap.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+// Bootstrap plugin
+plugin = function(oj,settings){
   if (typeof settings !== 'object')
-    settings = {}
-  marked.setOptions(settings);
+    settings = {};
 
-  // oj.markdown
-  return {markdown:function(input){
-    return oj.emit(marked(input));
-  }};
-};
-})(RR('/node_modules/oj-markdown/src/oj.markdown.js'),P,G,'/node_modules/oj-markdown/src','oj.markdown.js');});
-F['/node_modules/oj-markdown/node_modules/marked/lib/marked.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){/**
- * marked - a markdown parser
- * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
- * https://github.com/chjj/marked
- */
+  var Bootstrap = {};
 
-;(function() {
+  Bootstrap.Table = oj.createType('Table', {
+    base:oj.Table,
+    constructor:function(){
+      // Add class 'table'
+      var options, args, _ref;
+      _ref = oj.argumentsUnion(arguments);
+      options = _ref.options;
+      args = _ref.args;
 
-/**
- * Block-Level Grammar
- */
+      if(options.c == null)
+        options.c = ['table'];
+      else if(oj.isString(options.c))
+        options.c = ['table'].concat(options.c.split(' '));
+      else if (oj.isString(options.c))
+        options.c = ['table'].concat(options.c.concat);
 
-var block = {
-  newline: /^\n+/,
-  code: /^( {4}[^\n]+\n*)+/,
-  fences: noop,
-  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
-  heading: /^ *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)/,
-  nptable: noop,
-  lheading: /^([^\n]+)\n *(=|-){3,} *\n*/,
-  blockquote: /^( *>[^\n]+(\n[^\n]+)*\n*)+/,
-  list: /^( *)(bull) [\s\S]+?(?:hr|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
-  html: /^ *(?:comment|closed|closing) *(?:\n{2,}|\s*$)/,
-  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
-  table: noop,
-  paragraph: /^((?:[^\n]+\n?(?!hr|heading|lheading|blockquote|tag|def))+)\n*/,
-  text: /^[^\n]+/
+      Bootstrap.Table.base.constructor.apply(this, [options].concat(args));
+    },
+    properties: {
+    },
+    methods: {
+    }
+  });
+
+  return {Bootstrap:Bootstrap};
 };
 
-block.bullet = /(?:[*+-]|\d+\.)/;
-block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
-block.item = replace(block.item, 'gm')
-  (/bull/g, block.bullet)
-  ();
-
-block.list = replace(block.list)
-  (/bull/g, block.bullet)
-  ('hr', /\n+(?=(?: *[-*_]){3,} *(?:\n+|$))/)
-  ();
-
-block._tag = '(?!(?:'
-  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
-  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
-  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|@)\\b';
-
-block.html = replace(block.html)
-  ('comment', /<!--[\s\S]*?-->/)
-  ('closed', /<(tag)[\s\S]+?<\/\1>/)
-  ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
-  (/tag/g, block._tag)
-  ();
-
-block.paragraph = replace(block.paragraph)
-  ('hr', block.hr)
-  ('heading', block.heading)
-  ('lheading', block.lheading)
-  ('blockquote', block.blockquote)
-  ('tag', '<' + block._tag)
-  ('def', block.def)
-  ();
-
-/**
- * Normal Block Grammar
- */
-
-block.normal = merge({}, block);
-
-/**
- * GFM Block Grammar
- */
-
-block.gfm = merge({}, block.normal, {
-  fences: /^ *(`{3,}|~{3,}) *(\w+)? *\n([\s\S]+?)\s*\1 *(?:\n+|$)/,
-  paragraph: /^/
-});
-
-block.gfm.paragraph = replace(block.paragraph)
-  ('(?!', '(?!' + block.gfm.fences.source.replace('\\1', '\\2') + '|')
-  ();
-
-/**
- * GFM + Tables Block Grammar
- */
-
-block.tables = merge({}, block.gfm, {
-  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
-  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
-});
-
-/**
- * Block Lexer
- */
-
-function Lexer(options) {
-  this.tokens = [];
-  this.tokens.links = {};
-  this.options = options || marked.defaults;
-  this.rules = block.normal;
-
-  if (this.options.gfm) {
-    if (this.options.tables) {
-      this.rules = block.tables;
-    } else {
-      this.rules = block.gfm;
-    }
-  }
-}
-
-/**
- * Expose Block Rules
- */
-
-Lexer.rules = block;
-
-/**
- * Static Lex Method
- */
-
-Lexer.lex = function(src, options) {
-  var lexer = new Lexer(options);
-  return lexer.lex(src);
-};
-
-/**
- * Preprocessing
- */
-
-Lexer.prototype.lex = function(src) {
-  src = src
-    .replace(/\r\n|\r/g, '\n')
-    .replace(/\t/g, '    ')
-    .replace(/\u00a0/g, ' ')
-    .replace(/\u2424/g, '\n');
-
-  return this.token(src, true);
-};
-
-/**
- * Lexing
- */
-
-Lexer.prototype.token = function(src, top) {
-  var src = src.replace(/^ +$/gm, '')
-    , next
-    , loose
-    , cap
-    , bull
-    , b
-    , item
-    , space
-    , i
-    , l;
-
-  while (src) {
-    // newline
-    if (cap = this.rules.newline.exec(src)) {
-      src = src.substring(cap[0].length);
-      if (cap[0].length > 1) {
-        this.tokens.push({
-          type: 'space'
-        });
-      }
-    }
-
-    // code
-    if (cap = this.rules.code.exec(src)) {
-      src = src.substring(cap[0].length);
-      cap = cap[0].replace(/^ {4}/gm, '');
-      this.tokens.push({
-        type: 'code',
-        text: !this.options.pedantic
-          ? cap.replace(/\n+$/, '')
-          : cap
-      });
-      continue;
-    }
-
-    // fences (gfm)
-    if (cap = this.rules.fences.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'code',
-        lang: cap[2],
-        text: cap[3]
-      });
-      continue;
-    }
-
-    // heading
-    if (cap = this.rules.heading.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'heading',
-        depth: cap[1].length,
-        text: cap[2]
-      });
-      continue;
-    }
-
-    // table no leading pipe (gfm)
-    if (top && (cap = this.rules.nptable.exec(src))) {
-      src = src.substring(cap[0].length);
-
-      item = {
-        type: 'table',
-        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
-        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-        cells: cap[3].replace(/\n$/, '').split('\n')
-      };
-
-      for (i = 0; i < item.align.length; i++) {
-        if (/^ *-+: *$/.test(item.align[i])) {
-          item.align[i] = 'right';
-        } else if (/^ *:-+: *$/.test(item.align[i])) {
-          item.align[i] = 'center';
-        } else if (/^ *:-+ *$/.test(item.align[i])) {
-          item.align[i] = 'left';
-        } else {
-          item.align[i] = null;
-        }
-      }
-
-      for (i = 0; i < item.cells.length; i++) {
-        item.cells[i] = item.cells[i].split(/ *\| */);
-      }
-
-      this.tokens.push(item);
-
-      continue;
-    }
-
-    // lheading
-    if (cap = this.rules.lheading.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'heading',
-        depth: cap[2] === '=' ? 1 : 2,
-        text: cap[1]
-      });
-      continue;
-    }
-
-    // hr
-    if (cap = this.rules.hr.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'hr'
-      });
-      continue;
-    }
-
-    // blockquote
-    if (cap = this.rules.blockquote.exec(src)) {
-      src = src.substring(cap[0].length);
-
-      this.tokens.push({
-        type: 'blockquote_start'
-      });
-
-      cap = cap[0].replace(/^ *> ?/gm, '');
-
-      // Pass `top` to keep the current
-      // "toplevel" state. This is exactly
-      // how markdown.pl works.
-      this.token(cap, top);
-
-      this.tokens.push({
-        type: 'blockquote_end'
-      });
-
-      continue;
-    }
-
-    // list
-    if (cap = this.rules.list.exec(src)) {
-      src = src.substring(cap[0].length);
-
-      this.tokens.push({
-        type: 'list_start',
-        ordered: isFinite(cap[2])
-      });
-
-      // Get each top-level item.
-      cap = cap[0].match(this.rules.item);
-
-      // Get bullet.
-      if (this.options.smartLists) {
-        bull = block.bullet.exec(cap[0])[0];
-      }
-
-      next = false;
-      l = cap.length;
-      i = 0;
-
-      for (; i < l; i++) {
-        item = cap[i];
-
-        // Remove the list item's bullet
-        // so it is seen as the next token.
-        space = item.length;
-        item = item.replace(/^ *([*+-]|\d+\.) +/, '');
-
-        // Outdent whatever the
-        // list item contains. Hacky.
-        if (~item.indexOf('\n ')) {
-          space -= item.length;
-          item = !this.options.pedantic
-            ? item.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
-            : item.replace(/^ {1,4}/gm, '');
-        }
-
-        // Determine whether the next list item belongs here.
-        // Backpedal if it does not belong in this list.
-        if (this.options.smartLists && i !== l - 1) {
-          b = block.bullet.exec(cap[i+1])[0];
-          if (bull !== b && !(bull[1] === '.' && b[1] === '.')) {
-            src = cap.slice(i + 1).join('\n') + src;
-            i = l - 1;
-          }
-        }
-
-        // Determine whether item is loose or not.
-        // Use: /(^|\n)(?! )[^\n]+\n\n(?!\s*$)/
-        // for discount behavior.
-        loose = next || /\n\n(?!\s*$)/.test(item);
-        if (i !== l - 1) {
-          next = item[item.length-1] === '\n';
-          if (!loose) loose = next;
-        }
-
-        this.tokens.push({
-          type: loose
-            ? 'loose_item_start'
-            : 'list_item_start'
-        });
-
-        // Recurse.
-        this.token(item, false);
-
-        this.tokens.push({
-          type: 'list_item_end'
-        });
-      }
-
-      this.tokens.push({
-        type: 'list_end'
-      });
-
-      continue;
-    }
-
-    // html
-    if (cap = this.rules.html.exec(src)) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: this.options.sanitize
-          ? 'paragraph'
-          : 'html',
-        pre: cap[1] === 'pre',
-        text: cap[0]
-      });
-      continue;
-    }
-
-    // def
-    if (top && (cap = this.rules.def.exec(src))) {
-      src = src.substring(cap[0].length);
-      this.tokens.links[cap[1].toLowerCase()] = {
-        href: cap[2],
-        title: cap[3]
-      };
-      continue;
-    }
-
-    // table (gfm)
-    if (top && (cap = this.rules.table.exec(src))) {
-      src = src.substring(cap[0].length);
-
-      item = {
-        type: 'table',
-        header: cap[1].replace(/^ *| *\| *$/g, '').split(/ *\| */),
-        align: cap[2].replace(/^ *|\| *$/g, '').split(/ *\| */),
-        cells: cap[3].replace(/(?: *\| *)?\n$/, '').split('\n')
-      };
-
-      for (i = 0; i < item.align.length; i++) {
-        if (/^ *-+: *$/.test(item.align[i])) {
-          item.align[i] = 'right';
-        } else if (/^ *:-+: *$/.test(item.align[i])) {
-          item.align[i] = 'center';
-        } else if (/^ *:-+ *$/.test(item.align[i])) {
-          item.align[i] = 'left';
-        } else {
-          item.align[i] = null;
-        }
-      }
-
-      for (i = 0; i < item.cells.length; i++) {
-        item.cells[i] = item.cells[i]
-          .replace(/^ *\| *| *\| *$/g, '')
-          .split(/ *\| */);
-      }
-
-      this.tokens.push(item);
-
-      continue;
-    }
-
-    // top-level paragraph
-    if (top && (cap = this.rules.paragraph.exec(src))) {
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'paragraph',
-        text: cap[1][cap[1].length-1] === '\n'
-          ? cap[1].slice(0, -1)
-          : cap[1]
-      });
-      continue;
-    }
-
-    // text
-    if (cap = this.rules.text.exec(src)) {
-      // Top-level should never reach here.
-      src = src.substring(cap[0].length);
-      this.tokens.push({
-        type: 'text',
-        text: cap[0]
-      });
-      continue;
-    }
-
-    if (src) {
-      throw new
-        Error('Infinite loop on byte: ' + src.charCodeAt(0));
-    }
-  }
-
-  return this.tokens;
-};
-
-/**
- * Inline-Level Grammar
- */
-
-var inline = {
-  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
-  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
-  url: noop,
-  tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
-  link: /^!?\[(inside)\]\(href\)/,
-  reflink: /^!?\[(inside)\]\s*\[([^\]]*)\]/,
-  nolink: /^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/,
-  strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
-  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
-  code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
-  br: /^ {2,}\n(?!\s*$)/,
-  del: noop,
-  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
-};
-
-inline._inside = /(?:\[[^\]]*\]|[^\]]|\](?=[^\[]*\]))*/;
-inline._href = /\s*<?([^\s]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
-
-inline.link = replace(inline.link)
-  ('inside', inline._inside)
-  ('href', inline._href)
-  ();
-
-inline.reflink = replace(inline.reflink)
-  ('inside', inline._inside)
-  ();
-
-/**
- * Normal Inline Grammar
- */
-
-inline.normal = merge({}, inline);
-
-/**
- * Pedantic Inline Grammar
- */
-
-inline.pedantic = merge({}, inline.normal, {
-  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
-  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
-});
-
-/**
- * GFM Inline Grammar
- */
-
-inline.gfm = merge({}, inline.normal, {
-  escape: replace(inline.escape)('])', '~|])')(),
-  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
-  del: /^~~(?=\S)([\s\S]*?\S)~~/,
-  text: replace(inline.text)
-    (']|', '~]|')
-    ('|', '|https?://|')
-    ()
-});
-
-/**
- * GFM + Line Breaks Inline Grammar
- */
-
-inline.breaks = merge({}, inline.gfm, {
-  br: replace(inline.br)('{2,}', '*')(),
-  text: replace(inline.gfm.text)('{2,}', '*')()
-});
-
-/**
- * Inline Lexer & Compiler
- */
-
-function InlineLexer(links, options) {
-  this.options = options || marked.defaults;
-  this.links = links;
-  this.rules = inline.normal;
-
-  if (!this.links) {
-    throw new
-      Error('Tokens array requires a `links` property.');
-  }
-
-  if (this.options.gfm) {
-    if (this.options.breaks) {
-      this.rules = inline.breaks;
-    } else {
-      this.rules = inline.gfm;
-    }
-  } else if (this.options.pedantic) {
-    this.rules = inline.pedantic;
-  }
-}
-
-/**
- * Expose Inline Rules
- */
-
-InlineLexer.rules = inline;
-
-/**
- * Static Lexing/Compiling Method
- */
-
-InlineLexer.output = function(src, links, options) {
-  var inline = new InlineLexer(links, options);
-  return inline.output(src);
-};
-
-/**
- * Lexing/Compiling
- */
-
-InlineLexer.prototype.output = function(src) {
-  var out = ''
-    , link
-    , text
-    , href
-    , cap;
-
-  while (src) {
-    // escape
-    if (cap = this.rules.escape.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += cap[1];
-      continue;
-    }
-
-    // autolink
-    if (cap = this.rules.autolink.exec(src)) {
-      src = src.substring(cap[0].length);
-      if (cap[2] === '@') {
-        text = cap[1][6] === ':'
-          ? this.mangle(cap[1].substring(7))
-          : this.mangle(cap[1]);
-        href = this.mangle('mailto:') + text;
-      } else {
-        text = escape(cap[1]);
-        href = text;
-      }
-      out += '<a href="'
-        + href
-        + '">'
-        + text
-        + '</a>';
-      continue;
-    }
-
-    // url (gfm)
-    if (cap = this.rules.url.exec(src)) {
-      src = src.substring(cap[0].length);
-      text = escape(cap[1]);
-      href = text;
-      out += '<a href="'
-        + href
-        + '">'
-        + text
-        + '</a>';
-      continue;
-    }
-
-    // tag
-    if (cap = this.rules.tag.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += this.options.sanitize
-        ? escape(cap[0])
-        : cap[0];
-      continue;
-    }
-
-    // link
-    if (cap = this.rules.link.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += this.outputLink(cap, {
-        href: cap[2],
-        title: cap[3]
-      });
-      continue;
-    }
-
-    // reflink, nolink
-    if ((cap = this.rules.reflink.exec(src))
-        || (cap = this.rules.nolink.exec(src))) {
-      src = src.substring(cap[0].length);
-      link = (cap[2] || cap[1]).replace(/\s+/g, ' ');
-      link = this.links[link.toLowerCase()];
-      if (!link || !link.href) {
-        out += cap[0][0];
-        src = cap[0].substring(1) + src;
-        continue;
-      }
-      out += this.outputLink(cap, link);
-      continue;
-    }
-
-    // strong
-    if (cap = this.rules.strong.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<strong>'
-        + this.output(cap[2] || cap[1])
-        + '</strong>';
-      continue;
-    }
-
-    // em
-    if (cap = this.rules.em.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<em>'
-        + this.output(cap[2] || cap[1])
-        + '</em>';
-      continue;
-    }
-
-    // code
-    if (cap = this.rules.code.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<code>'
-        + escape(cap[2], true)
-        + '</code>';
-      continue;
-    }
-
-    // br
-    if (cap = this.rules.br.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<br>';
-      continue;
-    }
-
-    // del (gfm)
-    if (cap = this.rules.del.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += '<del>'
-        + this.output(cap[1])
-        + '</del>';
-      continue;
-    }
-
-    // text
-    if (cap = this.rules.text.exec(src)) {
-      src = src.substring(cap[0].length);
-      out += escape(cap[0]);
-      continue;
-    }
-
-    if (src) {
-      throw new
-        Error('Infinite loop on byte: ' + src.charCodeAt(0));
-    }
-  }
-
-  return out;
-};
-
-/**
- * Compile Link
- */
-
-InlineLexer.prototype.outputLink = function(cap, link) {
-  if (cap[0][0] !== '!') {
-    return '<a href="'
-      + escape(link.href)
-      + '"'
-      + (link.title
-      ? ' title="'
-      + escape(link.title)
-      + '"'
-      : '')
-      + '>'
-      + this.output(cap[1])
-      + '</a>';
-  } else {
-    return '<img src="'
-      + escape(link.href)
-      + '" alt="'
-      + escape(cap[1])
-      + '"'
-      + (link.title
-      ? ' title="'
-      + escape(link.title)
-      + '"'
-      : '')
-      + '>';
-  }
-};
-
-/**
- * Mangle Links
- */
-
-InlineLexer.prototype.mangle = function(text) {
-  var out = ''
-    , l = text.length
-    , i = 0
-    , ch;
-
-  for (; i < l; i++) {
-    ch = text.charCodeAt(i);
-    if (Math.random() > 0.5) {
-      ch = 'x' + ch.toString(16);
-    }
-    out += '&#' + ch + ';';
-  }
-
-  return out;
-};
-
-/**
- * Parsing & Compiling
- */
-
-function Parser(options) {
-  this.tokens = [];
-  this.token = null;
-  this.options = options || marked.defaults;
-}
-
-/**
- * Static Parse Method
- */
-
-Parser.parse = function(src, options) {
-  var parser = new Parser(options);
-  return parser.parse(src);
-};
-
-/**
- * Parse Loop
- */
-
-Parser.prototype.parse = function(src) {
-  this.inline = new InlineLexer(src.links, this.options);
-  this.tokens = src.reverse();
-
-  var out = '';
-  while (this.next()) {
-    out += this.tok();
-  }
-
-  return out;
-};
-
-/**
- * Next Token
- */
-
-Parser.prototype.next = function() {
-  return this.token = this.tokens.pop();
-};
-
-/**
- * Preview Next Token
- */
-
-Parser.prototype.peek = function() {
-  return this.tokens[this.tokens.length-1] || 0;
-};
-
-/**
- * Parse Text Tokens
- */
-
-Parser.prototype.parseText = function() {
-  var body = this.token.text;
-
-  while (this.peek().type === 'text') {
-    body += '\n' + this.next().text;
-  }
-
-  return this.inline.output(body);
-};
-
-/**
- * Parse Current Token
- */
-
-Parser.prototype.tok = function() {
-  switch (this.token.type) {
-    case 'space': {
-      return '';
-    }
-    case 'hr': {
-      return '<hr>\n';
-    }
-    case 'heading': {
-      return '<h'
-        + this.token.depth
-        + '>'
-        + this.inline.output(this.token.text)
-        + '</h'
-        + this.token.depth
-        + '>\n';
-    }
-    case 'code': {
-      if (this.options.highlight) {
-        var code = this.options.highlight(this.token.text, this.token.lang);
-        if (code != null && code !== this.token.text) {
-          this.token.escaped = true;
-          this.token.text = code;
-        }
-      }
-
-      if (!this.token.escaped) {
-        this.token.text = escape(this.token.text, true);
-      }
-
-      return '<pre><code'
-        + (this.token.lang
-        ? ' class="'
-        + this.options.langPrefix
-        + this.token.lang
-        + '"'
-        : '')
-        + '>'
-        + this.token.text
-        + '</code></pre>\n';
-    }
-    case 'table': {
-      var body = ''
-        , heading
-        , i
-        , row
-        , cell
-        , j;
-
-      // header
-      body += '<thead>\n<tr>\n';
-      for (i = 0; i < this.token.header.length; i++) {
-        heading = this.inline.output(this.token.header[i]);
-        body += this.token.align[i]
-          ? '<th align="' + this.token.align[i] + '">' + heading + '</th>\n'
-          : '<th>' + heading + '</th>\n';
-      }
-      body += '</tr>\n</thead>\n';
-
-      // body
-      body += '<tbody>\n'
-      for (i = 0; i < this.token.cells.length; i++) {
-        row = this.token.cells[i];
-        body += '<tr>\n';
-        for (j = 0; j < row.length; j++) {
-          cell = this.inline.output(row[j]);
-          body += this.token.align[j]
-            ? '<td align="' + this.token.align[j] + '">' + cell + '</td>\n'
-            : '<td>' + cell + '</td>\n';
-        }
-        body += '</tr>\n';
-      }
-      body += '</tbody>\n';
-
-      return '<table>\n'
-        + body
-        + '</table>\n';
-    }
-    case 'blockquote_start': {
-      var body = '';
-
-      while (this.next().type !== 'blockquote_end') {
-        body += this.tok();
-      }
-
-      return '<blockquote>\n'
-        + body
-        + '</blockquote>\n';
-    }
-    case 'list_start': {
-      var type = this.token.ordered ? 'ol' : 'ul'
-        , body = '';
-
-      while (this.next().type !== 'list_end') {
-        body += this.tok();
-      }
-
-      return '<'
-        + type
-        + '>\n'
-        + body
-        + '</'
-        + type
-        + '>\n';
-    }
-    case 'list_item_start': {
-      var body = '';
-
-      while (this.next().type !== 'list_item_end') {
-        body += this.token.type === 'text'
-          ? this.parseText()
-          : this.tok();
-      }
-
-      return '<li>'
-        + body
-        + '</li>\n';
-    }
-    case 'loose_item_start': {
-      var body = '';
-
-      while (this.next().type !== 'list_item_end') {
-        body += this.tok();
-      }
-
-      return '<li>'
-        + body
-        + '</li>\n';
-    }
-    case 'html': {
-      return !this.token.pre && !this.options.pedantic
-        ? this.inline.output(this.token.text)
-        : this.token.text;
-    }
-    case 'paragraph': {
-      return '<p>'
-        + this.inline.output(this.token.text)
-        + '</p>\n';
-    }
-    case 'text': {
-      return '<p>'
-        + this.parseText()
-        + '</p>\n';
-    }
-  }
-};
-
-/**
- * Helpers
- */
-
-function escape(html, encode) {
-  return html
-    .replace(!encode ? /&(?!#?\w+;)/g : /&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function replace(regex, opt) {
-  regex = regex.source;
-  opt = opt || '';
-  return function self(name, val) {
-    if (!name) return new RegExp(regex, opt);
-    val = val.source || val;
-    val = val.replace(/(^|[^\[])\^/g, '$1');
-    regex = regex.replace(name, val);
-    return self;
-  };
-}
-
-function noop() {}
-noop.exec = noop;
-
-function merge(obj) {
-  var i = 1
-    , target
-    , key;
-
-  for (; i < arguments.length; i++) {
-    target = arguments[i];
-    for (key in target) {
-      if (Object.prototype.hasOwnProperty.call(target, key)) {
-        obj[key] = target[key];
-      }
-    }
-  }
-
-  return obj;
-}
-
-/**
- * Marked
- */
-
-function marked(src, opt) {
-  try {
-    if (opt) opt = merge({}, marked.defaults, opt);
-    return Parser.parse(Lexer.lex(src, opt), opt);
-  } catch (e) {
-    e.message += '\nPlease report this to https://github.com/chjj/marked.';
-    if ((opt || marked.defaults).silent) {
-      return '<p>An error occured:</p><pre>'
-        + escape(e.message + '', true)
-        + '</pre>';
-    }
-    throw e;
-  }
-}
-
-/**
- * Options
- */
-
-marked.options =
-marked.setOptions = function(opt) {
-  merge(marked.defaults, opt);
-  return marked;
-};
-
-marked.defaults = {
-  gfm: true,
-  tables: true,
-  breaks: false,
-  pedantic: false,
-  sanitize: false,
-  smartLists: false,
-  silent: false,
-  highlight: null,
-  langPrefix: 'lang-'
-};
-
-/**
- * Expose
- */
-
-marked.Parser = Parser;
-marked.parser = Parser.parse;
-
-marked.Lexer = Lexer;
-marked.lexer = Lexer.lex;
-
-marked.InlineLexer = InlineLexer;
-marked.inlineLexer = InlineLexer.output;
-
-marked.parse = marked;
-
-if (typeof exports === 'object') {
-  module.exports = marked;
-} else if (typeof define === 'function' && define.amd) {
-  define(function() { return marked; });
-} else {
-  this.marked = marked;
-}
-
-}).call(function() {
-  return this || (typeof window !== 'undefined' ? window : global);
-}());
-})(RR('/node_modules/oj-markdown/node_modules/marked/lib/marked.js'),P,G,'/node_modules/oj-markdown/node_modules/marked/lib','marked.js');});
-F['/node_modules/oj-mustache/src/oj.mustache.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){var mustache = require('mustache');
-module.exports = function(oj,settings){
-  if (typeof settings !== 'object')
-    settings = {}
-
-  // oj.mustache
-  return {mustache:function(){
-    var u, template, view, args;
-    u = oj.argumentsUnion(arguments);
-    view = u.options;
-    args = u.args;
-    if (args.length == 0 || args.length > 1)
-      throw new Error('oj.mustache: expected one template');
-    template = args[0]
-    return oj.emit(mustache.to_html(template, view));
-  }};
-};})(RR('/node_modules/oj-mustache/src/oj.mustache.js'),P,G,'/node_modules/oj-mustache/src','oj.mustache.js');});
-F['/node_modules/oj-mustache/node_modules/mustache/mustache.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){/*!
- * mustache.js - Logic-less {{mustache}} templates with JavaScript
- * http://github.com/janl/mustache.js
- */
-
-/*global define: false*/
-
-(function (root, factory) {
-  if (typeof exports === "object" && exports) {
-    module.exports = factory; // CommonJS
-  } else if (typeof define === "function" && define.amd) {
-    define(factory); // AMD
-  } else {
-    root.Mustache = factory; // <script>
-  }
-}(this, (function () {
-
-  var exports = {};
-
-  exports.name = "mustache.js";
-  exports.version = "0.7.2";
-  exports.tags = ["{{", "}}"];
-
-  exports.Scanner = Scanner;
-  exports.Context = Context;
-  exports.Writer = Writer;
-
-  var whiteRe = /\s*/;
-  var spaceRe = /\s+/;
-  var nonSpaceRe = /\S/;
-  var eqRe = /\s*=/;
-  var curlyRe = /\s*\}/;
-  var tagRe = /#|\^|\/|>|\{|&|=|!/;
-
-  // Workaround for https://issues.apache.org/jira/browse/COUCHDB-577
-  // See https://github.com/janl/mustache.js/issues/189
-  function testRe(re, string) {
-    return RegExp.prototype.test.call(re, string);
-  }
-
-  function isWhitespace(string) {
-    return !testRe(nonSpaceRe, string);
-  }
-
-  var isArray = Array.isArray || function (obj) {
-    return Object.prototype.toString.call(obj) === "[object Array]";
-  };
-
-  function escapeRe(string) {
-    return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
-  }
-
-  var entityMap = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': '&quot;',
-    "'": '&#39;',
-    "/": '&#x2F;'
-  };
-
-  function escapeHtml(string) {
-    return String(string).replace(/[&<>"'\/]/g, function (s) {
-      return entityMap[s];
-    });
-  }
-
-  // Export the escaping function so that the user may override it.
-  // See https://github.com/janl/mustache.js/issues/244
-  exports.escape = escapeHtml;
-
-  function Scanner(string) {
-    this.string = string;
-    this.tail = string;
-    this.pos = 0;
-  }
-
-  /**
-   * Returns `true` if the tail is empty (end of string).
-   */
-  Scanner.prototype.eos = function () {
-    return this.tail === "";
-  };
-
-  /**
-   * Tries to match the given regular expression at the current position.
-   * Returns the matched text if it can match, the empty string otherwise.
-   */
-  Scanner.prototype.scan = function (re) {
-    var match = this.tail.match(re);
-
-    if (match && match.index === 0) {
-      this.tail = this.tail.substring(match[0].length);
-      this.pos += match[0].length;
-      return match[0];
-    }
-
-    return "";
-  };
-
-  /**
-   * Skips all text until the given regular expression can be matched. Returns
-   * the skipped string, which is the entire tail if no match can be made.
-   */
-  Scanner.prototype.scanUntil = function (re) {
-    var match, pos = this.tail.search(re);
-
-    switch (pos) {
-    case -1:
-      match = this.tail;
-      this.pos += this.tail.length;
-      this.tail = "";
-      break;
-    case 0:
-      match = "";
-      break;
-    default:
-      match = this.tail.substring(0, pos);
-      this.tail = this.tail.substring(pos);
-      this.pos += pos;
-    }
-
-    return match;
-  };
-
-  function Context(view, parent) {
-    this.view = view;
-    this.parent = parent;
-    this.clearCache();
-  }
-
-  Context.make = function (view) {
-    return (view instanceof Context) ? view : new Context(view);
-  };
-
-  Context.prototype.clearCache = function () {
-    this._cache = {};
-  };
-
-  Context.prototype.push = function (view) {
-    return new Context(view, this);
-  };
-
-  Context.prototype.lookup = function (name) {
-    var value = this._cache[name];
-
-    if (!value) {
-      if (name === ".") {
-        value = this.view;
-      } else {
-        var context = this;
-
-        while (context) {
-          if (name.indexOf(".") > 0) {
-            var names = name.split("."), i = 0;
-
-            value = context.view;
-
-            while (value && i < names.length) {
-              value = value[names[i++]];
-            }
-          } else {
-            value = context.view[name];
-          }
-
-          if (value != null) {
-            break;
-          }
-
-          context = context.parent;
-        }
-      }
-
-      this._cache[name] = value;
-    }
-
-    if (typeof value === "function") {
-      value = value.call(this.view);
-    }
-
-    return value;
-  };
-
-  function Writer() {
-    this.clearCache();
-  }
-
-  Writer.prototype.clearCache = function () {
-    this._cache = {};
-    this._partialCache = {};
-  };
-
-  Writer.prototype.compile = function (template, tags) {
-    var fn = this._cache[template];
-
-    if (!fn) {
-      var tokens = exports.parse(template, tags);
-      fn = this._cache[template] = this.compileTokens(tokens, template);
-    }
-
-    return fn;
-  };
-
-  Writer.prototype.compilePartial = function (name, template, tags) {
-    var fn = this.compile(template, tags);
-    this._partialCache[name] = fn;
-    return fn;
-  };
-
-  Writer.prototype.compileTokens = function (tokens, template) {
-    var fn = compileTokens(tokens);
-    var self = this;
-
-    return function (view, partials) {
-      if (partials) {
-        if (typeof partials === "function") {
-          self._loadPartial = partials;
-        } else {
-          for (var name in partials) {
-            self.compilePartial(name, partials[name]);
-          }
-        }
-      }
-
-      return fn(self, Context.make(view), template);
-    };
-  };
-
-  Writer.prototype.render = function (template, view, partials) {
-    return this.compile(template)(view, partials);
-  };
-
-  Writer.prototype._section = function (name, context, text, callback) {
-    var value = context.lookup(name);
-
-    switch (typeof value) {
-    case "object":
-      if (isArray(value)) {
-        var buffer = "";
-
-        for (var i = 0, len = value.length; i < len; ++i) {
-          buffer += callback(this, context.push(value[i]));
-        }
-
-        return buffer;
-      }
-
-      return value ? callback(this, context.push(value)) : "";
-    case "function":
-      var self = this;
-      var scopedRender = function (template) {
-        return self.render(template, context);
-      };
-
-      var result = value.call(context.view, text, scopedRender);
-      return result != null ? result : "";
-    default:
-      if (value) {
-        return callback(this, context);
-      }
-    }
-
-    return "";
-  };
-
-  Writer.prototype._inverted = function (name, context, callback) {
-    var value = context.lookup(name);
-
-    // Use JavaScript's definition of falsy. Include empty arrays.
-    // See https://github.com/janl/mustache.js/issues/186
-    if (!value || (isArray(value) && value.length === 0)) {
-      return callback(this, context);
-    }
-
-    return "";
-  };
-
-  Writer.prototype._partial = function (name, context) {
-    if (!(name in this._partialCache) && this._loadPartial) {
-      this.compilePartial(name, this._loadPartial(name));
-    }
-
-    var fn = this._partialCache[name];
-
-    return fn ? fn(context) : "";
-  };
-
-  Writer.prototype._name = function (name, context) {
-    var value = context.lookup(name);
-
-    if (typeof value === "function") {
-      value = value.call(context.view);
-    }
-
-    return (value == null) ? "" : String(value);
-  };
-
-  Writer.prototype._escaped = function (name, context) {
-    return exports.escape(this._name(name, context));
-  };
-
-  /**
-   * Low-level function that compiles the given `tokens` into a function
-   * that accepts three arguments: a Writer, a Context, and the template.
-   */
-  function compileTokens(tokens) {
-    var subRenders = {};
-
-    function subRender(i, tokens, template) {
-      if (!subRenders[i]) {
-        var fn = compileTokens(tokens);
-        subRenders[i] = function (writer, context) {
-          return fn(writer, context, template);
-        };
-      }
-
-      return subRenders[i];
-    }
-
-    return function (writer, context, template) {
-      var buffer = "";
-      var token, sectionText;
-
-      for (var i = 0, len = tokens.length; i < len; ++i) {
-        token = tokens[i];
-
-        switch (token[0]) {
-        case "#":
-          sectionText = template.slice(token[3], token[5]);
-          buffer += writer._section(token[1], context, sectionText, subRender(i, token[4], template));
-          break;
-        case "^":
-          buffer += writer._inverted(token[1], context, subRender(i, token[4], template));
-          break;
-        case ">":
-          buffer += writer._partial(token[1], context);
-          break;
-        case "&":
-          buffer += writer._name(token[1], context);
-          break;
-        case "name":
-          buffer += writer._escaped(token[1], context);
-          break;
-        case "text":
-          buffer += token[1];
-          break;
-        }
-      }
-
-      return buffer;
-    };
-  }
-
-  /**
-   * Forms the given array of `tokens` into a nested tree structure where
-   * tokens that represent a section have two additional items: 1) an array of
-   * all tokens that appear in that section and 2) the index in the original
-   * template that represents the end of that section.
-   */
-  function nestTokens(tokens) {
-    var tree = [];
-    var collector = tree;
-    var sections = [];
-
-    var token;
-    for (var i = 0, len = tokens.length; i < len; ++i) {
-      token = tokens[i];
-      switch (token[0]) {
-      case '#':
-      case '^':
-        sections.push(token);
-        collector.push(token);
-        collector = token[4] = [];
-        break;
-      case '/':
-        var section = sections.pop();
-        section[5] = token[2];
-        collector = sections.length > 0 ? sections[sections.length - 1][4] : tree;
-        break;
-      default:
-        collector.push(token);
-      }
-    }
-
-    return tree;
-  }
-
-  /**
-   * Combines the values of consecutive text tokens in the given `tokens` array
-   * to a single token.
-   */
-  function squashTokens(tokens) {
-    var squashedTokens = [];
-
-    var token, lastToken;
-    for (var i = 0, len = tokens.length; i < len; ++i) {
-      token = tokens[i];
-      if (token[0] === 'text' && lastToken && lastToken[0] === 'text') {
-        lastToken[1] += token[1];
-        lastToken[3] = token[3];
-      } else {
-        lastToken = token;
-        squashedTokens.push(token);
-      }
-    }
-
-    return squashedTokens;
-  }
-
-  function escapeTags(tags) {
-    return [
-      new RegExp(escapeRe(tags[0]) + "\\s*"),
-      new RegExp("\\s*" + escapeRe(tags[1]))
-    ];
-  }
-
-  /**
-   * Breaks up the given `template` string into a tree of token objects. If
-   * `tags` is given here it must be an array with two string values: the
-   * opening and closing tags used in the template (e.g. ["<%", "%>"]). Of
-   * course, the default is to use mustaches (i.e. Mustache.tags).
-   */
-  exports.parse = function (template, tags) {
-    template = template || '';
-    tags = tags || exports.tags;
-
-    if (typeof tags === 'string') tags = tags.split(spaceRe);
-    if (tags.length !== 2) {
-      throw new Error('Invalid tags: ' + tags.join(', '));
-    }
-
-    var tagRes = escapeTags(tags);
-    var scanner = new Scanner(template);
-
-    var sections = [];     // Stack to hold section tokens
-    var tokens = [];       // Buffer to hold the tokens
-    var spaces = [];       // Indices of whitespace tokens on the current line
-    var hasTag = false;    // Is there a {{tag}} on the current line?
-    var nonSpace = false;  // Is there a non-space char on the current line?
-
-    // Strips all whitespace tokens array for the current line
-    // if there was a {{#tag}} on it and otherwise only space.
-    function stripSpace() {
-      if (hasTag && !nonSpace) {
-        while (spaces.length) {
-          tokens.splice(spaces.pop(), 1);
-        }
-      } else {
-        spaces = [];
-      }
-
-      hasTag = false;
-      nonSpace = false;
-    }
-
-    var start, type, value, chr;
-    while (!scanner.eos()) {
-      start = scanner.pos;
-      value = scanner.scanUntil(tagRes[0]);
-
-      if (value) {
-        for (var i = 0, len = value.length; i < len; ++i) {
-          chr = value.charAt(i);
-
-          if (isWhitespace(chr)) {
-            spaces.push(tokens.length);
-          } else {
-            nonSpace = true;
-          }
-
-          tokens.push(["text", chr, start, start + 1]);
-          start += 1;
-
-          if (chr === "\n") {
-            stripSpace(); // Check for whitespace on the current line.
-          }
-        }
-      }
-
-      start = scanner.pos;
-
-      // Match the opening tag.
-      if (!scanner.scan(tagRes[0])) {
-        break;
-      }
-
-      hasTag = true;
-      type = scanner.scan(tagRe) || "name";
-
-      // Skip any whitespace between tag and value.
-      scanner.scan(whiteRe);
-
-      // Extract the tag value.
-      if (type === "=") {
-        value = scanner.scanUntil(eqRe);
-        scanner.scan(eqRe);
-        scanner.scanUntil(tagRes[1]);
-      } else if (type === "{") {
-        var closeRe = new RegExp("\\s*" + escapeRe("}" + tags[1]));
-        value = scanner.scanUntil(closeRe);
-        scanner.scan(curlyRe);
-        scanner.scanUntil(tagRes[1]);
-        type = "&";
-      } else {
-        value = scanner.scanUntil(tagRes[1]);
-      }
-
-      // Match the closing tag.
-      if (!scanner.scan(tagRes[1])) {
-        throw new Error('Unclosed tag at ' + scanner.pos);
-      }
-
-      // Check section nesting.
-      if (type === '/') {
-        if (sections.length === 0) {
-          throw new Error('Unopened section "' + value + '" at ' + start);
-        }
-
-        var section = sections.pop();
-
-        if (section[1] !== value) {
-          throw new Error('Unclosed section "' + section[1] + '" at ' + start);
-        }
-      }
-
-      var token = [type, value, start, scanner.pos];
-      tokens.push(token);
-
-      if (type === '#' || type === '^') {
-        sections.push(token);
-      } else if (type === "name" || type === "{" || type === "&") {
-        nonSpace = true;
-      } else if (type === "=") {
-        // Set the tags for the next time around.
-        tags = value.split(spaceRe);
-
-        if (tags.length !== 2) {
-          throw new Error('Invalid tags at ' + start + ': ' + tags.join(', '));
-        }
-
-        tagRes = escapeTags(tags);
-      }
-    }
-
-    // Make sure there are no open sections when we're done.
-    var section = sections.pop();
-    if (section) {
-      throw new Error('Unclosed section "' + section[1] + '" at ' + scanner.pos);
-    }
-
-    return nestTokens(squashTokens(tokens));
-  };
-
-  // The high-level clearCache, compile, compilePartial, and render functions
-  // use this default writer.
-  var _writer = new Writer();
-
-  /**
-   * Clears all cached templates and partials in the default writer.
-   */
-  exports.clearCache = function () {
-    return _writer.clearCache();
-  };
-
-  /**
-   * Compiles the given `template` to a reusable function using the default
-   * writer.
-   */
-  exports.compile = function (template, tags) {
-    return _writer.compile(template, tags);
-  };
-
-  /**
-   * Compiles the partial with the given `name` and `template` to a reusable
-   * function using the default writer.
-   */
-  exports.compilePartial = function (name, template, tags) {
-    return _writer.compilePartial(name, template, tags);
-  };
-
-  /**
-   * Compiles the given array of tokens (the output of a parse) to a reusable
-   * function using the default writer.
-   */
-  exports.compileTokens = function (tokens, template) {
-    return _writer.compileTokens(tokens, template);
-  };
-
-  /**
-   * Renders the `template` with the given `view` and `partials` using the
-   * default writer.
-   */
-  exports.render = function (template, view, partials) {
-    return _writer.render(template, view, partials);
-  };
-
-  // This is here for backwards compatibility with 0.4.x.
-  exports.to_html = function (template, view, partials, send) {
-    var result = exports.render(template, view, partials);
-
-    if (typeof send === "function") {
-      send(result);
-    } else {
-      return result;
-    }
-  };
-
-  return exports;
-
-}())));
-})(RR('/node_modules/oj-mustache/node_modules/mustache/mustache.js'),P,G,'/node_modules/oj-mustache/node_modules/mustache','mustache.js');});
+module.exports = plugin;
+})(RR('/node_modules/oj-bootstrap/src/oj.Bootstrap.js'),P,G,'/node_modules/oj-bootstrap/src','oj.Bootstrap.js');});
 F['/node_modules/oj-ace-editor/src/oj.AceEditor.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.AceEditor.js
+
+(function(){
 
 var debounce;
 
-module.exports = function(oj,settings){
+var plugin = function(oj,settings){
+
+  // Client side the AceEditor must be included by <script> tag. Help people understand.
+  if (oj.isClient)
+    oj.dependency('ace');
 
   if (typeof settings !== 'object')
     settings = {}
 
-  var AceEditor = oj.type('AceEditor', {
+  var AceEditor = oj.createType('AceEditor', {
     base: oj.ModelKeyView,
 
     constructor: function(){
-      var union = oj.argumentsUnion(arguments);
+      var union = oj.unionArguments(arguments);
       var options = union.options;
       var args = union.args;
 
@@ -1995,14 +173,10 @@ module.exports = function(oj,settings){
         if (options[k] == null)
           options[k] = defaults[k];
       }
-
       // Create el as relatively positioned div
       this.el = oj(function(){
-        var input;
-        if(args.length > 0)
-          input = args.join('\n');
-        oj.div(input, function(){
-          oj.div({c:'oj-AceEditor-editor'}, {style:{position:'absolute',width:options.width, height:options.height}});
+        oj.div(function(){
+          oj.div('function(){}', {c:'oj-AceEditor-editor', style:{position:'absolute',width:options.width, height:options.height}});
           },{
             style:{
               position:'relative',
@@ -2015,10 +189,6 @@ module.exports = function(oj,settings){
       });
 
       this.$editor = this.$('.oj-AceEditor-editor');
-
-      // AceEditor is must be included by <script> tag. Help people understand.
-      if(oj.isClient && ace == null)
-        throw new Error('oj.AceEditor: `ace` global not found. Include the editor with a <script> tag!');
 
       // Create editor
       if (oj.isClient && typeof ace != 'undefined') {
@@ -2079,6 +249,9 @@ module.exports = function(oj,settings){
           this[prop] = oj.argumentShift(options, prop);
       }
 
+      // Value is property or first argument
+      value = oj.argumentShift(options, 'value') || args.join('\n');
+
       // Pass on options. Args have been handled at this level.
       AceEditor.base.constructor.apply(this, [options]);
 
@@ -2086,6 +259,9 @@ module.exports = function(oj,settings){
       this.$scrollbar = this.$('.ace_scrollbar');
       this.$scroller = this.$('.ace_scroller');
       this.$content = this.$('.ace_content');
+
+      if (value)
+        this.value = value;
     },
 
     properties: {
@@ -2099,7 +275,8 @@ module.exports = function(oj,settings){
           if(this.session) {
             // Save the location of the cursor
             var pos = this.cursorPosition;
-            this.session.setValue(v);
+            this.session.setValue(v)
+
             // Restore the location of the cursor
             this.cursorPosition = pos;
           }
@@ -2347,8 +524,15 @@ module.exports = function(oj,settings){
 
       // Selection style options: 'line' or 'text'
       selectionStyle: {
-        get: function(){ if(this.editor) return this.editor.getSelectionStyle(); },
-        set: function(v){ if(this.editor) this.editor.setSelectionStyle(v); }
+        get: function(){ if(this.editor) return this.editor.getSelectionStyle() || 'line';
+        },
+        set: function(v){
+          if(this.editor) {
+            if (v !== 'line' && v !== 'text')
+              throw new Error("oj.AceEditor: selectionStyle expects 'line' or 'text'")
+            this.editor.setSelectionStyle(v);
+          }
+        }
       },
 
       // Fold style options: 'manual', markbegin' or 'markbeginend'
@@ -2451,6 +635,7 @@ module.exports = function(oj,settings){
       inserted: function(){
         AceEditor.base.inserted.apply(this, arguments);
 
+        this.value = this.value
         // Scroll visiblility can only be triggered once inserted
         this.vScrollBarAlwaysVisible = this.vScrollBarAlwaysVisible
       },
@@ -2509,217 +694,32 @@ debounce = function(wait, func, immediate) {
     return result;
   };
 };
-})(RR('/node_modules/oj-ace-editor/src/oj.AceEditor.js'),P,G,'/node_modules/oj-ace-editor/src','oj.AceEditor.js');});
-F['/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// Create a plugin by defining a function that accepts oj and
-// returns a map of extensions to oj
 
-// Froogaloop is the offical javascript api to Vimeo
-// https://github.com/vimeo/player-api/tree/master/javascript
-var Froogaloop=function(){function e(a){return new e.fn.init(a)}function h(a,c,b){if(!b.contentWindow.postMessage)return!1;var f=b.getAttribute("src").split("?")[0],a=JSON.stringify({method:a,value:c});"//"===f.substr(0,2)&&(f=window.location.protocol+f);b.contentWindow.postMessage(a,f)}function j(a){var c,b;try{c=JSON.parse(a.data),b=c.event||c.method}catch(f){}"ready"==b&&!i&&(i=!0);if(a.origin!=k)return!1;var a=c.value,e=c.data,g=""===g?null:c.player_id;c=g?d[g][b]:d[b];b=[];if(!c)return!1;void 0!==
-a&&b.push(a);e&&b.push(e);g&&b.push(g);return 0<b.length?c.apply(null,b):c.call()}function l(a,c,b){b?(d[b]||(d[b]={}),d[b][a]=c):d[a]=c}var d={},i=!1,k="";e.fn=e.prototype={element:null,init:function(a){"string"===typeof a&&(a=document.getElementById(a));this.element=a;a=this.element.getAttribute("src");"//"===a.substr(0,2)&&(a=window.location.protocol+a);for(var a=a.split("/"),c="",b=0,f=a.length;b<f;b++){if(3>b)c+=a[b];else break;2>b&&(c+="/")}k=c;return this},api:function(a,c){if(!this.element||
-!a)return!1;var b=this.element,f=""!==b.id?b.id:null,d=!c||!c.constructor||!c.call||!c.apply?c:null,e=c&&c.constructor&&c.call&&c.apply?c:null;e&&l(a,e,f);h(a,d,b);return this},addEvent:function(a,c){if(!this.element)return!1;var b=this.element,d=""!==b.id?b.id:null;l(a,c,d);"ready"!=a?h("addEventListener",a,b):"ready"==a&&i&&c.call(null,d);return this},removeEvent:function(a){if(!this.element)return!1;var c=this.element,b;a:{if((b=""!==c.id?c.id:null)&&d[b]){if(!d[b][a]){b=!1;break a}d[b][a]=null}else{if(!d[a]){b=
-!1;break a}d[a]=null}b=!0}"ready"!=a&&b&&h("removeEventListener",a,c)}};e.fn.init.prototype=e.fn;window.addEventListener?window.addEventListener("message",j,!1):window.attachEvent("onmessage",j);return window.Froogaloop=e}();
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
 
-// Create url from Vimeo options
-function vimeoUrl(video, options)
-{
-  var out = 'http://player.vimeo.com/video/' + video + '?api=1&player_id=' + options.player_id;
-  for(k in options)
-    out += '&' + k + '=' + options[k];
-  return out;
-}
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
 
-module.exports = function(oj,settings){
-  if (typeof settings !== 'object')
-    settings = {}
+})(this);})(RR('/node_modules/oj-ace-editor/src/oj.AceEditor.js'),P,G,'/node_modules/oj-ace-editor/src','oj.AceEditor.js');});
+F['/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.TwitterFollowButton.js
 
-  var VimeoVideo = oj.type('VimeoVideo', {
-    // The model-key bind to the url of the movie
-    base: oj.View,
-
-    // VimeoVideo(videoID, properties)
-    constructor: function(){
-      var this_ = this;
-      var union = oj.argumentsUnion(arguments);
-      var options = union.options;
-      var args = union.args;
-
-      var defaults = {
-        width: 400,
-        height: 224,
-        color: '00adef'
-      };
-
-      // Default options if unspecified
-      for (k in defaults) {
-        if (options[k] == null)
-          options[k] = defaults[k];
-      }
-
-      // First argument is video id
-      if(args.length > 0)
-        this.video = args[0];
-
-      // Shift properties
-      var props = [
-        'video',
-        'title',
-        'byline',
-        'portrait',
-        'color',
-        'autoplay',
-        'loop'
-      ];
-      for (var i = 0; i < props.length; i++) {
-        var prop = props[i];
-        if (options[prop] != null)
-          this[prop] = oj.argumentShift(options, prop);
-      }
-
-      this.el = oj(function(){
-        oj.iframe({
-          src: this_.src,
-          frameborder:0,
-          webkitAllowFullScreen:1,
-          mozallowfullscreen:1,
-          allowFullScreen:1,
-        });
-      });
-
-      VimeoVideo.base.constructor.apply(this, [options]);
-
-      // // // Bind events using javascript API
-      // this.player = Froogaloop(this.el);
-
-      // // // When the player is ready, add listeners for pause, finish, and playProgress
-      // this.player.addEvent('ready', function() {});
-
-
-      //   console.log("ready called");
-
-      //   this_.player.addEvent('pause', function(){this_.onPause.apply(this_,arguments)});
-      //   this_.player.addEvent('finish', function(){this_.onFinish.apply(this_,arguments)});
-      //   this_.player.addEvent('playProgress', function(){this_.onPlayProgress.apply(this_,arguments)});
-      // });
-
-      // if (oj.isClient) {
-      //   console.log("starting: ", starting);
-      //   player.api('starting');
-      // }
-    },
-    properties: {
-      width: {
-        get: function(){ return this.$el.attr('width'); },
-        set: function(v){
-          this.$el.attr('width', v);
-        }
-      },
-
-      height: {
-        get: function(){ return this.$el.attr('height'); },
-        set: function(v){
-          this.$el.attr('height', v);
-        }
-      },
-
-      // The video id
-      video: 24715531,
-
-      // Show title (readwrite)
-      title: false,
-
-      // Show the users byline on the video (readwrite)
-      byline: false,
-
-      // Show the user's portrait on the video (readwrite)
-      portrait: false,
-
-      // Color of controls (readwrite)
-      color: {
-        get: function(){return this._color;},
-        set: function(v){
-          // Remove prefix of '#'
-          if(v.length > 0 && v[0] == '#')
-            v = v.slice(1);
-          this._color = v;
-        }
-      },
-
-      // Play the video automatically on load
-      autoplay: false,
-
-      // Repeat video when it reaches the end
-      loop: false,
-
-      src: {
-        get: function(){
-          return vimeoUrl(this.video, this.videoOptions);
-        }
-      },
-
-      // Gather options to set url (readonly)
-      videoOptions: {
-        get: function(){
-          return {
-            title: (this.title ? 1 : 0),
-            byline: (this.byline ? 1 : 0),
-            portrait: (this.portrait ? 1 : 0),
-            color: this.color,
-            autoplay: (this.autoplay ? 1 : 0),
-            loop: (this.loop ? 1 : 0),
-            player_id: (this.id ? 1 : 0)
-          };
-        }
-      }
-    },
-
-    methods: {
-
-      play: function(){
-
-      },
-      stop: function(){
-
-      },
-      rewind: function(){
-
-      },
-
-      onPause: function(id) {
-        console.log('paused', id);
-      },
-
-      onFinish: function(id) {
-        console.log('finish', id);
-      },
-
-      onPlayProgress: function(data, id) {
-        console.log('playProgress: ', data, id);
-      }
-
-    }
-  });
-
-  return {VimeoVideo:VimeoVideo};
-};
-})(RR('/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'),P,G,'/node_modules/oj-vimeo-video/src','oj.VimeoVideo.js');});
-F['/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.TwitterFollowButton
-
-// Load twitter api only once
-var _loaded;
+(function(){
 
 // Create plugin
-module.exports = function(oj,settings){
+var plugin = function(oj,settings){
   if (typeof settings !== 'object')
     settings = {}
 
-  var TwitterFollowButton = oj.type('TwitterFollowButton', {
+  var TwitterFollowButton = oj.createType('TwitterFollowButton', {
 
     base: oj.View,
 
     constructor: function(){
       var this_ = this;
-      var union = oj.argumentsUnion(arguments);
+      var union = oj.unionArguments(arguments);
       var options = union.options;
       var args = union.args;
 
@@ -2730,7 +730,7 @@ module.exports = function(oj,settings){
       // Shift properties
       var props = [
         'label',
-        'large',
+        'size',
         'showCount',
         'showUsername',
         'username'
@@ -2744,16 +744,16 @@ module.exports = function(oj,settings){
       // Create el
       this.el = oj(function(){
         var size = null, tailor = null;
-        if (this_.large)
-          size = {'data-size':'large'};
+        if (this_.size)
+          size = {'data-size':this_.size.toString()};
         if (!this_.showTailoring)
-          tailor = {'data-dnt':false};
+          tailor = {'data-dnt':(!this_.showTailoring).toString()};
 
         oj.a("Follow @" + this_.username, {
-            href: 'https://twitter.com/' + this_.username,
+            href: 'https://twitter.com/' + this_.username.toString(),
             c:'twitter-follow-button',
-            'data-show-count':this_.showCount,
-            'data-show-screen-name':this_.showUsername,
+            'data-show-count':this_.showCount.toString(),
+            'data-show-screen-name':this_.showUsername.toString(),
             style:{display:'none'}
           },
           tailor,
@@ -2767,140 +767,1063 @@ module.exports = function(oj,settings){
     },
     properties: {
       username: 'evanmoran',
-
+      showCount: true,
       showUsername: true,
-
-      showCount: false,
-
       showTailoring: true,
-
-      large: false
+      size:{
+        get:function(){return this._size || 'medium';},
+        set:function(v){this._size = v;}
+      }
     },
 
     methods: {
       loadTwitterAPI:function(){
         var this_ = this;
-        if (oj.isClient && !_loaded) {
+        if (oj.isClient && !TwitterFollowButton._loaded) {
           var p=/^http:/.test(document.location)?'http':'https';
+          var url = p + '://platform.twitter.com/widgets.js';
           $.ajax({
-            url: p + '://platform.twitter.com/widgets.js',
-            dataType: "script",
-            cached: true,
-            // Show button once api has been called (avoids flickering)
-            complete: function(){
-              this_.$el.show()
-            }
+            url:url,
+            cache:true,
+            dataType:'script'
+          // Prevents flickering for slow connections
+          }).always(function(result){
+            this_.$el.show()
           });
+          TwitterFollowButton._loaded = true;
         }
-        _loaded = 1;
+
       }
     }
   });
 
   return {TwitterFollowButton:TwitterFollowButton};
 };
-})(RR('/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'),P,G,'/node_modules/oj-twitter-follow-button/src','oj.TwitterFollowButton.js');});
+
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+})(this);})(RR('/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'),P,G,'/node_modules/oj-twitter-follow-button/src','oj.TwitterFollowButton.js');});
+F['/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var SCRIPT, TEXTJ, consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth, _arraysEqual, _calculateScripts, _foundScripts, _pluginScripts, _replaceIFRAME, _scriptTagForCode, _scriptTagForCodeBody, _scriptTagWithUpdater, _updateIFRAME;
+
+editorBorderColor = '#ffd272';
+
+editorBackgroundColor = '#fefaf3';
+
+editorBorderWidth = 2;
+
+editorPadding = 4;
+
+consolePadding = 4;
+
+phoneWidth = 696;
+
+maximizeDuration = 500;
+
+lineHeight = 21;
+
+makeCSS = null;
+
+SCRIPT = 'scr' + 'ipt';
+
+TEXTJ = 'text="text/javascript"';
+
+module.exports = function(oj, settings) {
+  var TryEditor;
+
+  TryEditor = createType('TryEditor', {
+    base: ModelKeyView,
+    constructor: function() {
+      var args, options, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6,
+        _this = this;
+
+      _ref = oj.unionArguments(arguments), options = _ref.options, args = _ref.args;
+      this._editor = new AceEditor({
+        c: 'oj-TryEditor-input-editor',
+        theme: 'orange',
+        mode: 'ojc',
+        fontSize: 15,
+        tabSize: 2,
+        behaviorsEnabled: true,
+        useSoftTabs: true,
+        showGutter: false,
+        highlightActiveLine: false,
+        showPrintMargin: false,
+        readOnly: false,
+        showIndentGuides: false,
+        change: function() {
+          return _this.editorChanged.apply(_this, arguments);
+        }
+      });
+      this.el = oj(function() {
+        return div(function() {
+          div({
+            c: 'oj-TryEditor-resizer'
+          }, function() {
+            return div({
+              c: 'oj-TryEditor-gripper'
+            });
+          });
+          div({
+            c: 'oj-TryEditor-inputs'
+          }, function() {
+            div({
+              c: 'oj-TryEditor-bar'
+            }, function() {
+              return div({
+                c: 'oj-TryEditor-bar-states'
+              }, function() {
+                div({
+                  c: 'oj-TryEditor-bar-state cs'
+                }, 'CS', {
+                  title: 'Use CoffeeScript'
+                });
+                return div({
+                  c: 'oj-TryEditor-bar-state js selected'
+                }, 'JS', {
+                  title: 'Use JavaScript'
+                });
+              });
+            });
+            return _this.editor.emit();
+          });
+          div({
+            c: 'oj-TryEditor-outputs'
+          }, function() {
+            div({
+              c: 'oj-TryEditor-console'
+            });
+            iframe();
+            return div({
+              c: 'oj-TryEditor-bar'
+            }, function() {
+              return div({
+                c: 'oj-TryEditor-bar-maximize',
+                title: 'Maximize'
+              });
+            });
+          });
+          return div({
+            c: 'oj-TryEditor-seperator'
+          });
+        });
+      });
+      this.$inputs = this.$('.oj-TryEditor-inputs');
+      this.$input = this.$('.oj-TryEditor-input-editor');
+      this.$outputs = this.$('.oj-TryEditor-outputs');
+      this.$seperator = this.$('.oj-TryEditor-seperator');
+      this.$resizer = this.$('.oj-TryEditor-resizer');
+      this.$console = this.$('.oj-TryEditor-console');
+      this.$gripper = this.$('.oj-TryEditor-gripper');
+      this.$jsButton = this.$('.oj-TryEditor-bar-state.js');
+      this.$csButton = this.$('.oj-TryEditor-bar-state.cs');
+      this.$maximizeButton = this.$('.oj-TryEditor-bar-maximize');
+      if (args.length > 0) {
+        this.value = args[0];
+      }
+      this.state = (_ref1 = oj.argumentShift(options, 'state')) != null ? _ref1 : 'js';
+      if (options.js != null) {
+        this.js = oj.argumentShift(options, 'js');
+      }
+      if (options.cs != null) {
+        this.cs = oj.argumentShift(options, 'cs');
+      }
+      this.minWidth = (_ref2 = oj.argumentShift(options, 'minWidth')) != null ? _ref2 : 400;
+      this.minHeight = (_ref3 = oj.argumentShift(options, 'minHeight')) != null ? _ref3 : lineHeight * 1 + 2 * editorPadding;
+      this.width = oj.argumentShift(options, 'width');
+      this.height = oj.argumentShift(options, 'height');
+      this.split = (_ref4 = oj.argumentShift(options, 'split')) != null ? _ref4 : 0.5;
+      this.lineCount = (_ref5 = oj.argumentShift(options, 'lineCount')) != null ? _ref5 : 'fit';
+      this.maximize = (_ref6 = oj.argumentShift(options, 'maximize')) != null ? _ref6 : false;
+      TryEditor.base.constructor.apply(this, [options]);
+      return this._bindEvents();
+    },
+    properties: {
+      width: {
+        get: function() {
+          return this.$el.width();
+        }
+      },
+      height: {
+        get: function() {
+          var _ref;
+
+          return (_ref = this._height) != null ? _ref : this.minHeight;
+        },
+        set: function(v) {
+          this._height = v;
+          return this.updateFrame();
+        }
+      },
+      lineCount: {
+        get: function() {
+          return this._lineCount;
+        },
+        set: function(v) {
+          var lineCount, _ref, _ref1, _ref2, _ref3;
+
+          this._lineCount = v;
+          lineCount = 1;
+          if (v === 'fit' && (this.value != null)) {
+            lineCount = Math.max(((_ref = this.cs) != null ? (_ref1 = _ref.split(/\r\n|\r|\n/)) != null ? _ref1.length : void 0 : void 0) || 1, ((_ref2 = this.js) != null ? (_ref3 = _ref2.split(/\r\n|\r|\n/)) != null ? _ref3.length : void 0 : void 0) || 1);
+          } else if (oj.isNumber(v)) {
+            lineCount = v;
+          }
+          this.height = lineCount * lineHeight + editorPadding * 2 + 4;
+        }
+      },
+      split: {
+        get: function() {
+          return this._split;
+        },
+        set: function(v) {
+          this._split = v;
+          return this.updateFrame();
+        }
+      },
+      editor: {
+        get: function() {
+          return this._editor;
+        }
+      },
+      value: {
+        get: function() {
+          return this.editor.value;
+        },
+        set: function(v) {
+          this.editor.value = v;
+          if (this.state === 'cs') {
+            return this._cs = v;
+          } else {
+            return this._js = v;
+          }
+        }
+      },
+      js: {
+        get: function() {
+          return this._js;
+        },
+        set: function(v) {
+          this._js = v;
+          return this.updateValue();
+        }
+      },
+      cs: {
+        get: function() {
+          return this._cs;
+        },
+        set: function(v) {
+          this._cs = v;
+          return this.updateValue();
+        }
+      },
+      state: {
+        get: function() {
+          return this._state;
+        },
+        set: function(v) {
+          this._state = v;
+          if (v === 'js') {
+            this.editor.mode = 'oj';
+            this.$jsButton.addClass('selected');
+            this.$csButton.removeClass('selected');
+          } else {
+            this.editor.mode = 'ojc';
+            this.$jsButton.removeClass('selected');
+            this.$csButton.addClass('selected');
+          }
+          return this.updateValue();
+        }
+      },
+      mode: {
+        get: function() {
+          return this.editor.mode;
+        },
+        set: function(v) {
+          return this.editor.mode = v;
+        }
+      },
+      fit: {
+        get: function() {
+          var _ref;
+
+          return (_ref = this._fit) != null ? _ref : true;
+        },
+        set: function(v) {
+          return this._fit = v;
+        }
+      },
+      maximize: {
+        get: function() {
+          var _ref;
+
+          return (_ref = this._maximize) != null ? _ref : false;
+        },
+        set: function(v) {
+          var pos,
+            _this = this;
+
+          this._maximize = v;
+          if (!this.isInserted) {
+            return;
+          }
+          if (v) {
+            pos = this.$el.offset();
+            pos.top -= $(window).scrollTop();
+            pos.left -= $(window).scrollLeft();
+            this._prevWidth = this.width;
+            this._prevHeight = this.height;
+            this._prevTop = pos.top;
+            this._prevLeft = pos.left;
+            this._prevZIndex = this.$el.css('z-index');
+            this.$el.css({
+              position: 'fixed',
+              top: pos.top,
+              left: pos.left,
+              zIndex: 1000
+            });
+            $('body').css({
+              overflow: 'hidden'
+            });
+            this.$el.animate({
+              top: 0,
+              height: '100%'
+            }, {
+              progress: function() {
+                return _this.height = _this.$el.height();
+              },
+              complete: function() {
+                return _this.$el.animate({
+                  left: 0,
+                  width: '100%'
+                }, {
+                  duration: maximizeDuration
+                });
+              },
+              duration: maximizeDuration
+            });
+            return this.$gripper.hide();
+          } else {
+            this.$el.animate({
+              left: this._prevLeft,
+              width: this._prevWidth
+            }, {
+              duration: maximizeDuration,
+              complete: function() {
+                return _this.$el.animate({
+                  top: _this._prevTop,
+                  height: _this._prevHeight
+                }, {
+                  progress: function() {
+                    return _this.height = _this.$el.height();
+                  },
+                  complete: function() {
+                    return _this.$el.css({
+                      position: 'relative',
+                      top: '',
+                      left: ''
+                    });
+                  },
+                  duration: maximizeDuration
+                });
+              }
+            });
+            this.$gripper.show();
+            return $('body').css({
+              overflow: 'auto'
+            });
+          }
+        }
+      },
+      cs: '',
+      js: '',
+      css: '',
+      html: '',
+      $inputs: null,
+      $input: null,
+      $outputs: null,
+      $output: {
+        get: function() {
+          return this.$('.oj-TryEditor-outputs > iframe');
+        }
+      },
+      $seperator: null,
+      $resizer: null,
+      $console: null,
+      $gripper: null,
+      $jsButton: null,
+      $csButton: null,
+      $maximizeButton: null,
+      _scriptTagsLast: null
+    },
+    methods: {
+      toggleState: function() {
+        return this.state = this.state === 'js' ? 'cs' : 'js';
+      },
+      editorChanged: function() {
+        if (this.state === 'js') {
+          this._js = this.value;
+        } else {
+          this._cs = this.value;
+        }
+        return this.recompile();
+      },
+      valueChanged: function() {
+        return TryEditor.base.valueChanged.apply(this, arguments);
+      },
+      windowResized: function(innerWidth, innerHeight) {
+        if (this.maximize) {
+          return this.height = innerHeight - editorBorderWidth * 2;
+        }
+      },
+      updateValue: function() {
+        if (this.state === 'js') {
+          this.mode = 'oj';
+          this.value = this.js;
+        } else {
+          this.mode = 'ojc';
+          this.value = this.cs;
+        }
+        return this.recompile();
+      },
+      updateFrame: function() {
+        var h, w;
+
+        w = this.width;
+        h = this.height;
+        this.$resizer.width(w);
+        this.editor.height = h - editorPadding * 2;
+        this.$inputs.height(h);
+        this.$outputs.height(h);
+        if (w < phoneWidth) {
+          this.$inputs.css({
+            display: 'block'
+          });
+          this.editor.width = w - editorPadding * 2;
+          this.$outputs.width(w);
+          this.$output.width(w);
+          this.$output.height(h - editorPadding);
+          this.$console.height(h - 2 * consolePadding);
+          this.$console.width(w - 2 * consolePadding);
+          this.$seperator.hide();
+          this.$outputs.css({
+            'border-top': "" + editorBorderWidth + "px solid " + editorBorderColor
+          });
+          if (Math.abs(h / 2 - this.$resizer.height()) > 10) {
+            this.$resizer.height(h * 2);
+          }
+          return this.$el.height(h * 2);
+        } else {
+          this.$inputs.css({
+            display: 'inline-block'
+          });
+          this.editor.width = w / 2 - editorPadding * 2;
+          this.$outputs.css({
+            'border-top': ''
+          });
+          this.$outputs.height(h);
+          this.$outputs.width(w / 2);
+          this.$output.width(w / 2);
+          this.$output.height(h);
+          this.$console.width(w / 2 - 2 * consolePadding);
+          this.$console.height(h - 2 * consolePadding);
+          this.$seperator.show();
+          this.$seperator.height(this.height);
+          this.$seperator.css('left', Math.floor(this.width * this.split));
+          if (Math.abs(h - this.$resizer.height()) > 10) {
+            this.$resizer.height(h);
+          }
+          return this.$el.height(h);
+        }
+      },
+      inserted: function() {
+        var d,
+          _this = this;
+
+        TryEditor.base.inserted.apply(this, arguments);
+        this.lineCount = this.lineCount;
+        this.editor.height = this.height;
+        d = maximizeDuration;
+        maximizeDuration = 0;
+        this.maximize = this.maximize;
+        maximizeDuration = d;
+        return setTimeout((function() {
+          return _this.updateFrame();
+        }), 50);
+      },
+      consoleError: function(message) {
+        if (this.isConstructed) {
+          this.$console.html(message);
+          this.$console.show();
+        }
+      },
+      consoleSuccess: function() {
+        if (this.isConstructed) {
+          this.$console.hide();
+        }
+      },
+      recompile: function() {
+        var code, eCoffee, eCompile, results, scriptTags;
+
+        if (!this.isInserted) {
+          return;
+        }
+        code = this.value;
+        if (this.state === 'cs') {
+          try {
+            code = CoffeeScript.compile(code, {
+              bare: true
+            });
+          } catch (_error) {
+            eCoffee = _error;
+            this.consoleError("CoffeeScript Error: " + eCoffee.message);
+            return;
+          }
+        }
+        try {
+          results = oj.compile({
+            html: 1,
+            css: 1
+          }, eval("oj(function(){" + code + "});"));
+        } catch (_error) {
+          eCompile = _error;
+          this.consoleError("" + (eCompile.toString()));
+          return;
+        }
+        scriptTags = _calculateScripts(code, _pluginScripts);
+        if (scriptTags === this._scriptTagsLast) {
+          _updateIFRAME(this.$output, code);
+        } else {
+          this._scriptTagsLast = scriptTags;
+          _replaceIFRAME(this.$outputs, this.$output, scriptTags, code);
+        }
+        return this.consoleSuccess();
+      },
+      _bindEvents: function() {
+        var _$gripper, _$resizer, _ref,
+          _this = this;
+
+        this.$jsButton.click(function() {
+          return _this.state = 'js';
+        });
+        this.$csButton.click(function() {
+          return _this.state = 'cs';
+        });
+        this.$maximizeButton.click(function() {
+          return _this.maximize = !_this.maximize;
+        });
+        if (oj.isClient) {
+          if ($.resize != null) {
+            $.resize.throttleWindow = false;
+            $.resize.delay = 100;
+            $(window).resize(function() {
+              return _this.windowResized(window.innerWidth, window.innerHeight);
+            });
+            this.$el.resize(function(e, ui) {
+              return _this.updateFrame();
+            });
+            this.$resizer.resize(function(e, ui) {
+              var h;
+
+              h = $(e.currentTarget).height();
+              if (_this.width < phoneWidth) {
+                if (h / 2 > _this.minHeight) {
+                  _this.height = h / 2;
+                }
+              } else {
+                _this.height = h;
+              }
+              return _this.updateFrame();
+            });
+          }
+          if (((_ref = this.$resizer) != null ? _ref.drag : void 0) != null) {
+            _$resizer = this.$resizer;
+            _$gripper = this.$gripper;
+            return this.$resizer.drag().drag("start", function(ev, dd) {
+              dd.width = $(this).width();
+              dd.height = $(this).height();
+              _$gripper.css({
+                style: {
+                  height: '100%'
+                }
+              });
+            }).drag("end", function(ev, dd) {
+              _$gripper.css({
+                style: {
+                  height: '12px'
+                }
+              });
+            }).drag(function(ev, dd) {
+              $(this).css({
+                height: Math.max(lineHeight, dd.height + dd.deltaY)
+              });
+            }, {
+              handle: '.oj-TryEditor-gripper'
+            });
+          }
+        }
+      }
+    }
+  });
+  TryEditor.css({
+    border: "" + editorBorderWidth + "px solid " + editorBorderColor,
+    boxShadow: '2px 2px 4px RGBA(0,0,0,0.15)',
+    display: 'block',
+    position: 'relative',
+    zIndex: 20,
+    backgroundColor: '#FEFAF3',
+    '.oj-TryEditor-seperator': {
+      position: 'absolute',
+      top: '0px',
+      left: '0px',
+      backgroundColor: editorBorderColor,
+      width: '2px',
+      height: '1px',
+      zIndex: 100
+    },
+    '.oj-TryEditor-resizer': {
+      position: 'absolute',
+      top: '-1px',
+      left: '-1px',
+      width: '2px',
+      height: '1px'
+    },
+    '.oj-TryEditor-inputs': {
+      display: 'inline-block',
+      zIndex: 30,
+      position: 'relative'
+    },
+    '.oj-TryEditor-input-editor': {
+      resize: 'none',
+      border: "" + editorPadding + "px solid " + editorBackgroundColor
+    },
+    '.oj-TryEditor-outputs': {
+      display: 'inline-block',
+      position: 'relative',
+      zIndex: 40
+    },
+    '.oj-TryEditor-outputs > iframe': {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      backgroundColor: 'white',
+      zIndex: 20
+    },
+    '.oj-TryEditor-console': {
+      position: 'absolute',
+      color: 'red',
+      backgroundColor: 'RGBA(255,255,255,0.8)',
+      textAlign: 'left',
+      fontSize: '16px',
+      padding: "" + consolePadding + "px",
+      width: '100%',
+      height: '100%',
+      zIndex: 30,
+      display: 'none'
+    },
+    '.oj-TryEditor-bar': {
+      position: 'absolute',
+      top: '0px',
+      right: '0px',
+      margin: '8px 4px 0 0',
+      height: '21px',
+      zIndex: 100
+    },
+    '.oj-TryEditor-example-chooser': {
+      position: 'relative',
+      float: 'right',
+      height: '100%',
+      zIndex: 10,
+      marginLeft: '8px'
+    },
+    '.oj-TryEditor-bar-state': {
+      display: 'inline-block',
+      color: '#D5A876',
+      width: '25px',
+      height: '100%',
+      float: 'right',
+      marginLeft: '0px',
+      zIndex: 101,
+      textAlign: 'center',
+      cursor: 'pointer',
+      fontSize: '12px'
+    },
+    '.oj-TryEditor-bar-state:hover': {
+      textDecoration: 'underline'
+    },
+    '.oj-TryEditor-bar-state.selected': {
+      fontWeight: 'bold',
+      color: '#E88E00',
+      textDecoration: 'none !important'
+    },
+    '.oj-TryEditor-bar-maximize': {
+      display: 'inline-block',
+      backgroundImage: 'url(media/try_popout.png)',
+      width: '15px',
+      height: '12px',
+      float: 'right',
+      zIndex: 101,
+      cursor: 'pointer',
+      '@media phone': {
+        display: 'none'
+      }
+    },
+    '.oj-TryEditor-gripper': {
+      position: 'absolute',
+      bottom: '2px',
+      right: '2px',
+      left: 'auto',
+      width: '100%',
+      height: '12px',
+      cursor: 's-resize',
+      backgroundImage: 'url(media/try_gripper.png)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+      zIndex: 101
+    }
+  });
+  return {
+    TryEditor: TryEditor
+  };
+};
+
+_pluginScripts = {
+  Backbone: ["<" + SCRIPT + " src=\"scripts/underscore.js\" " + TEXTJ + "></" + SCRIPT + ">\n", "<" + SCRIPT + " src=\"scripts/backbone.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  AceEditor: ["<" + SCRIPT + " src=\"scripts/ace/ace.js\" " + TEXTJ + "></" + SCRIPT + ">\n", "<" + SCRIPT + " src=\"scripts/oj.AceEditor.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  VimeoVideo: ["<" + SCRIPT + " src=\"scripts/oj.VimeoVideo.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  GitHubButton: ["<" + SCRIPT + " src=\"scripts/oj.GitHubButton.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  TwitterFollowButton: ["<" + SCRIPT + " src=\"scripts/oj.TwitterFollowButton.js\" " + TEXTJ + "></" + SCRIPT + ">\n"]
+};
+
+_foundScripts = function(code, pluginScripts) {
+  var out, plugin, v;
+
+  out = [];
+  for (plugin in pluginScripts) {
+    v = pluginScripts[plugin];
+    if (code.indexOf(plugin) !== -1) {
+      out.push(plugin);
+    }
+  }
+  return out.sort();
+};
+
+_arraysEqual = function(a, b) {
+  var i, v, _i, _len;
+
+  if (a === b) {
+    return true;
+  }
+  if (a === null || b === null) {
+    return false;
+  }
+  if (a.length !== b.length) {
+    return false;
+  }
+  for (i = _i = 0, _len = a.length; _i < _len; i = ++_i) {
+    v = a[i];
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+_calculateScripts = function(code, pluginScripts) {
+  var foundScripts, out, plugin, s, _i, _j, _len, _len1, _ref;
+
+  out = "";
+  out += "<" + SCRIPT + " src=\"scripts/jquery.js\" " + TEXTJ + "></" + SCRIPT + ">\n";
+  out += "<" + SCRIPT + " src=\"scripts/oj.js\" " + TEXTJ + "></" + SCRIPT + ">\n";
+  foundScripts = _foundScripts(code, _pluginScripts);
+  for (_i = 0, _len = foundScripts.length; _i < _len; _i++) {
+    plugin = foundScripts[_i];
+    _ref = pluginScripts[plugin];
+    for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+      s = _ref[_j];
+      out += s;
+    }
+  }
+  return out;
+};
+
+_scriptTagWithUpdater = function() {
+  return "<" + SCRIPT + " class=\"updater\">\n(function(){\n  // Allow editor to rebuild iframe at will\n  var _code = null;\n  document.rebuild = function(code){\n    if (code == _code)\n      return;\n    $('script.build').remove()\n    $('head').append(\"<scr\"+\"ipt class='build'>\"+code+\"</scr\"+\"ipt>\");\n  };\n  // Allow dom manipulation within the iframe\n  document.oj = oj;\n  document.$ = $;\n})(this);\n</" + SCRIPT + ">";
+};
+
+_scriptTagForCodeBody = function(code) {
+  return "// Start onready\n$(function(){try{with(oj){\n\n// Insert code into body\n$.ojBody(function(){\n\n" + code + "\n\n});\n\n// Handle errors\n}} catch(e) {\n\n  // Error style\n  var errorStyle = {style:{color:'red', fontSize:'16px', fontFamily:'sans-serif'}};\n\n  // Report error\n  $('body').oj([oj.div, errorStyle, e.toString()]);\n}});";
+};
+
+_scriptTagForCode = function(code) {
+  return "<" + SCRIPT + " class=\"build\">\n\n" + (_scriptTagForCodeBody(code)) + "\n\n</" + SCRIPT + ">";
+};
+
+_replaceIFRAME = function($iframeParent, $iframe, scriptTags, code) {
+  var doc, html, iframe;
+
+  html = "<head>\n" + scriptTags + "\n" + (_scriptTagWithUpdater()) + "\n" + (_scriptTagForCode(code)) + "\n</head>\n<body>\n</body>";
+  $iframe.remove();
+  iframe = document.createElement('iframe');
+  $iframeParent.append(iframe);
+  doc = iframe.contentWindow || iframe.contentDocument;
+  if (doc.document) {
+    doc = doc.document;
+  }
+  doc.open();
+  doc.write(html);
+  return doc.close();
+};
+
+_updateIFRAME = function($iframe, code) {
+  var $body, $html, $styles, doc$, docOJ;
+
+  if ($iframe.contents() && $iframe.contents()[0] && oj.isFunction($iframe.contents()[0].rebuild)) {
+    $html = $iframe.contents().find('html');
+    $body = $iframe.contents().find('body');
+    doc$ = $iframe.contents()[0].$;
+    $styles = doc$('style');
+    $styles.each(function() {
+      var $this, cls;
+
+      $this = $(this);
+      cls = $this.attr('class');
+      if (cls.match(/^oj-.*-style$/)) {
+        return $this.remove();
+      }
+    });
+    doc$('body').html('');
+    $iframe.contents()[0].rebuild(_scriptTagForCodeBody(code));
+    docOJ = $iframe.contents()[0].oj;
+    if (typeof docOJ !== 'undefined' && typeof docOJ.TwitterFollowButton !== 'undefined') {
+      return docOJ.TwitterFollowButton._loaded = false;
+    }
+  }
+};
+}}).call(this);})(RR('/oj.TryEditor.ojc'),P,G,'/','oj.TryEditor.ojc');});
+F['/node_modules/oj-github-button/src/oj.GitHubButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.GitHubButton.js
+
+(function(){
+
+// Create plugin
+var plugin = function(oj, settings){
+  if (typeof settings !== 'object')
+    settings = {}
+
+  var GitHubButton = oj.createType('GitHubButton', {
+
+    base: oj.View,
+
+    constructor: function(){
+      var this_ = this;
+      var union = oj.unionArguments(arguments);
+      var options = union.options;
+      var args = union.args;
+
+      // Accept user as first arg
+      if (args.length >= 1)
+        this.user = args[0];
+
+      // Accept repo as second arg
+      if(args.length >= 2)
+        this.repo = args[1];
+
+      // Shift properties
+      var props = [
+        'type',
+        'user',
+        'repo',
+        'showCount',
+        'size',
+        'width',
+        'height'
+      ];
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (options[prop] != null)
+          this[prop] = oj.argumentShift(options, prop);
+      }
+
+      // Create el
+      this.el = oj(function(){
+
+        // Calculate arguments to ghbts.com
+        var size = '', count = '', user = '', repo = '', type = '';
+        if (!this_.user)
+          throw new Error('oj.GitHubButton: user is not specified');
+        user = 'user=' + this_.user
+        if (this_.repo)
+          repo = '&repo=' + this_.repo
+        if (this_.size)
+          size = '&size=' + this_.size
+        if (this_.showCount)
+          count = '&count=' + this_.showCount
+        if (this_.type)
+          type = '&type=' + this_.type
+
+        src = "http://ghbtns.com/github-btn.html?" + user + repo + type + count + size;
+
+        oj.iframe({
+          src:src,
+          allowtransparency:"true",
+          frameborder:"0",
+          scrolling:"0",
+          width:this_.width,
+          height:this_.height
+        });
+      });
+
+      GitHubButton.base.constructor.apply(this, [options]);
+    },
+
+    properties: {
+      user: 'evanmoran',
+      repo: null,
+      type: { // watch, follow, fork, (star)==watch
+        // Default to follow if no repro is set
+        get:function(){return this._type || (this.repo == null ? 'follow' : 'watch');},
+        set:function(v){
+          if(!v || v == 'star')
+            v = 'watch';
+          this._type = v;
+        }
+      },
+      showCount: true,
+      size:{              // null or large
+        get:function(){return this._size;},
+        set:function(v){this._size = v;}
+      },
+      width:{            // pixals if specified. Otherwise is calculate from settings
+        get:function(){return this._width || _widthFromType(this.type,this.showCount,this.size)},
+        set:function(v){this._width = v;}
+      },
+      height:{           // pixals if specified. Otherwise is calculate from settings
+        get:function(){return this._height || this.size == 'large' ? 30 : 20},
+        set:function(v){this._height = v;}
+      }
+    },
+  });
+
+  return {GitHubButton:GitHubButton};
+};
+
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+_widthFromType = function(type, showCount, size){
+  w = 0;
+  if (type == 'watch' && showCount == false)
+    w = 62;
+  else if (type == 'watch' && showCount == true)
+    w = 110;
+  else if (type == 'fork' && showCount == false)
+    w = 53;
+  else if (type == 'fork' && showCount == true)
+    w = 95;
+  else if (type == 'follow' && showCount == false)
+    w = 132;
+  else if (type == 'follow' && showCount == true)
+    w = 165;
+  w += size == 'large' ? 30 : 0;
+}
+
+
+})(this);})(RR('/node_modules/oj-github-button/src/oj.GitHubButton.js'),P,G,'/node_modules/oj-github-button/src','oj.GitHubButton.js');});
+F['/oj.StyledButton.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var __slice = [].slice;
+
+module.exports = function(oj, settings) {
+  var StyledButton;
+
+  StyledButton = createType('StyledButton', {
+    base: oj.Button,
+    constructor: function() {
+      var args, options, _ref;
+
+      _ref = oj.unionArguments(arguments), options = _ref.options, args = _ref.args;
+      return StyledButton.base.constructor.apply(this, [options].concat(__slice.call(args)));
+    }
+  });
+  StyledButton.css({
+    border: '1px solid purple',
+    color: 'purple',
+    fontSize: '20px'
+  });
+  StyledButton.theme('ruby', {
+    border: '1px solid red',
+    color: 'red'
+  });
+  return {
+    StyledButton: StyledButton
+  };
+};
+}}).call(this);})(RR('/oj.StyledButton.ojc'),P,G,'/','oj.StyledButton.ojc');});
 F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){// Generated by CoffeeScript 1.6.2
 (function() {
-  var ArrayP, FuncP, ObjP, coffee, compileJS, concat, dhp, doctypes, exports, jqName, jqueryEvents, key, oj, ojName, pass, pathNormalizeArray, pathSplit, pathSplitRe, plugins, root, slice, strict4, strict5, stripBOM, t, unshift, w3, wrapCSMessage, wrapJS, wrapJSMessage, _, _argumentsStack, _attributeCMeansClass, _attributeClassAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromObject, _defaults, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _randomInteger, _readyOrLoad, _readyQueue, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleFromObject, _styleKeyFromCamalCase, _toArray, _uniqueSort, _uniqueSortedUnion, _values,
+  var ArrayP, FuncP, ObjP, concat, dhp, exports, jqName, jqueryEvents, key, oj, ojName, pass, plugins, root, slice, strict4, strict5, t, unshift, w3, _argsStack, _attributeCMeansClassAndAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromMediaObject, _cssFromPluginObject, _dasherize, _decamelize, _defaults, _doctypes, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _insertStyles, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _onLoadQueue, _pathNormalizeArray, _pathSplit, _pathSplitRe, _randomInteger, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleClassFromPlugin, _styleFromObject, _toArray, _triggerTypes, _uniqueSort, _uniqueSortedUnion, _values,
     __slice = [].slice;
 
-  oj = module.exports = function() {
+  oj = function() {
     var ojml;
 
-    oj._argumentsPush();
+    oj._argsPush();
     ojml = oj.emit.apply(this, arguments);
-    oj._argumentsPop();
+    oj._argsPop();
     return ojml;
+  };
+
+  root = this;
+
+  oj.version = '0.0.14';
+
+  oj.isClient = !(typeof process !== "undefined" && process !== null ? (_ref = process.versions) != null ? _ref.node : void 0 : void 0);
+
+  if (typeof module !== 'undefined') {
+    exports = module.exports = oj;
+  } else {
+    root['oj'] = oj;
+  }
+
+  oj.oj = oj;
+
+  oj.load = function(page) {
+    return jQuery(function() {
+      $.ojBody(require(page));
+      return oj.onload();
+    });
+  };
+
+  _onLoadQueue = {
+    queue: [],
+    loaded: false
+  };
+
+  oj.onload = function(f) {
+    if (oj.isUndefined(f)) {
+      _onLoadQueue.loaded = true;
+      while ((f = _onLoadQueue.queue.shift())) {
+        f();
+      }
+    } else if (_onLoadQueue.loaded) {
+      f();
+    } else {
+      _onLoadQueue.queue.push(f);
+    }
   };
 
   oj.emit = function() {
     var ojml;
 
     return ojml = oj.tag.apply(oj, ['oj'].concat(__slice.call(arguments)));
-  };
-
-  oj.oj = oj;
-
-  oj.begin = function(page) {
-    return _readyOrLoad(function() {
-      var body, bodyOnly, d, dom, t, types, _i, _j, _len, _len1, _ref;
-
-      bodyOnly = {
-        html: 1,
-        doctype: 1,
-        head: 1,
-        link: 1,
-        script: 1
-      };
-      _ref = oj.compile({
-        dom: 1,
-        html: 0,
-        css: 0,
-        ignore: bodyOnly
-      }, require(page)), dom = _ref.dom, types = _ref.types;
-      if (dom == null) {
-        console.error('oj: dom failed to compile');
-        return;
-      }
-      body = document.getElementsByTagName('body');
-      if (body.length === 0) {
-        console.error('oj: <body> was not found');
-        return;
-      }
-      body = body[0];
-      body.innerHTML = '';
-      if (!oj.isArray(dom)) {
-        dom = [dom];
-      }
-      for (_i = 0, _len = dom.length; _i < _len; _i++) {
-        d = dom[_i];
-        body.appendChild(d);
-      }
-      for (_j = 0, _len1 = types.length; _j < _len1; _j++) {
-        t = types[_j];
-        t.inserted();
-      }
-      return oj.ready();
-    });
-  };
-
-  _readyOrLoad = function(fn) {
-    var prevOnLoad;
-
-    if (typeof jQuery !== "undefined" && jQuery !== null) {
-      jQuery(fn);
-    } else {
-      if (document.readyState !== "complete") {
-        prevOnLoad = window.onload;
-        window.onload = function() {
-          if (typeof prevOnLoad === "function") {
-            prevOnLoad();
-          }
-          return fn();
-        };
-      } else {
-        fn();
-      }
-    }
-  };
-
-  _readyQueue = {
-    queue: [],
-    loaded: false
-  };
-
-  oj.ready = function(f) {
-    if (oj.isUndefined(f)) {
-      _readyQueue.loaded = true;
-      while ((f = _readyQueue.queue.shift())) {
-        f();
-      }
-    } else if (_readyQueue.loaded) {
-      f();
-    } else {
-      _readyQueue.queue.push(f);
-    }
   };
 
   oj.id = function(len, chars) {
@@ -2944,81 +1867,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
     return output;
   };
-
-  if (require.extensions) {
-    coffee = require('coffee-script');
-    stripBOM = function(c) {
-      if (c.charCodeAt(0) === 0xFEFF) {
-        return c.slice(1);
-      } else {
-        return c;
-      }
-    };
-    wrapJS = function(code) {
-      return "(function(){with(oj.sandbox){" + code + "}}).call(this);";
-    };
-    wrapCSMessage = function(message, filepath) {
-      var _ref, _ref1;
-
-      return "" + ((_ref = oj.codes) != null ? _ref.red : void 0) + "coffee-script error in " + filepath + ": " + message + ((_ref1 = oj.codes) != null ? _ref1.reset : void 0);
-    };
-    wrapJSMessage = function(message, filepath) {
-      var _ref, _ref1;
-
-      return "" + ((_ref = oj.codes) != null ? _ref.red : void 0) + "javascript error in " + filepath + ": " + message + ((_ref1 = oj.codes) != null ? _ref1.reset : void 0);
-    };
-    compileJS = function(module, code, filepath) {
-      code = wrapJS(code);
-      global.oj = oj;
-      module._compile(code, filepath);
-      return delete global.oj;
-    };
-    require.extensions['.oj'] = function(module, filepath) {
-      var code, eJS;
-
-      code = stripBOM(fs.readFileSync(filepath, 'utf8'));
-      try {
-        return compileJS(module, code, filepath);
-      } catch (_error) {
-        eJS = _error;
-        eJS.message = wrapJSMessage(eJS.message, filepath);
-        throw eJS;
-      }
-    };
-    require.extensions['.ojc'] = function(module, filepath) {
-      var code, eCoffee, eJS;
-
-      code = stripBOM(fs.readFileSync(filepath, 'utf8'));
-      try {
-        code = coffee.compile(code, {
-          bare: true
-        });
-      } catch (_error) {
-        eCoffee = _error;
-        eCoffee.message = wrapCSMessage(eCoffee.message, filepath);
-        throw eCoffee;
-      }
-      try {
-        return compileJS(module, code, filepath);
-      } catch (_error) {
-        eJS = _error;
-        eJS.message = wrapJSMessage(eJS.message, filepath);
-        throw eJS;
-      }
-    };
-  }
-
-  root = this;
-
-  oj.version = '0.0.14';
-
-  oj.isClient = !(typeof process !== "undefined" && process !== null ? (_ref = process.versions) != null ? _ref.node : void 0 : void 0);
-
-  if (typeof module !== 'undefined') {
-    exports = module.exports = oj;
-  } else {
-    root['oj'] = oj;
-  }
 
   ArrayP = Array.prototype;
 
@@ -3152,8 +2000,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   oj.isObject = function(obj) {
     return (oj.typeOf(obj)) === 'object';
   };
-
-  oj.__ = _ = {};
 
   _isCapitalLetter = function(c) {
     return !!(c.match(/[A-Z]/));
@@ -3329,7 +2175,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   };
 
   _clone = function(obj) {
-    if (!oj.isObject(obj)) {
+    if (!((oj.isArray(obj)) || (oj.isObject(obj)))) {
       return obj;
     }
     if (oj.isArray(obj)) {
@@ -3553,15 +2399,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return _uniqueSort(arr.concat(arr2));
   };
 
-  _splitAndTrim = function(str, seperator, limit) {
-    var r;
-
-    r = str.split(seperator, limit);
-    return oj._map(r, function(v) {
-      return v.trim();
-    });
-  };
-
   _boundOrThrow = function(ix, count, message, method) {
     var ixNew;
 
@@ -3572,7 +2409,33 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return ixNew;
   };
 
-  pathNormalizeArray = function(parts, allowAboveRoot) {
+  _splitAndTrim = function(str, seperator, limit) {
+    var r;
+
+    r = str.split(seperator, limit);
+    return oj._map(r, function(v) {
+      return v.trim();
+    });
+  };
+
+  _dasherize = function(str) {
+    return _decamelize(str).replace(/[ _]/g, '-');
+  };
+
+  _decamelize = function(str) {
+    return str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+  };
+
+  _pathSplitRe = /^(\/?)([\s\S]+\/(?!$)|\/)?((?:\.{1,2}$|[\s\S]+?)?(\.[^.\/]*)?)$/;
+
+  _pathSplit = function(filename) {
+    var result;
+
+    result = _pathSplitRe.exec(filename);
+    return [result[1] || '', result[2] || '', result[3] || '', result[4] || ''];
+  };
+
+  _pathNormalizeArray = function(parts, allowAboveRoot) {
     var i, last, up;
 
     up = 0;
@@ -3598,15 +2461,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return parts;
   };
 
-  pathSplitRe = /^(\/?)([\s\S]+\/(?!$)|\/)?((?:\.{1,2}$|[\s\S]+?)?(\.[^.\/]*)?)$/;
-
-  pathSplit = function(filename) {
-    var result;
-
-    result = pathSplitRe.exec(filename);
-    return [result[1] || '', result[2] || '', result[3] || '', result[4] || ''];
-  };
-
   oj._pathResolve = function() {
     var i, path, resolvedAbsolute, resolvedPath;
 
@@ -3622,7 +2476,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       resolvedAbsolute = path.charAt(0) === '/';
       i--;
     }
-    resolvedPath = pathNormalizeArray(resolvedPath.split('/').filter(function(p) {
+    resolvedPath = _pathNormalizeArray(resolvedPath.split('/').filter(function(p) {
       return !!p;
     }), !resolvedAbsolute).join('/');
     return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
@@ -3633,7 +2487,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
     isAbsolute = path.charAt(0) === '/';
     trailingSlash = path.substr(-1) === '/';
-    path = pathNormalizeArray(path.split('/').filter(function(p) {
+    path = _pathNormalizeArray(path.split('/').filter(function(p) {
       return !!p;
     }), !isAbsolute).join('/');
     if (!path && !isAbsolute) {
@@ -3648,7 +2502,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   oj._pathJoin = function() {
     var paths;
 
-    paths = Array.prototype.slice.call(arguments, 0);
+    paths = ArrayP.slice.call(arguments, 0);
     return oj._pathNormalize(paths.filter(function(p, index) {
       return p && typeof p === 'string';
     }).join('/'));
@@ -3657,7 +2511,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   oj._pathDirname = function(path) {
     var dir, result;
 
-    result = pathSplit(path);
+    result = _pathSplit(path);
     root = result[0];
     dir = result[1];
     if (!root && !dir) {
@@ -3744,14 +2598,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
   oj.removeProperty = function(obj, propName) {
     if (!oj.isString(propName)) {
-      throw 'oj.addProperty: string expected for second argument';
+      throw new Error('oj.addProperty: string expected for second argument');
     }
     return delete obj[propName];
   };
 
   oj.isProperty = function(obj, propName) {
     if (!oj.isString(propName)) {
-      throw 'oj.isProperty: string expected for second argument';
+      throw new Error('oj.isProperty: string expected for second argument');
     }
     return Object.getOwnPropertyDescriptor(obj, propName).get != null;
   };
@@ -3760,37 +2614,40 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     var info;
 
     info = Object.getOwnPropertyDescriptor(source, propName);
+    if (info.value != null) {
+      info.value = _clone(info.value);
+    }
     return Object.defineProperty(dest, propName, info);
   };
 
-  _argumentsStack = [];
+  _argsStack = [];
 
-  oj._argumentsTop = function() {
-    if (_argumentsStack.length) {
-      return _argumentsStack[_argumentsStack.length - 1];
+  oj._argsTop = function() {
+    if (_argsStack.length) {
+      return _argsStack[_argsStack.length - 1];
     } else {
       return null;
     }
   };
 
-  oj._argumentsPush = function(args) {
+  oj._argsPush = function(args) {
     if (args == null) {
       args = [];
     }
-    _argumentsStack.push(args);
+    _argsStack.push(args);
   };
 
-  oj._argumentsPop = function() {
-    if (_argumentsStack.length) {
-      return _argumentsStack.pop();
+  oj._argsPop = function() {
+    if (_argsStack.length) {
+      return _argsStack.pop();
     }
     return null;
   };
 
-  oj._argumentsAppend = function(arg) {
+  oj._argsAppend = function(arg) {
     var top;
 
-    top = oj._argumentsTop();
+    top = oj._argsTop();
     if (top != null) {
       top.push(arg);
     }
@@ -3814,23 +2671,23 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     if (!_isEmpty(attributes)) {
       ojml.push(attributes);
     }
-    oj._argumentsPush(ojml);
+    oj._argsPush(ojml);
     for (_j = 0, _len1 = args.length; _j < _len1; _j++) {
       arg = args[_j];
       if (oj.isObject(arg)) {
         continue;
       } else if (oj.isFunction(arg)) {
-        len = oj._argumentsTop().length;
+        len = oj._argsTop().length;
         r = arg();
-        if (len === oj._argumentsTop().length && (r != null)) {
-          oj._argumentsAppend(r);
+        if (len === oj._argsTop().length && (r != null)) {
+          oj._argsAppend(r);
         }
       } else {
-        oj._argumentsAppend(arg);
+        oj._argsAppend(arg);
       }
     }
-    oj._argumentsPop();
-    oj._argumentsAppend(ojml);
+    oj._argsPop();
+    oj._argsAppend(ojml);
     return ojml;
   };
 
@@ -3881,32 +2738,31 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     _fn(t);
   }
 
-  dhp = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01';
+  dhp = 'HTML PUBLIC "-//W3C//DTD HTML 4.01';
 
   w3 = '"http://www.w3.org/TR/html4/';
 
-  strict5 = '<!DOCTYPE html>';
+  strict5 = 'html';
 
-  strict4 = dhp + '//EN" ' + w3 + 'strict.dtd">';
+  strict4 = dhp + '//EN" ' + w3 + 'strict.dtd"';
 
-  doctypes = {
+  _doctypes = {
     '5': strict5,
     'HTML 5': strict5,
     '4': strict4,
     'HTML 4.01 Strict': strict4,
-    'HTML 4.01 Frameset': dhp + ' Frameset//EN" ' + w3 + 'frameset.dtd">',
-    'HTML 4.01 Transitional': dhp + ' Transitional//EN" ' + w3 + 'loose.dtd">'
+    'HTML 4.01 Frameset': dhp + ' Frameset//EN" ' + w3 + 'frameset.dtd"',
+    'HTML 4.01 Transitional': dhp + ' Transitional//EN" ' + w3 + 'loose.dtd"'
   };
 
-  oj.doctype = function(type) {
-    var ojml;
+  oj.doctype = function(typeOrValue) {
+    var value, _ref2;
 
-    if (type == null) {
-      type = 5;
+    if (typeOrValue == null) {
+      typeOrValue = '5';
     }
-    ojml = doctypes[type];
-    oj._argumentsAppend(ojml);
-    return ojml;
+    value = (_ref2 = _doctypes[typeOrValue]) != null ? _ref2 : typeOrValue;
+    return oj['!DOCTYPE'](value);
   };
 
   oj.extend = function(context) {
@@ -3927,7 +2783,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   };
 
   oj.compile = function(options, ojml) {
-    var acc, css, cssMap, dom, html, out;
+    var acc, css, cssMap, dom, html, out, pluginCSSMap;
 
     if (ojml == null) {
       ojml = options;
@@ -3935,8 +2791,8 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
     options = _defaults({}, options, {
       html: true,
-      dom: true,
-      css: true,
+      dom: false,
+      css: false,
       cssMap: false,
       debug: false,
       ignore: {}
@@ -3955,11 +2811,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
     acc.tags = {};
     _compileAny(ojml, acc);
+    if (acc.css != null) {
+      pluginCSSMap = _flattenCSSMap(acc.css);
+    }
     if (options.cssMap) {
-      cssMap = acc.css;
+      cssMap = pluginCSSMap;
     }
     if (options.css) {
-      css = _cssFromObject(acc.css, options.debug);
+      css = _cssFromPluginObject(pluginCSSMap, {
+        debug: options.debug,
+        tags: 0
+      });
     }
     if (options.html) {
       html = acc.html.join('');
@@ -3989,21 +2851,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return out;
   };
 
-  _styleKeyFromCamalCase = function(key) {
-    var c, out, _j, _len1;
-
-    out = "";
-    for (_j = 0, _len1 = key.length; _j < _len1; _j++) {
-      c = key[_j];
-      if (_isCapitalLetter(c)) {
-        out += "-" + (c.toLowerCase());
-      } else {
-        out += c;
-      }
-    }
-    return out;
-  };
-
   _styleFromObject = function(obj, options) {
     var indent, ix, k, kFancy, keys, newline, out, semi, _j, _len1, _ref2;
 
@@ -4022,7 +2869,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     for (ix = _j = 0, _len1 = keys.length; _j < _len1; ix = ++_j) {
       kFancy = keys[ix];
       semi = options.semi || ix !== keys.length - 1 ? ";" : '';
-      k = _styleKeyFromCamalCase(kFancy);
+      k = _dasherize(kFancy);
       out += "" + indent + k + ":" + obj[kFancy] + semi + newline;
     }
     return out;
@@ -4051,14 +2898,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   };
 
   _flattenCSSMap = function(cssMap) {
-    var flatMap;
+    var cssMap_, flatMap, plugin;
 
     flatMap = {};
-    _flattenCSSMap_(cssMap, flatMap, [''], ['']);
+    for (plugin in cssMap) {
+      cssMap_ = cssMap[plugin];
+      _flattenCSSMap_(cssMap_, flatMap, [''], [''], plugin);
+    }
     return flatMap;
   };
 
-  _flattenCSSMap_ = function(cssMap, flatMapAcc, selectorsAcc, mediasAcc) {
+  _flattenCSSMap_ = function(cssMap, flatMapAcc, selectorsAcc, mediasAcc, plugin) {
     var mediaCur, mediaInner, mediaOuter, mediaParts, mediaWithAnds, medias, mediasNext, rules, selCur, selInner, selOuter, selector, selectorParts, selectorWithCommas, selectorsNext, _j, _k, _l, _len1, _len2, _len3, _len4, _m;
 
     medias = {
@@ -4109,31 +2959,53 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
             }
           }
         }
-        _flattenCSSMap_(rules, flatMapAcc, selectorsNext, mediasNext);
+        _flattenCSSMap_(rules, flatMapAcc, selectorsNext, mediasNext, plugin);
       } else {
         selectorWithCommas = selectorsAcc.sort().join(',');
         mediaWithAnds = mediasAcc.sort().join(',');
         if (mediaWithAnds !== '') {
           mediaWithAnds = "@media " + mediaWithAnds;
         }
-        _setObject(flatMapAcc, mediaWithAnds, selectorWithCommas, selector, rules);
+        _setObject(flatMapAcc, plugin, mediaWithAnds, selectorWithCommas, selector, rules);
       }
     }
   };
 
-  _cssFromObject = function(cssMap, debug) {
-    var css, flatMap, indent, indentRule, inline, media, newline, rules, selector, selectorMap, space, styles;
+  _styleClassFromPlugin = function(plugin) {
+    return "" + plugin + "-style";
+  };
 
-    if (debug == null) {
-      debug = 0;
+  oj._styleTagFromMediaObject = function(plugin, mediaMap, options) {
+    var css, newline;
+
+    newline = (options != null ? options.debug : void 0) ? '\n' : '';
+    css = _cssFromMediaObject(mediaMap, options);
+    return "<style class=\"" + (_styleClassFromPlugin(plugin)) + "\">" + newline + css + "</style>";
+  };
+
+  oj._minifyJS = function(js, options) {
+    return js;
+  };
+
+  oj._minifyCSS = function(css, options) {
+    return css;
+  };
+
+  _cssFromMediaObject = function(mediaMap, options) {
+    var css, debug, eCSS, indent, indentRule, inline, media, minify, newline, rules, selector, selectorMap, space, styles, tags, _ref2, _ref3, _ref4;
+
+    if (options == null) {
+      options = {};
     }
+    debug = (_ref2 = options.debug) != null ? _ref2 : 0;
+    tags = (_ref3 = options.tags) != null ? _ref3 : 0;
+    minify = (_ref4 = options.minify) != null ? _ref4 : 0;
     newline = debug ? '\n' : '';
     space = debug ? ' ' : '';
     inline = !debug;
-    flatMap = _flattenCSSMap(cssMap);
     css = '';
-    for (media in flatMap) {
-      selectorMap = flatMap[media];
+    for (media in mediaMap) {
+      selectorMap = mediaMap[media];
       if (media) {
         media = media.replace(/,/g, "," + space);
         css += "" + media + space + "{" + newline;
@@ -4148,10 +3020,42 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           inline: inline,
           indent: indentRule
         });
-        css += "" + rules + indent + "}" + newline;
+        css += rules + indent + '}' + newline;
       }
       if (media !== '') {
-        css += "}" + newline;
+        css += '}' + newline;
+      }
+    }
+    try {
+      css = oj._minifyCSS(css, options);
+    } catch (_error) {
+      eCSS = _error;
+      throw new Error("css minification error: " + eCSS.message + "\nCould not minify:\n" + css);
+    }
+    return css;
+  };
+
+  _cssFromPluginObject = function(flatCSSMap, options) {
+    var css, debug, inline, mediaMap, minify, newline, plugin, space, tags, _ref2, _ref3, _ref4;
+
+    if (options == null) {
+      options = {};
+    }
+    debug = (_ref2 = options.debug) != null ? _ref2 : 0;
+    tags = (_ref3 = options.tags) != null ? _ref3 : 0;
+    minify = (_ref4 = options.minify) != null ? _ref4 : 0;
+    newline = debug ? '\n' : '';
+    space = debug ? ' ' : '';
+    inline = !debug;
+    css = '';
+    for (plugin in flatCSSMap) {
+      mediaMap = flatCSSMap[plugin];
+      if (tags) {
+        css += "<style class=\"" + plugin + "-style\">" + newline;
+      }
+      css += _cssFromMediaObject(mediaMap, options);
+      if (tags) {
+        css += "" + newline + "</style>" + newline;
       }
     }
     return css;
@@ -4244,6 +3148,149 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   };
 
+  _compileTag = function(ojml, options) {
+    var att, attr, attrName, attrValue, attributes, child, children, el, events, selector, space, styles, tag, tagType, _base, _base1, _j, _k, _len1, _len2, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8;
+
+    if (ojml.length === 0) {
+      return;
+    }
+    tag = ojml[0];
+    tagType = typeof tag;
+    tag = (tagType === 'function' || tagType === 'object') && (_getTagName(tag) != null) ? _getTagName(tag) : tag;
+    if (!(oj.isString(tag) && tag.length > 0)) {
+      throw new Error('oj.compile: tag name is missing');
+    }
+    options.tags[tag] = true;
+    if (_isCapitalLetter(tag[0])) {
+      return _compileDeeper(_compileAny, new oj[tag](ojml.slice(1)), options);
+    }
+    attributes = null;
+    if (oj.isObject(ojml[1])) {
+      attributes = ojml[1];
+    }
+    children = attributes ? ojml.slice(2) : ojml.slice(1);
+    if (options.css && tag === 'css') {
+      for (selector in attributes) {
+        styles = attributes[selector];
+        if ((_ref2 = (_base = options.css)['oj']) == null) {
+          _base['oj'] = {};
+        }
+        if ((_ref3 = (_base1 = options.css['oj'])[selector]) == null) {
+          _base1[selector] = {};
+        }
+        _extend(options.css['oj'][selector], styles);
+      }
+    }
+    if (tag === '!DOCTYPE') {
+      if (!oj.isString(ojml[1])) {
+        throw new Error('oj.compile: doctype expects string as first argument');
+      }
+      if (!options.ignore[tag]) {
+        if (options.html) {
+          options.html.push("<" + tag + " " + ojml[1] + ">");
+        }
+      }
+      return;
+    }
+    if (!options.ignore[tag]) {
+      events = _attributesProcessedForOJ(attributes);
+      if (options.dom && (typeof document !== "undefined" && document !== null)) {
+        el = document.createElement(tag);
+        if (oj.isDOMElement(options.dom)) {
+          options.dom.appendChild(el);
+        }
+        options.dom = el;
+        if (oj.isObject(attributes)) {
+          _ref4 = _keys(attributes).sort();
+          for (_j = 0, _len1 = _ref4.length; _j < _len1; _j++) {
+            attrName = _ref4[_j];
+            attrValue = attributes[attrName];
+            if (attrValue === true) {
+              att = document.createAttribute(attrName);
+              el.setAttributeNode(att);
+            } else {
+              el.setAttribute(attrName, attrValue);
+            }
+          }
+        }
+        _attributesBindEventsToDOM(events, el);
+      }
+      if (options.html) {
+        attr = (_ref5 = _attributesFromObject(attributes)) != null ? _ref5 : '';
+        space = attr === '' ? '' : ' ';
+        options.html.push("<" + tag + space + attr + ">");
+      }
+    }
+    if (options.ignore[tag] !== 'deep') {
+      for (_k = 0, _len2 = children.length; _k < _len2; _k++) {
+        child = children[_k];
+        if (options.debug && children.length > 1) {
+          if ((_ref6 = options.html) != null) {
+            _ref6.push("\n\t" + options.indent);
+          }
+        }
+        _compileDeeper(_compileAny, child, options);
+      }
+    }
+    if (options.debug && children.length > 1) {
+      if ((_ref7 = options.html) != null) {
+        _ref7.push("\n" + options.indent);
+      }
+    }
+    if (!options.ignore[tag]) {
+      if (options.html && (children.length > 0 || oj.tag.isClosed(tag))) {
+        if ((_ref8 = options.html) != null) {
+          _ref8.push("</" + tag + ">");
+        }
+      }
+      if (options.dom) {
+        options.dom = options.dom.parentNode;
+      }
+    }
+  };
+
+  _attributeStyleAllowsObject = function(attr) {
+    if (oj.isObject(attr != null ? attr.style : void 0)) {
+      attr.style = _styleFromObject(attr.style, {
+        inline: true
+      });
+    }
+  };
+
+  _attributeCMeansClassAndAllowsArrays = function(attr) {
+    if (oj.isArray(attr != null ? attr.c : void 0)) {
+      attr.c = attr.c.join(' ');
+    }
+    if (oj.isArray(attr != null ? attr["class"] : void 0)) {
+      attr["class"] = attr["class"].join(' ');
+    }
+    if ((attr != null ? attr.c : void 0) != null) {
+      if ((attr != null ? attr["class"] : void 0) != null) {
+        attr["class"] += ' ' + attr.c;
+      } else {
+        attr["class"] = attr.c;
+      }
+      delete attr.c;
+    }
+  };
+
+  _attributeOmitFalsyValues = function(attr) {
+    var k, v, _results;
+
+    if (oj.isObject(attr)) {
+      _results = [];
+      for (k in attr) {
+        v = attr[k];
+        if (v === null || v === void 0 || v === false) {
+          _results.push(delete attr[k]);
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    }
+  };
+
   jqueryEvents = {
     bind: 1,
     on: 1,
@@ -4271,129 +3318,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     select: 1
   };
 
-  _compileTag = function(ojml, options) {
-    var att, attr, attrName, attrValue, attributes, child, children, el, events, selector, space, styles, tag, tagType, _base, _j, _k, _len1, _len2, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
-
-    if (ojml.length === 0) {
-      return;
-    }
-    tag = ojml[0];
-    tagType = typeof tag;
-    tag = (tagType === 'function' || tagType === 'object') && (_getTagName(tag) != null) ? _getTagName(tag) : tag;
-    if (!(oj.isString(tag) && tag.length > 0)) {
-      throw new Error('oj.compile: tag name is missing');
-    }
-    if (_isCapitalLetter(tag[0])) {
-      return _compileDeeper(_compileAny, new oj[tag](ojml.slice(1)), options);
-    }
-    options.tags[tag] = true;
-    attributes = null;
-    if (oj.isObject(ojml[1])) {
-      attributes = ojml[1];
-    }
-    children = attributes ? ojml.slice(2) : ojml.slice(1);
-    if (options.css && tag === 'css') {
-      for (selector in attributes) {
-        styles = attributes[selector];
-        if ((_ref2 = (_base = options.css)[selector]) == null) {
-          _base[selector] = styles;
-        }
-        _extend(options.css[selector], styles);
-      }
-    }
-    if (!options.ignore[tag]) {
-      events = _attributesProcessedForOJ(attributes);
-      if (options.dom && (typeof document !== "undefined" && document !== null)) {
-        el = document.createElement(tag);
-        if (oj.isDOMElement(options.dom)) {
-          options.dom.appendChild(el);
-        }
-        options.dom = el;
-        if (oj.isObject(attributes)) {
-          _ref3 = _keys(attributes).sort();
-          for (_j = 0, _len1 = _ref3.length; _j < _len1; _j++) {
-            attrName = _ref3[_j];
-            attrValue = attributes[attrName];
-            if (attrValue === true) {
-              att = document.createAttribute(attrName);
-              el.setAttributeNode(att);
-            } else {
-              el.setAttribute(attrName, attrValue);
-            }
-          }
-        }
-        _attributesBindEventsToDOM(events, el);
-      }
-      if (options.html) {
-        attr = (_ref4 = _attributesFromObject(attributes)) != null ? _ref4 : '';
-        space = attr === '' ? '' : ' ';
-        options.html.push("<" + tag + space + attr + ">");
-      }
-    }
-    for (_k = 0, _len2 = children.length; _k < _len2; _k++) {
-      child = children[_k];
-      if (options.debug && children.length > 1) {
-        if ((_ref5 = options.html) != null) {
-          _ref5.push("\n\t" + options.indent);
-        }
-      }
-      _compileDeeper(_compileAny, child, options);
-    }
-    if (options.debug && children.length > 1) {
-      if ((_ref6 = options.html) != null) {
-        _ref6.push("\n" + options.indent);
-      }
-    }
-    if (!options.ignore[tag]) {
-      if (options.html && (children.length > 0 || oj.tag.isClosed(tag))) {
-        if ((_ref7 = options.html) != null) {
-          _ref7.push("</" + tag + ">");
-        }
-      }
-      if (options.dom) {
-        options.dom = options.dom.parentNode;
-      }
-    }
-  };
-
-  _attributeStyleAllowsObject = function(attr) {
-    if (oj.isObject(attr != null ? attr.style : void 0)) {
-      attr.style = _styleFromObject(attr.style, {
-        inline: true
-      });
-    }
-  };
-
-  _attributeCMeansClass = function(attr) {
-    if ((attr != null ? attr.c : void 0) != null) {
-      attr["class"] = attr.c;
-      delete attr.c;
-    }
-  };
-
-  _attributeClassAllowsArrays = function(attr) {
-    if (oj.isArray(attr != null ? attr["class"] : void 0)) {
-      attr["class"] = attr.join(' ');
-    }
-  };
-
-  _attributeOmitFalsyValues = function(attr) {
-    var k, v, _results;
-
-    if (oj.isObject(attr)) {
-      _results = [];
-      for (k in attr) {
-        v = attr[k];
-        if (v === null || v === void 0 || v === false) {
-          _results.push(delete attr[k]);
-        } else {
-          _results.push(void 0);
-        }
-      }
-      return _results;
-    }
-  };
-
   _attributesFilterOutEvents = function(attr) {
     var k, out, v;
 
@@ -4413,9 +3337,8 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   _attributesProcessedForOJ = function(attr) {
     var events;
 
-    _attributeCMeansClass(attr);
+    _attributeCMeansClassAndAllowsArrays(attr);
     _attributeStyleAllowsObject(attr);
-    _attributeClassAllowsArrays(attr);
     _attributeOmitFalsyValues(attr);
     events = _attributesFilterOutEvents(attr);
     return events;
@@ -4446,10 +3369,10 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       options = {};
     }
     _extend(options, {
-      dom: false,
-      js: false,
-      html: true,
-      css: false
+      dom: 0,
+      js: 0,
+      html: 1,
+      css: 0
     });
     return (oj.compile(options, ojml)).html;
   };
@@ -4460,10 +3383,10 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       options = {};
     }
     _extend(options, {
-      dom: false,
-      js: false,
-      html: false,
-      css: true
+      dom: 0,
+      js: 0,
+      html: 0,
+      css: 1
     });
     return (oj.compile(options, ojml)).css;
   };
@@ -4490,17 +3413,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return value;
   };
 
-  oj.type = function(name, args) {
+  oj.createType = function(name, args) {
     var Out, delay, methodKeys, methods, propKeys, properties, typeProps, _ref2, _ref3;
 
     if (args == null) {
       args = {};
     }
     if (!oj.isString(name)) {
-      throw 'oj.type: string expected for first argument';
+      throw 'oj.createType: string expected for first argument';
     }
     if (!oj.isObject(args)) {
-      throw 'oj.type: object expected for second argument';
+      throw 'oj.createType: object expected for second argument';
     }
     if ((_ref2 = args.methods) == null) {
       args.methods = {};
@@ -4622,22 +3545,22 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return Out;
   };
 
-  oj.argumentsUnion = function(argList) {
-    var list, obj, v, _j, _len1;
+  oj.unionArguments = function(argList) {
+    var args, options, v, _j, _len1;
 
-    obj = {};
-    list = [];
+    options = {};
+    args = [];
     for (_j = 0, _len1 = argList.length; _j < _len1; _j++) {
       v = argList[_j];
       if (oj.isObject(v)) {
-        obj = _extend(obj, v);
+        options = _extend(options, v);
       } else {
-        list.push(v);
+        args.push(v);
       }
     }
     return {
-      options: obj,
-      args: list
+      options: options,
+      args: args
     };
   };
 
@@ -4645,7 +3568,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     throw 'NYI';
   };
 
-  oj.View = oj.type('View', {
+  oj.View = oj.createType('View', {
     constructor: function(options) {
       var _ref2;
 
@@ -4674,18 +3597,16 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           return this._el;
         },
         set: function(v) {
-          var _ref2;
-
           if (oj.isDOMElement(v)) {
             this._el = v;
             this._$el = null;
           } else {
-            _ref2 = oj.compile({
+            this._el = oj.compile({
               css: 0,
-              cssMap: 1,
+              cssMap: 0,
               dom: 1,
               html: 0
-            }, v), this._el = _ref2.dom, this.cssMap = _ref2.cssMap;
+            }, v).dom;
           }
         }
       },
@@ -4694,6 +3615,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           var _ref2;
 
           return (_ref2 = this._$el) != null ? _ref2 : (this._$el = $(this.el));
+        }
+      },
+      id: {
+        get: function() {
+          return this.$el.attr('id');
+        },
+        set: function(v) {
+          return this.$el.attr('id', v);
         }
       },
       attributes: {
@@ -4707,22 +3636,15 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           return out;
         }
       },
-      id: {
+      themes: {
         get: function() {
-          return this.$el.attr('id');
-        },
-        set: function(v) {
-          return this.$el.attr('id', v);
-        }
-      },
-      cssMap: {
-        get: function() {
-          var _ref2;
+          var out;
 
-          return (_ref2 = this._cssMap) != null ? _ref2 : {};
-        },
-        set: function(v) {
-          return this._cssMap = v;
+          out = {};
+          $.each(this.el.attributes, function(index, attr) {
+            return out[attr.name] = attr.value;
+          });
+          return out;
         }
       },
       isConstructed: {
@@ -4751,7 +3673,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
         attr = {};
         attr[name] = value;
-        return this.addAttributes(attr);
+        this.addAttributes(attr);
       },
       addAttributes: function(attributes) {
         var att, attr, events, k, v;
@@ -4786,8 +3708,21 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           this.removeAttribute(k);
         }
       },
+      addTheme: function(name) {
+        this.$el.addClass("theme-" + name);
+      },
+      removeTheme: function(name) {
+        this.$el.removeClass("theme-" + name);
+      },
+      clearThemes: function(name) {
+        var classes;
+
+        this.$el.removeClass("theme-" + name);
+        classes = this.$el.attr('class').split(' ');
+        _each(classes, function(v) {});
+      },
       emit: function() {
-        oj._argumentsAppend(this);
+        oj._argsAppend(this);
       },
       toHTML: function(options) {
         return this.el.outerHTML + ((options != null ? options.debug : void 0) ? '\n' : '');
@@ -4796,10 +3731,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         return this.el;
       },
       toCSS: function(debug) {
-        return _cssFromObject(this.cssMap, debug);
+        return _cssFromPluginObject(_flattenCSSMap(this.cssMap), {
+          debug: debug,
+          tags: 0
+        });
       },
       toCSSMap: function() {
-        return this.cssMap;
+        return this.type.cssMap;
       },
       toString: function() {
         return this.toHTML();
@@ -4810,7 +3748,49 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.CollectionView = oj.type('CollectionView', {
+  oj.View.css = function(css) {
+    var cssMap, _base, _base1, _name, _name1, _ref2, _ref3;
+
+    if (!(oj.isString(css) || oj.isObject(css))) {
+      throw new Error("oj." + this.typeName + ".css: object or string expected for first argument");
+    }
+    if (oj.isString(css)) {
+      if ((_ref2 = (_base = this.cssMap)[_name = "oj-" + this.typeName]) == null) {
+        _base[_name] = "";
+      }
+      this.cssMap["oj-" + this.typeName] += css;
+    } else {
+      if ((_ref3 = (_base1 = this.cssMap)[_name1 = "oj-" + this.typeName]) == null) {
+        _base1[_name1] = {};
+      }
+      cssMap = _setObject({}, ".oj-" + this.typeName, css);
+      _extend(this.cssMap["oj-" + this.typeName], cssMap);
+    }
+  };
+
+  oj.View.theme = function(name, css) {
+    var cssMap, dashName, _base, _name, _ref2;
+
+    if (!oj.isString(name)) {
+      throw new Error("oj." + this.typeName + ".theme: string expected for first argument (theme name)");
+    }
+    if (!oj.isObject(css)) {
+      throw new Error("oj." + this.typeName + ".css: object expected for second argument");
+    }
+    if ((_ref2 = (_base = this.cssMap)[_name = "oj-" + this.typeName]) == null) {
+      _base[_name] = {};
+    }
+    dashName = _dasherize(name);
+    cssMap = _setObject({}, ".oj-" + this.typeName + ".theme-" + dashName, css);
+    _extend(this.cssMap["oj-" + this.typeName], cssMap);
+    this.themes.push(dashName);
+  };
+
+  oj.View.cssMap = {};
+
+  oj.View.themes = [];
+
+  oj.CollectionView = oj.createType('CollectionView', {
     base: oj.View,
     constructor: function(options) {
       if ((options != null ? options.each : void 0) != null) {
@@ -4834,6 +3814,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           }
         }
       },
+      collection: {
+        get: function() {
+          return this.models;
+        },
+        set: function(v) {
+          return this.models = v;
+        }
+      },
       models: {
         get: function() {
           return this._models;
@@ -4846,11 +3834,11 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           }
           this._models = v;
           if (oj.isFunction((_ref3 = this._models) != null ? _ref3.on : void 0)) {
-            this._models.on('add', this.collectionAdded, this);
-            this._models.on('remove', this.collectionRemoved, this);
-            this._models.on('change', this.collectionChanged, this);
+            this._models.on('add', this.collectionModelAdded, this);
+            this._models.on('remove', this.collectionModelRemoved, this);
+            this._models.on('change', this.collectionModelChanged, this);
+            this._models.on('destroy', this.collectionModelDestroyed, this);
             this._models.on('reset', this.collectionReset, this);
-            this._models.on('destroy', this.collectionDestroyed, this);
           }
           if (this.isConstructed) {
             this.make();
@@ -4862,23 +3850,23 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       make: function() {
         throw new Error("oj." + this.typeName + ": `make` method not implemented by custom view");
       },
-      collectionAdded: function(model, collection) {
+      collectionModelAdded: function(model, collection) {
         return this.make();
       },
-      collectionRemoved: function(model, collection, options) {
+      collectionModelRemoved: function(model, collection, options) {
+        return this.make();
+      },
+      collectionModelChanged: function(model, collection, options) {},
+      collectionModelDestroyed: function(collection, options) {
         return this.make();
       },
       collectionReset: function(collection, options) {
-        return this.make();
-      },
-      collectionChanged: function(model, collection, options) {},
-      collectionDestroyed: function(collection, options) {
         return this.make();
       }
     }
   });
 
-  oj.ModelView = oj.type('ModelView', {
+  oj.ModelView = oj.createType('ModelView', {
     base: oj.View,
     constructor: function(options) {
       if ((options != null ? options.value : void 0) != null) {
@@ -4920,7 +3908,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.ModelKeyView = oj.type('ModelKeyView', {
+  oj.ModelKeyView = oj.createType('ModelKeyView', {
     base: oj.ModelView,
     constructor: function(options) {
       if ((options != null ? options.key : void 0) != null) {
@@ -4961,13 +3949,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.TextBox = oj.type('TextBox', {
+  oj.TextBox = oj.createType('TextBox', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.input({
           type: 'text'
@@ -5014,13 +4002,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.CheckBox = oj.type('CheckBox', {
+  oj.CheckBox = oj.createType('CheckBox', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.input({
           type: 'checkbox'
@@ -5053,13 +4041,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.TextArea = oj.type('TextArea', {
+  oj.TextArea = oj.createType('TextArea', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.textarea({
           keydown: function() {
@@ -5095,13 +4083,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.ListBox = oj.type('ListBox', {
+  oj.ListBox = oj.createType('ListBox', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.select({
           change: function() {
@@ -5146,30 +4134,58 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.Button = oj.type('Button', {
+  oj.Button = oj.createType('Button', {
     base: oj.View,
-    constructor: function(args) {
-      var options, _ref2, _ref3,
+    constructor: function() {
+      var args, options, title, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
-      if ((_ref3 = options.label) == null) {
-        options.label = args.length > 0 ? args[0] : '';
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      title = '';
+      if (args.length > 0) {
+        title = args[0];
+      }
+      if (options.title != null) {
+        title = oj.argumentShift(options, 'title');
       }
       this.el = oj(function() {
-        return oj.button(options.label);
+        return oj.button(title);
       });
-      return oj.Button.base.constructor.apply(this, [options]);
+      oj.Button.base.constructor.apply(this, [options]);
+      return this.title = title;
+    },
+    properties: {
+      title: {
+        get: function() {
+          var _ref2;
+
+          return (_ref2 = this._title) != null ? _ref2 : '';
+        },
+        set: function(v) {
+          this.$el.oj((this._title = v));
+        }
+      }
+    },
+    methods: {
+      click: function() {
+        var _ref2;
+
+        if (arguments.length > 0) {
+          return (_ref2 = this.$el).click.apply(_ref2, arguments);
+        } else {
+          return this.$el.click();
+        }
+      }
     }
   });
 
-  oj.List = oj.type('List', {
+  oj.List = oj.createType('List', {
     base: oj.CollectionView,
     constructor: function() {
       var args, items, options, _ref2, _ref3,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this._tagName = oj.argumentShift(options, 'tagName');
       this.itemTagName = oj.argumentShift(options, 'itemTagName');
       this.el = oj(function() {
@@ -5279,14 +4295,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         });
         this.itemsChanged();
       },
-      collectionAdded: function(m, c) {
+      collectionModelAdded: function(m, c) {
         var item, ix;
 
         ix = c.indexOf(m);
         item = this._itemFromModel(m);
         this.add(ix, item);
       },
-      collectionRemoved: function(m, c, o) {
+      collectionModelRemoved: function(m, c, o) {
         this.remove(o.index);
       },
       collectionReset: function() {
@@ -5391,7 +4407,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.NumberList = oj.type('NumberList', {
+  oj.NumberList = oj.createType('NumberList', {
     base: oj.List,
     constructor: function() {
       var args;
@@ -5404,7 +4420,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.BulletList = oj.type('BulletList', {
+  oj.BulletList = oj.createType('BulletList', {
     base: oj.List,
     constructor: function() {
       var args;
@@ -5417,13 +4433,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.Table = oj.type('Table', {
+  oj.Table = oj.createType('Table', {
     base: oj.CollectionView,
     constructor: function() {
       var arg, args, options, rows, _j, _len1, _ref2, _ref3, _ref4,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.table();
       });
@@ -5736,7 +4752,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         }
         this.bodyChanged();
       },
-      collectionAdded: function(m, c) {
+      collectionModelAdded: function(m, c) {
         var row, rx;
 
         rx = c.indexOf(m);
@@ -5745,7 +4761,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           return oj.tr(row);
         }));
       },
-      collectionRemoved: function(m, c, o) {
+      collectionModelRemoved: function(m, c, o) {
         this.removeRow(o.index);
       },
       collectionReset: function() {
@@ -5784,7 +4800,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         if (ojml != null) {
           return this.$td(rx, cx).oj(ojml);
         } else {
-          return this.td(rx, cx).ojValue();
+          return this.$td(rx, cx).ojValue();
         }
       },
       addRow: function(rx, listOJML) {
@@ -6000,9 +5016,32 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     };
   };
 
+  _triggerTypes = function(types) {
+    var type, _k, _len2;
+
+    for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
+      type = types[_k];
+      type.inserted();
+    }
+  };
+
+  _insertStyles = function(pluginMap, options) {
+    var mediaMap, plugin;
+
+    for (plugin in pluginMap) {
+      mediaMap = pluginMap[plugin];
+      if (plugin === 'oj-style' && !(options != null ? options.global : void 0)) {
+        continue;
+      }
+      if ($('.' + _styleClassFromPlugin(plugin)).length === 0) {
+        $('head').append(oj._styleTagFromMediaObject(plugin, mediaMap));
+      }
+    }
+  };
+
   jQuery.fn.oj = _jqueryExtend({
     set: function($el, args) {
-      var d, dom, types, _k, _l, _len2, _len3, _ref3;
+      var cssMap, d, dom, types, _k, _len2, _ref3;
 
       if (args.length === 0) {
         return $el[0].oj;
@@ -6010,8 +5049,11 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       _ref3 = oj.compile.apply(oj, [{
         dom: 1,
         html: 0,
-        css: 0
-      }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types;
+        cssMap: 1
+      }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
+      _insertStyles(cssMap, {
+        global: 0
+      });
       $el.html('');
       if (!oj.isArray(dom)) {
         dom = [dom];
@@ -6020,15 +5062,46 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         d = dom[_k];
         $el.append(d);
       }
-      for (_l = 0, _len3 = types.length; _l < _len3; _l++) {
-        t = types[_l];
-        t.inserted();
-      }
+      _triggerTypes(types);
     },
     get: function($el) {
       return $el[0].oj;
     }
   });
+
+  jQuery.ojBody = function(ojml) {
+    var bodyOnly, cssMap, dom, eCompile, types, _ref3;
+
+    bodyOnly = {
+      html: 1,
+      '!DOCTYPE': 1,
+      body: 1,
+      head: 1,
+      meta: 1,
+      title: 'deep',
+      link: 1,
+      script: 1
+    };
+    try {
+      _ref3 = oj.compile({
+        dom: 1,
+        html: 0,
+        css: 0,
+        cssMap: 1,
+        ignore: bodyOnly
+      }, ojml), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
+    } catch (_error) {
+      eCompile = _error;
+      throw new Error("oj: dom failed to compile with error: " + eCompile.message);
+    }
+    if (dom != null) {
+      $('body').html(dom);
+    }
+    _insertStyles(cssMap, {
+      global: 1
+    });
+    return _triggerTypes(types);
+  };
 
   _jqGetValue = function($el, args) {
     var child, el, inst, text;
@@ -6072,17 +5145,19 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   _fn1 = function(ojName, jqName) {
     return jQuery.fn[ojName] = _jqueryExtend({
       set: function($el, args) {
-        var dom, types, _k, _len2, _ref3;
+        var cssMap, dom, types, _ref3;
 
         _ref3 = oj.compile.apply(oj, [{
           dom: 1,
-          html: 0
-        }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types;
+          html: 0,
+          css: 0,
+          cssMap: 1
+        }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
+        _insertStyles(cssMap, {
+          global: 0
+        });
         $el[jqName](dom);
-        for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
-          t = types[_k];
-          t.inserted();
-        }
+        _triggerTypes(types);
       },
       get: null
     });
@@ -6101,51 +5176,14 @@ RR = function(f){
   return function(m){
     return run(find(m, f));
   };
-  function run(f){
-    if(R[f] != null)
-      return R[f];
-    var eo = {},
-      mo = {exports: eo};
-    if(typeof F[f] != 'function')
-      throw new Error("file not found (" + f + ")");
-    F[f](mo,eo);
-    return R[f] = mo.exports;
-  }
-  function find(m,f){
-    var r, dir, dm, ext, ex, i;
-
-    if (F[m] && !m.match(/\//)) {
-      return m;
-    }
-
-    if (!!m.match(/\//)) {
-      r = oj._pathResolve(f, oj._pathJoin(oj._pathDirname(f), m));
-      ext = ['.ojc','.oj','.coffee','.js','.json'];
-      for(i = 0; i < ext.length; i++){
-        ex = ext[i];
-        if(F[r+ex])
-          return r+ex;
-      }
-    } else {
-      dir = oj._pathDirname(f);
-      while(true) {
-        dm = oj._pathJoin(dir, 'node_modules');
-        if(M[dm] && M[dm][m])
-          return oj._pathJoin(dm, m, M[dm][m]);
-        if(dir == '/')
-          break;
-        dir = oj._pathResolve(dir, '..');
-      }
-    }
-    throw new Error("module not found (" + m + ")");
-  }
+  function run(f){    if(R[f] != null)      return R[f];    var eo = {},      mo = {exports: eo};    if(typeof F[f] != 'function')      throw new Error("file not found (" + f + ")");    F[f](mo,eo);    return R[f] = mo.exports;  }
+  function find(m,f){    var r, dir, dm, ext, ex, i;    if (F[m] && !m.match(/\//)) {      return m;    }    if (!!m.match(/\//)) {      r = oj._pathResolve(f, oj._pathJoin(oj._pathDirname(f), m));      ext = ['.ojc','.oj','.coffee','.js','.json'];      for(i = 0; i < ext.length; i++){        ex = ext[i];        if(F[r+ex])          return r+ex;      }    } else {      dir = oj._pathDirname(f);      while(true) {        dm = oj._pathJoin(dir, 'node_modules');        if(M[dm] && M[dm][m])          return oj._pathJoin(dm, m, M[dm][m]);        if(dir == '/')          break;        dir = oj._pathResolve(dir, '..');      }    }    throw new Error("module not found (" + m + ")");  }
 };
 
 require = RR('/test');
 oj = require('oj');
-oj.begin('/test');
+oj.load('/test');
 
 }).call(this);
 
-</script></body>
-	</html>
+</script></body></html>

@@ -1,47 +1,104 @@
-
-	<!DOCTYPE html>
-	<html>
-		<head>
-			<meta content="width=device-width" name="viewport">
-			<title>OJ - Unified Templating</title>
-			<link href="styles/reset.css" rel="stylesheet" type="text/css">
-			<link href="styles/gg.css" rel="stylesheet" type="text/css">
-			<link href="styles/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css">
-			<script src="scripts/jquery.js" type="text/javascript"></script>
-			<script src="scripts/underscore.js" type="text/javascript"></script>
-			<script src="scripts/backbone.js" type="text/javascript"></script>
-			<script src="scripts/coffee-script.js" type="text/javascript"></script>
-			<script src="scripts/ace/ace.js" type="text/javascript"></script>
-			<script src="scripts/jquery.ba-resize.min.js" type="text/javascript"></script>
-			<script src="scripts/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
-			
-		<style>
+<!DOCTYPE html><html><head><meta content="width=device-width" name="viewport"><title>OJ - Unified Templating</title><link href="styles/reset.css" rel="stylesheet" type="text/css"><link href="styles/gg.css" rel="stylesheet" type="text/css"><script src="scripts/jquery.js" type="text/javascript"></script><script src="scripts/jquery.event.drag.js" type="text/javascript"></script><script src="scripts/jquery.ba-resize.min.js" type="text/javascript"></script><script src="scripts/underscore.js" type="text/javascript"></script><script src="scripts/backbone.js" type="text/javascript"></script><script src="scripts/coffee-script.js" type="text/javascript"></script><script src="scripts/ace/ace.js" type="text/javascript"></script><style class="oj-style">
+.logo {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:55px;
+	position:relative;
+}
+.subtitle {
+	border-bottom:0;
+	color:#E69927;
+	display:block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-weight:lighter;
+	margin-top:20px;
+	position:relative;
+	text-align:center;
+}
+.editor {
+	margin-top:55px;
+}
+ul.dots {
+	list-style-type:none;
+	margin:0 auto 30px;
+	width:180px;
+}
+ul.dots li {
+	display:inline-block;
+	margin:10px 0 0 0;
+}
+ul.dots li:not(:first-child) {
+	margin-left:10px;
+}
+ul.dots .dot {
+	background:url(media/dot_empty.png) no-repeat left top;
+	cursor:pointer;
+	display:inline-block;
+	height:11px;
+	position:relative;
+	width:11px;
+}
+ul.dots .dot.filled {
+	background:url(media/dot_filled.png) no-repeat left top;
+}
+.bullets > li {
+	background:url(media/oj_bullet.png) no-repeat left top;
+	color:#666666;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:18px;
+	font-weight:lighter;
+	list-style-type:none;
+	margin:20px 0 10px 0;
+	min-height:50px;
+	padding:0 0 0 35px;
+}
+.bullets > li p {
+	color:#666666;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:18px;
+	font-weight:lighter;
+}
+.button {
+	background-color:#FF9B00;
+	border-radius:10px;
+	color:white;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:22px;
+	font-weight:lighter;
+	height:34px;
+	padding-top:11px;
+	text-align:center;
+}
+.button.yellow {
+	background-color:#FFC000;
+}
 h1 {
 	border-bottom:2px solid #FFD36B;
-	color:#666;
-	font-family:Lucida Grande, Tahoma;
+	color:#444;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:25px;
-	font-weight:lighter;
+	font-weight:100;
 	margin-bottom:12px;
 	margin-top:40px;
 	padding-bottom:6px;
 }
 h1:first-child {
-	margin-top:0px;
+	margin-top:20px;
 }
 h2 {
 	color:#444;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:22px;
-	font-weight:lighter;
-	margin:25px 0 10px 0;
+	font-weight:100;
+	margin:32px 0 15px 0;
 	text-decoration:none;
 }
 h3 {
 	color:#222;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:16px;
-	font-weight:lighter;
+	font-weight:100;
 	margin-bottom:14px;
 	margin-top:22px;
 }
@@ -51,7 +108,7 @@ a {
 }
 a.heading1,
 a.heading1:hover {
-	color:#666;
+	color:#444;
 	text-decoration:none;
 }
 a.heading2,
@@ -68,6 +125,10 @@ a.function {
 	font-family:Inconsolata, Consolas, Courier New, monospace;
 }
 a.method {
+	color:#a64d09;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.event {
 	color:#a64d09;
 	font-family:Inconsolata, Consolas, Courier New, monospace;
 }
@@ -92,20 +153,29 @@ blockquote {
 }
 p {
 	color:#444;
-	font-family:Lucida Grande, Tahoma;
-	font-size:14px;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:16px;
+	font-weight:lighter;
 	line-height:24px;
-	margin:16px 0;
+	margin:16px 0 8px 0;
+}
+p strong {
+	color:#000;
+	font-family:Helvetica, Arial, sans-serif;
+	font-weight:400;
 }
 ul {
 	margin-bottom:16px;
 }
 li {
 	color:#444;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
 	line-height:20px;
 	margin:10px 0 10px 20px;
+}
+.oj-TryEditor {
+	margin-bottom:30px;
 }
 .code-heading {
 	color:#222;
@@ -134,14 +204,14 @@ li {
 	margin:0 0 4px 0;
 }
 .code-item-base {
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
 	line-height:20px;
 	margin:10px 0 10px 10px;
 }
 .code-item-name {
 	display:inline-block;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
 	line-height:20px;
 	margin:0 0 0 20px;
@@ -150,7 +220,7 @@ li {
 .code-item-def {
 	color:#444;
 	display:inline-block;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
 	line-height:20px;
 	margin:0 0 0 20px;
@@ -172,28 +242,24 @@ pre {
 	line-height:18px;
 	padding:8px;
 }
-.header-option {
-	color:#E98C00;
-	font-family:Helvetica, Arial, Tahoma;
-	font-size:20px;
-	font-weight:100;
-	margin-right:25px;
-}
 .toc-section {
-	background-color:#FF9900;
-	color:white;
+	color:#C76200;
 	display:block;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
-	margin:0 0 15px 0;
-	padding:8px;
+	font-weight:lighter;
+	margin:0 0 10px 0;
+	text-align:right;
 	text-transform:uppercase;
 }
 .toc-item {
-	background-color:#FEFAF3;
+	color:#E78B00;
 	display:block;
-	font-size:14px;
-	padding:4px 0 4px 15px;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:13px;
+	font-weight:lighter;
+	margin:0 0 4px 0;
+	text-align:right;
 }
 .toc-items {
 	margin-bottom:10px;
@@ -203,13 +269,13 @@ pre {
 }
 textarea {
 	border-color:#f4f4f4;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
 	height:100px;
 	width:100%;
 }
 .snippet {
-	border:1px solid #orange;
+	border:1px solid orange;
 	height:100px;
 	margin:0;
 	position:relative;
@@ -221,31 +287,135 @@ textarea {
 	border-radius:5px;
 	box-shadow:2px 2px 2px RGBA(0,0,0,0.2);
 	cursor:pointer;
-	font-family:Lucida Grande, Tahoma;
+	font-family:Helvetica, Arial, sans-serif;
 	font-size:14px;
 	height:27px;
 }
 .download-button:hover {
 	background-color:#fff;
 }
+.fixed {
+	height:40px;
+	margin-top:62px;
+	position:fixed;
+	z-index:100;
+}
+.relative {
+	position:relative;
+}
+.show-phone {
+	display:none;
+}
 header {
-	margin-bottom:0px !important;
+	background-color:white;
+	box-shadow:2px 2px 2px RGBA(0,0,0,0.1);
+	height:45px;
+	position:fixed;
+	width:100%;
+	z-index:1000;
+}
+.header-contents {
+	display:block;
+	float:none !important;
+	height:45px;
+	margin-left:auto !important;
+	margin-right:auto !important;
 }
 .header-logo {
-	background:url(media/oj_logo.png) no-repeat center;
+	background:url(media/oj_logo_small.png) no-repeat 0 center;
 	display:inline-block;
-	height:50px;
-	width:100%;
+	height:22px;
+	margin-left:91px;
+	vertical-align:middle;
+	width:32px;
 }
+.header-options {
+	display:inline-block;
+	margin-left:44px;
+	padding-top:12px;
+}
+.header-option {
+	color:#E98C00;
+	font-family:Helvetica, Arial, Tahoma;
+	font-size:18px;
+	font-weight:100;
+	vertical-align:middle;
+}
+.header-option:not(:first-child) {
+	margin-left:44px;
+}
+.header-orange-corner {
+	background-size:contain;
+	height:42px;
+	position:absolute;
+	top:0px;
+	width:42px;
+}
+.header-orange-corner.left {
+	background-image:url(media/orange_left.png);
+	left:0px;
+}
+.header-orange-corner.right {
+	background-image:url(media/orange_right.png);
+	right:0px;
+}
+@media only screen and (max-width: 767px) {
+	.button.orange {
+		margin-top:15px;
+	}
+	.fixed {
+		margin-top:85px;
+	}
+	.relative {
+		margin-top:62px;
+	}
+	.hide-phone {
+		display:none;
+	}
+	.show-phone {
+		display:block;
+	}
+	header {
+		height:72px;
+	}
+	.header-contents {
+		height:30px;
+		padding-top:10px;
+		text-align:center;
+	}
+	.header-logo {
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+	}
+	.header-options {
+		display:block;
+		margin-left:0px;
+		text-align:center;
+	}
+	.header-option:not(:first-child) {
+		margin-left:20px;
+	}
+	.header-option {
+		margin-top:30px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.show-phone {
+		display:none;
+	}
+}
+</style><style class="oj-TryEditor-style">
 .oj-TryEditor {
-	background-color:white;
+	background-color:#FEFAF3;
 	border:2px solid #ffd272;
 	box-shadow:2px 2px 4px RGBA(0,0,0,0.15);
 	display:block;
 	position:relative;
 	z-index:20;
 }
-.oj-TryEditor-seperator {
+.oj-TryEditor .oj-TryEditor-seperator {
 	background-color:#ffd272;
 	height:1px;
 	left:0px;
@@ -254,37 +424,37 @@ header {
 	width:2px;
 	z-index:100;
 }
-.oj-TryEditor-resizer {
+.oj-TryEditor .oj-TryEditor-resizer {
 	height:1px;
 	left:-1px;
 	position:absolute;
 	top:-1px;
 	width:2px;
 }
-.oj-TryEditor-inputs {
+.oj-TryEditor .oj-TryEditor-inputs {
 	display:inline-block;
 	position:relative;
 	z-index:30;
 }
-.oj-TryEditor-input-editor {
+.oj-TryEditor .oj-TryEditor-input-editor {
 	border:4px solid #fefaf3;
 	resize:none;
 }
-.oj-TryEditor-outputs {
+.oj-TryEditor .oj-TryEditor-outputs {
 	display:inline-block;
 	position:relative;
 	z-index:40;
 }
-.oj-TryEditor-output-iframe {
+.oj-TryEditor .oj-TryEditor-outputs > iframe {
 	background-color:white;
 	height:100%;
 	position:absolute;
 	width:100%;
 	z-index:20;
 }
-.oj-TryEditor-console {
+.oj-TryEditor .oj-TryEditor-console {
 	background-color:RGBA(255,255,255,0.8);
-	color:darkorange;
+	color:red;
 	display:none;
 	font-size:16px;
 	height:100%;
@@ -294,7 +464,7 @@ header {
 	width:100%;
 	z-index:30;
 }
-.oj-TryEditor-bar {
+.oj-TryEditor .oj-TryEditor-bar {
 	height:21px;
 	margin:8px 4px 0 0;
 	position:absolute;
@@ -302,14 +472,14 @@ header {
 	top:0px;
 	z-index:100;
 }
-.oj-TryEditor-example-chooser {
+.oj-TryEditor .oj-TryEditor-example-chooser {
 	float:right;
 	height:100%;
 	margin-left:8px;
 	position:relative;
 	z-index:10;
 }
-.oj-TryEditor-bar-state {
+.oj-TryEditor .oj-TryEditor-bar-state {
 	color:#D5A876;
 	cursor:pointer;
 	display:inline-block;
@@ -321,15 +491,15 @@ header {
 	width:25px;
 	z-index:101;
 }
-.oj-TryEditor-bar-state:hover {
+.oj-TryEditor .oj-TryEditor-bar-state:hover {
 	text-decoration:underline;
 }
-.oj-TryEditor-bar-state.selected {
+.oj-TryEditor .oj-TryEditor-bar-state.selected {
 	color:#E88E00;
 	font-weight:bold;
 	text-decoration:none !important;
 }
-.oj-TryEditor-bar-maximize {
+.oj-TryEditor .oj-TryEditor-bar-maximize {
 	background-image:url(media/try_popout.png);
 	cursor:pointer;
 	display:inline-block;
@@ -338,175 +508,464 @@ header {
 	width:15px;
 	z-index:101;
 }
-.oj-TryEditor-gripper {
+.oj-TryEditor .oj-TryEditor-gripper {
 	background-image:url(media/try_gripper.png);
+	background-position:bottom right;
+	background-repeat:no-repeat;
 	bottom:2px;
+	cursor:s-resize;
 	height:12px;
 	left:auto;
 	position:absolute;
 	right:2px;
-	width:12px;
+	width:100%;
 	z-index:101;
 }
-.orange-corner {
-	background-size:contain;
-	height:75px;
-	position:absolute;
-	top:0px;
-	width:75px;
+@media only screen and (max-width: 767px) {
+	.oj-TryEditor .oj-TryEditor-bar-maximize {
+		display:none;
+	}
 }
-.orange-corner.left {
-	background-image:url(media/orange_left.png);
-	left:0px;
-}
-.orange-corner.right {
-	background-image:url(media/orange_right.png);
-	right:0px;
-}
+</style></head><body><header><div class="header-contents"><a class="header-logo" href="index.html"></a><div class="header-options"><a class="header-option" href="learn.html">Learn</a><a class="header-option" href="try.html">Try</a><a class="header-option" href="docs.html">Docs</a><a class="header-option" href="plugins.html">Plugins</a><a class="header-option" href="download.html">Download</a></div></div><div class="header-orange-corner left"></div><div class="header-orange-corner right"></div></header><div class="gg"><div class="fixed row"><div class="toc-right o75 gg25 hide-phone"></div></div></div><div class="gg"><div class="relative row"><div class="body gg100"><img class="logo" src="media/oj_logo_big.png"><h1 class="subtitle"><span>Unified templating for the people. </span><i>Thirsty people.</i></h1><div style="height: 696px;" class="oj-TryEditor editor" id="ojlQBSkk1G"><div class="oj-TryEditor-resizer" style="width: 0px; height: 696px;"><div class="oj-TryEditor-gripper"></div></div><div class="oj-TryEditor-inputs" style="height: 348px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 340px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojrgBVd5Ph"><div class="oj-AceEditor-editor" style="height: 340px; position: absolute; width: 400;">function(){}</div></div></div><div class="oj-TryEditor-outputs" style="height: 348px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 340px; width: 0px;"></div><iframe style="width: 0px; height: 344px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div><ul class="oj-BulletList dots" id="ojPR3uvaxC"><li><div class="dot" data-cs="# Create header
+h1 'Header'
 
-</style></head>
-		<body>
-			<div class="orange-corner left"></div>
-			<div class="orange-corner right"></div>
-			<div class="all gg"><div class="row">
-					<header class="gg100">
-						<div class="row">
-							<div class="gg25"><a class="header-logo" href="index.html"></a></div>
-							<div class="gg75" style="margin:20px 0">
-								<a class="header-option" href="learn.html">Learn</a>
-								<a class="header-option" href="docs.html">Docs</a>
-								<a class="header-option" href="try.html">Try</a>
-							</div>
-						</div>
-						
-					</header>
-					<div class="middle gg100">
-						<h1 id="intro"><a class="heading1" href="#intro">What is OJ?</a></h1>
-						<p></p>
-						<p>OJ stands for <em>Object JavaScript</em>. It is a JavaScript library (<a href="docs.html/#download">oj.js</a>) that allows you to define objects that are able to <strong>create</strong> and <strong>live edit</strong> the web. The creation side replaces the needs to use other HTML and CSS templating tools. The live editing side, lets those same objects that created the HTML structure to directly manipulate the DOM using the object oriented syntax of properties and methods. For example <a href="docs.html#CheckBox">CheckBox</a> can be checked and unchecked with the <a href="docs.html#CheckBox-value">value</a> property, and <a href="docs.html#BulletList">BulletList</a> lets you <a href="docs.html#List-add">add</a>, <a href="docs.html#List-count">count</a>, and <a href="docs.html#List-move">move</a> items.</p>
-<blockquote>
-<p>Simple things should be simple. Complex things should be possible. <br> --Alan Kay</p>
-</blockquote>
-<p>Making objects is what OJ is about. Think of them as building blocks. Everything else -- tag functions, CSS creation, event binding, two-way model binding -- all of it is to make OJ objects easier to create and use.</p>
-<p>My hope is by providing the simple objects, OJ increases what is possible.</p>
-<h2>Using an OJ Object</h2>
-<p><em>So you say OJ lets you create and live edit the DOM. What the heck does that mean?</em></p>
-<p>Imagine you have a list object called <a href="docs.html#BulletList">BulletList</a>. In OJ this object can create itself with all the html, css and js goodness necessary to make it work. Behold!</p>
+# Create paragraph
+p 'A paragraph'
 
-						<div style="height: 226px;" class="oj-TryEditor" id="ojASJTUILo"><div class="oj-TryEditor-resizer" style="width: 0px; height: 58px;"><div class="oj-TryEditor-gripper ui-resizable-s"></div></div><div class="oj-TryEditor-inputs" style="height: 113px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 105px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojgcDR6G6j"><div class="oj-AceEditor-editor" style="height: 105px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 113px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 105px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 109px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-						<p style="text-align:center"><p>(These examples are all live editable. Change them to see what happens!)</p>
-</p>
-						<p>OK, great. We have a list, but now I want to live edit it. Say I want to add more items or change the order of those items. In OJ, objects not only can create themselves but once made they can edit themselves too:</p>
-						<div style="height: 58px;" class="oj-TryEditor" id="ojwzfo9hv3"><div class="oj-TryEditor-resizer" style="width: 0px; height: 58px;"><div class="oj-TryEditor-gripper ui-resizable-s"></div></div><div class="oj-TryEditor-inputs" style="height: 29px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 21px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojaNrgFziS"><div class="oj-AceEditor-editor" style="height: 21px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 29px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 21px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 25px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-						<p>Above we create a <a href="docs.html#BulletList">BulletList</a> object with three items (0,1,2) and assign it to the value <code>myList</code>. This is not just a function but is actually a constructor that returns a new <a href="docs.html#BulletList">BulletList</a> instance. Next we add a <a href="docs.html#Button">Button</a> that when clicked creates a new List item.</p>
-<p>Try clicking the button. The click event is bound for you. Try switching between JS (JavaScript) and CS (Coffee-Script). The OJ library was designed to work well in both.</p>
-<p>Finally the third button uses the built in <a href="docs.html#List-move">List.move</a> function to move the first item to the end of the list.</p>
+# Create bulleted list
+ul -&gt;
+  li 'Item 1'
+  li 'Item 2'
+  li 'Item 3'" data-js="// Create header
+h1('Header')
 
-						<h2>Dependencies and Supported Browsers</h2>
-<p>Now you may say. &quot;That is nice and all, but why should I care because jQuery can do this?&quot; Well, you are right. jQuery <em>can</em> do it quite well; in fact OJ depends on jQuery 2.0 for this very reason. OJ uses jQuery selectors, DOM manipulation, and event binding to ensure this stuff works cross-platform.</p>
-<p>As you probably know, jQuery 2.0 is the version of jQuery made for &quot;modern&quot; browsers, specifically IE9 and above. It took a lot of soul searching, but this version requirement also holds for OJ. The reason is primarily to allow OJ objects to use first-class properties (a feature that works IE9+). For example CheckBox values can be set with assignment instead of a function call:</p>
+// Create paragraph
+p('A paragraph')
 
-						<div style="height: 58px;" class="oj-TryEditor" id="ojUJBrgeLT"><div class="oj-TryEditor-resizer" style="width: 0px; height: 58px;"><div class="oj-TryEditor-gripper ui-resizable-s"></div></div><div class="oj-TryEditor-inputs" style="height: 29px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 21px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojFhEm9dPf"><div class="oj-AceEditor-editor" style="height: 21px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 29px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 21px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 25px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-						<h2>Frameworks and Model Binding</h2>
-						<p>OJ was originally meant to be framework agnostic in the way Backbone is. At its heart OJ is about creating really powerful Views, in the MVC sense. It doesn&#39;t create Models. It doesn&#39;t create Controllers or Routing or page navigation. Instead it tries to do only one thing well: making views with objects.</p>
-<p>This is all still true. OJ makes Views. Period. The only compromise is OJ now can recognize and bind to Backbone-like models and collections (anything that supports the on,off,trigger event syntax). In a sense, OJ is the View to Backbones Model.</p>
-<p>When Backbone was originally conceived it brilliantly left Views as an exercise to the reader. The thing is there were too many ways to do templating. Back in 2010 they couldn&#39;t know which would stick. Models were a big deal, and Backbone was intended to abstract what could be abstracted well and leave the rest for later.</p>
+// Create bulleted list
+ul(function(){
+  li('Item 1');
+  li('Item 2');
+  li('Item 3');
+});"></div></li><li><div class="dot" data-cs="# Create css
+css
+  '.red': color: '#e00'
+  '.big': fontSize: '25px'
 
-						<div style="height: 58px;" class="oj-TryEditor" id="ojM7MyqFm1"><div class="oj-TryEditor-resizer" style="width: 0px; height: 58px;"><div class="oj-TryEditor-gripper ui-resizable-s"></div></div><div class="oj-TryEditor-inputs" style="height: 29px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 21px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojfQBHyzGI"><div class="oj-AceEditor-editor" style="height: 21px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 29px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 21px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 25px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
-						<p style="text-align:center"><p>(Since they are bound to the same model, typing in one box changes the other. Try it!)</p>
-</p>
-					</div>
-					<div class="row">
-						<div class="left gg25"></div>
-						<div class="right gg75"></div>
-					</div>
-					<footer class="gg100"></footer>
-				</div></div>
-		<script>
+
+# Show the css works
+div 'class':'red',
+  'This class is red'
+
+div 'class':'big',
+  'This class is big'
+
+div 'class':'big red',
+  'This class is big and red'" data-js="// Create css
+css({
+  '.red':{color:'#e00'},
+  '.big':{fontSize:'25px'}
+});
+
+// Show the css works
+div({'class':'red'},
+  'This class is red');
+
+div({'class':'big'},
+  'This class is big');
+
+div({'class':'big red'},
+  'This class is big and red');"></div></li><li><div class="dot" data-cs="# Create div with inline style
+div 'This is inline-styled!',
+  style:
+    width:200
+    textAlign:'center'
+    backgroundColor:'#fdd'" data-js="// Create div with inline style
+div('This is inline-styled!', {
+  style:{
+    width:200,
+    textAlign:'center',
+    backgroundColor:'#fdd',
+  }
+});"></div></li><li><div class="dot" data-cs="# Create jQuery events
+div 'Click me!', click: -&gt;
+  alert 'It works!'" data-js="// Create jQuery events
+div('Click me!', {click: function(){
+  alert('It works!')
+}});"></div></li><li><div class="dot" data-cs="# Create a table
+myTable = Table(
+  ['Apple', 'Red']
+  ['Grape', 'Purple']
+  ['Banana', 'Yellow']
+)
+br()
+
+# Retrieve values
+div myTable.rowCount + ' rows'
+div myTable.cell(1,0) + ' is (1,0)'
+div JSON.stringify myTable.row(2)" data-js="// Create a table
+var myTable = Table(
+  ['Apple', 'Red'],
+  ['Grape', 'Purple'],
+  ['Banana', 'Yellow']
+);
+br()
+
+// Retrieve values
+div(myTable.rowCount + ' rows');
+div(myTable.cell(1,0) + ' is (1,0)');
+div(JSON.stringify(myTable.row(2)));"></div></li><li><div class="dot" data-cs="# Create a vimeo video
+VimeoVideo 24715531" data-js="// Create a vimeo video
+VimeoVideo(24715531);"></div></li><li><div class="dot" data-cs="# Create an AceEditor
+myEditor = AceEditor(
+  '&lt;p&gt;This is html&lt;/p&gt;'
+  mode:'html'
+  theme:'tomorrow'
+)
+
+# Change theme with a list box
+ListBox options:[
+    'tomorrow',
+    'solarized_light'
+    'solarized_dark'
+  ],
+  change: -&gt;
+    myEditor.theme = @value" data-js="// Create an AceEditor
+var myEditor = AceEditor(
+  '&lt;p&gt;This is html&lt;/p&gt;', {
+  mode:'html',
+  theme:'tomorrow'
+});
+
+// Change theme with a list box
+ListBox({options:[
+    'tomorrow',
+    'solarized_light',
+    'solarized_dark'
+  ],
+  change:function(){
+    myEditor.theme = this.value;
+  }
+});"></div></li><li><div class="dot" data-cs="# Create a Twitter follow button
+TwitterFollowButton 'evanmoran'" data-js="// Create a Twitter follow button
+TwitterFollowButton('evanmoran')"></div></li><li><div class="dot" data-cs="# Create Github buttons
+
+GitHubButton 'evanmoran'
+
+GitHubButton 'ojjs', 'oj'
+
+GitHubButton 'ojjs', 'oj', type:'fork'" data-js="// Create GitHub buttons
+
+GitHubButton('evanmoran')
+
+GitHubButton('ojjs', 'oj');
+
+GitHubButton('ojjs', 'oj', {type:'fork'});"></div></li></ul><div class="row"><div class="gg50"><ul class="oj-BulletList bullets" id="oj3M4JYpyv"><li><div><p>A library written entirely in JavaScript</p>
+</div></li><li><div><p>Abstracts the web into view objects <br />that <em>create</em> and <em>change</em> websites</p>
+</div></li><li>Unifies templating of HTML, CSS and JS</li><li><div><p>Backbone support built-in with <br />two-way model and collection binding</p>
+</div></li></ul></div><div class="gg50"><ul class="oj-BulletList bullets" id="ojM8BW7hpR"><li><div><p>Includes the simple smart objects:<br /><a href="docs.html#List">List</a>, <a href="docs.html#Table">Table</a>, <a href="docs.html#Button">Button</a>, and <a href="docs.html#form-types">form elements</a></p>
+</div></li><li><div><p>A growing collection of plugins: <br /><a href="docs.html#VimeoVideo">VimeoVideo</a>, <a href="docs.html#AceEditor">AceEditor</a>, <a href="docs.html#plugins">and more!</a></p>
+</div></li><li><div><p>DOM manipulation client-side <br />HTML and CSS creation server-side</p>
+</div></li><li><div><p>Node server-side support <br />(in progress)</p>
+</div></li></ul></div></div><div class="row"><a class="button yellow gg50" href="learn.html">Learn More</a><a class="button orange gg50" href="download.html">Download oj.js</a></div><footer class="gg100"><iframe allowtransparency="true" frameborder="0" height="30" scrolling="0" src="http://ghbtns.com/github-btn.html?user=ojjs&amp;repo=oj&amp;type=watch&amp;size=large" width="130" class="oj-GitHubButton github-star-button" id="ojcepgn9XZ"></iframe><a class="twitter-follow-button oj-TwitterFollowButton" data-show-count="false" data-show-screen-name="true" data-size="large" href="https://twitter.com/evanmoran" style="display:none" id="ojYQQIC3SZ">Follow @evanmoran</a><span style="float:right">Copyright 2013 Evan Moran</span></footer><div class="row"><div class="toc-above gg25 show-phone"></div><div class="content gg75"></div></div></div><footer class="gg100"><footer></footer></footer></div></div><script>
 
 // Generated with oj v0.0.14
 (function(){ var F = {}, M = {}, R = {}, P, G, RR;
 
-M['/node_modules'] = {"oj-markdown":"src/oj.markdown.js","oj-mustache":"src/oj.mustache.js","oj-ace-editor":"src/oj.AceEditor.js","oj-vimeo-video":"src/oj.VimeoVideo.js","oj-twitter-follow-button":"src/oj.TwitterFollowButton.js","underscore":"underscore.js"};
+M['/node_modules'] = {"oj-markdown":"src/oj.markdown.js","oj-mustache":"src/oj.mustache.js","oj-ace-editor":"src/oj.AceEditor.js","oj-vimeo-video":"src/oj.VimeoVideo.js","oj-twitter-follow-button":"src/oj.TwitterFollowButton.js","oj-github-button":"src/oj.GitHubButton.js","oj-facebook-like-button":"src/oj.FacebookLikeButton.js","underscore":"underscore.js"};
 M['/node_modules/oj-markdown/node_modules'] = {"marked":"lib/marked.js"};
 M['/node_modules/oj-mustache/node_modules'] = {"mustache":"mustache.js"};
-F['/index.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){/*
-Alan kay. The goal is increases the power of code with less code.
-"[Reducing] the amount of code needed to make systems by a factor of 100, 1000, 10,000, or more."
-http://mythz.servicestack.net/blog/2013/02/27/the-deep-insights-of-alan-kay/
-
-OJ Simplifies:
-  * No class or ids. You can still have them but they probably unnecessary.
-     * Unnecessary naming sucks
-
-  * Significantly
-*/
-
-var data, siteCSS, _content, _plugins, _template;
+F['/index.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var fontFamilySansSerif, _content, _plugins, _template;
 
 _plugins = require('./_plugins');
-
-siteCSS = require('./_styles');
 
 _template = require('./_template');
 
 _content = require('./_content');
 
+fontFamilySansSerif = 'Helvetica, Arial, sans-serif';
+
 module.exports = function() {
   return _template({
     title: 'OJ - Unified Templating',
-    styles: ['reset.css', 'gg.css', 'jquery-ui-1.10.3.custom.css'],
-    scripts: ['jquery.js', 'underscore.js', 'backbone.js', 'coffee-script.js', 'ace/ace.js', 'jquery.ba-resize.min.js', 'jquery-ui-1.10.3.custom.js'],
-    middle: function() {
-      return _content.renderContent(data);
+    styles: ['reset.css', 'gg.css'],
+    scripts: ['jquery.js', 'jquery.event.drag.js', 'jquery.ba-resize.min.js', 'underscore.js', 'backbone.js', 'coffee-script.js', 'ace/ace.js'],
+    body: function() {
+      var dots, editor;
+
+      img({
+        c: 'logo',
+        src: 'media/oj_logo_big.png'
+      });
+      css({
+        '.logo': {
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginTop: '55px',
+          display: 'block',
+          position: 'relative'
+        }
+      });
+      h1({
+        c: 'subtitle'
+      }, function() {
+        span('Unified templating for the people. ');
+        return i('Thirsty people.');
+      });
+      css({
+        '.subtitle': {
+          textAlign: 'center',
+          marginTop: '20px',
+          display: 'block',
+          position: 'relative',
+          borderBottom: '0',
+          color: '#E69927',
+          fontFamily: fontFamilySansSerif,
+          fontWeight: 'lighter'
+        }
+      });
+      editor = TryEditor({
+        c: 'editor',
+        lineCount: 16
+      });
+      css({
+        '.editor': {
+          marginTop: '55px'
+        }
+      });
+      dots = BulletList({
+        c: 'dots',
+        models: [
+          {
+            js: "// Create header\nh1('Header')\n\n// Create paragraph\np('A paragraph')\n\n// Create bulleted list\nul(function(){\n  li('Item 1');\n  li('Item 2');\n  li('Item 3');\n});",
+            cs: "# Create header\nh1 'Header'\n\n# Create paragraph\np 'A paragraph'\n\n# Create bulleted list\nul ->\n  li 'Item 1'\n  li 'Item 2'\n  li 'Item 3'"
+          }, {
+            js: "// Create css\ncss({\n  '.red':{color:'#e00'},\n  '.big':{fontSize:'25px'}\n});\n\n// Show the css works\ndiv({'class':'red'},\n  'This class is red');\n\ndiv({'class':'big'},\n  'This class is big');\n\ndiv({'class':'big red'},\n  'This class is big and red');",
+            cs: "# Create css\ncss\n  '.red': color: '#e00'\n  '.big': fontSize: '25px'\n\n\n# Show the css works\ndiv 'class':'red',\n  'This class is red'\n\ndiv 'class':'big',\n  'This class is big'\n\ndiv 'class':'big red',\n  'This class is big and red'"
+          }, {
+            js: "// Create div with inline style\ndiv('This is inline-styled!', {\n  style:{\n    width:200,\n    textAlign:'center',\n    backgroundColor:'#fdd',\n  }\n});",
+            cs: "# Create div with inline style\ndiv 'This is inline-styled!',\n  style:\n    width:200\n    textAlign:'center'\n    backgroundColor:'#fdd'"
+          }, {
+            js: "// Create jQuery events\ndiv('Click me!', {click: function(){\n  alert('It works!')\n}});",
+            cs: "# Create jQuery events\ndiv 'Click me!', click: ->\n  alert 'It works!'"
+          }, {
+            js: "// Create a table\nvar myTable = Table(\n  ['Apple', 'Red'],\n  ['Grape', 'Purple'],\n  ['Banana', 'Yellow']\n);\nbr()\n\n// Retrieve values\ndiv(myTable.rowCount + ' rows');\ndiv(myTable.cell(1,0) + ' is (1,0)');\ndiv(JSON.stringify(myTable.row(2)));",
+            cs: "# Create a table\nmyTable = Table(\n  ['Apple', 'Red']\n  ['Grape', 'Purple']\n  ['Banana', 'Yellow']\n)\nbr()\n\n# Retrieve values\ndiv myTable.rowCount + ' rows'\ndiv myTable.cell(1,0) + ' is (1,0)'\ndiv JSON.stringify myTable.row(2)"
+          }, {
+            js: "// Create a vimeo video\nVimeoVideo(24715531);",
+            cs: "# Create a vimeo video\nVimeoVideo 24715531"
+          }, {
+            js: "// Create an AceEditor\nvar myEditor = AceEditor(\n  '<p>This is html</p>', {\n  mode:'html',\n  theme:'tomorrow'\n});\n\n// Change theme with a list box\nListBox({options:[\n    'tomorrow',\n    'solarized_light',\n    'solarized_dark'\n  ],\n  change:function(){\n    myEditor.theme = this.value;\n  }\n});",
+            cs: "# Create an AceEditor\nmyEditor = AceEditor(\n  '<p>This is html</p>'\n  mode:'html'\n  theme:'tomorrow'\n)\n\n# Change theme with a list box\nListBox options:[\n    'tomorrow',\n    'solarized_light'\n    'solarized_dark'\n  ],\n  change: ->\n    myEditor.theme = @value"
+          }, {
+            js: "// Create a Twitter follow button\nTwitterFollowButton('evanmoran')",
+            cs: "# Create a Twitter follow button\nTwitterFollowButton 'evanmoran'"
+          }, {
+            js: "// Create GitHub buttons\n\nGitHubButton('evanmoran')\n\nGitHubButton('ojjs', 'oj');\n\nGitHubButton('ojjs', 'oj', {type:'fork'});",
+            cs: "# Create Github buttons\n\nGitHubButton 'evanmoran'\n\nGitHubButton 'ojjs', 'oj'\n\nGitHubButton 'ojjs', 'oj', type:'fork'"
+          }
+        ],
+        each: function(model) {
+          return div({
+            c: 'dot',
+            'data-js': model.js,
+            'data-cs': model.cs
+          });
+        }
+      });
+      css({
+        'ul.dots': {
+          listStyleType: 'none',
+          width: '' + (dots.count * 20) + 'px',
+          margin: '0 auto 30px',
+          'li': {
+            display: 'inline-block',
+            margin: '10px 0 0 0',
+            '&:not(:first-child)': {
+              marginLeft: '10px'
+            }
+          },
+          '.dot': {
+            width: '11px',
+            height: '11px',
+            display: 'inline-block',
+            position: 'relative',
+            background: 'url(media/dot_empty.png) no-repeat left top',
+            cursor: 'pointer',
+            '&.filled': {
+              background: 'url(media/dot_filled.png) no-repeat left top'
+            }
+          }
+        }
+      });
+      onload(function() {
+        var nextDot, selectDot, selectDotWithFade, _keepAnimatedDots;
+
+        selectDot = function($dot, fade) {
+          var cs, js;
+
+          js = $dot.attr('data-js');
+          cs = $dot.attr('data-cs');
+          editor.set({
+            js: js,
+            cs: cs
+          });
+          $('ul.dots .dot').removeClass('filled');
+          return $dot.addClass('filled');
+        };
+        selectDotWithFade = function($dot) {
+          return editor.$el.fadeOut(300, function() {
+            selectDot($dot);
+            return editor.$el.fadeIn(300);
+          });
+        };
+        setTimeout((function() {
+          return selectDot($('ul.dots .dot').first());
+        }), 50);
+        _keepAnimatedDots = true;
+        nextDot = function() {
+          return setTimeout((function() {
+            var dotEl, dotEls, prevEl, _i, _len;
+
+            if (_keepAnimatedDots) {
+              dotEls = $('ul.dots .dot').get();
+              prevEl = $('ul.dots .dot').last().get(0);
+              for (_i = 0, _len = dotEls.length; _i < _len; _i++) {
+                dotEl = dotEls[_i];
+                if ($(prevEl).hasClass('filled')) {
+                  selectDotWithFade($(dotEl));
+                  break;
+                }
+                prevEl = dotEl;
+              }
+              return nextDot();
+            }
+          }), 7000);
+        };
+        nextDot();
+        $('ul.dots .dot').click(function(e) {
+          _keepAnimatedDots = false;
+          return selectDotWithFade($(e.target));
+        });
+        editor.$el.click(function(e) {
+          return _keepAnimatedDots = false;
+        });
+        return setTimeout;
+      });
+      div({
+        c: 'row'
+      }, function() {
+        div({
+          c: 'gg50'
+        }, function() {
+          return BulletList({
+            c: 'bullets'
+          }, function() {
+            return markdown("A library written entirely in JavaScript");
+          }, function() {
+            return markdown("Abstracts the web into view objects <br>that *create* and *change* websites");
+          }, 'Unifies templating of HTML, CSS and JS', function() {
+            return markdown("Backbone support built-in with <br>two-way model and collection binding");
+          });
+        });
+        div({
+          c: 'gg50'
+        }, function() {
+          return BulletList({
+            c: 'bullets'
+          }, function() {
+            return markdown("Includes the simple smart objects:<br>[List](docs.html#List), [Table](docs.html#Table), [Button](docs.html#Button), and [form elements](docs.html#form-types)");
+          }, function() {
+            return markdown("A growing collection of plugins: <br>[VimeoVideo](docs.html#VimeoVideo), [AceEditor](docs.html#AceEditor), [and more!](docs.html#plugins)");
+          }, function() {
+            return markdown("DOM manipulation client-side <br>HTML and CSS creation server-side");
+          }, function() {
+            return markdown("Node server-side support <br>(in progress)");
+          });
+        });
+        return css({
+          '.bullets': {
+            '> li': {
+              background: 'url(media/oj_bullet.png) no-repeat left top',
+              listStyleType: 'none',
+              margin: '20px 0 10px 0',
+              padding: '0 0 0 35px',
+              minHeight: '50px',
+              fontFamily: fontFamilySansSerif,
+              fontSize: '18px',
+              color: '#666666',
+              fontWeight: 'lighter',
+              p: {
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontSize: '18px',
+                color: '#666666',
+                fontWeight: 'lighter'
+              }
+            }
+          }
+        });
+      });
+      div({
+        c: 'row'
+      }, function() {
+        a({
+          c: 'button yellow gg50'
+        }, 'Learn More', {
+          href: 'learn.html'
+        });
+        a({
+          c: 'button orange gg50'
+        }, 'Download oj.js', {
+          href: 'download.html'
+        });
+        return css({
+          '.button': {
+            height: '34px',
+            borderRadius: '10px',
+            textAlign: 'center',
+            fontSize: '22px',
+            fontWeight: 'lighter',
+            fontFamily: fontFamilySansSerif,
+            color: 'white',
+            backgroundColor: '#FF9B00',
+            '&.yellow': {
+              backgroundColor: '#FFC000'
+            },
+            '&.orange': {
+              '@media phone': {
+                marginTop: '15px'
+              }
+            },
+            paddingTop: '11px'
+          }
+        });
+      });
+      return footer({
+        c: 'gg100'
+      }, function() {
+        GitHubButton({
+          c: 'github-star-button'
+        }, 'ojjs', 'oj', {
+          type: 'watch',
+          showCount: false,
+          size: 'large',
+          width: 130
+        });
+        TwitterFollowButton({
+          c: 'twitter-follow-button'
+        }, 'evanmoran', {
+          showCount: false,
+          size: 'large'
+        });
+        return span('Copyright 2013 Evan Moran', {
+          style: {
+            'float': 'right'
+          }
+        });
+      });
     }
   });
 };
-
-data = [
-  {
-    h: 'What is OJ?',
-    id: 'intro',
-    d: function() {
-      p('');
-      markdown("\nOJ stands for *Object JavaScript*. It is a JavaScript library ([oj.js](docs.html/#download)) that allows you to define objects that are able to **create** and **live edit** the web. The creation side replaces the needs to use other HTML and CSS templating tools. The live editing side, lets those same objects that created the HTML structure to directly manipulate the DOM using the object oriented syntax of properties and methods. For example [CheckBox](docs.html#CheckBox) can be checked and unchecked with the [value](docs.html#CheckBox-value) property, and [BulletList](docs.html#BulletList) lets you [add](docs.html#List-add), [count](docs.html#List-count), and [move](docs.html#List-move) items.\n\n> Simple things should be simple. Complex things should be possible. <br> --Alan Kay\n\nMaking objects is what OJ is about. Think of them as building blocks. Everything else -- tag functions, CSS creation, event binding, two-way model binding -- all of it is to make OJ objects easier to create and use.\n\nMy hope is by providing the simple objects, OJ increases what is possible.\n\n## Using an OJ Object\n\n*So you say OJ lets you create and live edit the DOM. What the heck does that mean?*\n\nImagine you have a list object called [BulletList](docs.html#BulletList). In OJ this object can create itself with all the html, css and js goodness necessary to make it work. Behold!");
-      TryEditor({
-        lineCount: 5
-      }, {
-        js: "BulletList(0,1,2);"
-      });
-      p((function() {
-        return markdown("(These examples are all live editable. Change them to see what happens!)");
-      }), {
-        style: {
-          textAlign: 'center'
-        }
-      });
-      p('OK, great. We have a list, but now I want to live edit it. Say I want to add more items or change the order of those items. In OJ, objects not only can create themselves but once made they can edit themselves too:');
-      TryEditor({
-        js: "var myList = BulletList(0,1,2);\n\nButton('Add Item', {\n  click: function(){\n    myList.push('Item added!');\n  }\n});\n\nButton('Move First Item', {\n  click: function(){\n    myList.move(0, myList.count-1)\n  }\n});"
-      });
-      markdown("Above we create a [BulletList](docs.html#BulletList) object with three items (0,1,2) and assign it to the value `myList`. This is not just a function but is actually a constructor that returns a new [BulletList](docs.html#BulletList) instance. Next we add a [Button](docs.html#Button) that when clicked creates a new List item.\n\nTry clicking the button. The click event is bound for you. Try switching between JS (JavaScript) and CS (Coffee-Script). The OJ library was designed to work well in both.\n\nFinally the third button uses the built in [List.move](docs.html#List-move) function to move the first item to the end of the list.");
-      markdown("\n## Dependencies and Supported Browsers\n\nNow you may say. \"That is nice and all, but why should I care because jQuery can do this?\" Well, you are right. jQuery *can* do it quite well; in fact OJ depends on jQuery 2.0 for this very reason. OJ uses jQuery selectors, DOM manipulation, and event binding to ensure this stuff works cross-platform.\n\nAs you probably know, jQuery 2.0 is the version of jQuery made for \"modern\" browsers, specifically IE9 and above. It took a lot of soul searching, but this version requirement also holds for OJ. The reason is primarily to allow OJ objects to use first-class properties (a feature that works IE9+). For example CheckBox values can be set with assignment instead of a function call:\n");
-      TryEditor({
-        js: "// Define a checkbox\nvar cb = CheckBox(true, {click:\n  function(){\n    cb.$el.ojAfter(function(){\n      div('The value is ' + cb.value);\n    });\n  }\n});\n\n// value is a smart property\n// that updates the DOM live\n// and triggers model changes.\ncb.value = true;"
-      });
-      h2('Frameworks and Model Binding');
-      markdown("OJ was originally meant to be framework agnostic in the way Backbone is. At its heart OJ is about creating really powerful Views, in the MVC sense. It doesn't create Models. It doesn't create Controllers or Routing or page navigation. Instead it tries to do only one thing well: making views with objects.\n\nThis is all still true. OJ makes Views. Period. The only compromise is OJ now can recognize and bind to Backbone-like models and collections (anything that supports the on,off,trigger event syntax). In a sense, OJ is the View to Backbones Model.\n\nWhen Backbone was originally conceived it brilliantly left Views as an exercise to the reader. The thing is there were too many ways to do templating. Back in 2010 they couldn't know which would stick. Models were a big deal, and Backbone was intended to abstract what could be abstracted well and leave the rest for later.\n");
-      TryEditor({
-        js: "// Define backbone User model\nvar User = Backbone.Model.extend();\n\n// Create a user model\nuser = new User({name:'Thomas'});\n\n// Define TextBox bound to the model\nTextBox({model:user, key:'name'});\n\n// Define a TextArea bound to the model\nTextArea({model:user, key:'name'});\n\n// Define css to make them align\ncss({'textarea, input':{\n  width: 200,\n  margin: 10,\n  display:'block',\n  border: '1px solid red'\n}});\n",
-        cs: ""
-      });
-      return p((function() {
-        return markdown("(Since they are bound to the same model, typing in one box changes the other. Try it!)");
-      }), {
-        style: {
-          textAlign: 'center'
-        }
-      });
-    }
-  }
-];
 }}).call(this);})(RR('/index.ojc'),P,G,'/','index.ojc');});
 F['/_plugins.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){oj.use(require('oj-markdown'));
 
@@ -517,6 +976,10 @@ oj.use(require('oj-ace-editor'));
 oj.use(require('oj-vimeo-video'));
 
 oj.use(require('oj-twitter-follow-button'));
+
+oj.use(require('oj-github-button'));
+
+oj.use(require('oj-facebook-like-button'));
 
 oj.use(require('./oj.TryEditor'));
 }}).call(this);})(RR('/_plugins.ojc'),P,G,'/','_plugins.ojc');});
@@ -2241,18 +2704,24 @@ F['/node_modules/oj-mustache/node_modules/mustache/mustache.js'] = (function(mod
 })(RR('/node_modules/oj-mustache/node_modules/mustache/mustache.js'),P,G,'/node_modules/oj-mustache/node_modules/mustache','mustache.js');});
 F['/node_modules/oj-ace-editor/src/oj.AceEditor.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.AceEditor.js
 
+(function(){
+
 var debounce;
 
-module.exports = function(oj,settings){
+var plugin = function(oj,settings){
+
+  // Client side the AceEditor must be included by <script> tag. Help people understand.
+  if (oj.isClient)
+    oj.dependency('ace');
 
   if (typeof settings !== 'object')
     settings = {}
 
-  var AceEditor = oj.type('AceEditor', {
+  var AceEditor = oj.createType('AceEditor', {
     base: oj.ModelKeyView,
 
     constructor: function(){
-      var union = oj.argumentsUnion(arguments);
+      var union = oj.unionArguments(arguments);
       var options = union.options;
       var args = union.args;
 
@@ -2281,14 +2750,10 @@ module.exports = function(oj,settings){
         if (options[k] == null)
           options[k] = defaults[k];
       }
-
       // Create el as relatively positioned div
       this.el = oj(function(){
-        var input;
-        if(args.length > 0)
-          input = args.join('\n');
-        oj.div(input, function(){
-          oj.div({c:'oj-AceEditor-editor'}, {style:{position:'absolute',width:options.width, height:options.height}});
+        oj.div(function(){
+          oj.div('function(){}', {c:'oj-AceEditor-editor', style:{position:'absolute',width:options.width, height:options.height}});
           },{
             style:{
               position:'relative',
@@ -2301,10 +2766,6 @@ module.exports = function(oj,settings){
       });
 
       this.$editor = this.$('.oj-AceEditor-editor');
-
-      // AceEditor is must be included by <script> tag. Help people understand.
-      if(oj.isClient && ace == null)
-        throw new Error('oj.AceEditor: `ace` global not found. Include the editor with a <script> tag!');
 
       // Create editor
       if (oj.isClient && typeof ace != 'undefined') {
@@ -2365,6 +2826,9 @@ module.exports = function(oj,settings){
           this[prop] = oj.argumentShift(options, prop);
       }
 
+      // Value is property or first argument
+      value = oj.argumentShift(options, 'value') || args.join('\n');
+
       // Pass on options. Args have been handled at this level.
       AceEditor.base.constructor.apply(this, [options]);
 
@@ -2372,6 +2836,9 @@ module.exports = function(oj,settings){
       this.$scrollbar = this.$('.ace_scrollbar');
       this.$scroller = this.$('.ace_scroller');
       this.$content = this.$('.ace_content');
+
+      if (value)
+        this.value = value;
     },
 
     properties: {
@@ -2385,7 +2852,8 @@ module.exports = function(oj,settings){
           if(this.session) {
             // Save the location of the cursor
             var pos = this.cursorPosition;
-            this.session.setValue(v);
+            this.session.setValue(v)
+
             // Restore the location of the cursor
             this.cursorPosition = pos;
           }
@@ -2633,8 +3101,15 @@ module.exports = function(oj,settings){
 
       // Selection style options: 'line' or 'text'
       selectionStyle: {
-        get: function(){ if(this.editor) return this.editor.getSelectionStyle(); },
-        set: function(v){ if(this.editor) this.editor.setSelectionStyle(v); }
+        get: function(){ if(this.editor) return this.editor.getSelectionStyle() || 'line';
+        },
+        set: function(v){
+          if(this.editor) {
+            if (v !== 'line' && v !== 'text')
+              throw new Error("oj.AceEditor: selectionStyle expects 'line' or 'text'")
+            this.editor.setSelectionStyle(v);
+          }
+        }
       },
 
       // Fold style options: 'manual', markbegin' or 'markbeginend'
@@ -2737,6 +3212,7 @@ module.exports = function(oj,settings){
       inserted: function(){
         AceEditor.base.inserted.apply(this, arguments);
 
+        this.value = this.value
         // Scroll visiblility can only be triggered once inserted
         this.vScrollBarAlwaysVisible = this.vScrollBarAlwaysVisible
       },
@@ -2795,9 +3271,19 @@ debounce = function(wait, func, immediate) {
     return result;
   };
 };
-})(RR('/node_modules/oj-ace-editor/src/oj.AceEditor.js'),P,G,'/node_modules/oj-ace-editor/src','oj.AceEditor.js');});
-F['/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// Create a plugin by defining a function that accepts oj and
-// returns a map of extensions to oj
+
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+})(this);})(RR('/node_modules/oj-ace-editor/src/oj.AceEditor.js'),P,G,'/node_modules/oj-ace-editor/src','oj.AceEditor.js');});
+F['/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.VimeoVideo.js
+
+(function(){
 
 // Froogaloop is the offical javascript api to Vimeo
 // https://github.com/vimeo/player-api/tree/master/javascript
@@ -2815,18 +3301,18 @@ function vimeoUrl(video, options)
   return out;
 }
 
-module.exports = function(oj,settings){
+var plugin = function(oj,settings){
   if (typeof settings !== 'object')
     settings = {}
 
-  var VimeoVideo = oj.type('VimeoVideo', {
+  var VimeoVideo = oj.createType('VimeoVideo', {
     // The model-key bind to the url of the movie
     base: oj.View,
 
     // VimeoVideo(videoID, properties)
     constructor: function(){
       var this_ = this;
-      var union = oj.argumentsUnion(arguments);
+      var union = oj.unionArguments(arguments);
       var options = union.options;
       var args = union.args;
 
@@ -2849,9 +3335,9 @@ module.exports = function(oj,settings){
       // Shift properties
       var props = [
         'video',
-        'title',
-        'byline',
-        'portrait',
+        'showTitle',
+        'showByline',
+        'showPortrait',
         'color',
         'autoplay',
         'loop'
@@ -2912,13 +3398,13 @@ module.exports = function(oj,settings){
       video: 24715531,
 
       // Show title (readwrite)
-      title: false,
+      showTitle: false,
 
       // Show the users byline on the video (readwrite)
-      byline: false,
+      showByline: false,
 
       // Show the user's portrait on the video (readwrite)
-      portrait: false,
+      showPortrait: false,
 
       // Color of controls (readwrite)
       color: {
@@ -2947,9 +3433,9 @@ module.exports = function(oj,settings){
       videoOptions: {
         get: function(){
           return {
-            title: (this.title ? 1 : 0),
-            byline: (this.byline ? 1 : 0),
-            portrait: (this.portrait ? 1 : 0),
+            title: (this.showTitle ? 1 : 0),
+            byline: (this.showByline ? 1 : 0),
+            portrait: (this.showPortrait ? 1 : 0),
             color: this.color,
             autoplay: (this.autoplay ? 1 : 0),
             loop: (this.loop ? 1 : 0),
@@ -2962,13 +3448,11 @@ module.exports = function(oj,settings){
     methods: {
 
       play: function(){
-
       },
       stop: function(){
-
       },
-      rewind: function(){
 
+      rewind: function(){
       },
 
       onPause: function(id) {
@@ -2988,24 +3472,32 @@ module.exports = function(oj,settings){
 
   return {VimeoVideo:VimeoVideo};
 };
-})(RR('/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'),P,G,'/node_modules/oj-vimeo-video/src','oj.VimeoVideo.js');});
-F['/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.TwitterFollowButton
 
-// Load twitter api only once
-var _loaded;
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+})(this);})(RR('/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'),P,G,'/node_modules/oj-vimeo-video/src','oj.VimeoVideo.js');});
+F['/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.TwitterFollowButton.js
+
+(function(){
 
 // Create plugin
-module.exports = function(oj,settings){
+var plugin = function(oj,settings){
   if (typeof settings !== 'object')
     settings = {}
 
-  var TwitterFollowButton = oj.type('TwitterFollowButton', {
+  var TwitterFollowButton = oj.createType('TwitterFollowButton', {
 
     base: oj.View,
 
     constructor: function(){
       var this_ = this;
-      var union = oj.argumentsUnion(arguments);
+      var union = oj.unionArguments(arguments);
       var options = union.options;
       var args = union.args;
 
@@ -3016,7 +3508,7 @@ module.exports = function(oj,settings){
       // Shift properties
       var props = [
         'label',
-        'large',
+        'size',
         'showCount',
         'showUsername',
         'username'
@@ -3030,16 +3522,16 @@ module.exports = function(oj,settings){
       // Create el
       this.el = oj(function(){
         var size = null, tailor = null;
-        if (this_.large)
-          size = {'data-size':'large'};
+        if (this_.size)
+          size = {'data-size':this_.size.toString()};
         if (!this_.showTailoring)
-          tailor = {'data-dnt':false};
+          tailor = {'data-dnt':(!this_.showTailoring).toString()};
 
         oj.a("Follow @" + this_.username, {
-            href: 'https://twitter.com/' + this_.username,
+            href: 'https://twitter.com/' + this_.username.toString(),
             c:'twitter-follow-button',
-            'data-show-count':this_.showCount,
-            'data-show-screen-name':this_.showUsername,
+            'data-show-count':this_.showCount.toString(),
+            'data-show-screen-name':this_.showUsername.toString(),
             style:{display:'none'}
           },
           tailor,
@@ -3053,40 +3545,297 @@ module.exports = function(oj,settings){
     },
     properties: {
       username: 'evanmoran',
-
+      showCount: true,
       showUsername: true,
-
-      showCount: false,
-
       showTailoring: true,
-
-      large: false
+      size:{
+        get:function(){return this._size || 'medium';},
+        set:function(v){this._size = v;}
+      }
     },
 
     methods: {
       loadTwitterAPI:function(){
         var this_ = this;
-        if (oj.isClient && !_loaded) {
+        if (oj.isClient && !TwitterFollowButton._loaded) {
           var p=/^http:/.test(document.location)?'http':'https';
+          var url = p + '://platform.twitter.com/widgets.js';
           $.ajax({
-            url: p + '://platform.twitter.com/widgets.js',
-            dataType: "script",
-            cached: true,
-            // Show button once api has been called (avoids flickering)
-            complete: function(){
-              this_.$el.show()
-            }
+            url:url,
+            cache:true,
+            dataType:'script'
+          // Prevents flickering for slow connections
+          }).always(function(result){
+            this_.$el.show()
           });
+          TwitterFollowButton._loaded = true;
         }
-        _loaded = 1;
+
       }
     }
   });
 
   return {TwitterFollowButton:TwitterFollowButton};
 };
-})(RR('/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'),P,G,'/node_modules/oj-twitter-follow-button/src','oj.TwitterFollowButton.js');});
-F['/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth;
+
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+})(this);})(RR('/node_modules/oj-twitter-follow-button/src/oj.TwitterFollowButton.js'),P,G,'/node_modules/oj-twitter-follow-button/src','oj.TwitterFollowButton.js');});
+F['/node_modules/oj-github-button/src/oj.GitHubButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.GitHubButton.js
+
+(function(){
+
+// Create plugin
+var plugin = function(oj, settings){
+  if (typeof settings !== 'object')
+    settings = {}
+
+  var GitHubButton = oj.createType('GitHubButton', {
+
+    base: oj.View,
+
+    constructor: function(){
+      var this_ = this;
+      var union = oj.unionArguments(arguments);
+      var options = union.options;
+      var args = union.args;
+
+      // Accept user as first arg
+      if (args.length >= 1)
+        this.user = args[0];
+
+      // Accept repo as second arg
+      if(args.length >= 2)
+        this.repo = args[1];
+
+      // Shift properties
+      var props = [
+        'type',
+        'user',
+        'repo',
+        'showCount',
+        'size',
+        'width',
+        'height'
+      ];
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (options[prop] != null)
+          this[prop] = oj.argumentShift(options, prop);
+      }
+
+      // Create el
+      this.el = oj(function(){
+
+        // Calculate arguments to ghbts.com
+        var size = '', count = '', user = '', repo = '', type = '';
+        if (!this_.user)
+          throw new Error('oj.GitHubButton: user is not specified');
+        user = 'user=' + this_.user
+        if (this_.repo)
+          repo = '&repo=' + this_.repo
+        if (this_.size)
+          size = '&size=' + this_.size
+        if (this_.showCount)
+          count = '&count=' + this_.showCount
+        if (this_.type)
+          type = '&type=' + this_.type
+
+        src = "http://ghbtns.com/github-btn.html?" + user + repo + type + count + size;
+
+        oj.iframe({
+          src:src,
+          allowtransparency:"true",
+          frameborder:"0",
+          scrolling:"0",
+          width:this_.width,
+          height:this_.height
+        });
+      });
+
+      GitHubButton.base.constructor.apply(this, [options]);
+    },
+
+    properties: {
+      user: 'evanmoran',
+      repo: null,
+      type: { // watch, follow, fork, (star)==watch
+        // Default to follow if no repro is set
+        get:function(){return this._type || (this.repo == null ? 'follow' : 'watch');},
+        set:function(v){
+          if(!v || v == 'star')
+            v = 'watch';
+          this._type = v;
+        }
+      },
+      showCount: true,
+      size:{              // null or large
+        get:function(){return this._size;},
+        set:function(v){this._size = v;}
+      },
+      width:{            // pixals if specified. Otherwise is calculate from settings
+        get:function(){return this._width || _widthFromType(this.type,this.showCount,this.size)},
+        set:function(v){this._width = v;}
+      },
+      height:{           // pixals if specified. Otherwise is calculate from settings
+        get:function(){return this._height || this.size == 'large' ? 30 : 20},
+        set:function(v){this._height = v;}
+      }
+    },
+  });
+
+  return {GitHubButton:GitHubButton};
+};
+
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+_widthFromType = function(type, showCount, size){
+  w = 0;
+  if (type == 'watch' && showCount == false)
+    w = 62;
+  else if (type == 'watch' && showCount == true)
+    w = 110;
+  else if (type == 'fork' && showCount == false)
+    w = 53;
+  else if (type == 'fork' && showCount == true)
+    w = 95;
+  else if (type == 'follow' && showCount == false)
+    w = 132;
+  else if (type == 'follow' && showCount == true)
+    w = 165;
+  w += size == 'large' ? 30 : 0;
+}
+
+
+})(this);})(RR('/node_modules/oj-github-button/src/oj.GitHubButton.js'),P,G,'/node_modules/oj-github-button/src','oj.GitHubButton.js');});
+F['/node_modules/oj-facebook-like-button/src/oj.FacebookLikeButton.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.FacebookLikeButton.js
+
+(function(){
+
+// Create plugin
+var plugin = function(oj,settings){
+  if (typeof settings !== 'object')
+    settings = {}
+
+  var FacebookLikeButton = oj.createType('FacebookLikeButton', {
+
+    base: oj.View,
+
+    constructor: function(){
+      var this_ = this;
+      var union = oj.unionArguments(arguments);
+      var options = union.options;
+      var args = union.args;
+
+      // First argument is username
+      if(args.length > 0)
+        this.username = args[0];
+
+      // Shift properties
+      var props = [
+        'href',               // http://url/to/like
+        'showSend',           // 'true' or 'false'
+        'colorScheme',        // 'light' or 'dark'
+        'layout',             // 'standard', 'box_count', 'button_count',
+        'action',             // 'like' or 'recommend'
+        'font',               // 'lucida grande', 'arial', 'seqoe ui', 'tahoma', 'trebuchet ms', 'verdana'
+        'width'               // width to render within (integer only, no px)
+      ];
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (options[prop] != null)
+          this[prop] = oj.argumentShift(options, prop);
+      }
+
+      // Create el
+      this.el = oj(function(){
+        var href = null, send = null, layout = null, width = null, showFaces = null, font = null;
+
+        oj.div({c:'fb-like', dataHref:'http://myurl/to/like', dataSend:'true', dataLayout:'button_count', dataWidth:'450', dataShowFaces:'false'});
+
+        // if (this_.size)
+        //   size = {'data-size':this_.size.toString()};
+        // if (!this_.showTailoring)
+        //   tailor = {'data-dnt':(!this_.showTailoring).toString()};
+        // var href = {'data-href':this.url};
+        // var send = {'data-send'}
+
+        // oj.div(c:'fb-like', 'data')
+        // <div class="fb-like" data-href="http://myurl/to/like" data-send="true" data-layout="button_count" data-width="1000" data-show-faces="false" data-font="arial"></div>
+
+        // oj.a("Follow @" + this_.username, {
+        //     href: 'https://twitter.com/' + this_.username.toString(),
+        //     c:'twitter-follow-button',
+        //     'data-show-count':this_.showCount.toString(),
+        //     'data-show-screen-name':this_.showUsername.toString(),
+        //     style:{display:'none'}
+        //   },
+        //   tailor,
+        //   size
+        // );
+      });
+
+      FacebookLikeButton.base.constructor.apply(this, [options]);
+
+      this.loadFacebookAPI();
+    },
+    properties: {
+
+      href:'http://ojjs.org',
+      showSend:false,         // false or true
+      colorScheme:'light',    // 'light' or 'dark'
+      layout:'standard',      // 'standard', 'box_count', 'button_count',
+      action:'like',          // 'like' or 'recommend'
+      font:'arial',           // 'lucida grande', 'arial', 'seqoe ui', 'tahoma', 'trebuchet ms', 'verdana'
+      width:450               // width to render within (integer only, no px)
+
+      // TODO: Add appid support
+    },
+
+    methods: {
+      loadFacebookAPI:function(){
+
+        if (oj.isClient && !FacebookLikeButton._loaded) {
+          var p=/^http:/.test(document.location)?'http':'https';
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = p + "://connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+          FacebookLikeButton._loaded = true;
+        }
+      }
+    }
+  });
+
+  return {FacebookLikeButton:FacebookLikeButton};
+};
+
+// Export in OJ
+if (typeof oj != 'undefined')
+  oj.use(plugin);
+
+// Export in node
+if (typeof module != 'undefined' && typeof module.exports != 'undefined')
+  module.exports = plugin;
+
+})(this);})(RR('/node_modules/oj-facebook-like-button/src/oj.FacebookLikeButton.js'),P,G,'/node_modules/oj-facebook-like-button/src','oj.FacebookLikeButton.js');});
+F['/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var SCRIPT, TEXTJ, consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth, _arraysEqual, _calculateScripts, _foundScripts, _pluginScripts, _replaceIFRAME, _scriptTagForCode, _scriptTagForCodeBody, _scriptTagWithUpdater, _updateIFRAME;
 
 editorBorderColor = '#ffd272';
 
@@ -3106,16 +3855,20 @@ lineHeight = 21;
 
 makeCSS = null;
 
+SCRIPT = 'scr' + 'ipt';
+
+TEXTJ = 'text="text/javascript"';
+
 module.exports = function(oj, settings) {
   var TryEditor;
 
-  TryEditor = type('TryEditor', {
+  TryEditor = createType('TryEditor', {
     base: ModelKeyView,
     constructor: function() {
       var args, options, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6,
         _this = this;
 
-      _ref = oj.argumentsUnion(arguments), options = _ref.options, args = _ref.args;
+      _ref = oj.unionArguments(arguments), options = _ref.options, args = _ref.args;
       this._editor = new AceEditor({
         c: 'oj-TryEditor-input-editor',
         theme: 'orange',
@@ -3135,12 +3888,11 @@ module.exports = function(oj, settings) {
       });
       this.el = oj(function() {
         return div(function() {
-          makeCSS();
           div({
             c: 'oj-TryEditor-resizer'
           }, function() {
             return div({
-              c: 'oj-TryEditor-gripper ui-resizable-s'
+              c: 'oj-TryEditor-gripper'
             });
           });
           div({
@@ -3172,9 +3924,7 @@ module.exports = function(oj, settings) {
             div({
               c: 'oj-TryEditor-console'
             });
-            iframe({
-              c: 'oj-TryEditor-output-iframe'
-            });
+            iframe();
             return div({
               c: 'oj-TryEditor-bar'
             }, function() {
@@ -3189,13 +3939,9 @@ module.exports = function(oj, settings) {
           });
         });
       });
-      if (args.length > 0) {
-        this.value = args[0];
-      }
       this.$inputs = this.$('.oj-TryEditor-inputs');
       this.$input = this.$('.oj-TryEditor-input-editor');
       this.$outputs = this.$('.oj-TryEditor-outputs');
-      this.$output = this.$('.oj-TryEditor-output-iframe');
       this.$seperator = this.$('.oj-TryEditor-seperator');
       this.$resizer = this.$('.oj-TryEditor-resizer');
       this.$console = this.$('.oj-TryEditor-console');
@@ -3203,15 +3949,15 @@ module.exports = function(oj, settings) {
       this.$jsButton = this.$('.oj-TryEditor-bar-state.js');
       this.$csButton = this.$('.oj-TryEditor-bar-state.cs');
       this.$maximizeButton = this.$('.oj-TryEditor-bar-maximize');
+      if (args.length > 0) {
+        this.value = args[0];
+      }
+      this.state = (_ref1 = oj.argumentShift(options, 'state')) != null ? _ref1 : 'js';
       if (options.js != null) {
         this.js = oj.argumentShift(options, 'js');
       }
       if (options.cs != null) {
         this.cs = oj.argumentShift(options, 'cs');
-      }
-      this.state = (_ref1 = oj.argumentShift(options, 'state')) != null ? _ref1 : 'js';
-      if (options.value != null) {
-        this.value = oj.argumentShift(options, 'js');
       }
       this.minWidth = (_ref2 = oj.argumentShift(options, 'minWidth')) != null ? _ref2 : 400;
       this.minHeight = (_ref3 = oj.argumentShift(options, 'minHeight')) != null ? _ref3 : lineHeight * 1 + 2 * editorPadding;
@@ -3245,14 +3991,16 @@ module.exports = function(oj, settings) {
           return this._lineCount;
         },
         set: function(v) {
-          var _ref, _ref1, _ref2, _ref3;
+          var lineCount, _ref, _ref1, _ref2, _ref3;
 
+          this._lineCount = v;
+          lineCount = 1;
           if (v === 'fit' && (this.value != null)) {
-            this._lineCount = Math.max(((_ref = this.cs) != null ? (_ref1 = _ref.split(/\r\n|\r|\n/)) != null ? _ref1.length : void 0 : void 0) || 1, ((_ref2 = this.js) != null ? (_ref3 = _ref2.split(/\r\n|\r|\n/)) != null ? _ref3.length : void 0 : void 0) || 1);
-          } else {
-            this._lineCount = v;
+            lineCount = Math.max(((_ref = this.cs) != null ? (_ref1 = _ref.split(/\r\n|\r|\n/)) != null ? _ref1.length : void 0 : void 0) || 1, ((_ref2 = this.js) != null ? (_ref3 = _ref2.split(/\r\n|\r|\n/)) != null ? _ref3.length : void 0 : void 0) || 1);
+          } else if (oj.isNumber(v)) {
+            lineCount = v;
           }
-          return this.height = this._lineCount * lineHeight + editorPadding * 2;
+          this.height = lineCount * lineHeight + editorPadding * 2 + 4;
         }
       },
       split: {
@@ -3274,7 +4022,12 @@ module.exports = function(oj, settings) {
           return this.editor.value;
         },
         set: function(v) {
-          return this.editor.value = v;
+          this.editor.value = v;
+          if (this.state === 'cs') {
+            return this._cs = v;
+          } else {
+            return this._js = v;
+          }
         }
       },
       js: {
@@ -3306,7 +4059,6 @@ module.exports = function(oj, settings) {
             this.$jsButton.addClass('selected');
             this.$csButton.removeClass('selected');
           } else {
-            this.$jsButton.addClass('selected');
             this.editor.mode = 'ojc';
             this.$jsButton.removeClass('selected');
             this.$csButton.addClass('selected');
@@ -3364,9 +4116,6 @@ module.exports = function(oj, settings) {
             $('body').css({
               overflow: 'hidden'
             });
-            if (oj.isClient) {
-              this.$resizer.resizable('disable');
-            }
             this.$el.animate({
               top: 0,
               height: '100%'
@@ -3424,14 +4173,19 @@ module.exports = function(oj, settings) {
       $inputs: null,
       $input: null,
       $outputs: null,
-      $output: null,
+      $output: {
+        get: function() {
+          return this.$('.oj-TryEditor-outputs > iframe');
+        }
+      },
       $seperator: null,
       $resizer: null,
       $console: null,
       $gripper: null,
       $jsButton: null,
       $csButton: null,
-      $maximizeButton: null
+      $maximizeButton: null,
+      _scriptTagsLast: null
     },
     methods: {
       toggleState: function() {
@@ -3514,16 +4268,19 @@ module.exports = function(oj, settings) {
         }
       },
       inserted: function() {
-        var d;
+        var d,
+          _this = this;
 
-        TryEditor.base.inserted.apply(this);
+        TryEditor.base.inserted.apply(this, arguments);
         this.lineCount = this.lineCount;
+        this.editor.height = this.height;
         d = maximizeDuration;
         maximizeDuration = 0;
         this.maximize = this.maximize;
         maximizeDuration = d;
-        this.updateFrame();
-        return this.recompile();
+        return setTimeout((function() {
+          return _this.updateFrame();
+        }), 50);
       },
       consoleError: function(message) {
         if (this.isConstructed) {
@@ -3537,7 +4294,7 @@ module.exports = function(oj, settings) {
         }
       },
       recompile: function() {
-        var code, eCoffee, eCompile, eRuntime, ojml, results, t, wrapjs, _i, _len, _ref;
+        var code, eCoffee, eCompile, results, scriptTags;
 
         if (!this.isInserted) {
           return;
@@ -3550,65 +4307,32 @@ module.exports = function(oj, settings) {
             });
           } catch (_error) {
             eCoffee = _error;
-            this.consoleError("<b>coffee-script error:</b> " + eCoffee.message);
+            this.consoleError("CoffeeScript Error: " + eCoffee.message);
             return;
           }
-        }
-        wrapjs = "oj(function(){with(oj){" + code + "}})";
-        try {
-          ojml = eval(wrapjs);
-        } catch (_error) {
-          eRuntime = _error;
-          this.consoleError("<b>runtime error:</b> " + eRuntime.message);
-          return;
         }
         try {
           results = oj.compile({
-            debug: 1,
             html: 1,
-            dom: 1,
             css: 1
-          }, ojml);
-          if ((results.tags.html == null) && (results.tags.head == null) && (results.tags.body == null)) {
-            wrapjs = "oj(function(){with(oj){\n  html(function(){\n    head();\n    body(function(){\n      " + code + "\n    });\n  })\n}})";
-            ojml = eval(wrapjs);
-            results = oj.compile({
-              debug: 1,
-              html: 1,
-              dom: 1,
-              css: 1
-            }, ojml);
-          }
-          if (results.tags.html == null) {
-            this.consoleError('<b>validation error</b>: <html> tag is missing');
-            return;
-          }
-          if (results.tags.head == null) {
-            this.consoleError('<b>validation error</b>: <head> tag is missing');
-            return;
-          }
-          if (results.tags.body == null) {
-            this.consoleError('<b>validation error</b>: <body> tag is missing');
-            return;
-          }
+          }, eval("oj(function(){" + code + "});"));
         } catch (_error) {
           eCompile = _error;
-          this.consoleError("<b>oj error:</b> " + eCompile.message);
-          throw eCompile;
+          this.consoleError("" + (eCompile.toString()));
+          return;
         }
-        this.html = results.html;
-        this.css = results.css;
-        this.$output.contents().find('html').replaceWith($(results.dom));
-        _ref = results.types;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          t = _ref[_i];
-          t.inserted();
+        scriptTags = _calculateScripts(code, _pluginScripts);
+        if (scriptTags === this._scriptTagsLast) {
+          _updateIFRAME(this.$output, code);
+        } else {
+          this._scriptTagsLast = scriptTags;
+          _replaceIFRAME(this.$outputs, this.$output, scriptTags, code);
         }
-        this.$output.contents().find('head').append("<style>" + results.css + "</style>");
         return this.consoleSuccess();
       },
       _bindEvents: function() {
-        var _this = this;
+        var _$gripper, _$resizer, _ref,
+          _this = this;
 
         this.$jsButton.click(function() {
           return _this.state = 'js';
@@ -3620,51 +4344,65 @@ module.exports = function(oj, settings) {
           return _this.maximize = !_this.maximize;
         });
         if (oj.isClient) {
-          $.resize.throttleWindow = false;
-          $.resize.delay = 100;
-          $(window).resize(function() {
-            return _this.windowResized(window.innerWidth, window.innerHeight);
-          });
-          this.$resizer.resizable({
-            minHeight: this.minHeight,
-            minWidth: this.minWidth,
-            handles: 's'
-          });
-          this.$el.resize(function(e, ui) {
-            return _this.updateFrame();
-          });
-          return this.$resizer.resize(function(e, ui) {
-            var h;
+          if ($.resize != null) {
+            $.resize.throttleWindow = false;
+            $.resize.delay = 100;
+            $(window).resize(function() {
+              return _this.windowResized(window.innerWidth, window.innerHeight);
+            });
+            this.$el.resize(function(e, ui) {
+              return _this.updateFrame();
+            });
+            this.$resizer.resize(function(e, ui) {
+              var h;
 
-            h = $(e.currentTarget).height();
-            if (_this.width < phoneWidth) {
-              if (h / 2 > _this.minHeight) {
-                _this.height = h / 2;
+              h = $(e.currentTarget).height();
+              if (_this.width < phoneWidth) {
+                if (h / 2 > _this.minHeight) {
+                  _this.height = h / 2;
+                }
+              } else {
+                _this.height = h;
               }
-            } else {
-              _this.height = h;
-            }
-            return _this.updateFrame();
-          });
+              return _this.updateFrame();
+            });
+          }
+          if (((_ref = this.$resizer) != null ? _ref.drag : void 0) != null) {
+            _$resizer = this.$resizer;
+            _$gripper = this.$gripper;
+            return this.$resizer.drag().drag("start", function(ev, dd) {
+              dd.width = $(this).width();
+              dd.height = $(this).height();
+              _$gripper.css({
+                style: {
+                  height: '100%'
+                }
+              });
+            }).drag("end", function(ev, dd) {
+              _$gripper.css({
+                style: {
+                  height: '12px'
+                }
+              });
+            }).drag(function(ev, dd) {
+              $(this).css({
+                height: Math.max(lineHeight, dd.height + dd.deltaY)
+              });
+            }, {
+              handle: '.oj-TryEditor-gripper'
+            });
+          }
         }
       }
     }
   });
-  return {
-    TryEditor: TryEditor
-  };
-};
-
-makeCSS = function() {
-  return css({
-    '.oj-TryEditor': {
-      border: "" + editorBorderWidth + "px solid " + editorBorderColor,
-      boxShadow: '2px 2px 4px RGBA(0,0,0,0.15)',
-      display: 'block',
-      position: 'relative',
-      zIndex: 20,
-      backgroundColor: 'white'
-    },
+  TryEditor.css({
+    border: "" + editorBorderWidth + "px solid " + editorBorderColor,
+    boxShadow: '2px 2px 4px RGBA(0,0,0,0.15)',
+    display: 'block',
+    position: 'relative',
+    zIndex: 20,
+    backgroundColor: '#FEFAF3',
     '.oj-TryEditor-seperator': {
       position: 'absolute',
       top: '0px',
@@ -3695,7 +4433,7 @@ makeCSS = function() {
       position: 'relative',
       zIndex: 40
     },
-    '.oj-TryEditor-output-iframe': {
+    '.oj-TryEditor-outputs > iframe': {
       width: '100%',
       height: '100%',
       position: 'absolute',
@@ -3704,7 +4442,7 @@ makeCSS = function() {
     },
     '.oj-TryEditor-console': {
       position: 'absolute',
-      color: 'darkorange',
+      color: 'red',
       backgroundColor: 'RGBA(255,255,255,0.8)',
       textAlign: 'left',
       fontSize: '16px',
@@ -3756,256 +4494,144 @@ makeCSS = function() {
       height: '12px',
       float: 'right',
       zIndex: 101,
-      cursor: 'pointer'
+      cursor: 'pointer',
+      '@media phone': {
+        display: 'none'
+      }
     },
     '.oj-TryEditor-gripper': {
       position: 'absolute',
       bottom: '2px',
       right: '2px',
       left: 'auto',
-      width: '12px',
+      width: '100%',
       height: '12px',
+      cursor: 's-resize',
       backgroundImage: 'url(media/try_gripper.png)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
       zIndex: 101
     }
   });
+  return {
+    TryEditor: TryEditor
+  };
+};
+
+_pluginScripts = {
+  Backbone: ["<" + SCRIPT + " src=\"scripts/underscore.js\" " + TEXTJ + "></" + SCRIPT + ">\n", "<" + SCRIPT + " src=\"scripts/backbone.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  AceEditor: ["<" + SCRIPT + " src=\"scripts/ace/ace.js\" " + TEXTJ + "></" + SCRIPT + ">\n", "<" + SCRIPT + " src=\"scripts/oj.AceEditor.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  VimeoVideo: ["<" + SCRIPT + " src=\"scripts/oj.VimeoVideo.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  GitHubButton: ["<" + SCRIPT + " src=\"scripts/oj.GitHubButton.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  TwitterFollowButton: ["<" + SCRIPT + " src=\"scripts/oj.TwitterFollowButton.js\" " + TEXTJ + "></" + SCRIPT + ">\n"]
+};
+
+_foundScripts = function(code, pluginScripts) {
+  var out, plugin, v;
+
+  out = [];
+  for (plugin in pluginScripts) {
+    v = pluginScripts[plugin];
+    if (code.indexOf(plugin) !== -1) {
+      out.push(plugin);
+    }
+  }
+  return out.sort();
+};
+
+_arraysEqual = function(a, b) {
+  var i, v, _i, _len;
+
+  if (a === b) {
+    return true;
+  }
+  if (a === null || b === null) {
+    return false;
+  }
+  if (a.length !== b.length) {
+    return false;
+  }
+  for (i = _i = 0, _len = a.length; _i < _len; i = ++_i) {
+    v = a[i];
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+_calculateScripts = function(code, pluginScripts) {
+  var foundScripts, out, plugin, s, _i, _j, _len, _len1, _ref;
+
+  out = "";
+  out += "<" + SCRIPT + " src=\"scripts/jquery.js\" " + TEXTJ + "></" + SCRIPT + ">\n";
+  out += "<" + SCRIPT + " src=\"scripts/oj.js\" " + TEXTJ + "></" + SCRIPT + ">\n";
+  foundScripts = _foundScripts(code, _pluginScripts);
+  for (_i = 0, _len = foundScripts.length; _i < _len; _i++) {
+    plugin = foundScripts[_i];
+    _ref = pluginScripts[plugin];
+    for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+      s = _ref[_j];
+      out += s;
+    }
+  }
+  return out;
+};
+
+_scriptTagWithUpdater = function() {
+  return "<" + SCRIPT + " class=\"updater\">\n(function(){\n  // Allow editor to rebuild iframe at will\n  var _code = null;\n  document.rebuild = function(code){\n    if (code == _code)\n      return;\n    $('script.build').remove()\n    $('head').append(\"<scr\"+\"ipt class='build'>\"+code+\"</scr\"+\"ipt>\");\n  };\n  // Allow dom manipulation within the iframe\n  document.oj = oj;\n  document.$ = $;\n})(this);\n</" + SCRIPT + ">";
+};
+
+_scriptTagForCodeBody = function(code) {
+  return "// Start onready\n$(function(){try{with(oj){\n\n// Insert code into body\n$.ojBody(function(){\n\n" + code + "\n\n});\n\n// Handle errors\n}} catch(e) {\n\n  // Error style\n  var errorStyle = {style:{color:'red', fontSize:'16px', fontFamily:'sans-serif'}};\n\n  // Report error\n  $('body').oj([oj.div, errorStyle, e.toString()]);\n}});";
+};
+
+_scriptTagForCode = function(code) {
+  return "<" + SCRIPT + " class=\"build\">\n\n" + (_scriptTagForCodeBody(code)) + "\n\n</" + SCRIPT + ">";
+};
+
+_replaceIFRAME = function($iframeParent, $iframe, scriptTags, code) {
+  var doc, html, iframe;
+
+  html = "<head>\n" + scriptTags + "\n" + (_scriptTagWithUpdater()) + "\n" + (_scriptTagForCode(code)) + "\n</head>\n<body>\n</body>";
+  $iframe.remove();
+  iframe = document.createElement('iframe');
+  $iframeParent.append(iframe);
+  doc = iframe.contentWindow || iframe.contentDocument;
+  if (doc.document) {
+    doc = doc.document;
+  }
+  doc.open();
+  doc.write(html);
+  return doc.close();
+};
+
+_updateIFRAME = function($iframe, code) {
+  var $body, $html, $styles, doc$, docOJ;
+
+  if ($iframe.contents() && $iframe.contents()[0] && oj.isFunction($iframe.contents()[0].rebuild)) {
+    $html = $iframe.contents().find('html');
+    $body = $iframe.contents().find('body');
+    doc$ = $iframe.contents()[0].$;
+    $styles = doc$('style');
+    $styles.each(function() {
+      var $this, cls;
+
+      $this = $(this);
+      cls = $this.attr('class');
+      if (cls.match(/^oj-.*-style$/)) {
+        return $this.remove();
+      }
+    });
+    doc$('body').html('');
+    $iframe.contents()[0].rebuild(_scriptTagForCodeBody(code));
+    docOJ = $iframe.contents()[0].oj;
+    if (typeof docOJ !== 'undefined' && typeof docOJ.TwitterFollowButton !== 'undefined') {
+      return docOJ.TwitterFollowButton._loaded = false;
+    }
+  }
 };
 }}).call(this);})(RR('/oj.TryEditor.ojc'),P,G,'/','oj.TryEditor.ojc');});
-F['/_styles.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){module.exports = function() {
-  var argumentLinkColor, backgroundColor, borderColor, codeBackgroundColor, codeColor, codeLineColor, familyMonospace, familySanSarif, familySanSarifLight, functionLinkColor, h1Color, h2Color, linkColor, methodLinkColor, optionLinkColor, propertyLinkColor, textColor, typeLinkColor;
-
-  h1Color = '#666';
-  textColor = '#444';
-  h2Color = textColor;
-  backgroundColor = '#fff';
-  codeColor = '#444';
-  codeBackgroundColor = '#FEFAF3';
-  codeLineColor = '#FFD36B';
-  linkColor = '#E78B00';
-  borderColor = '#ffd272';
-  typeLinkColor = linkColor;
-  functionLinkColor = linkColor;
-  methodLinkColor = '#a64d09';
-  propertyLinkColor = '#b3820a';
-  optionLinkColor = propertyLinkColor;
-  argumentLinkColor = propertyLinkColor;
-  familyMonospace = 'Inconsolata, Consolas, Courier New, monospace';
-  familySanSarifLight = 'Helvetica, Arial, sans-serif';
-  familySanSarif = 'Lucida Grande, Tahoma';
-  return css({
-    h1: {
-      fontFamily: familySanSarif,
-      fontSize: '25px',
-      fontWeight: 'lighter',
-      marginTop: '40px',
-      marginBottom: '12px',
-      paddingBottom: '6px',
-      color: h1Color,
-      borderBottom: '2px solid #FFD36B'
-    },
-    'h1:first-child': {
-      marginTop: '0px'
-    },
-    h2: {
-      fontFamily: familySanSarif,
-      fontSize: '22px',
-      fontWeight: 'lighter',
-      margin: '25px 0 10px 0',
-      color: h2Color,
-      textDecoration: 'none'
-    },
-    h3: {
-      fontFamily: familySanSarif,
-      fontSize: '16px',
-      fontWeight: 'lighter',
-      marginTop: '22px',
-      marginBottom: '14px',
-      color: '#222'
-    },
-    a: {
-      color: linkColor,
-      textDecoration: 'none'
-    },
-    'a.heading1, a.heading1:hover': {
-      color: h1Color,
-      textDecoration: 'none'
-    },
-    'a.heading2, a.heading2:hover': {
-      color: h2Color,
-      textDecoration: 'none'
-    },
-    'a.type': {
-      color: typeLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.function': {
-      color: functionLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.method': {
-      color: methodLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.property': {
-      color: propertyLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.option': {
-      color: optionLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.argument': {
-      color: argumentLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a:hover': {
-      textDecoration: 'underline'
-    },
-    blockquote: {
-      padding: '0 0 0 10px',
-      borderLeft: "2px solid " + borderColor
-    },
-    p: {
-      color: textColor,
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      margin: '16px 0',
-      lineHeight: '24px'
-    },
-    ul: {
-      marginBottom: '16px'
-    },
-    li: {
-      margin: '10px 0 10px 20px',
-      color: textColor,
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      lineHeight: '20px'
-    },
-    '.code-heading': {
-      color: '#222',
-      fontFamily: familyMonospace,
-      fontSize: '19px'
-    },
-    '.code-subheading': {
-      fontFamily: familySanSarifLight,
-      fontSize: '14px',
-      fontStyle: 'italic',
-      fontWeight: 'lighter',
-      color: textColor,
-      display: 'block',
-      lineHeight: '20px',
-      marginTop: '10px'
-    },
-    '.code-items': {
-      margin: '10px 0 10px 10px',
-      width: '100%'
-    },
-    '.code-items tr': {
-      width: '100%'
-    },
-    '.code-item': {
-      display: 'block',
-      margin: '0 0 4px 0'
-    },
-    '.code-item-base': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      margin: '10px 0 10px 10px',
-      lineHeight: '20px'
-    },
-    '.code-item-name': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      margin: '0 0 0 20px',
-      lineHeight: '20px',
-      minWidth: '100px',
-      display: 'inline-block'
-    },
-    '.code-item-def': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      color: textColor,
-      margin: '0 0 0 20px',
-      lineHeight: '20px',
-      display: 'inline-block',
-      width: '100%'
-    },
-    '.code-item-def p': {
-      margin: '0 0 10px 0'
-    },
-    '.code-item-def pre': {
-      margin: '0 0 10px 0',
-      border: '0',
-      color: codeColor
-    },
-    pre: {
-      border: "2px solid " + codeLineColor,
-      backgroundColor: codeBackgroundColor,
-      color: codeColor,
-      padding: '8px',
-      lineHeight: '18px',
-      fontSize: '14px'
-    },
-    '.header-option': {
-      fontFamily: 'Helvetica, Arial, Tahoma',
-      color: '#E98C00',
-      fontSize: '20px',
-      fontWeight: '100',
-      marginRight: '25px'
-    },
-    '.toc-section': {
-      backgroundColor: '#FF9900',
-      padding: '8px',
-      display: 'block',
-      color: 'white',
-      textTransform: 'uppercase',
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      margin: '0 0 15px 0'
-    },
-    '.toc-item': {
-      display: 'block',
-      backgroundColor: '#FEFAF3',
-      fontSize: '14px',
-      padding: '4px 0 4px 15px'
-    },
-    '.toc-items': {
-      marginBottom: '10px'
-    },
-    '.left': {
-      marginBottom: '10px'
-    },
-    textarea: {
-      width: '100%',
-      height: '100px',
-      borderColor: '#f4f4f4',
-      fontFamily: familySanSarif,
-      fontSize: '14px'
-    },
-    '.snippet': {
-      margin: 0,
-      position: 'relative',
-      width: '100%',
-      height: '100px',
-      border: '1px solid #orange'
-    },
-    '.download-button': {
-      height: '27px',
-      border: '2px solid orange',
-      borderRadius: '5px',
-      backgroundColor: '#FEFAF3',
-      boxShadow: '2px 2px 2px RGBA(0,0,0,0.2)',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontFamily: familySanSarif
-    },
-    '.download-button:hover': {
-      backgroundColor: '#fff'
-    }
-  });
-};
-}}).call(this);})(RR('/_styles.ojc'),P,G,'/','_styles.ojc');});
 F['/_template.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var _, _footer, _header, _styles, _template;
 
 _ = require('underscore');
@@ -4046,54 +4672,52 @@ module.exports = _template = function(parts) {
           });
         }
       }
-      if (typeof parts.head === "function") {
-        parts.head();
-      }
-      return _styles();
+      return typeof parts.head === "function" ? parts.head() : void 0;
     });
     return body(function() {
-      if (typeof parts.body === "function") {
-        parts.body();
-      }
-      div({
-        c: 'orange-corner left'
+      header(function() {
+        return _header();
       });
       div({
-        c: 'orange-corner right'
+        c: 'gg'
+      }, function() {
+        return div({
+          c: 'fixed row'
+        }, function() {
+          return div({
+            c: 'toc-right o75 gg25 hide-phone'
+          }, function() {
+            return parts != null ? typeof parts.toc === "function" ? parts.toc() : void 0 : void 0;
+          });
+        });
       });
       return div({
-        c: 'all gg'
+        c: 'gg'
       }, function() {
-        if (parts != null) {
-          if (typeof parts.all === "function") {
-            parts.all();
-          }
-        }
         return div({
-          c: 'row'
+          c: 'relative row'
         }, function() {
-          header({
-            c: 'gg100'
-          }, function() {
-            return _header();
-          });
           div({
-            c: 'middle gg100'
+            c: 'body gg100'
           }, function() {
-            return parts != null ? typeof parts.middle === "function" ? parts.middle() : void 0 : void 0;
-          });
-          div({
-            c: 'row'
-          }, function() {
-            div({
-              c: 'left gg25'
-            }, function() {
-              return parts != null ? typeof parts.left === "function" ? parts.left() : void 0 : void 0;
-            });
+            if (parts != null) {
+              if (typeof parts.body === "function") {
+                parts.body();
+              }
+            }
             return div({
-              c: 'right gg75'
+              c: 'row'
             }, function() {
-              return parts != null ? typeof parts.right === "function" ? parts.right() : void 0 : void 0;
+              div({
+                c: 'toc-above gg25 show-phone'
+              }, function() {
+                return parts != null ? typeof parts.toc === "function" ? parts.toc() : void 0 : void 0;
+              });
+              return div({
+                c: 'content gg75'
+              }, function() {
+                return parts != null ? typeof parts.content === "function" ? parts.content() : void 0 : void 0;
+              });
             });
           });
           return footer({
@@ -4105,20 +4729,115 @@ module.exports = _template = function(parts) {
       });
     });
   });
-  orangeSize = '75px';
+  _styles();
+  orangeSize = '42px';
   return css({
-    '.orange-corner': {
+    '.fixed': {
+      position: 'fixed',
+      marginTop: '62px',
+      zIndex: 100,
+      height: '40px',
+      '@media phone': {
+        marginTop: '85px'
+      }
+    },
+    '.relative': {
+      position: 'relative',
+      '@media phone': {
+        marginTop: '62px'
+      }
+    },
+    '.hide-phone': {
+      '@media phone': {
+        display: 'none'
+      }
+    },
+    '.show-phone': {
+      '@media phone': {
+        display: 'block'
+      },
+      '@media tablet': {
+        display: 'none'
+      },
+      '@media monitor': {
+        display: 'none'
+      }
+    },
+    header: {
+      position: 'fixed',
+      height: '45px',
+      width: '100%',
+      boxShadow: '2px 2px 2px RGBA(0,0,0,0.1)',
+      backgroundColor: 'white',
+      zIndex: 1000,
+      '@media phone': {
+        height: '72px'
+      }
+    },
+    '.header-contents': {
+      height: '45px',
+      float: 'none !important',
+      marginLeft: 'auto !important',
+      marginRight: 'auto !important',
+      display: 'block',
+      '@media phone': {
+        textAlign: 'center',
+        paddingTop: '10px',
+        height: '30px'
+      }
+    },
+    '.header-logo': {
+      background: 'url(media/oj_logo_small.png) no-repeat 0 center',
+      display: 'inline-block',
+      width: '32px',
+      height: '22px',
+      verticalAlign: 'middle',
+      marginLeft: '91px',
+      '@media phone': {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'block',
+        textAlign: 'center'
+      }
+    },
+    '.header-options': {
+      display: 'inline-block',
+      marginLeft: '44px',
+      paddingTop: '12px',
+      '@media phone': {
+        marginLeft: '0px',
+        textAlign: 'center',
+        display: 'block'
+      }
+    },
+    '.header-option': {
+      fontFamily: 'Helvetica, Arial, Tahoma',
+      color: '#E98C00',
+      fontSize: '18px',
+      fontWeight: '100',
+      verticalAlign: 'middle',
+      '&:not(:first-child)': {
+        marginLeft: '44px',
+        '@media phone': {
+          marginLeft: '20px'
+        }
+      },
+      '@media phone': {
+        marginTop: '30px'
+      }
+    },
+    '.header-orange-corner': {
       width: orangeSize,
       height: orangeSize,
       position: 'absolute',
       top: '0px',
       backgroundSize: 'contain'
     },
-    '.orange-corner.left': {
+    '.header-orange-corner.left': {
       backgroundImage: 'url(media/orange_left.png)',
       left: '0px'
     },
-    '.orange-corner.right': {
+    '.header-orange-corner.right': {
       backgroundImage: 'url(media/orange_right.png)',
       right: '0px'
     }
@@ -4127,51 +4846,48 @@ module.exports = _template = function(parts) {
 
 _header = function() {
   div({
-    c: 'row'
+    c: 'header-contents'
   }, function() {
-    div({
-      c: 'gg25'
-    }, function() {
-      return a({
-        c: 'header-logo',
-        href: 'index.html'
-      });
+    a({
+      c: 'header-logo',
+      href: 'index.html'
     });
     return div({
-      c: 'gg75'
-    }, (function() {
+      c: 'header-options'
+    }, function() {
       a('Learn', {
         c: 'header-option',
         href: 'learn.html'
+      });
+      a('Try', {
+        c: 'header-option',
+        href: 'try.html'
       });
       a('Docs', {
         c: 'header-option',
         href: 'docs.html'
       });
-      return a('Try', {
+      a('Plugins', {
         c: 'header-option',
-        href: 'try.html'
+        href: 'plugins.html'
       });
-    }), {
-      style: {
-        margin: '20px 0'
-      }
+      return a('Download', {
+        c: 'header-option',
+        href: 'download.html'
+      });
     });
   });
-  return css({
-    header: {
-      marginBottom: '0px !important'
-    },
-    '.header-logo': {
-      width: '100%',
-      height: '50px',
-      background: 'url(media/oj_logo.png) no-repeat center',
-      display: 'inline-block'
-    }
+  div({
+    c: 'header-orange-corner left'
+  });
+  return div({
+    c: 'header-orange-corner right'
   });
 };
 
-_footer = function() {};
+_footer = function() {
+  return footer();
+};
 }}).call(this);})(RR('/_template.ojc'),P,G,'/','_template.ojc');});
 F['/node_modules/underscore/underscore.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){//     Underscore.js 1.4.4
 //     http://underscorejs.org
@@ -5400,7 +6116,255 @@ F['/node_modules/underscore/underscore.js'] = (function(module,exports){(functio
 
 }).call(this);
 })(RR('/node_modules/underscore/underscore.js'),P,G,'/node_modules/underscore','underscore.js');});
-F['/_content.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var callOrMarkdown, contentCodeItems, contentItem, contentSection, tocSection;
+F['/_styles.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){module.exports = function() {
+  var argumentLinkColor, backgroundColor, borderColor, codeBackgroundColor, codeColor, codeLineColor, eventLinkColor, familyMonospace, familySanSarif, functionLinkColor, h1Color, h2Color, linkColor, methodLinkColor, optionLinkColor, propertyLinkColor, strongTextColor, textColor, tocSectionColor, typeLinkColor;
+
+  h1Color = '#444';
+  textColor = '#444';
+  strongTextColor = '#000';
+  h2Color = textColor;
+  backgroundColor = '#fff';
+  codeColor = '#444';
+  codeBackgroundColor = '#FEFAF3';
+  codeLineColor = '#FFD36B';
+  linkColor = '#E78B00';
+  borderColor = '#ffd272';
+  typeLinkColor = linkColor;
+  functionLinkColor = linkColor;
+  tocSectionColor = '#C76200';
+  methodLinkColor = '#a64d09';
+  propertyLinkColor = '#b3820a';
+  eventLinkColor = '#a64d09';
+  optionLinkColor = propertyLinkColor;
+  argumentLinkColor = propertyLinkColor;
+  familyMonospace = 'Inconsolata, Consolas, Courier New, monospace';
+  familySanSarif = 'Helvetica, Arial, sans-serif';
+  return css({
+    h1: {
+      fontFamily: familySanSarif,
+      fontSize: '25px',
+      fontWeight: '100',
+      marginTop: '40px',
+      marginBottom: '12px',
+      paddingBottom: '6px',
+      color: h1Color,
+      borderBottom: '2px solid #FFD36B'
+    },
+    'h1:first-child': {
+      marginTop: '20px'
+    },
+    h2: {
+      fontFamily: familySanSarif,
+      fontSize: '22px',
+      fontWeight: '100',
+      margin: '32px 0 15px 0',
+      color: h2Color,
+      textDecoration: 'none'
+    },
+    h3: {
+      fontFamily: familySanSarif,
+      fontSize: '16px',
+      fontWeight: '100',
+      marginTop: '22px',
+      marginBottom: '14px',
+      color: '#222'
+    },
+    a: {
+      color: linkColor,
+      textDecoration: 'none'
+    },
+    'a.heading1, a.heading1:hover': {
+      color: h1Color,
+      textDecoration: 'none'
+    },
+    'a.heading2, a.heading2:hover': {
+      color: h2Color,
+      textDecoration: 'none'
+    },
+    'a.type': {
+      color: typeLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.function': {
+      color: functionLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.method': {
+      color: methodLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.event': {
+      color: eventLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.property': {
+      color: propertyLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.option': {
+      color: optionLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.argument': {
+      color: argumentLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a:hover': {
+      textDecoration: 'underline'
+    },
+    blockquote: {
+      padding: '0 0 0 10px',
+      borderLeft: "2px solid " + borderColor
+    },
+    p: {
+      color: textColor,
+      fontFamily: familySanSarif,
+      fontSize: '16px',
+      fontWeight: 'lighter',
+      margin: '16px 0 8px 0',
+      lineHeight: '24px'
+    },
+    'p strong': {
+      color: strongTextColor,
+      fontFamily: familySanSarif,
+      fontWeight: 400
+    },
+    ul: {
+      marginBottom: '16px'
+    },
+    li: {
+      margin: '10px 0 10px 20px',
+      color: textColor,
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      lineHeight: '20px'
+    },
+    '.oj-TryEditor': {
+      marginBottom: '30px'
+    },
+    '.code-heading': {
+      color: '#222',
+      fontFamily: familyMonospace,
+      fontSize: '19px'
+    },
+    '.code-subheading': {
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      fontStyle: 'italic',
+      fontWeight: 'lighter',
+      color: textColor,
+      display: 'block',
+      lineHeight: '20px',
+      marginTop: '10px'
+    },
+    '.code-items': {
+      margin: '10px 0 10px 10px',
+      width: '100%'
+    },
+    '.code-items tr': {
+      width: '100%'
+    },
+    '.code-item': {
+      display: 'block',
+      margin: '0 0 4px 0'
+    },
+    '.code-item-base': {
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      margin: '10px 0 10px 10px',
+      lineHeight: '20px'
+    },
+    '.code-item-name': {
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      margin: '0 0 0 20px',
+      lineHeight: '20px',
+      minWidth: '100px',
+      display: 'inline-block'
+    },
+    '.code-item-def': {
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      color: textColor,
+      margin: '0 0 0 20px',
+      lineHeight: '20px',
+      display: 'inline-block',
+      width: '100%'
+    },
+    '.code-item-def p': {
+      margin: '0 0 10px 0'
+    },
+    '.code-item-def pre': {
+      margin: '0 0 10px 0',
+      border: '0',
+      color: codeColor
+    },
+    pre: {
+      border: "2px solid " + codeLineColor,
+      backgroundColor: codeBackgroundColor,
+      color: codeColor,
+      padding: '8px',
+      lineHeight: '18px',
+      fontSize: '14px'
+    },
+    '.toc-section': {
+      display: 'block',
+      color: tocSectionColor,
+      textTransform: 'uppercase',
+      fontFamily: familySanSarif,
+      margin: '0 0 10px 0',
+      fontSize: '14px',
+      textAlign: 'right',
+      fontWeight: 'lighter'
+    },
+    '.toc-item': {
+      display: 'block',
+      fontFamily: familySanSarif,
+      fontSize: '13px',
+      fontWeight: 'lighter',
+      textAlign: 'right',
+      margin: '0 0 4px 0',
+      color: linkColor
+    },
+    '.toc-items': {
+      marginBottom: '10px'
+    },
+    '.left': {
+      marginBottom: '10px'
+    },
+    textarea: {
+      width: '100%',
+      height: '100px',
+      borderColor: '#f4f4f4',
+      fontFamily: familySanSarif,
+      fontSize: '14px'
+    },
+    '.snippet': {
+      margin: 0,
+      position: 'relative',
+      width: '100%',
+      height: '100px',
+      border: '1px solid orange'
+    },
+    '.download-button': {
+      height: '27px',
+      border: '2px solid orange',
+      borderRadius: '5px',
+      backgroundColor: '#FEFAF3',
+      boxShadow: '2px 2px 2px RGBA(0,0,0,0.2)',
+      cursor: 'pointer',
+      fontSize: '14px',
+      fontFamily: familySanSarif
+    },
+    '.download-button:hover': {
+      backgroundColor: '#fff'
+    }
+  });
+};
+}}).call(this);})(RR('/_styles.ojc'),P,G,'/','_styles.ojc');});
+F['/_content.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var callOrMarkdown, contentCodeItems, contentItem, contentSection, markdown, tocSection;
+
+markdown = require('oj-markdown');
 
 module.exports = {
   renderTOC: function(data) {
@@ -5439,6 +6403,12 @@ module.exports = {
       c: 'code-subheading method'
     });
     return contentCodeItems(methods, 'method');
+  },
+  renderEvents: function(events) {
+    div('events:', {
+      c: 'code-subheading event'
+    });
+    return contentCodeItems(events, 'event');
   },
   renderArguments: function(args) {
     div('arguments:', {
@@ -5575,105 +6545,61 @@ callOrMarkdown = function(v) {
 }}).call(this);})(RR('/_content.ojc'),P,G,'/','_content.ojc');});
 F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){// Generated by CoffeeScript 1.6.2
 (function() {
-  var ArrayP, FuncP, ObjP, coffee, compileJS, concat, dhp, doctypes, exports, jqName, jqueryEvents, key, oj, ojName, pass, pathNormalizeArray, pathSplit, pathSplitRe, plugins, root, slice, strict4, strict5, stripBOM, t, unshift, w3, wrapCSMessage, wrapJS, wrapJSMessage, _, _argumentsStack, _attributeCMeansClassAndAllowsArrays, _attributeClassAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromObject, _dasherize, _decamelize, _defaults, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _randomInteger, _readyOrLoad, _readyQueue, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleFromObject, _toArray, _uniqueSort, _uniqueSortedUnion, _values,
+  var ArrayP, FuncP, ObjP, concat, dhp, exports, jqName, jqueryEvents, key, oj, ojName, pass, plugins, root, slice, strict4, strict5, t, unshift, w3, _argsStack, _attributeCMeansClassAndAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromMediaObject, _cssFromPluginObject, _dasherize, _decamelize, _defaults, _doctypes, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _insertStyles, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _onLoadQueue, _pathNormalizeArray, _pathSplit, _pathSplitRe, _randomInteger, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleClassFromPlugin, _styleFromObject, _toArray, _triggerTypes, _uniqueSort, _uniqueSortedUnion, _values,
     __slice = [].slice;
 
-  oj = module.exports = function() {
+  oj = function() {
     var ojml;
 
-    oj._argumentsPush();
+    oj._argsPush();
     ojml = oj.emit.apply(this, arguments);
-    oj._argumentsPop();
+    oj._argsPop();
     return ojml;
+  };
+
+  root = this;
+
+  oj.version = '0.0.14';
+
+  oj.isClient = !(typeof process !== "undefined" && process !== null ? (_ref = process.versions) != null ? _ref.node : void 0 : void 0);
+
+  if (typeof module !== 'undefined') {
+    exports = module.exports = oj;
+  } else {
+    root['oj'] = oj;
+  }
+
+  oj.oj = oj;
+
+  oj.load = function(page) {
+    return jQuery(function() {
+      $.ojBody(require(page));
+      return oj.onload();
+    });
+  };
+
+  _onLoadQueue = {
+    queue: [],
+    loaded: false
+  };
+
+  oj.onload = function(f) {
+    if (oj.isUndefined(f)) {
+      _onLoadQueue.loaded = true;
+      while ((f = _onLoadQueue.queue.shift())) {
+        f();
+      }
+    } else if (_onLoadQueue.loaded) {
+      f();
+    } else {
+      _onLoadQueue.queue.push(f);
+    }
   };
 
   oj.emit = function() {
     var ojml;
 
     return ojml = oj.tag.apply(oj, ['oj'].concat(__slice.call(arguments)));
-  };
-
-  oj.oj = oj;
-
-  oj.begin = function(page) {
-    return _readyOrLoad(function() {
-      var body, bodyOnly, d, dom, t, types, _i, _j, _len, _len1, _ref;
-
-      bodyOnly = {
-        html: 1,
-        doctype: 1,
-        head: 1,
-        link: 1,
-        script: 1
-      };
-      _ref = oj.compile({
-        dom: 1,
-        html: 0,
-        css: 0,
-        ignore: bodyOnly
-      }, require(page)), dom = _ref.dom, types = _ref.types;
-      if (dom == null) {
-        console.error('oj: dom failed to compile');
-        return;
-      }
-      body = document.getElementsByTagName('body');
-      if (body.length === 0) {
-        console.error('oj: <body> was not found');
-        return;
-      }
-      body = body[0];
-      body.innerHTML = '';
-      if (!oj.isArray(dom)) {
-        dom = [dom];
-      }
-      for (_i = 0, _len = dom.length; _i < _len; _i++) {
-        d = dom[_i];
-        body.appendChild(d);
-      }
-      for (_j = 0, _len1 = types.length; _j < _len1; _j++) {
-        t = types[_j];
-        t.inserted();
-      }
-      return oj.ready();
-    });
-  };
-
-  _readyOrLoad = function(fn) {
-    var prevOnLoad;
-
-    if (typeof jQuery !== "undefined" && jQuery !== null) {
-      jQuery(fn);
-    } else {
-      if (document.readyState !== "complete") {
-        prevOnLoad = window.onload;
-        window.onload = function() {
-          if (typeof prevOnLoad === "function") {
-            prevOnLoad();
-          }
-          return fn();
-        };
-      } else {
-        fn();
-      }
-    }
-  };
-
-  _readyQueue = {
-    queue: [],
-    loaded: false
-  };
-
-  oj.ready = function(f) {
-    if (oj.isUndefined(f)) {
-      _readyQueue.loaded = true;
-      while ((f = _readyQueue.queue.shift())) {
-        f();
-      }
-    } else if (_readyQueue.loaded) {
-      f();
-    } else {
-      _readyQueue.queue.push(f);
-    }
   };
 
   oj.id = function(len, chars) {
@@ -5717,81 +6643,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
     return output;
   };
-
-  if (require.extensions) {
-    coffee = require('coffee-script');
-    stripBOM = function(c) {
-      if (c.charCodeAt(0) === 0xFEFF) {
-        return c.slice(1);
-      } else {
-        return c;
-      }
-    };
-    wrapJS = function(code) {
-      return "(function(){with(oj.sandbox){" + code + "}}).call(this);";
-    };
-    wrapCSMessage = function(message, filepath) {
-      var _ref, _ref1;
-
-      return "" + ((_ref = oj.codes) != null ? _ref.red : void 0) + "coffee-script error in " + filepath + ": " + message + ((_ref1 = oj.codes) != null ? _ref1.reset : void 0);
-    };
-    wrapJSMessage = function(message, filepath) {
-      var _ref, _ref1;
-
-      return "" + ((_ref = oj.codes) != null ? _ref.red : void 0) + "javascript error in " + filepath + ": " + message + ((_ref1 = oj.codes) != null ? _ref1.reset : void 0);
-    };
-    compileJS = function(module, code, filepath) {
-      code = wrapJS(code);
-      global.oj = oj;
-      module._compile(code, filepath);
-      return delete global.oj;
-    };
-    require.extensions['.oj'] = function(module, filepath) {
-      var code, eJS;
-
-      code = stripBOM(fs.readFileSync(filepath, 'utf8'));
-      try {
-        return compileJS(module, code, filepath);
-      } catch (_error) {
-        eJS = _error;
-        eJS.message = wrapJSMessage(eJS.message, filepath);
-        throw eJS;
-      }
-    };
-    require.extensions['.ojc'] = function(module, filepath) {
-      var code, eCoffee, eJS;
-
-      code = stripBOM(fs.readFileSync(filepath, 'utf8'));
-      try {
-        code = coffee.compile(code, {
-          bare: true
-        });
-      } catch (_error) {
-        eCoffee = _error;
-        eCoffee.message = wrapCSMessage(eCoffee.message, filepath);
-        throw eCoffee;
-      }
-      try {
-        return compileJS(module, code, filepath);
-      } catch (_error) {
-        eJS = _error;
-        eJS.message = wrapJSMessage(eJS.message, filepath);
-        throw eJS;
-      }
-    };
-  }
-
-  root = this;
-
-  oj.version = '0.0.14';
-
-  oj.isClient = !(typeof process !== "undefined" && process !== null ? (_ref = process.versions) != null ? _ref.node : void 0 : void 0);
-
-  if (typeof module !== 'undefined') {
-    exports = module.exports = oj;
-  } else {
-    root['oj'] = oj;
-  }
 
   ArrayP = Array.prototype;
 
@@ -5925,8 +6776,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   oj.isObject = function(obj) {
     return (oj.typeOf(obj)) === 'object';
   };
-
-  oj.__ = _ = {};
 
   _isCapitalLetter = function(c) {
     return !!(c.match(/[A-Z]/));
@@ -6326,15 +7175,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return _uniqueSort(arr.concat(arr2));
   };
 
-  _splitAndTrim = function(str, seperator, limit) {
-    var r;
-
-    r = str.split(seperator, limit);
-    return oj._map(r, function(v) {
-      return v.trim();
-    });
-  };
-
   _boundOrThrow = function(ix, count, message, method) {
     var ixNew;
 
@@ -6345,11 +7185,33 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return ixNew;
   };
 
-  _dasherize = function(str) {
-    return out;
+  _splitAndTrim = function(str, seperator, limit) {
+    var r;
+
+    r = str.split(seperator, limit);
+    return oj._map(r, function(v) {
+      return v.trim();
+    });
   };
 
-  pathNormalizeArray = function(parts, allowAboveRoot) {
+  _dasherize = function(str) {
+    return _decamelize(str).replace(/[ _]/g, '-');
+  };
+
+  _decamelize = function(str) {
+    return str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
+  };
+
+  _pathSplitRe = /^(\/?)([\s\S]+\/(?!$)|\/)?((?:\.{1,2}$|[\s\S]+?)?(\.[^.\/]*)?)$/;
+
+  _pathSplit = function(filename) {
+    var result;
+
+    result = _pathSplitRe.exec(filename);
+    return [result[1] || '', result[2] || '', result[3] || '', result[4] || ''];
+  };
+
+  _pathNormalizeArray = function(parts, allowAboveRoot) {
     var i, last, up;
 
     up = 0;
@@ -6375,15 +7237,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return parts;
   };
 
-  pathSplitRe = /^(\/?)([\s\S]+\/(?!$)|\/)?((?:\.{1,2}$|[\s\S]+?)?(\.[^.\/]*)?)$/;
-
-  pathSplit = function(filename) {
-    var result;
-
-    result = pathSplitRe.exec(filename);
-    return [result[1] || '', result[2] || '', result[3] || '', result[4] || ''];
-  };
-
   oj._pathResolve = function() {
     var i, path, resolvedAbsolute, resolvedPath;
 
@@ -6399,7 +7252,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       resolvedAbsolute = path.charAt(0) === '/';
       i--;
     }
-    resolvedPath = pathNormalizeArray(resolvedPath.split('/').filter(function(p) {
+    resolvedPath = _pathNormalizeArray(resolvedPath.split('/').filter(function(p) {
       return !!p;
     }), !resolvedAbsolute).join('/');
     return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
@@ -6410,7 +7263,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
     isAbsolute = path.charAt(0) === '/';
     trailingSlash = path.substr(-1) === '/';
-    path = pathNormalizeArray(path.split('/').filter(function(p) {
+    path = _pathNormalizeArray(path.split('/').filter(function(p) {
       return !!p;
     }), !isAbsolute).join('/');
     if (!path && !isAbsolute) {
@@ -6425,7 +7278,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   oj._pathJoin = function() {
     var paths;
 
-    paths = Array.prototype.slice.call(arguments, 0);
+    paths = ArrayP.slice.call(arguments, 0);
     return oj._pathNormalize(paths.filter(function(p, index) {
       return p && typeof p === 'string';
     }).join('/'));
@@ -6434,7 +7287,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   oj._pathDirname = function(path) {
     var dir, result;
 
-    result = pathSplit(path);
+    result = _pathSplit(path);
     root = result[0];
     dir = result[1];
     if (!root && !dir) {
@@ -6521,14 +7374,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
   oj.removeProperty = function(obj, propName) {
     if (!oj.isString(propName)) {
-      throw 'oj.addProperty: string expected for second argument';
+      throw new Error('oj.addProperty: string expected for second argument');
     }
     return delete obj[propName];
   };
 
   oj.isProperty = function(obj, propName) {
     if (!oj.isString(propName)) {
-      throw 'oj.isProperty: string expected for second argument';
+      throw new Error('oj.isProperty: string expected for second argument');
     }
     return Object.getOwnPropertyDescriptor(obj, propName).get != null;
   };
@@ -6543,34 +7396,34 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return Object.defineProperty(dest, propName, info);
   };
 
-  _argumentsStack = [];
+  _argsStack = [];
 
-  oj._argumentsTop = function() {
-    if (_argumentsStack.length) {
-      return _argumentsStack[_argumentsStack.length - 1];
+  oj._argsTop = function() {
+    if (_argsStack.length) {
+      return _argsStack[_argsStack.length - 1];
     } else {
       return null;
     }
   };
 
-  oj._argumentsPush = function(args) {
+  oj._argsPush = function(args) {
     if (args == null) {
       args = [];
     }
-    _argumentsStack.push(args);
+    _argsStack.push(args);
   };
 
-  oj._argumentsPop = function() {
-    if (_argumentsStack.length) {
-      return _argumentsStack.pop();
+  oj._argsPop = function() {
+    if (_argsStack.length) {
+      return _argsStack.pop();
     }
     return null;
   };
 
-  oj._argumentsAppend = function(arg) {
+  oj._argsAppend = function(arg) {
     var top;
 
-    top = oj._argumentsTop();
+    top = oj._argsTop();
     if (top != null) {
       top.push(arg);
     }
@@ -6594,23 +7447,23 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     if (!_isEmpty(attributes)) {
       ojml.push(attributes);
     }
-    oj._argumentsPush(ojml);
+    oj._argsPush(ojml);
     for (_j = 0, _len1 = args.length; _j < _len1; _j++) {
       arg = args[_j];
       if (oj.isObject(arg)) {
         continue;
       } else if (oj.isFunction(arg)) {
-        len = oj._argumentsTop().length;
+        len = oj._argsTop().length;
         r = arg();
-        if (len === oj._argumentsTop().length && (r != null)) {
-          oj._argumentsAppend(r);
+        if (len === oj._argsTop().length && (r != null)) {
+          oj._argsAppend(r);
         }
       } else {
-        oj._argumentsAppend(arg);
+        oj._argsAppend(arg);
       }
     }
-    oj._argumentsPop();
-    oj._argumentsAppend(ojml);
+    oj._argsPop();
+    oj._argsAppend(ojml);
     return ojml;
   };
 
@@ -6661,32 +7514,31 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     _fn(t);
   }
 
-  dhp = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01';
+  dhp = 'HTML PUBLIC "-//W3C//DTD HTML 4.01';
 
   w3 = '"http://www.w3.org/TR/html4/';
 
-  strict5 = '<!DOCTYPE html>';
+  strict5 = 'html';
 
-  strict4 = dhp + '//EN" ' + w3 + 'strict.dtd">';
+  strict4 = dhp + '//EN" ' + w3 + 'strict.dtd"';
 
-  doctypes = {
+  _doctypes = {
     '5': strict5,
     'HTML 5': strict5,
     '4': strict4,
     'HTML 4.01 Strict': strict4,
-    'HTML 4.01 Frameset': dhp + ' Frameset//EN" ' + w3 + 'frameset.dtd">',
-    'HTML 4.01 Transitional': dhp + ' Transitional//EN" ' + w3 + 'loose.dtd">'
+    'HTML 4.01 Frameset': dhp + ' Frameset//EN" ' + w3 + 'frameset.dtd"',
+    'HTML 4.01 Transitional': dhp + ' Transitional//EN" ' + w3 + 'loose.dtd"'
   };
 
-  oj.doctype = function(type) {
-    var ojml;
+  oj.doctype = function(typeOrValue) {
+    var value, _ref2;
 
-    if (type == null) {
-      type = 5;
+    if (typeOrValue == null) {
+      typeOrValue = '5';
     }
-    ojml = doctypes[type];
-    oj._argumentsAppend(ojml);
-    return ojml;
+    value = (_ref2 = _doctypes[typeOrValue]) != null ? _ref2 : typeOrValue;
+    return oj['!DOCTYPE'](value);
   };
 
   oj.extend = function(context) {
@@ -6707,7 +7559,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   };
 
   oj.compile = function(options, ojml) {
-    var acc, css, cssMap, dom, html, out;
+    var acc, css, cssMap, dom, html, out, pluginCSSMap;
 
     if (ojml == null) {
       ojml = options;
@@ -6715,10 +7567,9 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
     options = _defaults({}, options, {
       html: true,
-      dom: true,
-      css: true,
+      dom: false,
+      css: false,
       cssMap: false,
-      styles: false,
       debug: false,
       ignore: {}
     });
@@ -6736,11 +7587,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
     acc.tags = {};
     _compileAny(ojml, acc);
+    if (acc.css != null) {
+      pluginCSSMap = _flattenCSSMap(acc.css);
+    }
     if (options.cssMap) {
-      cssMap = acc.css;
+      cssMap = pluginCSSMap;
     }
     if (options.css) {
-      css = _cssFromObject(acc.css, options.debug);
+      css = _cssFromPluginObject(pluginCSSMap, {
+        debug: options.debug,
+        tags: 0
+      });
     }
     if (options.html) {
       html = acc.html.join('');
@@ -6768,14 +7625,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       tags: acc.tags
     };
     return out;
-  };
-
-  _dasherize = function(str) {
-    return _decamelize(str).replace(/[ _]/g, '-');
-  };
-
-  _decamelize = function(str) {
-    return str.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase();
   };
 
   _styleFromObject = function(obj, options) {
@@ -6825,14 +7674,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   };
 
   _flattenCSSMap = function(cssMap) {
-    var flatMap;
+    var cssMap_, flatMap, plugin;
 
     flatMap = {};
-    _flattenCSSMap_(cssMap, flatMap, [''], ['']);
+    for (plugin in cssMap) {
+      cssMap_ = cssMap[plugin];
+      _flattenCSSMap_(cssMap_, flatMap, [''], [''], plugin);
+    }
     return flatMap;
   };
 
-  _flattenCSSMap_ = function(cssMap, flatMapAcc, selectorsAcc, mediasAcc) {
+  _flattenCSSMap_ = function(cssMap, flatMapAcc, selectorsAcc, mediasAcc, plugin) {
     var mediaCur, mediaInner, mediaOuter, mediaParts, mediaWithAnds, medias, mediasNext, rules, selCur, selInner, selOuter, selector, selectorParts, selectorWithCommas, selectorsNext, _j, _k, _l, _len1, _len2, _len3, _len4, _m;
 
     medias = {
@@ -6883,31 +7735,53 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
             }
           }
         }
-        _flattenCSSMap_(rules, flatMapAcc, selectorsNext, mediasNext);
+        _flattenCSSMap_(rules, flatMapAcc, selectorsNext, mediasNext, plugin);
       } else {
         selectorWithCommas = selectorsAcc.sort().join(',');
         mediaWithAnds = mediasAcc.sort().join(',');
         if (mediaWithAnds !== '') {
           mediaWithAnds = "@media " + mediaWithAnds;
         }
-        _setObject(flatMapAcc, mediaWithAnds, selectorWithCommas, selector, rules);
+        _setObject(flatMapAcc, plugin, mediaWithAnds, selectorWithCommas, selector, rules);
       }
     }
   };
 
-  _cssFromObject = function(cssMap, debug) {
-    var css, flatMap, indent, indentRule, inline, media, newline, rules, selector, selectorMap, space, styles;
+  _styleClassFromPlugin = function(plugin) {
+    return "" + plugin + "-style";
+  };
 
-    if (debug == null) {
-      debug = 0;
+  oj._styleTagFromMediaObject = function(plugin, mediaMap, options) {
+    var css, newline;
+
+    newline = (options != null ? options.debug : void 0) ? '\n' : '';
+    css = _cssFromMediaObject(mediaMap, options);
+    return "<style class=\"" + (_styleClassFromPlugin(plugin)) + "\">" + newline + css + "</style>";
+  };
+
+  oj._minifyJS = function(js, options) {
+    return js;
+  };
+
+  oj._minifyCSS = function(css, options) {
+    return css;
+  };
+
+  _cssFromMediaObject = function(mediaMap, options) {
+    var css, debug, eCSS, indent, indentRule, inline, media, minify, newline, rules, selector, selectorMap, space, styles, tags, _ref2, _ref3, _ref4;
+
+    if (options == null) {
+      options = {};
     }
+    debug = (_ref2 = options.debug) != null ? _ref2 : 0;
+    tags = (_ref3 = options.tags) != null ? _ref3 : 0;
+    minify = (_ref4 = options.minify) != null ? _ref4 : 0;
     newline = debug ? '\n' : '';
     space = debug ? ' ' : '';
     inline = !debug;
-    flatMap = _flattenCSSMap(cssMap);
     css = '';
-    for (media in flatMap) {
-      selectorMap = flatMap[media];
+    for (media in mediaMap) {
+      selectorMap = mediaMap[media];
       if (media) {
         media = media.replace(/,/g, "," + space);
         css += "" + media + space + "{" + newline;
@@ -6922,10 +7796,42 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           inline: inline,
           indent: indentRule
         });
-        css += "" + rules + indent + "}" + newline;
+        css += rules + indent + '}' + newline;
       }
       if (media !== '') {
-        css += "}" + newline;
+        css += '}' + newline;
+      }
+    }
+    try {
+      css = oj._minifyCSS(css, options);
+    } catch (_error) {
+      eCSS = _error;
+      throw new Error("css minification error: " + eCSS.message + "\nCould not minify:\n" + css);
+    }
+    return css;
+  };
+
+  _cssFromPluginObject = function(flatCSSMap, options) {
+    var css, debug, inline, mediaMap, minify, newline, plugin, space, tags, _ref2, _ref3, _ref4;
+
+    if (options == null) {
+      options = {};
+    }
+    debug = (_ref2 = options.debug) != null ? _ref2 : 0;
+    tags = (_ref3 = options.tags) != null ? _ref3 : 0;
+    minify = (_ref4 = options.minify) != null ? _ref4 : 0;
+    newline = debug ? '\n' : '';
+    space = debug ? ' ' : '';
+    inline = !debug;
+    css = '';
+    for (plugin in flatCSSMap) {
+      mediaMap = flatCSSMap[plugin];
+      if (tags) {
+        css += "<style class=\"" + plugin + "-style\">" + newline;
+      }
+      css += _cssFromMediaObject(mediaMap, options);
+      if (tags) {
+        css += "" + newline + "</style>" + newline;
       }
     }
     return css;
@@ -7018,35 +7924,8 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   };
 
-  jqueryEvents = {
-    bind: 1,
-    on: 1,
-    off: 1,
-    live: 1,
-    blur: 1,
-    change: 1,
-    click: 1,
-    dblclick: 1,
-    focus: 1,
-    focusin: 1,
-    focusout: 1,
-    hover: 1,
-    keydown: 1,
-    keypress: 1,
-    keyup: 1,
-    mousedown: 1,
-    mouseenter: 1,
-    mousemove: 1,
-    mouseout: 1,
-    mouseup: 1,
-    ready: 1,
-    resize: 1,
-    scroll: 1,
-    select: 1
-  };
-
   _compileTag = function(ojml, options) {
-    var att, attr, attrName, attrValue, attributes, child, children, el, events, selector, space, styles, tag, tagType, _base, _j, _k, _len1, _len2, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
+    var att, attr, attrName, attrValue, attributes, child, children, el, events, selector, space, styles, tag, tagType, _base, _base1, _j, _k, _len1, _len2, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8;
 
     if (ojml.length === 0) {
       return;
@@ -7057,10 +7936,10 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     if (!(oj.isString(tag) && tag.length > 0)) {
       throw new Error('oj.compile: tag name is missing');
     }
+    options.tags[tag] = true;
     if (_isCapitalLetter(tag[0])) {
       return _compileDeeper(_compileAny, new oj[tag](ojml.slice(1)), options);
     }
-    options.tags[tag] = true;
     attributes = null;
     if (oj.isObject(ojml[1])) {
       attributes = ojml[1];
@@ -7069,11 +7948,25 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     if (options.css && tag === 'css') {
       for (selector in attributes) {
         styles = attributes[selector];
-        if ((_ref2 = (_base = options.css)[selector]) == null) {
-          _base[selector] = styles;
+        if ((_ref2 = (_base = options.css)['oj']) == null) {
+          _base['oj'] = {};
         }
-        _extend(options.css[selector], styles);
+        if ((_ref3 = (_base1 = options.css['oj'])[selector]) == null) {
+          _base1[selector] = {};
+        }
+        _extend(options.css['oj'][selector], styles);
       }
+    }
+    if (tag === '!DOCTYPE') {
+      if (!oj.isString(ojml[1])) {
+        throw new Error('oj.compile: doctype expects string as first argument');
+      }
+      if (!options.ignore[tag]) {
+        if (options.html) {
+          options.html.push("<" + tag + " " + ojml[1] + ">");
+        }
+      }
+      return;
     }
     if (!options.ignore[tag]) {
       events = _attributesProcessedForOJ(attributes);
@@ -7084,9 +7977,9 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         }
         options.dom = el;
         if (oj.isObject(attributes)) {
-          _ref3 = _keys(attributes).sort();
-          for (_j = 0, _len1 = _ref3.length; _j < _len1; _j++) {
-            attrName = _ref3[_j];
+          _ref4 = _keys(attributes).sort();
+          for (_j = 0, _len1 = _ref4.length; _j < _len1; _j++) {
+            attrName = _ref4[_j];
             attrValue = attributes[attrName];
             if (attrValue === true) {
               att = document.createAttribute(attrName);
@@ -7099,29 +7992,31 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         _attributesBindEventsToDOM(events, el);
       }
       if (options.html) {
-        attr = (_ref4 = _attributesFromObject(attributes)) != null ? _ref4 : '';
+        attr = (_ref5 = _attributesFromObject(attributes)) != null ? _ref5 : '';
         space = attr === '' ? '' : ' ';
         options.html.push("<" + tag + space + attr + ">");
       }
     }
-    for (_k = 0, _len2 = children.length; _k < _len2; _k++) {
-      child = children[_k];
-      if (options.debug && children.length > 1) {
-        if ((_ref5 = options.html) != null) {
-          _ref5.push("\n\t" + options.indent);
+    if (options.ignore[tag] !== 'deep') {
+      for (_k = 0, _len2 = children.length; _k < _len2; _k++) {
+        child = children[_k];
+        if (options.debug && children.length > 1) {
+          if ((_ref6 = options.html) != null) {
+            _ref6.push("\n\t" + options.indent);
+          }
         }
+        _compileDeeper(_compileAny, child, options);
       }
-      _compileDeeper(_compileAny, child, options);
     }
     if (options.debug && children.length > 1) {
-      if ((_ref6 = options.html) != null) {
-        _ref6.push("\n" + options.indent);
+      if ((_ref7 = options.html) != null) {
+        _ref7.push("\n" + options.indent);
       }
     }
     if (!options.ignore[tag]) {
       if (options.html && (children.length > 0 || oj.tag.isClosed(tag))) {
-        if ((_ref7 = options.html) != null) {
-          _ref7.push("</" + tag + ">");
+        if ((_ref8 = options.html) != null) {
+          _ref8.push("</" + tag + ">");
         }
       }
       if (options.dom) {
@@ -7155,12 +8050,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   };
 
-  _attributeClassAllowsArrays = function(attr) {
-    if (oj.isArray(attr != null ? attr["class"] : void 0)) {
-      attr["class"] = attr.join(' ');
-    }
-  };
-
   _attributeOmitFalsyValues = function(attr) {
     var k, v, _results;
 
@@ -7176,6 +8065,33 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       }
       return _results;
     }
+  };
+
+  jqueryEvents = {
+    bind: 1,
+    on: 1,
+    off: 1,
+    live: 1,
+    blur: 1,
+    change: 1,
+    click: 1,
+    dblclick: 1,
+    focus: 1,
+    focusin: 1,
+    focusout: 1,
+    hover: 1,
+    keydown: 1,
+    keypress: 1,
+    keyup: 1,
+    mousedown: 1,
+    mouseenter: 1,
+    mousemove: 1,
+    mouseout: 1,
+    mouseup: 1,
+    ready: 1,
+    resize: 1,
+    scroll: 1,
+    select: 1
   };
 
   _attributesFilterOutEvents = function(attr) {
@@ -7229,10 +8145,10 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       options = {};
     }
     _extend(options, {
-      dom: false,
-      js: false,
-      html: true,
-      css: false
+      dom: 0,
+      js: 0,
+      html: 1,
+      css: 0
     });
     return (oj.compile(options, ojml)).html;
   };
@@ -7243,10 +8159,10 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       options = {};
     }
     _extend(options, {
-      dom: false,
-      js: false,
-      html: false,
-      css: true
+      dom: 0,
+      js: 0,
+      html: 0,
+      css: 1
     });
     return (oj.compile(options, ojml)).css;
   };
@@ -7273,17 +8189,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return value;
   };
 
-  oj.type = function(name, args) {
+  oj.createType = function(name, args) {
     var Out, delay, methodKeys, methods, propKeys, properties, typeProps, _ref2, _ref3;
 
     if (args == null) {
       args = {};
     }
     if (!oj.isString(name)) {
-      throw 'oj.type: string expected for first argument';
+      throw 'oj.createType: string expected for first argument';
     }
     if (!oj.isObject(args)) {
-      throw 'oj.type: object expected for second argument';
+      throw 'oj.createType: object expected for second argument';
     }
     if ((_ref2 = args.methods) == null) {
       args.methods = {};
@@ -7405,22 +8321,22 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return Out;
   };
 
-  oj.argumentsUnion = function(argList) {
-    var list, obj, v, _j, _len1;
+  oj.unionArguments = function(argList) {
+    var args, options, v, _j, _len1;
 
-    obj = {};
-    list = [];
+    options = {};
+    args = [];
     for (_j = 0, _len1 = argList.length; _j < _len1; _j++) {
       v = argList[_j];
       if (oj.isObject(v)) {
-        obj = _extend(obj, v);
+        options = _extend(options, v);
       } else {
-        list.push(v);
+        args.push(v);
       }
     }
     return {
-      options: obj,
-      args: list
+      options: options,
+      args: args
     };
   };
 
@@ -7428,7 +8344,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     throw 'NYI';
   };
 
-  oj.View = oj.type('View', {
+  oj.View = oj.createType('View', {
     constructor: function(options) {
       var _ref2;
 
@@ -7457,18 +8373,16 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           return this._el;
         },
         set: function(v) {
-          var _ref2;
-
           if (oj.isDOMElement(v)) {
             this._el = v;
             this._$el = null;
           } else {
-            _ref2 = oj.compile({
+            this._el = oj.compile({
               css: 0,
-              cssMap: 1,
+              cssMap: 0,
               dom: 1,
               html: 0
-            }, v), this._el = _ref2.dom, this.cssMap = _ref2.cssMap;
+            }, v).dom;
           }
         }
       },
@@ -7477,6 +8391,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           var _ref2;
 
           return (_ref2 = this._$el) != null ? _ref2 : (this._$el = $(this.el));
+        }
+      },
+      id: {
+        get: function() {
+          return this.$el.attr('id');
+        },
+        set: function(v) {
+          return this.$el.attr('id', v);
         }
       },
       attributes: {
@@ -7490,22 +8412,15 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           return out;
         }
       },
-      id: {
+      themes: {
         get: function() {
-          return this.$el.attr('id');
-        },
-        set: function(v) {
-          return this.$el.attr('id', v);
-        }
-      },
-      cssMap: {
-        get: function() {
-          var _ref2;
+          var out;
 
-          return (_ref2 = this._cssMap) != null ? _ref2 : {};
-        },
-        set: function(v) {
-          return this._cssMap = v;
+          out = {};
+          $.each(this.el.attributes, function(index, attr) {
+            return out[attr.name] = attr.value;
+          });
+          return out;
         }
       },
       isConstructed: {
@@ -7534,7 +8449,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
         attr = {};
         attr[name] = value;
-        return this.addAttributes(attr);
+        this.addAttributes(attr);
       },
       addAttributes: function(attributes) {
         var att, attr, events, k, v;
@@ -7569,8 +8484,21 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           this.removeAttribute(k);
         }
       },
+      addTheme: function(name) {
+        this.$el.addClass("theme-" + name);
+      },
+      removeTheme: function(name) {
+        this.$el.removeClass("theme-" + name);
+      },
+      clearThemes: function(name) {
+        var classes;
+
+        this.$el.removeClass("theme-" + name);
+        classes = this.$el.attr('class').split(' ');
+        _each(classes, function(v) {});
+      },
       emit: function() {
-        oj._argumentsAppend(this);
+        oj._argsAppend(this);
       },
       toHTML: function(options) {
         return this.el.outerHTML + ((options != null ? options.debug : void 0) ? '\n' : '');
@@ -7579,10 +8507,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         return this.el;
       },
       toCSS: function(debug) {
-        return _cssFromObject(this.cssMap, debug);
+        return _cssFromPluginObject(_flattenCSSMap(this.cssMap), {
+          debug: debug,
+          tags: 0
+        });
       },
       toCSSMap: function() {
-        return this.cssMap;
+        return this.type.cssMap;
       },
       toString: function() {
         return this.toHTML();
@@ -7593,21 +8524,49 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.View.css = function(def) {
-    oj.View.styles.push(_setObject({}, ".oj-" + this.typeName, def));
+  oj.View.css = function(css) {
+    var cssMap, _base, _base1, _name, _name1, _ref2, _ref3;
+
+    if (!(oj.isString(css) || oj.isObject(css))) {
+      throw new Error("oj." + this.typeName + ".css: object or string expected for first argument");
+    }
+    if (oj.isString(css)) {
+      if ((_ref2 = (_base = this.cssMap)[_name = "oj-" + this.typeName]) == null) {
+        _base[_name] = "";
+      }
+      this.cssMap["oj-" + this.typeName] += css;
+    } else {
+      if ((_ref3 = (_base1 = this.cssMap)[_name1 = "oj-" + this.typeName]) == null) {
+        _base1[_name1] = {};
+      }
+      cssMap = _setObject({}, ".oj-" + this.typeName, css);
+      _extend(this.cssMap["oj-" + this.typeName], cssMap);
+    }
   };
 
-  oj.View.theme = function(name, def) {
-    def = _setObject({}, ".oj-" + this.typeName + ".theme-" + (_dasherize(name)), def);
-    this.type.themes.push(_setObject({}, _dasherize(name), def));
-    this.type.styles.push(def);
+  oj.View.theme = function(name, css) {
+    var cssMap, dashName, _base, _name, _ref2;
+
+    if (!oj.isString(name)) {
+      throw new Error("oj." + this.typeName + ".theme: string expected for first argument (theme name)");
+    }
+    if (!oj.isObject(css)) {
+      throw new Error("oj." + this.typeName + ".css: object expected for second argument");
+    }
+    if ((_ref2 = (_base = this.cssMap)[_name = "oj-" + this.typeName]) == null) {
+      _base[_name] = {};
+    }
+    dashName = _dasherize(name);
+    cssMap = _setObject({}, ".oj-" + this.typeName + ".theme-" + dashName, css);
+    _extend(this.cssMap["oj-" + this.typeName], cssMap);
+    this.themes.push(dashName);
   };
 
-  oj.View.styles = [];
+  oj.View.cssMap = {};
 
   oj.View.themes = [];
 
-  oj.CollectionView = oj.type('CollectionView', {
+  oj.CollectionView = oj.createType('CollectionView', {
     base: oj.View,
     constructor: function(options) {
       if ((options != null ? options.each : void 0) != null) {
@@ -7631,6 +8590,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           }
         }
       },
+      collection: {
+        get: function() {
+          return this.models;
+        },
+        set: function(v) {
+          return this.models = v;
+        }
+      },
       models: {
         get: function() {
           return this._models;
@@ -7643,11 +8610,11 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           }
           this._models = v;
           if (oj.isFunction((_ref3 = this._models) != null ? _ref3.on : void 0)) {
-            this._models.on('add', this.collectionAdded, this);
-            this._models.on('remove', this.collectionRemoved, this);
-            this._models.on('change', this.collectionChanged, this);
+            this._models.on('add', this.collectionModelAdded, this);
+            this._models.on('remove', this.collectionModelRemoved, this);
+            this._models.on('change', this.collectionModelChanged, this);
+            this._models.on('destroy', this.collectionModelDestroyed, this);
             this._models.on('reset', this.collectionReset, this);
-            this._models.on('destroy', this.collectionDestroyed, this);
           }
           if (this.isConstructed) {
             this.make();
@@ -7659,23 +8626,23 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       make: function() {
         throw new Error("oj." + this.typeName + ": `make` method not implemented by custom view");
       },
-      collectionAdded: function(model, collection) {
+      collectionModelAdded: function(model, collection) {
         return this.make();
       },
-      collectionRemoved: function(model, collection, options) {
+      collectionModelRemoved: function(model, collection, options) {
+        return this.make();
+      },
+      collectionModelChanged: function(model, collection, options) {},
+      collectionModelDestroyed: function(collection, options) {
         return this.make();
       },
       collectionReset: function(collection, options) {
-        return this.make();
-      },
-      collectionChanged: function(model, collection, options) {},
-      collectionDestroyed: function(collection, options) {
         return this.make();
       }
     }
   });
 
-  oj.ModelView = oj.type('ModelView', {
+  oj.ModelView = oj.createType('ModelView', {
     base: oj.View,
     constructor: function(options) {
       if ((options != null ? options.value : void 0) != null) {
@@ -7717,7 +8684,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.ModelKeyView = oj.type('ModelKeyView', {
+  oj.ModelKeyView = oj.createType('ModelKeyView', {
     base: oj.ModelView,
     constructor: function(options) {
       if ((options != null ? options.key : void 0) != null) {
@@ -7758,13 +8725,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.TextBox = oj.type('TextBox', {
+  oj.TextBox = oj.createType('TextBox', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.input({
           type: 'text'
@@ -7811,13 +8778,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.CheckBox = oj.type('CheckBox', {
+  oj.CheckBox = oj.createType('CheckBox', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.input({
           type: 'checkbox'
@@ -7850,13 +8817,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.TextArea = oj.type('TextArea', {
+  oj.TextArea = oj.createType('TextArea', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.textarea({
           keydown: function() {
@@ -7892,13 +8859,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.ListBox = oj.type('ListBox', {
+  oj.ListBox = oj.createType('ListBox', {
     base: oj.ModelKeyView,
     constructor: function() {
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.select({
           change: function() {
@@ -7943,30 +8910,58 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.Button = oj.type('Button', {
+  oj.Button = oj.createType('Button', {
     base: oj.View,
-    constructor: function(args) {
-      var options, _ref2, _ref3,
+    constructor: function() {
+      var args, options, title, _ref2,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
-      if ((_ref3 = options.label) == null) {
-        options.label = args.length > 0 ? args[0] : '';
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      title = '';
+      if (args.length > 0) {
+        title = args[0];
+      }
+      if (options.title != null) {
+        title = oj.argumentShift(options, 'title');
       }
       this.el = oj(function() {
-        return oj.button(options.label);
+        return oj.button(title);
       });
-      return oj.Button.base.constructor.apply(this, [options]);
+      oj.Button.base.constructor.apply(this, [options]);
+      return this.title = title;
+    },
+    properties: {
+      title: {
+        get: function() {
+          var _ref2;
+
+          return (_ref2 = this._title) != null ? _ref2 : '';
+        },
+        set: function(v) {
+          this.$el.oj((this._title = v));
+        }
+      }
+    },
+    methods: {
+      click: function() {
+        var _ref2;
+
+        if (arguments.length > 0) {
+          return (_ref2 = this.$el).click.apply(_ref2, arguments);
+        } else {
+          return this.$el.click();
+        }
+      }
     }
   });
 
-  oj.List = oj.type('List', {
+  oj.List = oj.createType('List', {
     base: oj.CollectionView,
     constructor: function() {
       var args, items, options, _ref2, _ref3,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this._tagName = oj.argumentShift(options, 'tagName');
       this.itemTagName = oj.argumentShift(options, 'itemTagName');
       this.el = oj(function() {
@@ -8076,14 +9071,14 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         });
         this.itemsChanged();
       },
-      collectionAdded: function(m, c) {
+      collectionModelAdded: function(m, c) {
         var item, ix;
 
         ix = c.indexOf(m);
         item = this._itemFromModel(m);
         this.add(ix, item);
       },
-      collectionRemoved: function(m, c, o) {
+      collectionModelRemoved: function(m, c, o) {
         this.remove(o.index);
       },
       collectionReset: function() {
@@ -8188,7 +9183,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.NumberList = oj.type('NumberList', {
+  oj.NumberList = oj.createType('NumberList', {
     base: oj.List,
     constructor: function() {
       var args;
@@ -8201,7 +9196,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.BulletList = oj.type('BulletList', {
+  oj.BulletList = oj.createType('BulletList', {
     base: oj.List,
     constructor: function() {
       var args;
@@ -8214,13 +9209,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     }
   });
 
-  oj.Table = oj.type('Table', {
+  oj.Table = oj.createType('Table', {
     base: oj.CollectionView,
     constructor: function() {
       var arg, args, options, rows, _j, _len1, _ref2, _ref3, _ref4,
         _this = this;
 
-      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.table();
       });
@@ -8533,7 +9528,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         }
         this.bodyChanged();
       },
-      collectionAdded: function(m, c) {
+      collectionModelAdded: function(m, c) {
         var row, rx;
 
         rx = c.indexOf(m);
@@ -8542,7 +9537,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
           return oj.tr(row);
         }));
       },
-      collectionRemoved: function(m, c, o) {
+      collectionModelRemoved: function(m, c, o) {
         this.removeRow(o.index);
       },
       collectionReset: function() {
@@ -8581,7 +9576,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         if (ojml != null) {
           return this.$td(rx, cx).oj(ojml);
         } else {
-          return this.td(rx, cx).ojValue();
+          return this.$td(rx, cx).ojValue();
         }
       },
       addRow: function(rx, listOJML) {
@@ -8797,9 +9792,32 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     };
   };
 
+  _triggerTypes = function(types) {
+    var type, _k, _len2;
+
+    for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
+      type = types[_k];
+      type.inserted();
+    }
+  };
+
+  _insertStyles = function(pluginMap, options) {
+    var mediaMap, plugin;
+
+    for (plugin in pluginMap) {
+      mediaMap = pluginMap[plugin];
+      if (plugin === 'oj-style' && !(options != null ? options.global : void 0)) {
+        continue;
+      }
+      if ($('.' + _styleClassFromPlugin(plugin)).length === 0) {
+        $('head').append(oj._styleTagFromMediaObject(plugin, mediaMap));
+      }
+    }
+  };
+
   jQuery.fn.oj = _jqueryExtend({
     set: function($el, args) {
-      var d, dom, types, _k, _l, _len2, _len3, _ref3;
+      var cssMap, d, dom, types, _k, _len2, _ref3;
 
       if (args.length === 0) {
         return $el[0].oj;
@@ -8807,8 +9825,11 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       _ref3 = oj.compile.apply(oj, [{
         dom: 1,
         html: 0,
-        css: 0
-      }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types;
+        cssMap: 1
+      }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
+      _insertStyles(cssMap, {
+        global: 0
+      });
       $el.html('');
       if (!oj.isArray(dom)) {
         dom = [dom];
@@ -8817,15 +9838,46 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         d = dom[_k];
         $el.append(d);
       }
-      for (_l = 0, _len3 = types.length; _l < _len3; _l++) {
-        t = types[_l];
-        t.inserted();
-      }
+      _triggerTypes(types);
     },
     get: function($el) {
       return $el[0].oj;
     }
   });
+
+  jQuery.ojBody = function(ojml) {
+    var bodyOnly, cssMap, dom, eCompile, types, _ref3;
+
+    bodyOnly = {
+      html: 1,
+      '!DOCTYPE': 1,
+      body: 1,
+      head: 1,
+      meta: 1,
+      title: 'deep',
+      link: 1,
+      script: 1
+    };
+    try {
+      _ref3 = oj.compile({
+        dom: 1,
+        html: 0,
+        css: 0,
+        cssMap: 1,
+        ignore: bodyOnly
+      }, ojml), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
+    } catch (_error) {
+      eCompile = _error;
+      throw new Error("oj: dom failed to compile with error: " + eCompile.message);
+    }
+    if (dom != null) {
+      $('body').html(dom);
+    }
+    _insertStyles(cssMap, {
+      global: 1
+    });
+    return _triggerTypes(types);
+  };
 
   _jqGetValue = function($el, args) {
     var child, el, inst, text;
@@ -8869,17 +9921,19 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   _fn1 = function(ojName, jqName) {
     return jQuery.fn[ojName] = _jqueryExtend({
       set: function($el, args) {
-        var dom, types, _k, _len2, _ref3;
+        var cssMap, dom, types, _ref3;
 
         _ref3 = oj.compile.apply(oj, [{
           dom: 1,
-          html: 0
-        }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types;
+          html: 0,
+          css: 0,
+          cssMap: 1
+        }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
+        _insertStyles(cssMap, {
+          global: 0
+        });
         $el[jqName](dom);
-        for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
-          t = types[_k];
-          t.inserted();
-        }
+        _triggerTypes(types);
       },
       get: null
     });
@@ -8898,52 +9952,14 @@ RR = function(f){
   return function(m){
     return run(find(m, f));
   };
-  function run(f){
-    if(R[f] != null)
-      return R[f];
-    var eo = {},
-      mo = {exports: eo};
-    if(typeof F[f] != 'function')
-      throw new Error("file not found (" + f + ")");
-    F[f](mo,eo);
-    return R[f] = mo.exports;
-  }
-  function find(m,f){
-    var r, dir, dm, ext, ex, i;
-
-    if (F[m] && !m.match(/\//)) {
-      return m;
-    }
-
-    if (!!m.match(/\//)) {
-      r = oj._pathResolve(f, oj._pathJoin(oj._pathDirname(f), m));
-      ext = ['.ojc','.oj','.coffee','.js','.json'];
-      for(i = 0; i < ext.length; i++){
-        ex = ext[i];
-        if(F[r+ex])
-          return r+ex;
-      }
-    } else {
-      dir = oj._pathDirname(f);
-      while(true) {
-        dm = oj._pathJoin(dir, 'node_modules');
-        if(M[dm] && M[dm][m])
-          return oj._pathJoin(dm, m, M[dm][m]);
-        if(dir == '/')
-          break;
-        dir = oj._pathResolve(dir, '..');
-      }
-    }
-    throw new Error("module not found (" + m + ")");
-  }
+  function run(f){    if(R[f] != null)      return R[f];    var eo = {},      mo = {exports: eo};    if(typeof F[f] != 'function')      throw new Error("file not found (" + f + ")");    F[f](mo,eo);    return R[f] = mo.exports;  }
+  function find(m,f){    var r, dir, dm, ext, ex, i;    if (F[m] && !m.match(/\//)) {      return m;    }    if (!!m.match(/\//)) {      r = oj._pathResolve(f, oj._pathJoin(oj._pathDirname(f), m));      ext = ['.ojc','.oj','.coffee','.js','.json'];      for(i = 0; i < ext.length; i++){        ex = ext[i];        if(F[r+ex])          return r+ex;      }    } else {      dir = oj._pathDirname(f);      while(true) {        dm = oj._pathJoin(dir, 'node_modules');        if(M[dm] && M[dm][m])          return oj._pathJoin(dm, m, M[dm][m]);        if(dir == '/')          break;        dir = oj._pathResolve(dir, '..');      }    }    throw new Error("module not found (" + m + ")");  }
 };
 
 require = RR('/index');
 oj = require('oj');
-oj.begin('/index');
+oj.load('/index');
 
 }).call(this);
 
-</script></body>
-	</html>
-	
+</script></body></html>

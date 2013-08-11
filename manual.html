@@ -1,1538 +1,630 @@
-<!DOCTYPE html><html><head><meta content="width=device-width" name="viewport"><title>OJ Docs - Unified Templating</title><link href="styles/reset.css" rel="stylesheet" type="text/css"><link href="styles/gg.css" rel="stylesheet" type="text/css"><script src="scripts/jquery.js" type="text/javascript"></script><script src="scripts/jquery.event.drag.js" type="text/javascript"></script><script src="scripts/jquery.ba-resize.min.js" type="text/javascript"></script><script src="scripts/underscore.js" type="text/javascript"></script><script src="scripts/backbone.js" type="text/javascript"></script><script src="scripts/coffee-script.js" type="text/javascript"></script><script src="scripts/ace/ace.js" type="text/javascript"></script><style class="oj-style">
-h1 {
-	border-bottom:2px solid #FFD36B;
-	color:#444;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:25px;
-	font-weight:100;
-	margin-bottom:12px;
-	margin-top:40px;
-	padding-bottom:6px;
-}
-h1:first-child {
-	margin-top:20px;
-}
-h2 {
-	color:#444;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:22px;
-	font-weight:100;
-	margin:32px 0 15px 0;
-	text-decoration:none;
-}
-h3 {
-	color:#222;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:16px;
-	font-weight:100;
-	margin-bottom:14px;
-	margin-top:22px;
-}
-a {
-	color:#E78B00;
-	text-decoration:none;
-}
-a.heading1,
-a.heading1:hover {
-	color:#444;
-	text-decoration:none;
-}
-a.heading2,
-a.heading2:hover {
-	color:#444;
-	text-decoration:none;
-}
-a.type {
-	color:#E78B00;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a.function {
-	color:#E78B00;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a.method {
-	color:#a64d09;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a.event {
-	color:#a64d09;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a.property {
-	color:#b3820a;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a.option {
-	color:#b3820a;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a.argument {
-	color:#b3820a;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-}
-a:hover {
-	text-decoration:underline;
-}
-blockquote {
-	border-left:2px solid #ffd272;
-	padding:0 0 0 10px;
-}
-p {
-	color:#444;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:16px;
-	font-weight:lighter;
-	line-height:24px;
-	margin:16px 0 8px 0;
-}
-p strong {
-	color:#000;
-	font-family:Helvetica, Arial, sans-serif;
-	font-weight:400;
-}
-ul {
-	margin-bottom:16px;
-}
-li {
-	color:#444;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	line-height:20px;
-	margin:10px 0 10px 20px;
-}
-.oj-TryEditor {
-	margin-bottom:30px;
-}
-.code-heading {
-	color:#222;
-	font-family:Inconsolata, Consolas, Courier New, monospace;
-	font-size:19px;
-}
-.code-subheading {
-	color:#444;
-	display:block;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	font-style:italic;
-	font-weight:lighter;
-	line-height:20px;
-	margin-top:10px;
-}
-.code-items {
-	margin:10px 0 10px 10px;
-	width:100%;
-}
-.code-items tr {
-	width:100%;
-}
-.code-item {
-	display:block;
-	margin:0 0 4px 0;
-}
-.code-item-base {
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	line-height:20px;
-	margin:10px 0 10px 10px;
-}
-.code-item-name {
-	display:inline-block;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	line-height:20px;
-	margin:0 0 0 20px;
-	min-width:100px;
-}
-.code-item-def {
-	color:#444;
-	display:inline-block;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	line-height:20px;
-	margin:0 0 0 20px;
-	width:100%;
-}
-.code-item-def p {
-	margin:0 0 10px 0;
-}
-.code-item-def pre {
-	border:0;
-	color:#444;
-	margin:0 0 10px 0;
-}
-pre {
-	background-color:#FEFAF3;
-	border:2px solid #FFD36B;
-	color:#444;
-	font-size:14px;
-	line-height:18px;
-	padding:8px;
-}
-.toc-section {
-	color:#C76200;
-	display:block;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	font-weight:lighter;
-	margin:0 0 10px 0;
-	text-align:right;
-	text-transform:uppercase;
-}
-.toc-item {
-	color:#E78B00;
-	display:block;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:13px;
-	font-weight:lighter;
-	margin:0 0 4px 0;
-	text-align:right;
-}
-.toc-items {
-	margin-bottom:10px;
-}
-.left {
-	margin-bottom:10px;
-}
-textarea {
-	border-color:#f4f4f4;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	height:100px;
-	width:100%;
-}
-.snippet {
-	border:1px solid orange;
-	height:100px;
-	margin:0;
-	position:relative;
-	width:100%;
-}
-.download-button {
-	background-color:#FEFAF3;
-	border:2px solid orange;
-	border-radius:5px;
-	box-shadow:2px 2px 2px RGBA(0,0,0,0.2);
-	cursor:pointer;
-	font-family:Helvetica, Arial, sans-serif;
-	font-size:14px;
-	height:27px;
-}
-.download-button:hover {
-	background-color:#fff;
-}
-.fixed {
-	height:40px;
-	margin-top:62px;
-	position:fixed;
-	z-index:100;
-}
-.relative {
-	position:relative;
-}
-.show-phone {
-	display:none;
-}
-header {
-	background-color:white;
-	box-shadow:2px 2px 2px RGBA(0,0,0,0.1);
-	height:45px;
-	position:fixed;
-	width:100%;
-	z-index:1000;
-}
-.header-contents {
-	display:block;
-	float:none !important;
-	height:45px;
-	margin-left:auto !important;
-	margin-right:auto !important;
-}
-.header-logo {
-	background:url(media/oj_logo_small.png) no-repeat 0 center;
-	display:inline-block;
-	height:22px;
-	margin-left:91px;
-	vertical-align:middle;
-	width:32px;
-}
-.header-options {
-	display:inline-block;
-	margin-left:44px;
-	padding-top:12px;
-}
-.header-option {
-	color:#E98C00;
-	font-family:Helvetica, Arial, Tahoma;
-	font-size:18px;
-	font-weight:100;
-	vertical-align:middle;
-}
-.header-option:not(:first-child) {
-	margin-left:44px;
-}
-.header-orange-corner {
-	background-size:contain;
-	height:42px;
-	position:absolute;
-	top:0px;
-	width:42px;
-}
-.header-orange-corner.left {
-	background-image:url(media/orange_left.png);
-	left:0px;
-}
-.header-orange-corner.right {
-	background-image:url(media/orange_right.png);
-	right:0px;
-}
-@media only screen and (max-width: 767px) {
-	.fixed {
-		margin-top:85px;
-	}
-	.relative {
-		margin-top:62px;
-	}
-	.hide-phone {
-		display:none;
-	}
-	.show-phone {
-		display:block;
-	}
-	header {
-		height:72px;
-	}
-	.header-contents {
-		height:30px;
-		padding-top:10px;
-		text-align:center;
-	}
-	.header-logo {
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-		text-align:center;
-	}
-	.header-options {
-		display:block;
-		margin-left:0px;
-		text-align:center;
-	}
-	.header-option:not(:first-child) {
-		margin-left:20px;
-	}
-	.header-option {
-		margin-top:30px;
-	}
-}
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-	.show-phone {
-		display:none;
-	}
-}
-</style></head><body><header><div class="header-contents"><a class="header-logo" href="index.html"></a><div class="header-options"><a class="header-option" href="learn.html">Learn</a><a class="header-option" href="try.html">Try</a><a class="header-option" href="docs.html">Docs</a><a class="header-option" href="plugins.html">Plugins</a><a class="header-option" href="download.html">Download</a></div></div><div class="header-orange-corner left"></div><div class="header-orange-corner right"></div></header><div class="gg"><div class="fixed row"><div class="toc-right o75 gg25 hide-phone"><a class="toc-section" href="#starting-out">Starting Out</a><div class="toc-items"><a class="toc-item" href="#intro">Introduction</a><a class="toc-item" href="#license">License</a></div><a class="toc-section" href="#collection-types">Collection Types</a><div class="toc-items"><a class="toc-item" href="#BulletList">oj.BulletList</a><a class="toc-item" href="#NumberList">oj.NumberList</a><a class="toc-item" href="#List">oj.List</a><a class="toc-item" href="#Table">oj.Table</a></div><a class="toc-section" href="#form-types">Form Types</a><div class="toc-items"><a class="toc-item" href="#CheckBox">oj.CheckBox</a><a class="toc-item" href="#TextBox">oj.TextBox</a><a class="toc-item" href="#Button">oj.Button</a></div><a class="toc-section" href="#creating-types">Creating Types</a><div class="toc-items"><a class="toc-item" href="#createType">oj.createType</a><a class="toc-item" href="#Type">Type Interface</a><a class="toc-item" href="#typeOf">oj.typeOf</a></div><a class="toc-section" href="#base-types">Base Types</a><div class="toc-items"><a class="toc-item" href="#View">oj.View</a><a class="toc-item" href="#ModelKeyView">oj.ModelKeyView</a><a class="toc-item" href="#CollectionView">oj.CollectionView</a></div><a class="toc-section" href="#static-websites">Static Websites</a><div class="toc-items"><a class="toc-item" href="#install">Install</a><a class="toc-item" href="#file-types">File Types (.oj / .ojc)</a><a class="toc-item" href="#command-line">Command Line</a></div></div></div></div><div class="gg"><div class="relative row"><div class="body gg100"><div class="row"><div class="toc-above gg25 show-phone"><a class="toc-section" href="#starting-out">Starting Out</a><div class="toc-items"><a class="toc-item" href="#intro">Introduction</a><a class="toc-item" href="#license">License</a></div><a class="toc-section" href="#collection-types">Collection Types</a><div class="toc-items"><a class="toc-item" href="#BulletList">oj.BulletList</a><a class="toc-item" href="#NumberList">oj.NumberList</a><a class="toc-item" href="#List">oj.List</a><a class="toc-item" href="#Table">oj.Table</a></div><a class="toc-section" href="#form-types">Form Types</a><div class="toc-items"><a class="toc-item" href="#CheckBox">oj.CheckBox</a><a class="toc-item" href="#TextBox">oj.TextBox</a><a class="toc-item" href="#Button">oj.Button</a></div><a class="toc-section" href="#creating-types">Creating Types</a><div class="toc-items"><a class="toc-item" href="#createType">oj.createType</a><a class="toc-item" href="#Type">Type Interface</a><a class="toc-item" href="#typeOf">oj.typeOf</a></div><a class="toc-section" href="#base-types">Base Types</a><div class="toc-items"><a class="toc-item" href="#View">oj.View</a><a class="toc-item" href="#ModelKeyView">oj.ModelKeyView</a><a class="toc-item" href="#CollectionView">oj.CollectionView</a></div><a class="toc-section" href="#static-websites">Static Websites</a><div class="toc-items"><a class="toc-item" href="#install">Install</a><a class="toc-item" href="#file-types">File Types (.oj / .ojc)</a><a class="toc-item" href="#command-line">Command Line</a></div></div><div class="content gg75"><h1 id="starting-out"><a class="heading1" href="#starting-out">Starting Out</a></h1><h2 id="intro"><a class="heading2" href="#intro">Introduction</a></h2><p> OJ simplifies creation and manipulation of the DOM by abstracting the web into objects. It literally stands for Object Javascript, and was created under the philosophy that object encapsulation simplifies development.</p>
-<p> To this end OJ provides several <a href="#collection-types">Collection Types</a> and <a href="#form-types">Form Types</a> to help you create your website server side and manipulate it dynamically client-side. Two-way model binding is built right in if you use Backbone models (or anything with <code>.on</code> <code>.off</code> event binding). Collection binding is built into <a href="#List">oj.List</a> and <a href="Table">oj.Table</a>, for more complex views.</p>
-<p> For simple tag creation OJ provides a series of <a href="#tags">tag functions</a>, one for every tag (<code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;a&gt;</code>, etc), to build up structure of your site and help create the collection and form types you are using. These tag functions allow you to create html structure, css, and bind jquery events simultaneously.</p>
-<p>To truly master OJ it is encouraged to create your own custom types; <a href="#List">List</a> and <a href="#Table">Table</a> are going to get you quite far, but it is much easier to think in terms of <code>ChatWindow</code> or <code>FriendList</code> then to manually manipulate several things at once by hand. To this end OJ provides a <a href="#createType">type creation function</a> and some inheritable <a href="#base-types">base types</a> to help you create types of your own. With these base types, model binding is quite easy.</p>
-<p>For server side use of oj a <a href="#command-line">command-line tool</a> called <code>oj</code> can be <a href="#install">installed</a> with node&#39;s package manager <code>npm</code>. The tools purpose is to combine <a href="#file-types">oj file types</a> together into <code>html</code> files. It supports watch for debugging and magnification of html, javascript, and css for production. <strong>Important Note:</strong> This tool is <em>not</em> a web server. It is quite capable as a static site generator, but for more complex scenarios an <a href="http://expressjs.com/">express plugin</a> is <a href="https://github.com/ojjs/oj/issues/1">in the works</a>.</p>
-<p> As always contributions are most welcome. Feel free to send <a href="https://github.com/ojjs/oj">pull requests</a> or to report bugs and feature requests as <a href="https://github.com/ojjs/oj/issues">issues</a>.</p>
-<h2 id="license"><a class="heading2" href="#license">License</a></h2><p>Copyright (c) 2013 Evan Moran <br>
-OJ may be freely distributed under the <a href="https://raw.github.com/ojjs/oj/master/LICENSE">MIT license</a></p>
-<h1 id="collection-types"><a class="heading1" href="#collection-types">Collection Types</a></h1><p>These objects are built-in to OJ and designed to be the building blocks for more complex websites. <a href="#BulletList">BulletList</a>, <a href="NumberList">NumberList</a> exist to easily create numbered lists or bulleted lists.</p>
-<p>All collection types can be created directly through a list of arguments, or by binding to a Backbone.Collection object. If a collection object is used these objects will minimally rebuild themselves as the collection changes.</p>
-<p><a href="#List">List</a> exists to create lists of items without symbols. It uses <code>&lt;div&gt;</code> for its tags instead of <code>&lt;ul&gt;</code> or <code>&lt;li&gt;</code> as this is often desired for <code>ChatWindows</code> or <code>FriendLists</code> -- basically this is ideal for whenever you don&#39;t really want numbers or bullets.</p>
-<p><a href="#Table">Table</a> is the most complex object built into OJ. It supports everything <a href="#List">List</a> does, but adds another dimension. It also supports Backbone.Collection binding and is designed to support hundreds of thousands of rows. In generally OJ is built around the idea of direct DOM manipulation. Server-side it builds strings, but client side it just modifies elements directly for much improved performance.</p>
-<p>All collection objects inherit from <a href="#CollectionView">CollectionView</a> and <a href="#View">View</a> and so definitely take a look at what those provide.</p>
-<h2 id="BulletList"><a class="heading2" href="#BulletList">oj.BulletList</a></h2><p>This is a simple alias for <a href="#List">oj.List</a> to abstract creating <strong>bulleted</strong> lists. It overrides the properties <a href="#List-tagName">tagName</a> to <code>ul</code>, and <a href="#List-itemTagName">itemTagName</a> to <code>li</code>.</p>
-<h2 id="NumberList"><a class="heading2" href="#NumberList">oj.NumberList</a></h2><p>This is a simple alias for <a href="#List">oj.List</a> to abstract creating <strong>numbered</strong> lists. It overrides the properties <a href="#List-tagName">tagName</a> to <code>ul</code>, and <a href="#List-itemTagName">itemTagName</a> to <code>li</code>.</p>
-<h2 id="List"><a class="heading2" href="#List">oj.List</a></h2><p>Lists are at the heart of OJ. They are a fundamental building block that lets you bind collections of models to views. That can be as simple as NumberList and BulletList above. Or they can be more complex and render Chat Messages, Todo Lists, or whatever else you want tied to data.</p>
-<p>Lists can be constructed by basic types:</p>
-<pre><code>List(&#39;a&#39;, 2, true);</code></pre>
-<p>Lists can be constructed from oj objects:</p>
-<pre><code>List(CheckBox(true), TextBox(&#39;hello&#39;));</code></pre>
-<p>Lists can be constructed from <a href="#ojml">ojml</a>:</p>
-<pre><code>List(
-  [div, &#39;a&#39;],
-  [span, &#39;b&#39;]
-);</code></pre>
-<p>Lists can be constructed from functions:</p>
-<pre><code>List(
-  function(){div(&#39;a&#39;);},
-  function(){span(&#39;a&#39;);},
-);</code></pre>
-<h3 class="code-heading">List(items..., properties)</h3><div class="code-subheading argument">arguments:</div><table class="code-items argument"><tbody><tr class="code-item argument"><td class="code-item-name argument" id="List-argument-items"><a class="argument" href="#List-argument-items">items...</a></td><td class="code-item-def argument"><p>Any number of values to add to the list.</p>
-<p>Constructing with these arguments has the same effect as setting the <a href="List-items">items</a> property.</p>
-</td></tr><tr class="code-item argument"><td class="code-item-name argument" id="Table-argument-rows"><a class="argument" href="#Table-argument-rows">properties</a></td><td class="code-item-def argument"><p>An object to bulk set properties.</p>
-<p>Keys that aren&#39;t properties are passed as attributes to the root element.</p>
-</td></tr></tbody></table><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#CollectionView">CollectionView</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="List-count"><a class="property" href="#List-count">count</a></td><td class="code-item-def property"><p>Number of items (Number, <a href="#read-only">read-only</a>))</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="List-collection"><a class="property" href="#List-collection">collection</a></td><td class="code-item-def property"><p>Inherited from <a href="#CollectionView-collection">CollectionView.collection</a></p>
-<p>The collection for the view. This can be an Array or a Backbone.Collection</p>
-<p>When Backbone is used changes to the collection will cause the view
-to be automatically redrawn. This is done minimally so adds and removes
-cause fewest redraws possible.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="List-models"><a class="property" href="#List-models">models</a></td><td class="code-item-def property"><p>Alias for <code>collection</code> property</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="List-each"><a class="property" href="#List-each">each</a></td><td class="code-item-def property"><p>Inherited from <a href="#CollectionView-each">CollectionView.each</a></p>
-<p>A mapping function that turns a model into a view.</p>
-<p>Use this whenever you set <a href="#models">models</a> to specify which part of the model to render.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="List-tagName"><a class="property" href="#List-tagName">tagName</a></td><td class="code-item-def property"><p>Name of tag (String, write-construct)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="List-itemTagName"><a class="property" href="#List-itemTagName">itemTagName</a></td><td class="code-item-def property"><p>Name of tag for each item (String, <a href="#read-write">read-write</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="List-$items"><a class="property" href="#List-$items">$items</a></td><td class="code-item-def property"><p>Helper to get all item jquery elements ([jQueryElement], <a href="#read-only">read-only</a>))</p>
-</td></tr></tbody></table><div class="code-subheading method">methods:</div><table class="code-items method"><tbody><tr class="code-item method"><td class="code-item-name method" id="List-item"><a class="method" href="#List-item">item(index, oj)</a></td><td class="code-item-def method"><p>Get or set the item at <code>index</code>
-<code>index</code> may be negative to access elements at the end.</p>
-<p>When <code>view</code> is specified the item is set to the oj view
-When <code>view</code> is omitted the item value is returned
-How this value is returned is handled by <a href="jquery-ojValue">ojValue</a>
-a included jQuery plugin.</p>
-<pre><code>list.item(2)              // get item
-list.item(2, &#39;hello&#39;)     // set item to &#39;hello&#39;
-list.item(2, function(){  // Set item to a TextBox
-  TextBox &#39;goodbye&#39;
-}</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-$item"><a class="method" href="#List-$item">$item(index)</a></td><td class="code-item-def method"><p>Helper to get an item&#39;s containing element wrapped by jquery</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-add"><a class="method" href="#List-add">add(index, oj)</a></td><td class="code-item-def method"><p>Add item at <code>index</code>
-<code>index</code> may be negative to access elements at the end.
-<code>oj</code> may be any oj view or object.</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;);      // [&#39;a&#39;,&#39;b&#39;]
-list.add(1, &#39;c&#39;);          // [&#39;a&#39;,&#39;c&#39;,&#39;b&#39;]
-list.add(-1, &#39;d&#39;);         // [&#39;a&#39;,&#39;c&#39;,&#39;b&#39;,&#39;d&#39;]</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-remove"><a class="method" href="#List-remove">remove(index)</a></td><td class="code-item-def method"><p>Remove item at index
-<code>index</code> may be negative to access elements at the end.</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);  // [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]
-list.remove(1);            // [&#39;a&#39;,&#39;c&#39;]
-list.remove(-1);           // [&#39;a&#39;]</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-push"><a class="method" href="#List-push">push(oj)</a></td><td class="code-item-def method"><p>Add a new last item</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;);      // [&#39;a&#39;,&#39;b&#39;]
-list.push(&#39;c&#39;);            // [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-pop"><a class="method" href="#List-pop">pop()</a></td><td class="code-item-def method"><p>Remove the last item</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;);      // [&#39;a&#39;,&#39;b&#39;]
-list.pop();                // [&#39;a&#39;]</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-shift"><a class="method" href="#List-shift">shift(oj)</a></td><td class="code-item-def method"><p>Remove the first item</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;);      // [&#39;a&#39;,&#39;b&#39;]
-list.shift();              // [&#39;b&#39;]</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-unshift"><a class="method" href="#List-unshift">unshift(oj)</a></td><td class="code-item-def method"><p>Add a new first item</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;);      // [&#39;a&#39;,&#39;b&#39;]
-list.unshift(&#39;c&#39;);         // [&#39;c&#39;,&#39;a&#39;,&#39;b&#39;]</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-clear"><a class="method" href="#List-clear">clear(oj)</a></td><td class="code-item-def method"><p>Remove all items</p>
-<pre><code>list = List(&#39;a&#39;,&#39;b&#39;);      // [&#39;a&#39;,&#39;b&#39;]
-list.clear();              // []</code></pre>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-move"><a class="method" href="#List-move">move(index, index2)</a></td><td class="code-item-def method"><p>Move item from <code>index</code> to <code>index2</code></p>
-<p>list = List(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);      // [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]
-    list.move(2,0);            // [&#39;c&#39;,&#39;b&#39;,&#39;a&#39;]</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="List-swap"><a class="method" href="#List-swap">swap(index, index2)</a></td><td class="code-item-def method"><p>Swap items at <code>index</code> to <code>index2</code></p>
-<p>list = List(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;);      // [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]
-    list.swap(1,2);            // [&#39;a&#39;,&#39;c&#39;,&#39;b&#39;]</p>
-</td></tr></tbody></table><h2 id="Table"><a class="heading2" href="#Table">oj.Table</a></h2><p>Tables are another building block in OJ. Like [List] it can be used to show static data or be bound to collections of models. When the collection changes it will automatically add and remove rows to rerender the table.</p>
-<p>Tables can be constructed with arrays of values:</p>
-<pre><code>Table(
-  [1,2,3],
-  [4,5,6]
-);</code></pre>
-<h3 class="code-heading">Table(rows..., properties)</h3><div class="code-subheading argument">arguments:</div><table class="code-items argument"><tbody><tr class="code-item argument"><td class="code-item-name argument" id="Table-argument-rows"><a class="argument" href="#Table-argument-rows">rows...</a></td><td class="code-item-def argument"><p>Any number of rows to add to the table.</p>
-<p>Constructing with these arguments has the same effect as setting the <a href="List-items">items</a> property.</p>
-</td></tr><tr class="code-item argument"><td class="code-item-name argument" id="Table-argument-properties"><a class="argument" href="#Table-argument-properties">properties</a></td><td class="code-item-def argument"><p>A object to bulk set properties.</p>
-<p>Keys that aren&#39;t properties are passed as attributes to the root element.</p>
-</td></tr></tbody></table><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#CollectionView">CollectionView</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="Table-rowCount"><a class="property" href="#Table-rowCount">rowCount</a></td><td class="code-item-def property"><p>Number of rows (Number, <a href="#read-only">read-only</a>))</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-columnCount"><a class="property" href="#Table-columnCount">columnCount</a></td><td class="code-item-def property"><p>Number of columns (Number, <a href="#read-only">read-only</a>))</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-collection"><a class="property" href="#Table-collection">collection</a></td><td class="code-item-def property"><p>Inherited from <a href="#CollectionView-collection">CollectionView.collection</a></p>
-<p>The collection for the view. This can be an Array or a Backbone.Collection</p>
-<p>When Backbone is used changes to the collection will cause the view
-to be automatically redrawn. This is done minimally so adds and removes
-cause fewest redraws possible.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-models"><a class="property" href="#Table-models">models</a></td><td class="code-item-def property"><p>Alias for <code>collection</code> property</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-each"><a class="property" href="#Table-each">each</a></td><td class="code-item-def property"><p>Inherited from <a href="#CollectionView-each">CollectionView.each</a></p>
-<p>A mapping function that turns a model into a view.</p>
-<p>Use this whenever you set <a href="#models">models</a> to specify which part of the model to render.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$trs"><a class="property" href="#Table-$trs">$trs</a></td><td class="code-item-def property"><p>Accessor to all row <code>&lt;tr&gt;</code> elements (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$ths"><a class="property" href="#Table-$ths">$ths</a></td><td class="code-item-def property"><p>Accessor to all <code>&lt;th&gt;</code> elements (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$table"><a class="property" href="#Table-$table">$table</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;table&gt;</code> element (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$thead"><a class="property" href="#Table-$thead">$thead</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;thead&gt;</code> element (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$tbody"><a class="property" href="#Table-$tbody">$tbody</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;tbody&gt;</code> element (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$tfoot"><a class="property" href="#Table-$tfoot">$tfoot</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;tfoot&gt;</code> element (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$caption"><a class="property" href="#Table-$caption">$caption</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;caption&gt;</code> element (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$colgroup"><a class="property" href="#Table-$colgroup">$colgroup</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;colgroup&gt;</code> element (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$theadTR"><a class="property" href="#Table-$theadTR">$theadTR</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;tr&gt;</code> element in <code>&lt;thead&gt;</code> (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Table-$tfootTR"><a class="property" href="#Table-$tfootTR">$tfootTR</a></td><td class="code-item-def property"><p>Accessor to <code>&lt;tr&gt;</code> element in <code>&lt;tfoot&gt;</code> (<a href="#read-only">read-only</a>)</p>
-</td></tr></tbody></table><div class="code-subheading method">methods:</div><table class="code-items method"><tbody><tr class="code-item method"><td class="code-item-name method" id="Table-row"><a class="method" href="#Table-row">row(rx, ojArray)</a></td><td class="code-item-def method"><p>Get or set the row at <code>index</code>
-<code>index</code> may be negative to access elements at the end.</p>
-<p>When <code>ojArray</code> is specified the row cells are set to the specified oj views.</p>
-<p>When <code>ojArray</code> is omitted the row values are returned.</p>
-<p>How this value is returned is handled by <a href="jquery-ojValue">ojValue</a> jQuery plugin.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-cell"><a class="method" href="#Table-cell">cell(rx, cx, oj)</a></td><td class="code-item-def method"><p>Get or set the cell at row index <code>rx</code>, column index <code>cx</code></p>
-<p><code>rx</code> and <code>cx</code> may be negative to access elements at the end.</p>
-<p>When <code>oj</code> is specified the cell is set to the value of the oj view.</p>
-<p>When <code>oj</code> is omitted the cell value is returned.</p>
-<p>How this value is returned is handled by <a href="jquery-ojValue">ojValue</a> jQuery plugin.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-clear"><a class="method" href="#Table-clear">clear()</a></td><td class="code-item-def method"><p>Remove everything in the table: rows, headers, footers, and captions.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-clearBody"><a class="method" href="#Table-clearBody">clearBody()</a></td><td class="code-item-def method"><p>Remove all rows in body</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-clearHeader"><a class="method" href="#Table-clearHeader">clearHeader()</a></td><td class="code-item-def method"><p>Remove the header</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-clearFooter"><a class="method" href="#Table-clearFooter">clearFooter()</a></td><td class="code-item-def method"><p>Remove the footer</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-addRow"><a class="method" href="#Table-addRow">addRow(rx, ojArray)</a></td><td class="code-item-def method"><p>Add row at index <code>rx</code></p>
-<p><code>rx</code> may be negative to access elements at the end.</p>
-<p><code>ojArray</code> is an array of any oj views or objects.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-removeRow"><a class="method" href="#Table-removeRow">removeRow(rx)</a></td><td class="code-item-def method"><p>Remove item at index <code>rx</code></p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-pushRow"><a class="method" href="#Table-pushRow">pushRow(ojArray)</a></td><td class="code-item-def method"><p>Add a new last row</p>
-<p><code>ojArray</code> is an array of oj views or objects.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-popRow"><a class="method" href="#Table-popRow">popRow()</a></td><td class="code-item-def method"><p>Remove the last row</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-shiftRow"><a class="method" href="#Table-shiftRow">shiftRow()</a></td><td class="code-item-def method"><p>Remove the first row and return it.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-unshiftRow"><a class="method" href="#Table-unshiftRow">unshiftRow(ojArray)</a></td><td class="code-item-def method"><p>Add a new first row
-<code>ojArray</code> is an array of oj views or objects.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-moveRow"><a class="method" href="#Table-moveRow">moveRow(rx, rx2)</a></td><td class="code-item-def method"><p>Move row from index <code>rx</code> to <code>rx2</code></p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-swapRow"><a class="method" href="#Table-swapRow">swapRow(rx, rx2)</a></td><td class="code-item-def method"><p>Swap row at index <code>rx</code> to <code>rx2</code></p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-$tr"><a class="method" href="#Table-$tr">$tr(rx)</a></td><td class="code-item-def method"><p>Accessor to <code>&lt;tr&gt;</code> at row index <code>rx</code></p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Table-$tr"><a class="method" href="#Table-$tr">$td(rx,cx)</a></td><td class="code-item-def method"><p>Accessor to <code>&lt;td&gt;</code> at row index <code>rx</code>, column index <code>cx</code></p>
-</td></tr></tbody></table><h1 id="form-types"><a class="heading1" href="#form-types">Form Types</a></h1><p>  These objects create smart form elements that two-way bind to <em>parts</em> of a model: a model-key. Why only part of a model? The reason is controls usually only affect a single key, for example the <code>email</code> field, or <code>name</code> field might be bound to a <a href="#TextBox">TextBox</a>. While a  <a href="#CheckBox">CheckBox</a> might bind to boolean properties <code>wantsTheNewsletter</code> or <code>isRegistered</code>. These keys can all be on the same <code>UserModel</code>, but they affect different things.</p>
-<h3>Example of binding a TextBox</h3>
-<p>  Create a user</p>
-<pre><code>  var UserModel = new Backbone.Model.extend();
-  var user = new UserModel({name:&#39;Evan&#39;});</code></pre>
-<p>  Bind TextBox to the user&#39;s name</p>
-<pre><code>  var TextBox({model: user, key:&#39;name&#39;});</code></pre>
-<p>  Two way binding will happen automatically. If you change the model&#39;s name the TextBox will update. If you type in the TextBox the model will update.</p>
-<p>The model-key binding syntax works on all Form Types the inherit from <a href="#ModelKeyView">ModelKeyView</a>.</p>
-<h2 id="CheckBox"><a class="heading2" href="#CheckBox">oj.CheckBox</a></h2><p>An OJ object that creates and manipulates a CheckBox control. The <code>value</code> property can be set in the first argument, or through via <code>properties</code>.</p>
-<h3 class="code-heading">CheckBox(value, properties)</h3><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#ModelKeyView">ModelKeyView</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="CheckBox-value"><a class="property" href="#CheckBox-value">value</a></td><td class="code-item-def property"><p>The value of the control as a boolean (<a href="#read-write">read-write</a>).</p>
-<p>True means checked. False unchecked.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="CheckBox-model"><a class="property" href="#CheckBox-model">model</a></td><td class="code-item-def property"><p>Bind a model to this control (<a href="#read-write">read-write</a>, <a href="#ModelKeyView">inherited</a>).</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="CheckBox-key"><a class="property" href="#CheckBox-key">key</a></td><td class="code-item-def property"><p>Bind a specific key of a model to this control (<a href="#read-write">read-write</a>, <a href="#ModelKeyView">inherited</a>).</p>
-</td></tr></tbody></table><h3>Example</h3>
-<pre><code>var myCheckBox = CheckBox(true, click:function(){alert(&#39;click worked!&#39;);});</code></pre>
-<h2 id="TextBox"><a class="heading2" href="#TextBox">oj.TextBox</a></h2><p>A build-in OJ type that creates and manipulates a checkbox form element. The <code>value</code> property can be set in the first argument, or in the <code>options</code> object.</p>
-<h3 class="code-heading">TextBox(value, properties)</h3><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#ModelKeyView">ModelKeyView</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="TextBox-value"><a class="property" href="#TextBox-value">value</a></td><td class="code-item-def property"><p>The value of the control as a string (<a href="#read-write">read-write</a>).</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="TextBox-model"><a class="property" href="#TextBox-model">model</a></td><td class="code-item-def property"><p>Bind a model to this control (<a href="#read-write">read-write</a>, <a href="#ModelKeyView">inherited</a>).</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="TextBox-key"><a class="property" href="#TextBox-key">key</a></td><td class="code-item-def property"><p>Bind a specific key of a model to this control (<a href="#read-write">read-write</a>, <a href="#ModelKeyView">inherited</a>).</p>
-</td></tr></tbody></table><h3>Example</h3>
-<pre><code>var myTextBox = TextBox(&#39;Default text&#39;);</code></pre>
-<h2 id="Button"><a class="heading2" href="#Button">oj.Button</a></h2><p>A build-in OJ type that creates and manipulates a button element. The <code>label</code> property can set the button text.</p>
-<h3 class="code-heading">Button(label, properties)</h3><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#View">View</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="Button-label"><a class="property" href="#Button-label">label</a></td><td class="code-item-def property"><p>The text of the button (<a href="#read-write">read-write</a>).</p>
-</td></tr></tbody></table><div class="code-subheading method">methods:</div><table class="code-items method"><tbody><tr class="code-item method"><td class="code-item-name method" id="Button-click"><a class="method" href="#Button-click">click(fn)</a></td><td class="code-item-def method"><p>A pass through method to jQuery click event.</p>
-<p>Like the jQuery function, calling with a <code>fn</code> will bind that function to the click event. Calling without an argument will cause the button click event to be triggered.</p>
-</td></tr></tbody></table><h3>Example</h3>
-<pre><code>var myButton = Button(&#39;Default text&#39;: click:function(){alert(&#39;hello&#39;)}
 
-myButton.click()</code></pre>
-<h1 id="creating-types"><a class="heading1" href="#creating-types">Creating Types</a></h1><p>The point of OJ is creating types that better abstract the web. To do this OJ includes a function called <a href="#createType">oj.createType</a>.</p>
-<h3>Features</h3>
-<ul>
-<li>Creates 100% real javascript types</li>
-<li>Works seemlessly between javascript and coffee-script</li>
-<li>First class properties support:<ul>
-<li>Properties by value</li>
-<li>Properties by get and set functions</li>
-</ul>
-</li>
-<li>Supports Constructors and Methods</li>
-<li>Supports Inheritance<ul>
-<li><code>inherits</code> up to one Type</li>
-<li>Call super with <code>this.super.methodName()</code></li>
-</ul>
-</li>
-<li><code>new</code> is optional</li>
-</ul>
-<h2 id="createType"><a class="heading2" href="#createType">oj.createType</a></h2><p>This function creates new type constructors. is a big part of why OJ types are so easy to create and use. Generally you should create new types when the component is well understood and often when it has an analogous model.</p>
-<h3 class="code-heading">createType(name, options)</h3><div class="code-subheading argument">arguments:</div><table class="code-items argument"><tbody><tr class="code-item argument"><td class="code-item-name argument" id="Type-argument-name"><a class="argument" href="#Type-argument-name">name</a></td><td class="code-item-def argument"><p>The string name of the type you want to create.</p>
-</td></tr><tr class="code-item argument"><td class="code-item-name argument" id="Type-argument-options"><a class="argument" href="#Type-argument-options">options</a></td><td class="code-item-def argument"><p>An object that specifies <code>properties</code>, <code>methods</code>, <code>constructor</code>, and an inheritance <code>base</code> type.</p>
-<p>See more information below:</p>
-</td></tr></tbody></table><div class="code-subheading option">options:</div><table class="code-items option"><tbody><tr class="code-item option"><td class="code-item-name option" id="Type-option-base"><a class="option" href="#Type-option-base">base:</a></td><td class="code-item-def option"><p>The type to inherit. When making OJ views use a <a href="#base-types">base type</a>.</p>
-</td></tr><tr class="code-item option"><td class="code-item-name option" id="Type-option-properties"><a class="option" href="#Type-option-properties">properties:<obj></a></td><td class="code-item-def option"><p>Define the type&#39;s properties.</p>
-</td></tr><tr class="code-item option"><td class="code-item-name option" id="Type-option-methods"><a class="option" href="#Type-option-methods">methods:<obj></a></td><td class="code-item-def option"><p>Define the type&#39;s methods.</p>
-<p>To call super use: `TypeName.base.methodName.apply(this, arguments);</p>
-</td></tr><tr class="code-item option"><td class="code-item-name option" id="Type-option-methods"><a class="option" href="#Type-option-methods">constructor:<fn></a></td><td class="code-item-def option"><p>Optionally define a constructor. <code>this</code> will be bound correctly.</p>
-<p>To call super use: `TypeName.base.constructor.apply(this, arguments);</p>
-</td></tr></tbody></table><h3>Example</h3>
-<pre><code>// Create a User type
-var User = oj.createType(&#39;User&#39;, {
-
-  constructor: function(props){
-    // Built in method to set all
-    // properties by name
-    this.set(props);
-  },
-
-  // Create properties
-  properties: {
-    name: null,
-    birthDate: null,
-
-    // The age property is calculated
-    // automatically from birthDate
-    age: {
-      get: function(){
-        var today = new Date();
-
-        var age = today.getFullYear() -
-          this.birthDate.getFullYear();
-
-        var month = today.getMonth() -
-          this.birthDate.getMonth();
-
-        var birthDateIsAfterToday = (
-          month == 0 &amp;&amp; (
-            today.getDate() &lt;
-             this.birthDate.getDate()
-          )
-        );
-        if (birthDateIsAfterToday)
-          age--;
-        return age;
-      }
-    }
-  },
-
-  // Create methods
-  methods: {
-    isEighteen: function(){
-      return this.age &gt;= 18;
-    }
-  }
-});
-
-// Create the user named Batman
-var user = new User({
-  name:&#39;Batman&#39;,
-  birthDate:new Date(1974,2,1)
-});
-
-// Show that the age property works
-div(user.name + &#39; is &#39; +
-  user.age + &#39; years old.&#39;);
-
-div(user.name + &#39; is eighteen: &#39;,
-  function(){
-    strong(user.isEighteen())
-  }
-);</code></pre>
-<h2 id="Type"><a class="heading2" href="#Type">Type Interface</a></h2><p>All types created by <a href="#createType">oj.createType</a> have the following methods and properties.</p>
-<div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="Type-type"><a class="property" href="#Type-type">type</a></td><td class="code-item-def property"><p>The type that made this instance (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Type-typeName"><a class="property" href="#Type-typeName">typeName</a></td><td class="code-item-def property"><p>The name of type that made this instance (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Type-properties"><a class="property" href="#Type-properties">properties</a></td><td class="code-item-def property"><p>Array of all properties the type supports (<a href="#read-only">read-only</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="Type-methods"><a class="property" href="#Type-methods">methods</a></td><td class="code-item-def property"><p>Array of all methods the type supports (<a href="#read-only">read-only</a>)</p>
-</td></tr></tbody></table><div class="code-subheading method">methods:</div><table class="code-items method"><tbody><tr class="code-item method"><td class="code-item-name method" id="Type-get"><a class="method" href="#Type-get">get()</a></td><td class="code-item-def method"><p>Get all properties as an object</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Type-get"><a class="method" href="#Type-get">get(prop)</a></td><td class="code-item-def method"><p>Get the value of property <code>prop</code>. <code>undefined</code> is returned if <code>prop</code> is not a valid property</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Type-set"><a class="method" href="#Type-set">set(prop,val)</a></td><td class="code-item-def method"><p>Set property <code>prop</code> to value <code>val</code></p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Type-set"><a class="method" href="#Type-set">set(props)</a></td><td class="code-item-def method"><p>Set all properties at once. <code>props</code> is an object mapping key to value. Invalid keys defined in <code>props</code> are ignored.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Type-has"><a class="method" href="#Type-has">has(prop)</a></td><td class="code-item-def method"><p>Determine if string <code>prop</code> is a property of this instance</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Type-has"><a class="method" href="#Type-has">can(method)</a></td><td class="code-item-def method"><p>Determine if string <code>method</code> is a method of this instance</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="Type-toJSON"><a class="method" href="#Type-toJSON">toJSON()</a></td><td class="code-item-def method"><p>Convert properties to json</p>
-</td></tr></tbody></table><h2 id="typeOf"><a class="heading2" href="#typeOf">oj.typeOf</a></h2><p>This function helps detect what type an object is. It is much smarter then the built in <code>typeof</code> keyword.</p>
-<h3 class="code-heading">typeOf(any)</h3><div class="code-subheading argument">arguments:</div><table class="code-items argument"><tbody><tr class="code-item argument"><td class="code-item-name argument" id="typeOf-any"><a class="argument" href="#typeOf-any">any</a></td><td class="code-item-def argument"><p>Returns the type of <code>any</code> as a string.</p>
-</td></tr></tbody></table><h3>Example</h3>
-<pre><code>// OJ types return their own name
-oj.typeOf(new CheckBox());  // &quot;CheckBox&quot;
-
-// jQuery selectors return &#39;jquery&#39;
-oj.typeOf($(&#39;body&#39;));       // &quot;jquery&quot;
-oj.typeOf($(&#39;body&#39;)[0]);    // &#39;dom-element&#39;
-
-// DOM elements and DOM text elements also work
-$(&#39;body&#39;).html(&#39;test&#39;)
-var $contents = $(&#39;body&#39;).contents()
-oj.typeOf($contents[0]);    // &#39;dom-text&#39;
-
-// Basic types work too
-oj.typeOf(undefined);       // &#39;undefined&#39;
-oj.typeOf(null);            // &#39;null&#39;
-oj.typeOf(true);            // &#39;boolean&#39;
-oj.typeOf(42);              // &#39;number&#39;
-oj.typeOf(&quot;test&quot;);          // &#39;string&#39;
-oj.typeOf(/.*/);            // &#39;regexp&#39;
-oj.typeOf(new Date());      // &#39;date&#39;</code></pre>
-<h1 id="base-types"><a class="heading1" href="#base-types">Base Types</a></h1><p>For those of you who want to make your own rich oj views, there are a few inheritable types that will make your life easier.</p>
-<p><a href="#View">View</a> - The heart of OJ, this makes objects behave like <a href="#tag">tag functions</a>.</p>
-<p><a href="#ModelKeyView">ModelKeyView</a> - Binds the view to a part of a model (a model + key). Used by all the <a href="#form-types">form elements</a>. Great for creating two-way bindings.</p>
-<p><a href="#CollectionView">CollectionView</a> - Bind the view to a collection of models. Used by <a href="#List">List</a> and <a href="#Table">Table</a>. Automatically binds to collection add, remove, change events.</p>
-<h2 id="View"><a class="heading2" href="#View">oj.View</a></h2><p>This object is the basis of much of the functionality of OJ. It emits creation events so that objects act like <a href="#tag">oj.tag</a>. It creates the root element of your object and gives convenient access to it through <a href="#View-el">el</a>. It provides an <a href="#View-attributes">attributes</a> property and related methods to let you set and get attributes.</p>
-<p>All types created using <a href="#createType">oj.createType</a> behave this way.</p>
-<pre><code>var textbox = TextBox({value:&#39;my text&#39;});</code></pre>
-<p>Is the same as:</p>
-<pre><code>var textbox = TextBox();
-textbox.value = &#39;my text&#39;;</code></pre>
-<p>(Note: because <a href="#createType">oj.createType</a> removes the need to use <code>new</code>, so in the above example it wasn&#39;t necessary to call <code>new TextBox()</code>. See <a href="#createType">oj.createType</a> if you want to learn more about why this was done.)</p>
-<p>Any options that don&#39;t map to properties will be passed through to the root element as attributes. This lets this work as you would expect:</p>
-<pre><code>TextBox({value:&#39;Placeholder text&#39;, id:&#39;id123&#39;, style:{color:&#39;red&#39;}})</code></pre>
-<p>Also options can come in any order. This is especially useful for defining style ()</p>
-<pre><code>TextBox({id:&#39;id123&#39;}, &#39;my text&#39;, {style:{
-    color:&#39;red&#39;
-  }
-})</code></pre>
-<div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="View-el"><a class="property" href="#View-el">el</a></td><td class="code-item-def property"><p>The root element (<a href="#read-only">read-only</a>, <a href="#cached">cached</a>).</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="View-$el"><a class="property" href="#View-$el">$el</a></td><td class="code-item-def property"><p>The jquery-enabled root element (<a href="#read-only">read-only</a>, <a href="#cached">cached</a>)</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="View-attributes"><a class="property" href="#View-attributes">attributes</a></td><td class="code-item-def property"><p>Get all attributes for the root element (<a href="#read-only">read-only</a>)</p>
-</td></tr></tbody></table><div class="code-subheading method">methods:</div><table class="code-items method"><tbody><tr class="code-item method"><td class="code-item-name method" id="View-addAttribute"><a class="method" href="#View-addAttribute">addAttribute(name,value)</a></td><td class="code-item-def method"><p>Add an attribute. Supports everything <a href="#tag">oj.tag</a> supports, including jQuery events and <code>style</code> renaming such as <code>fontSize</code> to <code>font-size</code>.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-addAttribute"><a class="method" href="#View-addAttribute">addAttribute(name,value)</a></td><td class="code-item-def method"><p>Add an attribute. Supports everything <a href="#tag">oj.tag</a> supports, including jQuery events and <code>style</code> renaming such as <code>fontSize</code> to <code>font-size</code>.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-addAttributes"><a class="method" href="#View-addAttributes">addAttributes(obj)</a></td><td class="code-item-def method"><p>Add multiple attributes at once. Supports everything <a href="#tag">oj.tag</a> supports. Including jQuery events and <code>style</code> renaming such as <code>fontSize</code> to <code>font-size</code>.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-addAttribute"><a class="method" href="#View-addAttribute">removeAttribute(name)</a></td><td class="code-item-def method"><p>Remove attribute with by <code>name</code>.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-addAttributes"><a class="method" href="#View-addAttributes">removeAttributes(list)</a></td><td class="code-item-def method"><p>Remove all attributes in the list.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-$"><a class="method" href="#View-$">$(selector)</a></td><td class="code-item-def method"><p>Find elements from root with jQuery.</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-toHTML"><a class="method" href="#View-toHTML">toHTML()</a></td><td class="code-item-def method"><p>Convert view to html</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-toDOM"><a class="method" href="#View-toDOM">toDOM()</a></td><td class="code-item-def method"><p>Convert view to dom</p>
-</td></tr><tr class="code-item method"><td class="code-item-name method" id="View-toString"><a class="method" href="#View-toString">toString()</a></td><td class="code-item-def method"><p>Convert view to a string. By default this calls toHTML()</p>
-</td></tr></tbody></table><h2 id="ModelKeyView"><a class="heading2" href="#ModelKeyView">oj.ModelKeyView</a></h2><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#View">View</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="ModelKeyView-model"><a class="property" href="#ModelKeyView-model">model</a></td><td class="code-item-def property"><p>The model part of the model-key that partially binds a model. Both key and model are required.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="ModelKeyView-key"><a class="property" href="#ModelKeyView-key">key</a></td><td class="code-item-def property"><p>The key part of the model-key that partially binds a model. Both key and model are required.</p>
-</td></tr></tbody></table><div class="code-subheading event">events:</div><table class="code-items event"><tbody><tr class="code-item event"><td class="code-item-name event" id="ModelKeyView-modelChanged"><a class="event" href="#ModelKeyView-modelChanged">modelChanged(...)</a></td><td class="code-item-def event"><p>Overridable event method called when the model is changed</p>
-<p>When overriding be sure to call the base method</p>
-</td></tr><tr class="code-item event"><td class="code-item-name event" id="CollectionView-viewChanged"><a class="event" href="#CollectionView-viewChanged">viewChanged(...)</a></td><td class="code-item-def event"><p>Call this event method to when the view changes. This will cause the model to be updated automatically.</p>
-</td></tr></tbody></table><h2 id="CollectionView"><a class="heading2" href="#CollectionView">oj.CollectionView</a></h2><div class="code-subheading inherit">base:</div><div class="code-items"><a class="type" href="#View">View</a></div><div class="code-subheading property">properties:</div><table class="code-items property"><tbody><tr class="code-item property"><td class="code-item-name property" id="CollectionView-collection"><a class="property" href="#CollectionView-collection">collection</a></td><td class="code-item-def property"><p>The inherited collection property for the view. This can be an Array or a Backbone.Collection.</p>
-<p>When Backbone is used changes the CollectionView automatically binds to changes in the collection and calls the following methods:</p>
-<ul>
-<li><code>collectionModelAdded</code></li>
-<li><code>collectionModelRemoved</code></li>
-<li><code>collectionModelChanged</code></li>
-<li><code>collectionModelDestroyed</code></li>
-<li><code>collectionReset</code></li>
-</ul>
-<p>When implementing a oj.CollectionView these event methods should be overriden to correctly update state as the collection changes.</p>
-</td></tr><tr class="code-item property"><td class="code-item-name property" id="CollectionView-models"><a class="property" href="#CollectionView-models">models</a></td><td class="code-item-def property"><p>Alias for <code>collection</code> property.</p>
-</td></tr></tbody></table><div class="code-subheading event">events:</div><table class="code-items event"><tbody><tr class="code-item event"><td class="code-item-name event" id="CollectionView-collectionModelAdded"><a class="event" href="#CollectionView-collectionModelAdded">collectionModelAdded(...)</a></td><td class="code-item-def event"><p>Overridable event method called when a model is added to the collection</p>
-</td></tr><tr class="code-item event"><td class="code-item-name event" id="CollectionView-collectionModelRemoved"><a class="event" href="#CollectionView-collectionModelRemoved">collectionModelRemoved(...)</a></td><td class="code-item-def event"><p>Overridable event method called when a model is removed from the collection</p>
-</td></tr><tr class="code-item event"><td class="code-item-name event" id="CollectionView-collectionModelChanged"><a class="event" href="#CollectionView-collectionModelChanged">collectionModelChanged(...)</a></td><td class="code-item-def event"><p>Overridable event method called when a model changes</p>
-</td></tr><tr class="code-item event"><td class="code-item-name event" id="CollectionView-collectionModelDestroyed"><a class="event" href="#CollectionView-collectionModelDestroyed">collectionModelDestroyed(...)</a></td><td class="code-item-def event"><p>Overridable event method called when a model is destroyed</p>
-</td></tr><tr class="code-item event"><td class="code-item-name event" id="CollectionView-collectionReset"><a class="event" href="#CollectionView-collectionReset">collectionReset()</a></td><td class="code-item-def event"><p>Overridable event method called when the entire collection is remade</p>
-</td></tr></tbody></table><h1 id="static-websites"><a class="heading1" href="#static-websites">Static Websites</a></h1><p>OJ has the capability of building static websites on the command-line using the <a href="#command-line">oj command</a>. This is best for sites that don&#39;t change depending on which user loads the page. Either the pages don&#39;t change or the data to render comes from ajax requests.</p>
-<h3>Features</h3>
-<ul>
-<li><em>Auto Minification:</em> All javascript, css, html are minified unless <code>--debug</code> is set</li>
-<li><em>Unified Templating:</em> <code>.oj</code> and <code>.ojc</code> files turn into javacsript, html, and css.</li>
-<li>Files and Directories can be built, recursed upon, and watched</li>
-<li>Files are automatically minified unless <code>--debug</code> option is set.</li>
-<li>Files can be included from other files using node&#39;s <code>require</code> syntax.</li>
-<li>Node modules can be included as well. Simply <code>require</code> them, and they will also be brought into the system (similar to <a href="http://browserify.org/">browserify</a>).</li>
-<li>Built in support for coffee-script with <code>.ojc</code> files. You don&#39;t even need to install coffee-script, it just works.</li>
-</ul>
-<h2 id="install"><a class="heading2" href="#install">Install</a></h2><p>To use OJ on the server you will need to install the <code>oj</code> command built on top of <a href="http://nodejs.org">node.js</a>. For this you need to install node and its package manager <code>npm</code>. There are many ways to do this installation, but this will get you started:</p>
-<p>Install <code>node</code> on OSX with <a href="http://mxcl.github.com/homebrew/">homebrew</a>:</p>
-<pre><code>brew install node</code></pre>
-<p>Install <code>node</code> on Ubuntu with apt-get:</p>
-<pre><code>sudo apt-get install nodejs npm</code></pre>
-<p>Finally install <code>oj</code> with <code>npm</code>:</p>
-<pre><code>npm install -g oj</code></pre>
-<h2 id="file-types"><a class="heading2" href="#file-types">File Types (.oj / .ojc)</a></h2><p>The <a href="#download">oj.js</a> javascript library works perfectly fine inside of <code>.js</code>, or <code>.coffee</code> files. The only issue is that it gets tiring writing <code>oj</code> in front of everything: <code>oj.html</code>, <code>oj.Table</code>, etc.</p>
-<p>To solve this OJ supports two file types:</p>
-<ul>
-<li><code>.oj</code> is javascript</li>
-<li><code>.ojc</code> is coffee-script</li>
-</ul>
-<p>These files have been fully integrated into node. This means you can include other files using <code>require</code>, and you must use <code>module.exports</code> to set the what the module should return. Here are some examples:</p>
-<h3>.oj example (javascript):</h3>
-<pre><code># hello.oj
-module.exports = return [html,
-  [head],
-  [body,
-    [div &#39;Hello world&#39;]
-  ]
-]</code></pre>
-<h3>.ojc example (coffee-script):</h3>
-<pre><code># hello.ojc
-module.exports = -&gt;
-  html -&gt;
-    head -&gt;
-    body -&gt;
-      div &#39;Hello world&#39;</code></pre>
-<h2 id="command-line"><a class="heading2" href="#command-line">Command Line</a></h2><p>The <code>oj</code> command builds <code>.oj</code> and <code>.ojc</code> <a href="#file-types">file types</a> into html files.</p>
-<h3>Usage</h3>
-<pre><code>oj [options] &lt;file&gt; &lt;dir&gt; ...
-
-Options:
-
-  -h, --help               output usage information
-  -V, --version            output the version number
-  -d, --debug              Turn on debug output
-  -o, --output &lt;dir&gt;       Directory to output all files to
-  -r, --recurse            Recurse into directories
-  -m, --modules &lt;modules&gt;  List of modules to include
-  -v, --verbose &lt;level&gt;    Turn on verbose level 0-3
-  -w, --watch              Turn on watch mode</code></pre>
-<p>When options are omitted these are the defaults:</p>
-<pre><code>--output defaults to ./
---debug defaults to off&lt;br&gt;
---verbose defaults to 1</code></pre>
-<h3>Ignored file prefixes</h3>
-<ul>
-<li>Partials and Templates (start with <code>_</code>)</li>
-<li>OJ Plugins (start with <code>oj.</code>)</li>
-<li>Hidden files (start with <code>.</code>)</li>
-</ul>
-<h3>Examples</h3>
-<p>Build <code>hello.oj</code> to current directory</p>
-<pre><code>oj hello.oj</code></pre>
-<p>Build <code>hello.oj</code> without minification to <code>www</code> directory</p>
-<pre><code>oj -d -o www hello.oj</code></pre>
-<p>Watch <code>hello.oj</code> and build to <code>www</code> directory</p>
-<pre><code>oj --watch -o www hello.oj</code></pre>
-<p>Build <code>pages</code> directory to <code>www</code></p>
-<pre><code>oj -o www pages</code></pre>
-<p>Recursively build <code>pages</code> directory to <code>www</code></p>
-<pre><code>oj -r -o www pages</code></pre>
-<p>Recursively watch and build <code>pages</code> directory to <code>www</code></p>
-<pre><code>oj -w -r -o www pages</code></pre>
-</div></div></div><footer class="gg100"><footer></footer></footer></div></div><script>
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<title>Demo</title>
+			<link href="styles/reset.css" rel="stylesheet" type="text/css">
+			<script src="scripts/jquery.js" type="text/javascript"></script>
+			<script src="scripts/underscore.js" type="text/javascript"></script>
+			<script src="scripts/backbone.js" type="text/javascript"></script>
+			<script src="scripts/ace/ace.js" type="text/javascript"></script>
+		</head>
+		<body>
+			<div>asdf</div>
+			<div style="height: 58px;" class="oj-TryEditor" id="ojWP5u9CUL"><div class="oj-TryEditor-resizer" style="width: 0px; height: 58px;"><div class="oj-TryEditor-gripper ui-resizable-s"></div></div><div class="oj-TryEditor-inputs" style="height: 29px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 21px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojNSZ1fNxX"><div class="oj-AceEditor-editor" style="height: 21px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 29px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 21px; width: 0px;"></div><iframe class="oj-TryEditor-output-iframe" style="width: 0px; height: 25px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
+		<script>
 
 // Generated with oj v0.0.14
 (function(){ var F = {}, M = {}, R = {}, P, G, RR;
 
-M['/node_modules'] = {"oj-markdown":"src/oj.markdown.js","underscore":"underscore.js"};
+M['/node_modules'] = {"oj-ace-editor":"src/oj.AceEditor.js","oj-markdown":"src/oj.markdown.js","oj-vimeo-video":"src/oj.VimeoVideo.js","underscore":"underscore.js"};
 M['/node_modules/oj-markdown/node_modules'] = {"marked":"lib/marked.js"};
-F['/docs.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var arguments_, data, events, inherits, md, methods, name, options, properties, renderContent, renderTOC, _ref, _template;
+F['/demo.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){oj.use(require('oj-ace-editor'));
 
 oj.use(require('oj-markdown'));
 
-_template = require('./_template');
+oj.use(require('oj-vimeo-video'));
 
-_ref = require('./_content'), renderTOC = _ref.renderTOC, renderContent = _ref.renderContent, properties = _ref.renderProperties, methods = _ref.renderMethods, events = _ref.renderEvents, inherits = _ref.renderInherits, options = _ref.renderOptions, arguments_ = _ref.renderArguments, name = _ref.renderName;
+require('underscore');
 
-md = markdown;
+oj.use(require('./oj.TryEditor'));
 
-module.exports = function() {
-  return _template({
-    title: 'OJ Docs - Unified Templating',
-    styles: ['reset.css', 'gg.css'],
-    scripts: ['jquery.js', 'jquery.event.drag.js', 'jquery.ba-resize.min.js', 'underscore.js', 'backbone.js', 'coffee-script.js', 'ace/ace.js'],
-    content: function() {
-      return renderContent(data);
-    },
-    toc: function() {
-      return renderTOC(data);
-    },
-    body: function() {},
-    head: function() {}
+module.exports = oj(function() {
+  doctype(5);
+  return html({
+    lang: 'en'
+  }, function() {
+    head(function() {
+      title('Demo');
+      link({
+        href: 'styles/reset.css',
+        rel: 'stylesheet',
+        type: 'text/css'
+      });
+      script({
+        src: 'scripts/jquery.js',
+        type: 'text/javascript'
+      });
+      script({
+        src: 'scripts/underscore.js',
+        type: 'text/javascript'
+      });
+      script({
+        src: 'scripts/backbone.js',
+        type: 'text/javascript'
+      });
+      return script({
+        src: 'scripts/ace/ace.js',
+        type: 'text/javascript'
+      });
+    });
+    return body(function() {
+      div('asdf');
+      TryEditor('asdf');
+      return oj.onload(function() {
+        return console.log('loaded!');
+      });
+    });
   });
+});
+}}).call(this);})(RR('/demo.ojc'),P,G,'/','demo.ojc');});
+F['/node_modules/oj-ace-editor/src/oj.AceEditor.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.AceEditor.js
+
+var debounce;
+
+module.exports = function(oj,settings){
+
+  if (typeof settings !== 'object')
+    settings = {}
+
+  var AceEditor = oj.createType('AceEditor', {
+    base: oj.ModelKeyView,
+
+    constructor: function(){
+      var union = oj.argumentsUnion(arguments);
+      var options = union.options;
+      var args = union.args;
+
+      // Normally oj.View automatically creates an oj.id for us, but the ace editor
+      // is triggered by id so we need a reference to it at this level.
+      options.id = options.id || oj.id()
+
+      // Default options
+      var defaults = {
+        width: 400,                 // Default the height
+        height: 200,                // Default the width
+        fontSize: 14,                   // Default font size
+        showFoldWidgets: false,         // Hide fold widgets
+        showPrintMargin: false,         // Hide print margin
+        useSoftTabs: true,              // Change tabs to spaces
+        behaviorsEnabled: true,         // Enable quote and paren matching
+        foldStyle: 'markbegin',         // Default fold style when folds are unhidden
+        hScrollBarAlwaysVisible: false, // Prevent ugly scroll bars
+        vScrollBarAlwaysVisible: false,  // Ace doesn't have this property. This solution is imperfect.
+
+        // Disable workers on local files because ace doesn't support this
+        useWorker: false// window.location.protocol != 'file:'
+      };
+      // Default options if unspecified
+      for (k in defaults) {
+        if (options[k] == null)
+          options[k] = defaults[k];
+      }
+
+      // Create el as relatively positioned div
+      this.el = oj(function(){
+        var input;
+        if(args.length > 0)
+          input = args.join('\n');
+        oj.div(input, function(){
+          oj.div({c:'oj-AceEditor-editor'}, {style:{position:'absolute',width:options.width, height:options.height}});
+          },{
+            style:{
+              position:'relative',
+              width:options.width,
+              height:options.height
+            }
+          }
+        );
+
+      });
+
+      this.$editor = this.$('.oj-AceEditor-editor');
+
+      // AceEditor is must be included by <script> tag. Help people understand.
+      if(oj.isClient && ace == null)
+        throw new Error('oj.AceEditor: `ace` global not found. Include the editor with a <script> tag!');
+
+      // Create editor
+      if (oj.isClient && typeof ace != 'undefined') {
+
+        this.editor = ace.edit(this.$editor.get(0));
+        this.editor.resize()
+
+        // Register for editor changes
+        // Use debounce to ensure cut and paste only fires one event change
+        var This = this;
+        this.session.doc.on('change', debounce(50, function(){
+          if (typeof This.viewChanged == 'function')
+            This.viewChanged();
+          if (typeof This.change == 'function')
+            This.change();
+        }));
+      }
+
+      // Shift editor properties
+      var props = [
+        'theme',
+        'mode',
+        'width',
+        'height',
+        'wrapLimit',
+        'showPrintMargin',
+        'readOnly',
+        'fontSize',
+        'tabSize',
+
+        'foldStyle',
+        'selectionStyle',
+
+        'showPrintMargin',
+        'showInvisibles',
+        'showGutter',
+        'showIndentGuides',
+        'showFoldWidgets',
+
+        'highlightSelectedWord',
+        'highlightActiveLine',
+
+        'useSoftTabs',
+        'useWrapMode',
+        'wrapLimitRange',
+        'printMarginColumn',
+        'animatedScroll',
+        'useWorker',
+        'hScrollBarAlwaysVisible',
+        'vScrollBarAlwaysVisible',
+        'fadeFoldWidgets',
+
+        'behaviorsEnabled'
+      ];
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (options[prop] != null)
+          this[prop] = oj.argumentShift(options, prop);
+      }
+
+      // Pass on options. Args have been handled at this level.
+      AceEditor.base.constructor.apply(this, [options]);
+
+      // Hide vertical scroll bar
+      this.$scrollbar = this.$('.ace_scrollbar');
+      this.$scroller = this.$('.ace_scroller');
+      this.$content = this.$('.ace_content');
+    },
+
+    properties: {
+
+      // Accessing Properties
+      // ----------------------------------------------------------------------
+
+      value: {
+        get: function(){ if(this.session) return this.session.getValue(); },
+        set: function(v){
+          if(this.session) {
+            // Save the location of the cursor
+            var pos = this.cursorPosition;
+            this.session.setValue(v);
+            // Restore the location of the cursor
+            this.cursorPosition = pos;
+          }
+        }
+      },
+
+      editor: {
+        get: function(){ return this._editor; },
+        set: function(v){ this._editor = v; }
+      },
+
+      session: {
+        get: function(){ if(this.editor) return this.editor.getSession(); },
+        set: function(v){ if(this.editor) this.editor.setSession(v); }
+      },
+
+      renderer: {
+        get: function(){ if(this.editor) return this.editor.renderer; }
+      },
+
+      change: {
+        get: function(){ return this._change; },
+        set: function(v){ this._change = v; }
+      },
+
+      // Wrap ace event handling object
+      eventHandler: {
+        get: function(){
+          if (typeof 'ace' == 'undefined')
+            return;
+          return this._eventHandler || (this._eventHandler = ace.require("ace/lib/event"));
+        }
+      },
+
+      // Wrap ace container element
+      containerEl: {
+        get: function(){
+          return this._container || (this._container = this.$('.editor-container')[0]);
+        }
+      },
+
+      // Custom Properties
+      // ----------------------------------------------------------------------
+
+      // Set/get theme and automatically add ace/theme prefix
+      theme: {
+        get: function(){
+          if (!this.editor) return;
+          var theme = this.editor.getTheme();
+          var prefix = 'ace/theme/';
+          if (theme && theme.indexOf(prefix) === 0)
+            theme = theme.slice(prefix.length);
+          return theme;
+        },
+        set: function(v){
+          if (!this.editor) return;
+          var prefix = 'ace/theme/';
+          if (v && v.indexOf(prefix) != 0)
+            v = prefix + v;
+          this.editor.setTheme(v);
+        }
+      },
+
+      // Set/get mode and automatically add ace/mode prefix
+      mode: {
+        get: function(){
+          if (!this.session) return;
+          // Get mode string from Mode object
+          var mode = this.session.getMode().$id;
+          var prefix = 'ace/mode/';
+          if (mode && mode.indexOf(prefix) === 0)
+            mode = mode.slice(prefix.length);
+          return mode;
+        },
+        set: function(v){
+          if (!this.session) return;
+          var prefix = 'ace/mode/';
+          if (v && v.indexOf(prefix) != 0)
+            v = prefix + v;
+          this.session.setMode(v);
+        }
+      },
+
+      // Change width
+      width: {
+        get: function(){ return this.$el.width(); },
+        set: function(v){
+          this.$el.width(v)
+          this.updateWidth()
+        }
+      },
+
+      // Change height
+      height: {
+        get: function(){ return this.$el.height(); },
+        set: function(v){
+          this.$el.height(v);
+          this.$editor.height(v);
+          if (this.editor)
+            this.editor.resize();
+        }
+      },
+
+      // Meta property that sets wrapLimitRange, printMarginColumn, and useWrapMode all at once
+      // wrapLimit: 40      (limit of 40 characters)
+      // wrapLimit: 'off'   (no limit, creates scroll bar)
+      // wrapLimit: 'auto'  (limit to size of buffer)
+      wrapLimit: {
+        get: function(){ if(this.session) return this.wrapLimitRange; },
+        set: function(v){
+          if(this.session) {
+            // Turn off wrapping if false or set to 'off'
+            if(!v || v === 'off') {
+              this.useWrapMode = false;
+              this.printMarginColumn = 80;
+            }
+
+            // Wrap to region if set to 'auto'
+            else if (v === 'auto') {
+              this.useWrapMode = true;
+              this.wrapLimitRange = null;
+              this.printMarginColumn = 80;
+            }
+
+            // Otherwise wrap to specified character count
+            else if (typeof v === 'number') {
+              this.wrapLimitRange = v;
+              this.printMarginColumn = v;
+              this.useWrapMode = true;
+            }
+          }
+        }
+      },
+
+      // TODO: Enable Drag and drop as a property
+      // useDragAndDrop: {
+      //   get: function(){},
+      //   set: function(v){}
+      // },
+      // https://github.com/ajaxorg/ace/blob/master/demo/kitchen-sink/demo.js#L437
+      // event.addListener(container, "drop", function(e) {
+      //   var file;
+      //   try {
+      //       file = e.dataTransfer.files[0];
+      //       if (window.FileReader) {
+      //           var reader = new FileReader();
+      //           reader.onload = function() {
+      //               var mode = modelist.getModeFromPath(file.name);
+
+      //               env.editor.session.doc.setValue(reader.result);
+      //               modeEl.value = mode.name;
+      //               env.editor.session.setMode(mode.mode);
+      //               env.editor.session.modeName = mode.name;
+      //           };
+      //           reader.readAsText(file);
+      //       }
+      //       return event.preventDefault(e);
+      //   } catch(err) {
+      //       return event.stopEvent(e);
+      //   }
+      // });
+
+      // Editor Configuration Properties
+      // ----------------------------------------------------------------------
+
+      // Make the editor read only
+      readOnly: {
+        get: function(){ if(this.editor) return this.editor.getReadOnly(); },
+        set: function(v){ if(this.editor) this.editor.setReadOnly(v); }
+      },
+
+      // Change font size
+      fontSize: {
+        get: function(){ if(this.editor) return this._fontSize; },
+        set: function(v){
+          if(this.editor) {
+            this.editor.setFontSize(v);
+            this._fontSize = v;
+          }
+        }
+      },
+
+      // Change tab size
+      tabSize: {
+        get: function(){ if(this.editor) return this.session.getTabSize(); },
+        set: function(v){ if(this.editor) this.session.setTabSize(v); }
+      },
+
+      // Change cursorPosition as object: {row:4, column:25}
+      cursorPosition: {
+        get: function(){ if(this.editor) return this.editor.getCursorPosition(); },
+        set: function(v){ if(this.editor) this.editor.moveCursorToPosition(v); }
+      },
+
+      // Editor Show Properties
+      // ----------------------------------------------------------------------
+
+      // Show print margin
+      showPrintMargin: {
+        get: function(){ if(this.editor) return this.editor.getShowPrintMargin(); },
+        set: function(v){ if(this.editor) this.editor.setShowPrintMargin(v); }
+      },
+
+      // Show invisible characters
+      showInvisibles: {
+        get: function(){ if(this.editor) return this.editor.getShowInvisibles(); },
+        set: function(v){ if(this.editor) this.editor.setShowInvisibles(v); }
+      },
+
+      // Show gutter
+      showGutter: {
+        get: function(){ if(this.editor) return this.renderer.getShowGutter(); },
+        set: function(v){ if(this.editor) this.renderer.setShowGutter(v); }
+      },
+
+      // Show Indent guides
+      showIndentGuides: {
+        get: function(){ if(this.editor) return this.editor.getDisplayIndentGuides(); },
+        set: function(v){ if(this.editor) this.editor.setDisplayIndentGuides(v); }
+      },
+
+      // Show fold widgets that collapse / expand code blocks
+      showFoldWidgets: {
+        get: function(){ if(this.editor) return this.editor.getShowFoldWidgets(); },
+        set: function(v){ if(this.editor) this.editor.setShowFoldWidgets(v); }
+      },
+
+      // Editor Highlight Properties
+      // ----------------------------------------------------------------------
+
+      // Highlight selected word elsewhere in the editor
+      highlightSelectedWord: {
+        get: function(){ if(this.editor) return this.editor.getHighlightSelectedWord(); },
+        set: function(v){ if(this.editor) this.editor.setHighlightSelectedWord(v); }
+      },
+
+      // Highlight active line
+      highlightActiveLine: {
+        get: function(){ if(this.editor) return this.editor.getHighlightActiveLine(); },
+        set: function(v){ if(this.editor) this.editor.setHighlightActiveLine(v); }
+      },
+
+      // Editor Style Properties
+      // ----------------------------------------------------------------------
+
+      // Selection style options: 'line' or 'text'
+      selectionStyle: {
+        get: function(){ if(this.editor) return this.editor.getSelectionStyle(); },
+        set: function(v){ if(this.editor) this.editor.setSelectionStyle(v); }
+      },
+
+      // Fold style options: 'manual', markbegin' or 'markbeginend'
+      foldStyle: {
+        get: function(){ if(this.session) return this._foldStyle; },
+        set: function(v){
+          if(this.session) {
+            this._foldStyle = v;
+            this.session.setFoldStyle(v);
+          }
+        }
+      },
+
+      // Enable ace editor behaviors to auto match quotes, parens, curly braces, and square brackets
+      behaviorsEnabled: {
+        get: function(){ if(this.editor) return this.editor.getBehavioursEnabled(); },
+        set: function(v){ if(this.editor) this.editor.setBehavioursEnabled(v); }
+      },
+
+      // Editor Not-Very-Important Properties
+      // ----------------------------------------------------------------------------------
+
+      useSoftTabs: {
+        get: function(){ if(this.session) return this.session.getUseSoftTabs(); },
+        set: function(v){ if(this.session) this.session.setUseSoftTabs(v); }
+      },
+
+      // Set whether wrapping should be on (true) or off (false)
+      useWrapMode: {
+        get: function(){ if(this.session) return this.session.getUseWrapMode(); },
+        set: function(v){ if(this.session) this.session.setUseWrapMode(v); }
+      },
+
+      // Set the wrap limit character count
+      wrapLimitRange: {
+        get: function(){ if(this.session) return this.session.getWrapLimitRange(); },
+        set: function(v){ if(this.session) this.session.setWrapLimitRange(v, v); },
+      },
+
+      // Set the number of characters the margin should appear at.
+      printMarginColumn: {
+        get: function(){ if(this.renderer) return this.renderer.getPrintMarginColumn(); },
+        set: function(v){ if(this.renderer) this.renderer.setPrintMarginColumn(v); }
+      },
+
+      // Animates scrolling for find and goto line
+      animatedScroll: {
+        get: function(){ if(this.editor) return this.editor.getAnimatedScroll(); },
+        set: function(v){ if(this.editor) this.editor.setAnimatedScroll(v); }
+      },
+
+      // Use or disable worker threads in ace editor
+      useWorker: {
+        get: function(){ if(this.session) return this.session.getUseWorker(); },
+        set: function(v){ if(this.session) this.session.setUseWorker(v); }
+      },
+
+      // Turn horizontal scrollbar on permanently
+      hScrollBarAlwaysVisible: {
+        get: function(){ if(this.editor) return this.renderer.getHScrollBarAlwaysVisible(); },
+        set: function(v){ if(this.editor) this.renderer.setHScrollBarAlwaysVisible(v); }
+      },
+
+      // Turn horizontal scrollbar on permanently
+      vScrollBarAlwaysVisible: {
+        get: function(){ return this._vScrollBarAlwaysVisible || false; },
+        set: function(v){
+          this._vScrollBarAlwaysVisible = v;
+          if (this.$scrollbar != null) {
+            if (v) {
+              this.$scrollbar.show();
+              this.updateWidth();
+            } else {
+              this.$scrollbar.hide()
+              this.updateWidth();
+            }
+          }
+        }
+      },
+
+      // Fade fold widgets that allow code blocks to be collapsed
+      fadeFoldWidgets: {
+        get: function(){ if(this.editor) return this.editor.getFadeFoldWidgets(); },
+        set: function(v){ if(this.editor) this.editor.setFadeFoldWidgets(v); }
+      },
+
+      $scrollbar: null,
+      $scroller: null,
+      $content: null
+    },
+
+    methods: {
+
+      // When the view changes
+      viewChanged: function(){
+        AceEditor.base.inserted.apply(this, arguments);
+      },
+
+      // When inserted in the dom
+      inserted: function(){
+        AceEditor.base.inserted.apply(this, arguments);
+
+        // Scroll visiblility can only be triggered once inserted
+        this.vScrollBarAlwaysVisible = this.vScrollBarAlwaysVisible
+      },
+
+      // The width is dependent on if vertical scroll is turned off
+      updateWidth: function(){
+          // Get the width
+          var w = this.width;
+
+          // The editor width is bigger if there is no scroll bar
+          widthScroll = this.vScrollBarAlwaysVisible ? 0 : this.scrollWidth();
+          this.$editor.width(w + widthScroll);
+
+          // Trigger the editor to change size
+          if (this.editor)
+            this.editor.resize();
+      },
+
+      // Dynamically calculate the scroll width by measuring the difference
+      // Cache the result
+      scrollWidth: function(){
+        if (this._scrollWidth != null)
+          return this._scrollWidth;
+        if (this.isInserted) {
+          var div = $('<div style="width:50px;height:50px;overflow:hidden;position:absolute;top:-200px;left:-200px;"><div style="height:100px;"></div>');
+          // Append our div, do our calculation and then remove it
+          $('body').append(div);
+          var w1 = $('div', div).innerWidth();
+          div.css('overflow-y', 'scroll');
+          var w2 = $('div', div).innerWidth();
+          $(div).remove();
+          return this._scrollWidth = (w1 - w2);
+        }
+      }
+    }
+  });
+
+  return {AceEditor:AceEditor};
+
 };
 
-data = [
-  {
-    h: 'Starting Out',
-    id: 'starting-out',
-    d: function() {},
-    items: [
-      {
-        h: 'Introduction',
-        id: 'intro',
-        d: "\n OJ simplifies creation and manipulation of the DOM by abstracting the web into objects. It literally stands for Object Javascript, and was created under the philosophy that object encapsulation simplifies development.\n\n To this end OJ provides several [Collection Types](#collection-types) and [Form Types](#form-types) to help you create your website server side and manipulate it dynamically client-side. Two-way model binding is built right in if you use Backbone models (or anything with `.on` `.off` event binding). Collection binding is built into [oj.List](#List) and [oj.Table](Table), for more complex views.\n\n For simple tag creation OJ provides a series of [tag functions](#tags), one for every tag (`<div>`, `<span>`, `<ul>`, `<table>`, `<a>`, etc), to build up structure of your site and help create the collection and form types you are using. These tag functions allow you to create html structure, css, and bind jquery events simultaneously.\n\nTo truly master OJ it is encouraged to create your own custom types; [List](#List) and [Table](#Table) are going to get you quite far, but it is much easier to think in terms of `ChatWindow` or `FriendList` then to manually manipulate several things at once by hand. To this end OJ provides a [type creation function](#createType) and some inheritable [base types](#base-types) to help you create types of your own. With these base types, model binding is quite easy.\n\nFor server side use of oj a [command-line tool](#command-line) called `oj` can be [installed](#install) with node's package manager `npm`. The tools purpose is to combine [oj file types](#file-types) together into `html` files. It supports watch for debugging and magnification of html, javascript, and css for production. **Important Note:** This tool is _not_ a web server. It is quite capable as a static site generator, but for more complex scenarios an [express plugin](http://expressjs.com/) is [in the works](https://github.com/ojjs/oj/issues/1).\n\n As always contributions are most welcome. Feel free to send [pull requests](https://github.com/ojjs/oj) or to report bugs and feature requests as [issues](https://github.com/ojjs/oj/issues).\n"
-      }, {
-        h: 'License',
-        id: 'license',
-        d: "Copyright (c) 2013 Evan Moran <br>\nOJ may be freely distributed under the [MIT license](https://raw.github.com/ojjs/oj/master/LICENSE)\n"
-      }
-    ]
-  }, {
-    h: 'Collection Types',
-    id: 'collection-types',
-    d: "These objects are built-in to OJ and designed to be the building blocks for more complex websites. [BulletList](#BulletList), [NumberList](NumberList) exist to easily create numbered lists or bulleted lists.\n\nAll collection types can be created directly through a list of arguments, or by binding to a Backbone.Collection object. If a collection object is used these objects will minimally rebuild themselves as the collection changes.\n\n[List](#List) exists to create lists of items without symbols. It uses `<div>` for its tags instead of `<ul>` or `<li>` as this is often desired for `ChatWindows` or `FriendLists` -- basically this is ideal for whenever you don't really want numbers or bullets.\n\n[Table](#Table) is the most complex object built into OJ. It supports everything [List](#List) does, but adds another dimension. It also supports Backbone.Collection binding and is designed to support hundreds of thousands of rows. In generally OJ is built around the idea of direct DOM manipulation. Server-side it builds strings, but client side it just modifies elements directly for much improved performance.\n\nAll collection objects inherit from [CollectionView](#CollectionView) and [View](#View) and so definitely take a look at what those provide.\n",
-    items: [
-      {
-        h: 'oj.BulletList',
-        id: 'BulletList',
-        d: "This is a simple alias for [oj.List](#List) to abstract creating **bulleted** lists. It overrides the properties [tagName](#List-tagName) to `ul`, and [itemTagName](#List-itemTagName) to `li`."
-      }, {
-        h: 'oj.NumberList',
-        id: 'NumberList',
-        d: "This is a simple alias for [oj.List](#List) to abstract creating **numbered** lists. It overrides the properties [tagName](#List-tagName) to `ul`, and [itemTagName](#List-itemTagName) to `li`."
-      }, {
-        h: 'oj.List',
-        id: 'List',
-        d: function() {
-          md("Lists are at the heart of OJ. They are a fundamental building block that lets you bind collections of models to views. That can be as simple as NumberList and BulletList above. Or they can be more complex and render Chat Messages, Todo Lists, or whatever else you want tied to data.\n\nLists can be constructed by basic types:\n\n    List('a', 2, true);\n\nLists can be constructed from oj objects:\n\n    List(CheckBox(true), TextBox('hello'));\n\nLists can be constructed from [ojml](#ojml):\n\n    List(\n      [div, 'a'],\n      [span, 'b']\n    );\n\nLists can be constructed from functions:\n\n    List(\n      function(){div('a');},\n      function(){span('a');},\n    );\n");
-          name('List(items..., properties)');
-          arguments_([
-            {
-              h: 'items...',
-              id: 'List-argument-items',
-              d: "Any number of values to add to the list.\n\nConstructing with these arguments has the same effect as setting the [items](List-items) property."
-            }, {
-              h: 'properties',
-              id: 'Table-argument-rows',
-              d: "An object to bulk set properties.\n\nKeys that aren't properties are passed as attributes to the root element."
-            }
-          ]);
-          inherits({
-            h: 'CollectionView',
-            id: 'CollectionView'
-          });
-          properties([
-            {
-              h: 'count',
-              id: 'List-count',
-              d: "Number of items (Number, [read-only](#read-only)))"
-            }, {
-              h: 'collection',
-              id: 'List-collection',
-              d: "Inherited from [CollectionView.collection](#CollectionView-collection)\n\nThe collection for the view. This can be an Array or a Backbone.Collection\n\nWhen Backbone is used changes to the collection will cause the view\nto be automatically redrawn. This is done minimally so adds and removes\ncause fewest redraws possible."
-            }, {
-              h: 'models',
-              id: 'List-models',
-              d: "Alias for `collection` property"
-            }, {
-              h: 'each',
-              id: 'List-each',
-              d: "Inherited from [CollectionView.each](#CollectionView-each)\n\nA mapping function that turns a model into a view.\n\nUse this whenever you set [models](#models) to specify which part of the model to render."
-            }, {
-              h: 'tagName',
-              id: 'List-tagName',
-              d: "Name of tag (String, write-construct)"
-            }, {
-              h: 'itemTagName',
-              id: 'List-itemTagName',
-              d: "Name of tag for each item (String, [read-write](#read-write))"
-            }, {
-              h: '$items',
-              id: 'List-$items',
-              d: "Helper to get all item jquery elements ([jQueryElement], [read-only](#read-only)))"
-            }
-          ]);
-          return methods([
-            {
-              h: 'item(index, oj)',
-              id: 'List-item',
-              d: "Get or set the item at `index`\n`index` may be negative to access elements at the end.\n\nWhen `view` is specified the item is set to the oj view\nWhen `view` is omitted the item value is returned\nHow this value is returned is handled by [ojValue](jquery-ojValue)\na included jQuery plugin.\n\n    list.item(2)              // get item\n    list.item(2, 'hello')     // set item to 'hello'\n    list.item(2, function(){  // Set item to a TextBox\n      TextBox 'goodbye'\n    }"
-            }, {
-              h: '$item(index)',
-              id: 'List-$item',
-              d: "Helper to get an item's containing element wrapped by jquery"
-            }, {
-              h: 'add(index, oj)',
-              id: 'List-add',
-              d: "Add item at `index`\n`index` may be negative to access elements at the end.\n`oj` may be any oj view or object.\n\n    list = List('a','b');      // ['a','b']\n    list.add(1, 'c');          // ['a','c','b']\n    list.add(-1, 'd');         // ['a','c','b','d']"
-            }, {
-              h: 'remove(index)',
-              id: 'List-remove',
-              d: "Remove item at index\n`index` may be negative to access elements at the end.\n\n    list = List('a','b','c');  // ['a','b','c']\n    list.remove(1);            // ['a','c']\n    list.remove(-1);           // ['a']"
-            }, {
-              h: 'push(oj)',
-              id: 'List-push',
-              d: "Add a new last item\n\n    list = List('a','b');      // ['a','b']\n    list.push('c');            // ['a','b','c']"
-            }, {
-              h: 'pop()',
-              id: 'List-pop',
-              d: "Remove the last item\n\n    list = List('a','b');      // ['a','b']\n    list.pop();                // ['a']"
-            }, {
-              h: 'shift(oj)',
-              id: 'List-shift',
-              d: "Remove the first item\n\n    list = List('a','b');      // ['a','b']\n    list.shift();              // ['b']"
-            }, {
-              h: 'unshift(oj)',
-              id: 'List-unshift',
-              d: "Add a new first item\n\n    list = List('a','b');      // ['a','b']\n    list.unshift('c');         // ['c','a','b']"
-            }, {
-              h: 'clear(oj)',
-              id: 'List-clear',
-              d: "Remove all items\n\n    list = List('a','b');      // ['a','b']\n    list.clear();              // []"
-            }, {
-              h: 'move(index, index2)',
-              id: 'List-move',
-              d: "Move item from `index` to `index2`\n\nlist = List('a','b','c');      // ['a','b','c']\n    list.move(2,0);            // ['c','b','a']"
-            }, {
-              h: 'swap(index, index2)',
-              id: 'List-swap',
-              d: "Swap items at `index` to `index2`\n\nlist = List('a','b','c');      // ['a','b','c']\n    list.swap(1,2);            // ['a','c','b']"
-            }
-          ]);
-        }
-      }, {
-        h: 'oj.Table',
-        id: 'Table',
-        d: function() {
-          md("Tables are another building block in OJ. Like [List] it can be used to show static data or be bound to collections of models. When the collection changes it will automatically add and remove rows to rerender the table.\n\nTables can be constructed with arrays of values:\n\n    Table(\n      [1,2,3],\n      [4,5,6]\n    );");
-          name('Table(rows..., properties)');
-          arguments_([
-            {
-              h: 'rows...',
-              id: 'Table-argument-rows',
-              d: "Any number of rows to add to the table.\n\nConstructing with these arguments has the same effect as setting the [items](List-items) property."
-            }, {
-              h: 'properties',
-              id: 'Table-argument-properties',
-              d: "A object to bulk set properties.\n\nKeys that aren't properties are passed as attributes to the root element."
-            }
-          ]);
-          inherits({
-            h: 'CollectionView',
-            id: 'CollectionView'
-          });
-          properties([
-            {
-              h: 'rowCount',
-              id: 'Table-rowCount',
-              d: "Number of rows (Number, [read-only](#read-only)))"
-            }, {
-              h: 'columnCount',
-              id: 'Table-columnCount',
-              d: "Number of columns (Number, [read-only](#read-only)))"
-            }, {
-              h: 'collection',
-              id: 'Table-collection',
-              d: "Inherited from [CollectionView.collection](#CollectionView-collection)\n\nThe collection for the view. This can be an Array or a Backbone.Collection\n\nWhen Backbone is used changes to the collection will cause the view\nto be automatically redrawn. This is done minimally so adds and removes\ncause fewest redraws possible."
-            }, {
-              h: 'models',
-              id: 'Table-models',
-              d: "Alias for `collection` property"
-            }, {
-              h: 'each',
-              id: 'Table-each',
-              d: "Inherited from [CollectionView.each](#CollectionView-each)\n\nA mapping function that turns a model into a view.\n\nUse this whenever you set [models](#models) to specify which part of the model to render."
-            }, {
-              h: '$trs',
-              id: 'Table-$trs',
-              d: "Accessor to all row `<tr>` elements ([read-only](#read-only))"
-            }, {
-              h: '$ths',
-              id: 'Table-$ths',
-              d: "Accessor to all `<th>` elements ([read-only](#read-only))"
-            }, {
-              h: '$table',
-              id: 'Table-$table',
-              d: "Accessor to `<table>` element ([read-only](#read-only))"
-            }, {
-              h: '$thead',
-              id: 'Table-$thead',
-              d: "Accessor to `<thead>` element ([read-only](#read-only))"
-            }, {
-              h: '$tbody',
-              id: 'Table-$tbody',
-              d: "Accessor to `<tbody>` element ([read-only](#read-only))"
-            }, {
-              h: '$tfoot',
-              id: 'Table-$tfoot',
-              d: "Accessor to `<tfoot>` element ([read-only](#read-only))"
-            }, {
-              h: '$caption',
-              id: 'Table-$caption',
-              d: "Accessor to `<caption>` element ([read-only](#read-only))"
-            }, {
-              h: '$colgroup',
-              id: 'Table-$colgroup',
-              d: "Accessor to `<colgroup>` element ([read-only](#read-only))"
-            }, {
-              h: '$theadTR',
-              id: 'Table-$theadTR',
-              d: "Accessor to `<tr>` element in `<thead>` ([read-only](#read-only))"
-            }, {
-              h: '$tfootTR',
-              id: 'Table-$tfootTR',
-              d: "Accessor to `<tr>` element in `<tfoot>` ([read-only](#read-only))"
-            }
-          ]);
-          return methods([
-            {
-              h: 'row(rx, ojArray)',
-              id: 'Table-row',
-              d: "Get or set the row at `index`\n`index` may be negative to access elements at the end.\n\nWhen `ojArray` is specified the row cells are set to the specified oj views.\n\nWhen `ojArray` is omitted the row values are returned.\n\nHow this value is returned is handled by [ojValue](jquery-ojValue) jQuery plugin.\n"
-            }, {
-              h: 'cell(rx, cx, oj)',
-              id: 'Table-cell',
-              d: "Get or set the cell at row index `rx`, column index `cx`\n\n`rx` and `cx` may be negative to access elements at the end.\n\nWhen `oj` is specified the cell is set to the value of the oj view.\n\nWhen `oj` is omitted the cell value is returned.\n\nHow this value is returned is handled by [ojValue](jquery-ojValue) jQuery plugin."
-            }, {
-              h: 'clear()',
-              id: 'Table-clear',
-              d: "Remove everything in the table: rows, headers, footers, and captions."
-            }, {
-              h: 'clearBody()',
-              id: 'Table-clearBody',
-              d: "Remove all rows in body"
-            }, {
-              h: 'clearHeader()',
-              id: 'Table-clearHeader',
-              d: "Remove the header"
-            }, {
-              h: 'clearFooter()',
-              id: 'Table-clearFooter',
-              d: "Remove the footer"
-            }, {
-              h: 'addRow(rx, ojArray)',
-              id: 'Table-addRow',
-              d: "Add row at index `rx`\n\n`rx` may be negative to access elements at the end.\n\n`ojArray` is an array of any oj views or objects."
-            }, {
-              h: 'removeRow(rx)',
-              id: 'Table-removeRow',
-              d: "Remove item at index `rx`"
-            }, {
-              h: 'pushRow(ojArray)',
-              id: 'Table-pushRow',
-              d: "Add a new last row\n\n`ojArray` is an array of oj views or objects."
-            }, {
-              h: 'popRow()',
-              id: 'Table-popRow',
-              d: "Remove the last row"
-            }, {
-              h: 'shiftRow()',
-              id: 'Table-shiftRow',
-              d: "Remove the first row and return it."
-            }, {
-              h: 'unshiftRow(ojArray)',
-              id: 'Table-unshiftRow',
-              d: "Add a new first row\n`ojArray` is an array of oj views or objects."
-            }, {
-              h: 'moveRow(rx, rx2)',
-              id: 'Table-moveRow',
-              d: "Move row from index `rx` to `rx2`"
-            }, {
-              h: 'swapRow(rx, rx2)',
-              id: 'Table-swapRow',
-              d: "Swap row at index `rx` to `rx2`"
-            }, {
-              h: '$tr(rx)',
-              id: 'Table-$tr',
-              d: "Accessor to `<tr>` at row index `rx`"
-            }, {
-              h: '$td(rx,cx)',
-              id: 'Table-$tr',
-              d: "Accessor to `<td>` at row index `rx`, column index `cx`"
-            }
-          ]);
-        }
-      }
-    ]
-  }, {
-    h: 'Form Types',
-    id: 'form-types',
-    d: "  These objects create smart form elements that two-way bind to _parts_ of a model: a model-key. Why only part of a model? The reason is controls usually only affect a single key, for example the `email` field, or `name` field might be bound to a [TextBox](#TextBox). While a  [CheckBox](#CheckBox) might bind to boolean properties `wantsTheNewsletter` or `isRegistered`. These keys can all be on the same `UserModel`, but they affect different things.\n\n  ### Example of binding a TextBox\n\n  Create a user\n\n      var UserModel = new Backbone.Model.extend();\n      var user = new UserModel({name:'Evan'});\n\n  Bind TextBox to the user's name\n\n      var TextBox({model: user, key:'name'});\n\n  Two way binding will happen automatically. If you change the model's name the TextBox will update. If you type in the TextBox the model will update.\n\nThe model-key binding syntax works on all Form Types the inherit from [ModelKeyView](#ModelKeyView).\n",
-    items: [
-      {
-        h: 'oj.CheckBox',
-        id: 'CheckBox',
-        d: function() {
-          md("An OJ object that creates and manipulates a CheckBox control. The `value` property can be set in the first argument, or through via `properties`.");
-          name('CheckBox(value, properties)');
-          inherits({
-            h: 'ModelKeyView',
-            id: 'ModelKeyView'
-          });
-          properties([
-            {
-              h: 'value',
-              id: 'CheckBox-value',
-              d: "The value of the control as a boolean ([read-write](#read-write)).\n\nTrue means checked. False unchecked."
-            }, {
-              h: 'model',
-              id: 'CheckBox-model',
-              d: "Bind a model to this control ([read-write](#read-write), [inherited](#ModelKeyView))."
-            }, {
-              h: 'key',
-              id: 'CheckBox-key',
-              d: "Bind a specific key of a model to this control ([read-write](#read-write), [inherited](#ModelKeyView))."
-            }
-          ]);
-          return md("### Example\n    var myCheckBox = CheckBox(true, click:function(){alert('click worked!');});\n");
-        }
-      }, {
-        h: 'oj.TextBox',
-        id: 'TextBox',
-        d: function() {
-          md("A build-in OJ type that creates and manipulates a checkbox form element. The `value` property can be set in the first argument, or in the `options` object.\n\n");
-          name('TextBox(value, properties)');
-          inherits({
-            h: 'ModelKeyView',
-            id: 'ModelKeyView'
-          });
-          properties([
-            {
-              h: 'value',
-              id: 'TextBox-value',
-              d: "The value of the control as a string ([read-write](#read-write))."
-            }, {
-              h: 'model',
-              id: 'TextBox-model',
-              d: "Bind a model to this control ([read-write](#read-write), [inherited](#ModelKeyView))."
-            }, {
-              h: 'key',
-              id: 'TextBox-key',
-              d: "Bind a specific key of a model to this control ([read-write](#read-write), [inherited](#ModelKeyView))."
-            }
-          ]);
-          return md("### Example\n    var myTextBox = TextBox('Default text');");
-        }
-      }, {
-        h: 'oj.Button',
-        id: 'Button',
-        d: function() {
-          md("A build-in OJ type that creates and manipulates a button element. The `label` property can set the button text.\n");
-          name('Button(label, properties)');
-          inherits({
-            h: 'View',
-            id: 'View'
-          });
-          properties([
-            {
-              h: 'label',
-              id: 'Button-label',
-              d: "The text of the button ([read-write](#read-write))."
-            }
-          ]);
-          methods([
-            {
-              h: 'click(fn)',
-              id: 'Button-click',
-              d: "A pass through method to jQuery click event.\n\nLike the jQuery function, calling with a `fn` will bind that function to the click event. Calling without an argument will cause the button click event to be triggered."
-            }
-          ]);
-          return md("### Example\n    var myButton = Button('Default text': click:function(){alert('hello')}\n\n    myButton.click()");
-        }
-      }
-    ]
-  }, {
-    h: 'Creating Types',
-    id: 'creating-types',
-    d: "The point of OJ is creating types that better abstract the web. To do this OJ includes a function called [oj.createType](#createType).\n\n### Features\n\n* Creates 100% real javascript types\n* Works seemlessly between javascript and coffee-script\n* First class properties support:\n  * Properties by value\n  * Properties by get and set functions\n* Supports Constructors and Methods\n* Supports Inheritance\n  * `inherits` up to one Type\n  * Call super with `this.super.methodName()`\n* `new` is optional\n",
-    items: [
-      {
-        h: 'oj.createType',
-        id: 'createType',
-        d: function() {
-          md("This function creates new type constructors. is a big part of why OJ types are so easy to create and use. Generally you should create new types when the component is well understood and often when it has an analogous model.");
-          name('createType(name, options)');
-          arguments_([
-            {
-              h: 'name',
-              id: 'Type-argument-name',
-              d: "The string name of the type you want to create."
-            }, {
-              h: 'options',
-              id: 'Type-argument-options',
-              d: "An object that specifies `properties`, `methods`, `constructor`, and an inheritance `base` type.\n\nSee more information below:"
-            }
-          ]);
-          options([
-            {
-              h: 'base:',
-              id: 'Type-option-base',
-              d: "The type to inherit. When making OJ views use a [base type](#base-types)."
-            }, {
-              h: 'properties:<obj>',
-              id: 'Type-option-properties',
-              d: "Define the type's properties."
-            }, {
-              h: 'methods:<obj>',
-              id: 'Type-option-methods',
-              d: "Define the type's methods.\n\nTo call super use: `TypeName.base.methodName.apply(this, arguments);"
-            }, {
-              h: 'constructor:<fn>',
-              id: 'Type-option-methods',
-              d: "Optionally define a constructor. `this` will be bound correctly.\n\nTo call super use: `TypeName.base.constructor.apply(this, arguments);"
-            }
-          ]);
-          return md("\n### Example\n\n    // Create a User type\n    var User = oj.createType('User', {\n\n      constructor: function(props){\n        // Built in method to set all\n        // properties by name\n        this.set(props);\n      },\n\n      // Create properties\n      properties: {\n        name: null,\n        birthDate: null,\n\n        // The age property is calculated\n        // automatically from birthDate\n        age: {\n          get: function(){\n            var today = new Date();\n\n            var age = today.getFullYear() -\n              this.birthDate.getFullYear();\n\n            var month = today.getMonth() -\n              this.birthDate.getMonth();\n\n            var birthDateIsAfterToday = (\n              month == 0 && (\n                today.getDate() <\n                 this.birthDate.getDate()\n              )\n            );\n            if (birthDateIsAfterToday)\n              age--;\n            return age;\n          }\n        }\n      },\n\n      // Create methods\n      methods: {\n        isEighteen: function(){\n          return this.age >= 18;\n        }\n      }\n    });\n\n    // Create the user named Batman\n    var user = new User({\n      name:'Batman',\n      birthDate:new Date(1974,2,1)\n    });\n\n    // Show that the age property works\n    div(user.name + ' is ' +\n      user.age + ' years old.');\n\n    div(user.name + ' is eighteen: ',\n      function(){\n        strong(user.isEighteen())\n      }\n    );\n");
-        }
-      }, {
-        h: 'Type Interface',
-        id: 'Type',
-        d: function() {
-          md("All types created by [oj.createType](#createType) have the following methods and properties.");
-          properties([
-            {
-              h: 'type',
-              id: 'Type-type',
-              d: "The type that made this instance ([read-only](#read-only))"
-            }, {
-              h: 'typeName',
-              id: 'Type-typeName',
-              d: "The name of type that made this instance ([read-only](#read-only))"
-            }, {
-              h: 'properties',
-              id: 'Type-properties',
-              d: "Array of all properties the type supports ([read-only](#read-only))"
-            }, {
-              h: 'methods',
-              id: 'Type-methods',
-              d: "Array of all methods the type supports ([read-only](#read-only))"
-            }
-          ]);
-          return methods([
-            {
-              h: 'get()',
-              id: 'Type-get',
-              d: "Get all properties as an object"
-            }, {
-              h: 'get(prop)',
-              id: 'Type-get',
-              d: "Get the value of property `prop`. `undefined` is returned if `prop` is not a valid property"
-            }, {
-              h: 'set(prop,val)',
-              id: 'Type-set',
-              d: "Set property `prop` to value `val`"
-            }, {
-              h: 'set(props)',
-              id: 'Type-set',
-              d: "Set all properties at once. `props` is an object mapping key to value. Invalid keys defined in `props` are ignored."
-            }, {
-              h: 'has(prop)',
-              id: 'Type-has',
-              d: "Determine if string `prop` is a property of this instance"
-            }, {
-              h: 'can(method)',
-              id: 'Type-has',
-              d: "Determine if string `method` is a method of this instance"
-            }, {
-              h: 'toJSON()',
-              id: 'Type-toJSON',
-              d: "Convert properties to json"
-            }
-          ]);
-        }
-      }, {
-        h: 'oj.typeOf',
-        id: 'typeOf',
-        d: function() {
-          md("This function helps detect what type an object is. It is much smarter then the built in `typeof` keyword.");
-          name('typeOf(any)');
-          arguments_([
-            {
-              h: 'any',
-              id: 'typeOf-any',
-              d: "Returns the type of `any` as a string."
-            }
-          ]);
-          return md("### Example\n\n    // OJ types return their own name\n    oj.typeOf(new CheckBox());  // \"CheckBox\"\n\n    // jQuery selectors return 'jquery'\n    oj.typeOf($('body'));       // \"jquery\"\n    oj.typeOf($('body')[0]);    // 'dom-element'\n\n    // DOM elements and DOM text elements also work\n    $('body').html('test')\n    var $contents = $('body').contents()\n    oj.typeOf($contents[0]);    // 'dom-text'\n\n    // Basic types work too\n    oj.typeOf(undefined);       // 'undefined'\n    oj.typeOf(null);            // 'null'\n    oj.typeOf(true);            // 'boolean'\n    oj.typeOf(42);              // 'number'\n    oj.typeOf(\"test\");          // 'string'\n    oj.typeOf(/.*/);            // 'regexp'\n    oj.typeOf(new Date());      // 'date'\n");
-        }
-      }
-    ]
-  }, {
-    h: 'Base Types',
-    id: 'base-types',
-    d: "For those of you who want to make your own rich oj views, there are a few inheritable types that will make your life easier.\n\n[View](#View) - The heart of OJ, this makes objects behave like [tag functions](#tag).\n\n[ModelKeyView](#ModelKeyView) - Binds the view to a part of a model (a model + key). Used by all the [form elements](#form-types). Great for creating two-way bindings.\n\n[CollectionView](#CollectionView) - Bind the view to a collection of models. Used by [List](#List) and [Table](#Table). Automatically binds to collection add, remove, change events.",
-    items: [
-      {
-        h: 'oj.View',
-        id: 'View',
-        d: function() {
-          md("This object is the basis of much of the functionality of OJ. It emits creation events so that objects act like [oj.tag](#tag). It creates the root element of your object and gives convenient access to it through [el](#View-el). It provides an [attributes](#View-attributes) property and related methods to let you set and get attributes.\n\nAll types created using [oj.createType](#createType) behave this way.\n\n    var textbox = TextBox({value:'my text'});\n\nIs the same as:\n\n    var textbox = TextBox();\n    textbox.value = 'my text';\n\n(Note: because [oj.createType](#createType) removes the need to use `new`, so in the above example it wasn't necessary to call `new TextBox()`. See [oj.createType](#createType) if you want to learn more about why this was done.)\n\nAny options that don't map to properties will be passed through to the root element as attributes. This lets this work as you would expect:\n\n    TextBox({value:'Placeholder text', id:'id123', style:{color:'red'}})\n\nAlso options can come in any order. This is especially useful for defining style ()\n\n    TextBox({id:'id123'}, 'my text', {style:{\n        color:'red'\n      }\n    })");
-          properties([
-            {
-              h: 'el',
-              id: 'View-el',
-              d: "The root element ([read-only](#read-only), [cached](#cached))."
-            }, {
-              h: '$el',
-              id: 'View-$el',
-              d: "The jquery-enabled root element ([read-only](#read-only), [cached](#cached))"
-            }, {
-              h: 'attributes',
-              id: 'View-attributes',
-              d: "Get all attributes for the root element ([read-only](#read-only))"
-            }
-          ]);
-          return methods([
-            {
-              h: 'addAttribute(name,value)',
-              id: 'View-addAttribute',
-              d: "Add an attribute. Supports everything [oj.tag](#tag) supports, including jQuery events and `style` renaming such as `fontSize` to `font-size`."
-            }, {
-              h: 'addAttribute(name,value)',
-              id: 'View-addAttribute',
-              d: "Add an attribute. Supports everything [oj.tag](#tag) supports, including jQuery events and `style` renaming such as `fontSize` to `font-size`."
-            }, {
-              h: 'addAttributes(obj)',
-              id: 'View-addAttributes',
-              d: "Add multiple attributes at once. Supports everything [oj.tag](#tag) supports. Including jQuery events and `style` renaming such as `fontSize` to `font-size`."
-            }, {
-              h: 'removeAttribute(name)',
-              id: 'View-addAttribute',
-              d: "Remove attribute with by `name`."
-            }, {
-              h: 'removeAttributes(list)',
-              id: 'View-addAttributes',
-              d: "Remove all attributes in the list."
-            }, {
-              h: '$(selector)',
-              id: 'View-$',
-              d: "Find elements from root with jQuery."
-            }, {
-              h: 'toHTML()',
-              id: 'View-toHTML',
-              d: "Convert view to html"
-            }, {
-              h: 'toDOM()',
-              id: 'View-toDOM',
-              d: "Convert view to dom"
-            }, {
-              h: 'toString()',
-              id: 'View-toString',
-              d: "Convert view to a string. By default this calls toHTML()"
-            }
-          ]);
-          /*
-              # Key used to access model
-              key: null
-          
-              # Live update model as text changes
-              live: true
-              value:
-                get: -> throw "#{@typeName} value getter not implemented"
-                set: (v) -> throw "#{@typeName} value setter not implemented"
-          
-              modelChanged: ->
-              viewChanged: ->
-          */
-
-        }
-      }, {
-        h: 'oj.ModelKeyView',
-        id: 'ModelKeyView',
-        d: function() {
-          inherits({
-            h: 'View',
-            id: 'View'
-          });
-          properties([
-            {
-              h: 'model',
-              id: 'ModelKeyView-model',
-              d: "The model part of the model-key that partially binds a model. Both key and model are required."
-            }, {
-              h: 'key',
-              id: 'ModelKeyView-key',
-              d: "The key part of the model-key that partially binds a model. Both key and model are required."
-            }
-          ]);
-          return events([
-            {
-              h: 'modelChanged(...)',
-              id: 'ModelKeyView-modelChanged',
-              d: "Overridable event method called when the model is changed\n\nWhen overriding be sure to call the base method"
-            }, {
-              h: 'viewChanged(...)',
-              id: 'CollectionView-viewChanged',
-              d: "Call this event method to when the view changes. This will cause the model to be updated automatically."
-            }
-          ]);
-        }
-      }, {
-        h: 'oj.CollectionView',
-        id: 'CollectionView',
-        d: function() {
-          inherits({
-            h: 'View',
-            id: 'View'
-          });
-          properties([
-            {
-              h: 'collection',
-              id: 'CollectionView-collection',
-              d: "The inherited collection property for the view. This can be an Array or a Backbone.Collection.\n\nWhen Backbone is used changes the CollectionView automatically binds to changes in the collection and calls the following methods:\n\n* `collectionModelAdded`\n* `collectionModelRemoved`\n* `collectionModelChanged`\n* `collectionModelDestroyed`\n* `collectionReset`\n\nWhen implementing a oj.CollectionView these event methods should be overriden to correctly update state as the collection changes."
-            }, {
-              h: 'models',
-              id: 'CollectionView-models',
-              d: "Alias for `collection` property."
-            }
-          ]);
-          return events([
-            {
-              h: 'collectionModelAdded(...)',
-              id: 'CollectionView-collectionModelAdded',
-              d: "Overridable event method called when a model is added to the collection"
-            }, {
-              h: 'collectionModelRemoved(...)',
-              id: 'CollectionView-collectionModelRemoved',
-              d: "Overridable event method called when a model is removed from the collection"
-            }, {
-              h: 'collectionModelChanged(...)',
-              id: 'CollectionView-collectionModelChanged',
-              d: "Overridable event method called when a model changes"
-            }, {
-              h: 'collectionModelDestroyed(...)',
-              id: 'CollectionView-collectionModelDestroyed',
-              d: "Overridable event method called when a model is destroyed"
-            }, {
-              h: 'collectionReset()',
-              id: 'CollectionView-collectionReset',
-              d: "Overridable event method called when the entire collection is remade"
-            }
-          ]);
-        }
-      }
-    ]
-  }, {
-    h: 'Static Websites',
-    id: 'static-websites',
-    d: "OJ has the capability of building static websites on the command-line using the [oj command](#command-line). This is best for sites that don't change depending on which user loads the page. Either the pages don't change or the data to render comes from ajax requests.\n\n### Features\n\n  * _Auto Minification:_ All javascript, css, html are minified unless `--debug` is set\n  * _Unified Templating:_ `.oj` and `.ojc` files turn into javacsript, html, and css.\n  * Files and Directories can be built, recursed upon, and watched\n  * Files are automatically minified unless `--debug` option is set.\n  * Files can be included from other files using node's `require` syntax.\n  * Node modules can be included as well. Simply `require` them, and they will also be brought into the system (similar to [browserify](http://browserify.org/)).\n  * Built in support for coffee-script with `.ojc` files. You don't even need to install coffee-script, it just works.",
-    items: [
-      {
-        h: 'Install',
-        id: 'install',
-        d: "\nTo use OJ on the server you will need to install the `oj` command built on top of [node.js](http://nodejs.org). For this you need to install node and its package manager `npm`. There are many ways to do this installation, but this will get you started:\n\nInstall `node` on OSX with [homebrew](http://mxcl.github.com/homebrew/):\n\n    brew install node\n\nInstall `node` on Ubuntu with apt-get:\n\n    sudo apt-get install nodejs npm\n\nFinally install `oj` with `npm`:\n\n    npm install -g oj"
-      }, {
-        h: 'File Types (.oj / .ojc)',
-        id: 'file-types',
-        d: "The [oj.js](#download) javascript library works perfectly fine inside of `.js`, or `.coffee` files. The only issue is that it gets tiring writing `oj` in front of everything: `oj.html`, `oj.Table`, etc.\n\nTo solve this OJ supports two file types:\n\n* `.oj` is javascript\n* `.ojc` is coffee-script\n\nThese files have been fully integrated into node. This means you can include other files using `require`, and you must use `module.exports` to set the what the module should return. Here are some examples:\n\n### .oj example (javascript):\n\n    # hello.oj\n    module.exports = return [html,\n      [head],\n      [body,\n        [div 'Hello world']\n      ]\n    ]\n\n### .ojc example (coffee-script):\n\n    # hello.ojc\n    module.exports = ->\n      html ->\n        head ->\n        body ->\n          div 'Hello world'\n"
-      }, {
-        h: 'Command Line',
-        id: 'command-line',
-        d: "The `oj` command builds `.oj` and `.ojc` [file types](#file-types) into html files.\n\n### Usage\n\n    oj [options] <file> <dir> ...\n\n    Options:\n\n      -h, --help               output usage information\n      -V, --version            output the version number\n      -d, --debug              Turn on debug output\n      -o, --output <dir>       Directory to output all files to\n      -r, --recurse            Recurse into directories\n      -m, --modules <modules>  List of modules to include\n      -v, --verbose <level>    Turn on verbose level 0-3\n      -w, --watch              Turn on watch mode\n\nWhen options are omitted these are the defaults:\n\n    --output defaults to ./\n    --debug defaults to off<br>\n    --verbose defaults to 1\n\n### Ignored file prefixes\n\n  * Partials and Templates (start with `_`)\n  * OJ Plugins (start with `oj.`)\n  * Hidden files (start with `.`)\n\n### Examples\n\nBuild `hello.oj` to current directory\n\n    oj hello.oj\n\nBuild `hello.oj` without minification to `www` directory\n\n    oj -d -o www hello.oj\n\nWatch `hello.oj` and build to `www` directory\n\n    oj --watch -o www hello.oj\n\nBuild `pages` directory to `www`\n\n    oj -o www pages\n\nRecursively build `pages` directory to `www`\n\n    oj -r -o www pages\n\nRecursively watch and build `pages` directory to `www`\n\n    oj -w -r -o www pages\n"
-      }
-    ]
-  }
-];
-
-/*
-
-
-          <dl class='row'>
-            <dt class='gg25'>make()</dt><dd class='gg75'>
-            Create the initial dom element with oj.<br>
-            <br>
-            Calling make should generate the same result if called
-            multiple times. Specifically if you generate an id you
-            should store it in `this.id` and reuse the same id
-            each time.
-            </dd>
-          </dl>
-Command Line
-
-
-Helper Methods
-
-  oj.isUndefined
-  oj.isBoolean
-  oj.isNumber
-  oj.isString
-  oj.isDate
-  oj.isFunction
-  oj.isArray
-  oj.isRegEx
-  oj.isDOM
-  oj.isDOMElement
-  oj.isDOMAttribute
-  oj.isDOMText
-  oj.isjQuery
-  oj.isBackbone
-  oj.isOJ
-  oj.isArguments
-  oj.addProperty
-  oj.addProperties
-  oj.addMethod
-  oj.addMethods
-
-Form Libraries
-  All Controls
-    model: <Backbone>, auto watch for change events
-    key:  <string>  stores key to change in model
-    value: <bool>
-    formh: control name value when posting (maps to attr: name, defaults to key)
-    formValue: control value value when posting a form (maps to attr:value, defaults to value.toString())
-
-    # Custom event triggered when the view OR the model changes
-    modelChanged: (control) -> only when model changes
-    viewChanged: (control) -> only when view changes
-
-  Form
-  CheckBox   change = check/uncheck
-  ListBox  change = select thing
-  TextBox  change = keyup
-  TextArea    change = keyup
-
-
-  FilterBox  change = select thing
-  SearchBox change = keyup
-
-Utility Libraries
-
-  md
-  mustache
-
-Examples
-
-FAQ
-
-Versions
-*/
-
-}}).call(this);})(RR('/docs.ojc'),P,G,'/','docs.ojc');});
+// Debounce from underscore to remowe the only underscore dependency
+// http://underscorejs.org/#debounce
+debounce = function(wait, func, immediate) {
+  var timeout, result;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) result = func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) result = func.apply(context, args);
+    return result;
+  };
+};
+})(RR('/node_modules/oj-ace-editor/src/oj.AceEditor.js'),P,G,'/node_modules/oj-ace-editor/src','oj.AceEditor.js');});
 F['/node_modules/oj-markdown/src/oj.markdown.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){var marked = require('marked');
 // Create a plugin by defining a function that accepts oj and returns a map of extensions to oj
 module.exports = function(oj,settings){
@@ -2624,263 +1716,199 @@ if (typeof exports === 'object') {
   return this || (typeof window !== 'undefined' ? window : global);
 }());
 })(RR('/node_modules/oj-markdown/node_modules/marked/lib/marked.js'),P,G,'/node_modules/oj-markdown/node_modules/marked/lib','marked.js');});
-F['/_template.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var _, _footer, _header, _styles, _template;
+F['/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// Create a plugin by defining a function that accepts oj and
+// returns a map of extensions to oj
 
-_ = require('underscore');
+// Froogaloop is the offical javascript api to Vimeo
+// https://github.com/vimeo/player-api/tree/master/javascript
+var Froogaloop=function(){function e(a){return new e.fn.init(a)}function h(a,c,b){if(!b.contentWindow.postMessage)return!1;var f=b.getAttribute("src").split("?")[0],a=JSON.stringify({method:a,value:c});"//"===f.substr(0,2)&&(f=window.location.protocol+f);b.contentWindow.postMessage(a,f)}function j(a){var c,b;try{c=JSON.parse(a.data),b=c.event||c.method}catch(f){}"ready"==b&&!i&&(i=!0);if(a.origin!=k)return!1;var a=c.value,e=c.data,g=""===g?null:c.player_id;c=g?d[g][b]:d[b];b=[];if(!c)return!1;void 0!==
+a&&b.push(a);e&&b.push(e);g&&b.push(g);return 0<b.length?c.apply(null,b):c.call()}function l(a,c,b){b?(d[b]||(d[b]={}),d[b][a]=c):d[a]=c}var d={},i=!1,k="";e.fn=e.prototype={element:null,init:function(a){"string"===typeof a&&(a=document.getElementById(a));this.element=a;a=this.element.getAttribute("src");"//"===a.substr(0,2)&&(a=window.location.protocol+a);for(var a=a.split("/"),c="",b=0,f=a.length;b<f;b++){if(3>b)c+=a[b];else break;2>b&&(c+="/")}k=c;return this},api:function(a,c){if(!this.element||
+!a)return!1;var b=this.element,f=""!==b.id?b.id:null,d=!c||!c.constructor||!c.call||!c.apply?c:null,e=c&&c.constructor&&c.call&&c.apply?c:null;e&&l(a,e,f);h(a,d,b);return this},addEvent:function(a,c){if(!this.element)return!1;var b=this.element,d=""!==b.id?b.id:null;l(a,c,d);"ready"!=a?h("addEventListener",a,b):"ready"==a&&i&&c.call(null,d);return this},removeEvent:function(a){if(!this.element)return!1;var c=this.element,b;a:{if((b=""!==c.id?c.id:null)&&d[b]){if(!d[b][a]){b=!1;break a}d[b][a]=null}else{if(!d[a]){b=
+!1;break a}d[a]=null}b=!0}"ready"!=a&&b&&h("removeEventListener",a,c)}};e.fn.init.prototype=e.fn;window.addEventListener?window.addEventListener("message",j,!1):window.attachEvent("onmessage",j);return window.Froogaloop=e}();
 
-_styles = require('./_styles');
+// Create url from Vimeo options
+function vimeoUrl(video, options)
+{
+  var out = 'http://player.vimeo.com/video/' + video + '?api=1&player_id=' + options.player_id;
+  for(k in options)
+    out += '&' + k + '=' + options[k];
+  return out;
+}
 
-module.exports = _template = function(parts) {
-  var orangeSize;
+module.exports = function(oj,settings){
+  if (typeof settings !== 'object')
+    settings = {}
 
-  doctype(5);
-  html(function() {
-    head(function() {
-      var s, _i, _j, _len, _len1, _ref, _ref1;
+  var VimeoVideo = oj.createType('VimeoVideo', {
+    // The model-key bind to the url of the movie
+    base: oj.View,
 
-      meta({
-        name: 'viewport',
-        content: 'width=device-width'
-      });
-      title(parts.title);
-      if (_.isArray(parts.styles)) {
-        _ref = parts.styles;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          s = _ref[_i];
-          link({
-            href: "styles/" + s,
-            rel: 'stylesheet',
-            type: 'text/css'
-          });
-        }
+    // VimeoVideo(videoID, properties)
+    constructor: function(){
+      var this_ = this;
+      var union = oj.argumentsUnion(arguments);
+      var options = union.options;
+      var args = union.args;
+
+      var defaults = {
+        width: 400,
+        height: 224,
+        color: '00adef'
+      };
+
+      // Default options if unspecified
+      for (k in defaults) {
+        if (options[k] == null)
+          options[k] = defaults[k];
       }
-      if (_.isArray(parts.scripts)) {
-        _ref1 = parts.scripts;
-        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-          s = _ref1[_j];
-          script({
-            src: "scripts/" + s,
-            type: 'text/javascript'
-          });
-        }
+
+      // First argument is video id
+      if(args.length > 0)
+        this.video = args[0];
+
+      // Shift properties
+      var props = [
+        'video',
+        'title',
+        'byline',
+        'portrait',
+        'color',
+        'autoplay',
+        'loop'
+      ];
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (options[prop] != null)
+          this[prop] = oj.argumentShift(options, prop);
       }
-      return typeof parts.head === "function" ? parts.head() : void 0;
-    });
-    return body(function() {
-      header(function() {
-        return _header();
-      });
-      div({
-        c: 'gg'
-      }, function() {
-        return div({
-          c: 'fixed row'
-        }, function() {
-          return div({
-            c: 'toc-right o75 gg25 hide-phone'
-          }, function() {
-            return parts != null ? typeof parts.toc === "function" ? parts.toc() : void 0 : void 0;
-          });
+
+      this.el = oj(function(){
+        oj.iframe({
+          src: this_.src,
+          frameborder:0,
+          webkitAllowFullScreen:1,
+          mozallowfullscreen:1,
+          allowFullScreen:1,
         });
       });
-      return div({
-        c: 'gg'
-      }, function() {
-        return div({
-          c: 'relative row'
-        }, function() {
-          div({
-            c: 'body gg100'
-          }, function() {
-            if (parts != null) {
-              if (typeof parts.body === "function") {
-                parts.body();
-              }
-            }
-            return div({
-              c: 'row'
-            }, function() {
-              div({
-                c: 'toc-above gg25 show-phone'
-              }, function() {
-                return parts != null ? typeof parts.toc === "function" ? parts.toc() : void 0 : void 0;
-              });
-              return div({
-                c: 'content gg75'
-              }, function() {
-                return parts != null ? typeof parts.content === "function" ? parts.content() : void 0 : void 0;
-              });
-            });
-          });
-          return footer({
-            c: 'gg100'
-          }, function() {
-            return _footer();
-          });
-        });
-      });
-    });
-  });
-  _styles();
-  orangeSize = '42px';
-  return css({
-    '.fixed': {
-      position: 'fixed',
-      marginTop: '62px',
-      zIndex: 100,
-      height: '40px',
-      '@media phone': {
-        marginTop: '85px'
-      }
+
+      VimeoVideo.base.constructor.apply(this, [options]);
+
+      // // // Bind events using javascript API
+      // this.player = Froogaloop(this.el);
+
+      // // // When the player is ready, add listeners for pause, finish, and playProgress
+      // this.player.addEvent('ready', function() {});
+
+
+      //   console.log("ready called");
+
+      //   this_.player.addEvent('pause', function(){this_.onPause.apply(this_,arguments)});
+      //   this_.player.addEvent('finish', function(){this_.onFinish.apply(this_,arguments)});
+      //   this_.player.addEvent('playProgress', function(){this_.onPlayProgress.apply(this_,arguments)});
+      // });
+
+      // if (oj.isClient) {
+      //   console.log("starting: ", starting);
+      //   player.api('starting');
+      // }
     },
-    '.relative': {
-      position: 'relative',
-      '@media phone': {
-        marginTop: '62px'
-      }
-    },
-    '.hide-phone': {
-      '@media phone': {
-        display: 'none'
-      }
-    },
-    '.show-phone': {
-      '@media phone': {
-        display: 'block'
-      },
-      '@media tablet': {
-        display: 'none'
-      },
-      '@media monitor': {
-        display: 'none'
-      }
-    },
-    header: {
-      position: 'fixed',
-      height: '45px',
-      width: '100%',
-      boxShadow: '2px 2px 2px RGBA(0,0,0,0.1)',
-      backgroundColor: 'white',
-      zIndex: 1000,
-      '@media phone': {
-        height: '72px'
-      }
-    },
-    '.header-contents': {
-      height: '45px',
-      float: 'none !important',
-      marginLeft: 'auto !important',
-      marginRight: 'auto !important',
-      display: 'block',
-      '@media phone': {
-        textAlign: 'center',
-        paddingTop: '10px',
-        height: '30px'
-      }
-    },
-    '.header-logo': {
-      background: 'url(media/oj_logo_small.png) no-repeat 0 center',
-      display: 'inline-block',
-      width: '32px',
-      height: '22px',
-      verticalAlign: 'middle',
-      marginLeft: '91px',
-      '@media phone': {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        display: 'block',
-        textAlign: 'center'
-      }
-    },
-    '.header-options': {
-      display: 'inline-block',
-      marginLeft: '44px',
-      paddingTop: '12px',
-      '@media phone': {
-        marginLeft: '0px',
-        textAlign: 'center',
-        display: 'block'
-      }
-    },
-    '.header-option': {
-      fontFamily: 'Helvetica, Arial, Tahoma',
-      color: '#E98C00',
-      fontSize: '18px',
-      fontWeight: '100',
-      verticalAlign: 'middle',
-      '&:not(:first-child)': {
-        marginLeft: '44px',
-        '@media phone': {
-          marginLeft: '20px'
+    properties: {
+      width: {
+        get: function(){ return this.$el.attr('width'); },
+        set: function(v){
+          this.$el.attr('width', v);
         }
       },
-      '@media phone': {
-        marginTop: '30px'
+
+      height: {
+        get: function(){ return this.$el.attr('height'); },
+        set: function(v){
+          this.$el.attr('height', v);
+        }
+      },
+
+      // The video id
+      video: 24715531,
+
+      // Show title (readwrite)
+      title: false,
+
+      // Show the users byline on the video (readwrite)
+      byline: false,
+
+      // Show the user's portrait on the video (readwrite)
+      portrait: false,
+
+      // Color of controls (readwrite)
+      color: {
+        get: function(){return this._color;},
+        set: function(v){
+          // Remove prefix of '#'
+          if(v.length > 0 && v[0] == '#')
+            v = v.slice(1);
+          this._color = v;
+        }
+      },
+
+      // Play the video automatically on load
+      autoplay: false,
+
+      // Repeat video when it reaches the end
+      loop: false,
+
+      src: {
+        get: function(){
+          return vimeoUrl(this.video, this.videoOptions);
+        }
+      },
+
+      // Gather options to set url (readonly)
+      videoOptions: {
+        get: function(){
+          return {
+            title: (this.title ? 1 : 0),
+            byline: (this.byline ? 1 : 0),
+            portrait: (this.portrait ? 1 : 0),
+            color: this.color,
+            autoplay: (this.autoplay ? 1 : 0),
+            loop: (this.loop ? 1 : 0),
+            player_id: (this.id ? 1 : 0)
+          };
+        }
       }
     },
-    '.header-orange-corner': {
-      width: orangeSize,
-      height: orangeSize,
-      position: 'absolute',
-      top: '0px',
-      backgroundSize: 'contain'
-    },
-    '.header-orange-corner.left': {
-      backgroundImage: 'url(media/orange_left.png)',
-      left: '0px'
-    },
-    '.header-orange-corner.right': {
-      backgroundImage: 'url(media/orange_right.png)',
-      right: '0px'
+
+    methods: {
+
+      play: function(){
+
+      },
+      stop: function(){
+
+      },
+      rewind: function(){
+
+      },
+
+      onPause: function(id) {
+        console.log('paused', id);
+      },
+
+      onFinish: function(id) {
+        console.log('finish', id);
+      },
+
+      onPlayProgress: function(data, id) {
+        console.log('playProgress: ', data, id);
+      }
+
     }
   });
-};
 
-_header = function() {
-  div({
-    c: 'header-contents'
-  }, function() {
-    a({
-      c: 'header-logo',
-      href: 'index.html'
-    });
-    return div({
-      c: 'header-options'
-    }, function() {
-      a('Learn', {
-        c: 'header-option',
-        href: 'learn.html'
-      });
-      a('Try', {
-        c: 'header-option',
-        href: 'try.html'
-      });
-      a('Docs', {
-        c: 'header-option',
-        href: 'docs.html'
-      });
-      a('Plugins', {
-        c: 'header-option',
-        href: 'plugins.html'
-      });
-      return a('Download', {
-        c: 'header-option',
-        href: 'download.html'
-      });
-    });
-  });
-  div({
-    c: 'header-orange-corner left'
-  });
-  return div({
-    c: 'header-orange-corner right'
-  });
+  return {VimeoVideo:VimeoVideo};
 };
-
-_footer = function() {
-  return footer();
-};
-}}).call(this);})(RR('/_template.ojc'),P,G,'/','_template.ojc');});
+})(RR('/node_modules/oj-vimeo-video/src/oj.VimeoVideo.js'),P,G,'/node_modules/oj-vimeo-video/src','oj.VimeoVideo.js');});
 F['/node_modules/underscore/underscore.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){//     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -4108,445 +3136,708 @@ F['/node_modules/underscore/underscore.js'] = (function(module,exports){(functio
 
 }).call(this);
 })(RR('/node_modules/underscore/underscore.js'),P,G,'/node_modules/underscore','underscore.js');});
-F['/_styles.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){module.exports = function() {
-  var argumentLinkColor, backgroundColor, borderColor, codeBackgroundColor, codeColor, codeLineColor, eventLinkColor, familyMonospace, familySanSarif, functionLinkColor, h1Color, h2Color, linkColor, methodLinkColor, optionLinkColor, propertyLinkColor, strongTextColor, textColor, tocSectionColor, typeLinkColor;
+F['/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth;
 
-  h1Color = '#444';
-  textColor = '#444';
-  strongTextColor = '#000';
-  h2Color = textColor;
-  backgroundColor = '#fff';
-  codeColor = '#444';
-  codeBackgroundColor = '#FEFAF3';
-  codeLineColor = '#FFD36B';
-  linkColor = '#E78B00';
-  borderColor = '#ffd272';
-  typeLinkColor = linkColor;
-  functionLinkColor = linkColor;
-  tocSectionColor = '#C76200';
-  methodLinkColor = '#a64d09';
-  propertyLinkColor = '#b3820a';
-  eventLinkColor = '#a64d09';
-  optionLinkColor = propertyLinkColor;
-  argumentLinkColor = propertyLinkColor;
-  familyMonospace = 'Inconsolata, Consolas, Courier New, monospace';
-  familySanSarif = 'Helvetica, Arial, sans-serif';
-  return css({
-    h1: {
-      fontFamily: familySanSarif,
-      fontSize: '25px',
-      fontWeight: '100',
-      marginTop: '40px',
-      marginBottom: '12px',
-      paddingBottom: '6px',
-      color: h1Color,
-      borderBottom: '2px solid #FFD36B'
-    },
-    'h1:first-child': {
-      marginTop: '20px'
-    },
-    h2: {
-      fontFamily: familySanSarif,
-      fontSize: '22px',
-      fontWeight: '100',
-      margin: '32px 0 15px 0',
-      color: h2Color,
-      textDecoration: 'none'
-    },
-    h3: {
-      fontFamily: familySanSarif,
-      fontSize: '16px',
-      fontWeight: '100',
-      marginTop: '22px',
-      marginBottom: '14px',
-      color: '#222'
-    },
-    a: {
-      color: linkColor,
-      textDecoration: 'none'
-    },
-    'a.heading1, a.heading1:hover': {
-      color: h1Color,
-      textDecoration: 'none'
-    },
-    'a.heading2, a.heading2:hover': {
-      color: h2Color,
-      textDecoration: 'none'
-    },
-    'a.type': {
-      color: typeLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.function': {
-      color: functionLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.method': {
-      color: methodLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.event': {
-      color: eventLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.property': {
-      color: propertyLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.option': {
-      color: optionLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a.argument': {
-      color: argumentLinkColor,
-      fontFamily: familyMonospace
-    },
-    'a:hover': {
-      textDecoration: 'underline'
-    },
-    blockquote: {
-      padding: '0 0 0 10px',
-      borderLeft: "2px solid " + borderColor
-    },
-    p: {
-      color: textColor,
-      fontFamily: familySanSarif,
-      fontSize: '16px',
-      fontWeight: 'lighter',
-      margin: '16px 0 8px 0',
-      lineHeight: '24px'
-    },
-    'p strong': {
-      color: strongTextColor,
-      fontFamily: familySanSarif,
-      fontWeight: 400
-    },
-    ul: {
-      marginBottom: '16px'
-    },
-    li: {
-      margin: '10px 0 10px 20px',
-      color: textColor,
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      lineHeight: '20px'
-    },
-    '.oj-TryEditor': {
-      marginBottom: '30px'
-    },
-    '.code-heading': {
-      color: '#222',
-      fontFamily: familyMonospace,
-      fontSize: '19px'
-    },
-    '.code-subheading': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      fontStyle: 'italic',
-      fontWeight: 'lighter',
-      color: textColor,
-      display: 'block',
-      lineHeight: '20px',
-      marginTop: '10px'
-    },
-    '.code-items': {
-      margin: '10px 0 10px 10px',
-      width: '100%'
-    },
-    '.code-items tr': {
-      width: '100%'
-    },
-    '.code-item': {
-      display: 'block',
-      margin: '0 0 4px 0'
-    },
-    '.code-item-base': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      margin: '10px 0 10px 10px',
-      lineHeight: '20px'
-    },
-    '.code-item-name': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      margin: '0 0 0 20px',
-      lineHeight: '20px',
-      minWidth: '100px',
-      display: 'inline-block'
-    },
-    '.code-item-def': {
-      fontFamily: familySanSarif,
-      fontSize: '14px',
-      color: textColor,
-      margin: '0 0 0 20px',
-      lineHeight: '20px',
-      display: 'inline-block',
-      width: '100%'
-    },
-    '.code-item-def p': {
-      margin: '0 0 10px 0'
-    },
-    '.code-item-def pre': {
-      margin: '0 0 10px 0',
-      border: '0',
-      color: codeColor
-    },
-    pre: {
-      border: "2px solid " + codeLineColor,
-      backgroundColor: codeBackgroundColor,
-      color: codeColor,
-      padding: '8px',
-      lineHeight: '18px',
-      fontSize: '14px'
-    },
-    '.toc-section': {
-      display: 'block',
-      color: tocSectionColor,
-      textTransform: 'uppercase',
-      fontFamily: familySanSarif,
-      margin: '0 0 10px 0',
-      fontSize: '14px',
-      textAlign: 'right',
-      fontWeight: 'lighter'
-    },
-    '.toc-item': {
-      display: 'block',
-      fontFamily: familySanSarif,
-      fontSize: '13px',
-      fontWeight: 'lighter',
-      textAlign: 'right',
-      margin: '0 0 4px 0',
-      color: linkColor
-    },
-    '.toc-items': {
-      marginBottom: '10px'
-    },
-    '.left': {
-      marginBottom: '10px'
-    },
-    textarea: {
-      width: '100%',
-      height: '100px',
-      borderColor: '#f4f4f4',
-      fontFamily: familySanSarif,
-      fontSize: '14px'
-    },
-    '.snippet': {
-      margin: 0,
-      position: 'relative',
-      width: '100%',
-      height: '100px',
-      border: '1px solid orange'
-    },
-    '.download-button': {
-      height: '27px',
-      border: '2px solid orange',
-      borderRadius: '5px',
-      backgroundColor: '#FEFAF3',
-      boxShadow: '2px 2px 2px RGBA(0,0,0,0.2)',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontFamily: familySanSarif
-    },
-    '.download-button:hover': {
-      backgroundColor: '#fff'
-    }
-  });
-};
-}}).call(this);})(RR('/_styles.ojc'),P,G,'/','_styles.ojc');});
-F['/_content.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var callOrMarkdown, contentCodeItems, contentItem, contentSection, markdown, tocSection;
+editorBorderColor = '#ffd272';
 
-markdown = require('oj-markdown');
+editorBackgroundColor = '#fefaf3';
 
-module.exports = {
-  renderTOC: function(data) {
-    var ix, section, _i, _len, _results;
+editorBorderWidth = 2;
 
-    _results = [];
-    for (ix = _i = 0, _len = data.length; _i < _len; ix = ++_i) {
-      section = data[ix];
-      _results.push(tocSection(section, ix));
-    }
-    return _results;
-  },
-  renderContent: function(data) {
-    var ix, section, _i, _len, _results;
+editorPadding = 4;
 
-    _results = [];
-    for (ix = _i = 0, _len = data.length; _i < _len; ix = ++_i) {
-      section = data[ix];
-      _results.push(contentSection(section, ix));
-    }
-    return _results;
-  },
-  renderName: function(name) {
-    return h3({
-      c: 'code-heading'
-    }, name);
-  },
-  renderProperties: function(properties) {
-    div('properties:', {
-      c: 'code-subheading property'
-    });
-    return contentCodeItems(properties, 'property');
-  },
-  renderMethods: function(methods) {
-    div('methods:', {
-      c: 'code-subheading method'
-    });
-    return contentCodeItems(methods, 'method');
-  },
-  renderEvents: function(events) {
-    div('events:', {
-      c: 'code-subheading event'
-    });
-    return contentCodeItems(events, 'event');
-  },
-  renderArguments: function(args) {
-    div('arguments:', {
-      c: 'code-subheading argument'
-    });
-    return contentCodeItems(args, 'argument');
-  },
-  renderOptions: function(opts) {
-    div('options:', {
-      c: 'code-subheading option'
-    });
-    return contentCodeItems(opts, 'option');
-  },
-  renderInherits: function(inherits) {
-    div('base:', {
-      c: 'code-subheading inherit'
-    });
-    return div({
-      c: 'code-items'
-    }, function() {
-      return a(inherits.h, {
-        c: 'type',
-        href: '#' + inherits.id
+consolePadding = 4;
+
+phoneWidth = 696;
+
+maximizeDuration = 500;
+
+lineHeight = 21;
+
+makeCSS = null;
+
+module.exports = function(oj, settings) {
+  var TryEditor;
+
+  TryEditor = createType('TryEditor', {
+    base: ModelKeyView,
+    constructor: function() {
+      var args, options, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6,
+        _this = this;
+
+      _ref = oj.argumentsUnion(arguments), options = _ref.options, args = _ref.args;
+      this._editor = new AceEditor({
+        c: 'oj-TryEditor-input-editor',
+        theme: 'orange',
+        mode: 'ojc',
+        fontSize: 15,
+        tabSize: 2,
+        behaviorsEnabled: true,
+        useSoftTabs: true,
+        showGutter: false,
+        highlightActiveLine: false,
+        showPrintMargin: false,
+        readOnly: false,
+        showIndentGuides: false,
+        change: function() {
+          return _this.editorChanged.apply(_this, arguments);
+        }
       });
-    });
-  }
-};
-
-tocSection = function(section, ix) {
-  a("" + section.h, {
-    c: 'toc-section',
-    href: "\#" + section.id
-  });
-  if (section.items != null) {
-    return div({
-      c: 'toc-items'
-    }, function() {
-      var item, _i, _len, _ref, _results;
-
-      _ref = section.items;
-      _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        item = _ref[_i];
-        _results.push(a("" + item.h, {
-          c: 'toc-item',
-          href: "\#" + item.id
-        }));
-      }
-      return _results;
-    });
-  }
-};
-
-contentSection = function(section, ix) {
-  var item, ixItem, _i, _len, _ref, _results;
-
-  h1({
-    id: section.id
-  }, function() {
-    return a(section.h, {
-      c: 'heading1',
-      href: '#' + section.id
-    });
-  });
-  callOrMarkdown(section.d);
-  if (section.items != null) {
-    _ref = section.items;
-    _results = [];
-    for (ixItem = _i = 0, _len = _ref.length; _i < _len; ixItem = ++_i) {
-      item = _ref[ixItem];
-      _results.push(contentItem(item, ixItem));
-    }
-    return _results;
-  }
-};
-
-contentItem = function(item, ix) {
-  h2({
-    id: "" + item.id
-  }, function() {
-    return a(item.h, {
-      href: '#' + item.id,
-      c: 'heading2'
-    });
-  });
-  return callOrMarkdown(item.d);
-};
-
-contentCodeItems = function(items, type) {
-  if ((items != null) && items.length > 0) {
-    return table({
-      c: "code-items " + type
-    }, function() {
-      return tbody(function() {
-        var prop, _i, _len, _results;
-
-        _results = [];
-        for (_i = 0, _len = items.length; _i < _len; _i++) {
-          prop = items[_i];
-          _results.push(tr({
-            c: "code-item " + type
+      this.el = oj(function() {
+        return div(function() {
+          div({
+            c: 'oj-TryEditor-resizer'
           }, function() {
-            td({
-              c: "code-item-name " + type,
-              id: prop.id
+            return div({
+              c: 'oj-TryEditor-gripper ui-resizable-s'
+            });
+          });
+          div({
+            c: 'oj-TryEditor-inputs'
+          }, function() {
+            div({
+              c: 'oj-TryEditor-bar'
             }, function() {
-              return a(prop.h, {
-                c: type,
-                href: '#' + prop.id
+              return div({
+                c: 'oj-TryEditor-bar-states'
+              }, function() {
+                div({
+                  c: 'oj-TryEditor-bar-state cs'
+                }, 'CS', {
+                  title: 'Use CoffeeScript'
+                });
+                return div({
+                  c: 'oj-TryEditor-bar-state js selected'
+                }, 'JS', {
+                  title: 'Use JavaScript'
+                });
               });
             });
-            return td({
-              c: "code-item-def " + type
-            }, function() {
-              return callOrMarkdown(prop.d);
+            return _this.editor.emit();
+          });
+          div({
+            c: 'oj-TryEditor-outputs'
+          }, function() {
+            div({
+              c: 'oj-TryEditor-console'
             });
-          }));
-        }
-        return _results;
+            iframe({
+              c: 'oj-TryEditor-output-iframe'
+            });
+            return div({
+              c: 'oj-TryEditor-bar'
+            }, function() {
+              return div({
+                c: 'oj-TryEditor-bar-maximize',
+                title: 'Maximize'
+              });
+            });
+          });
+          return div({
+            c: 'oj-TryEditor-seperator'
+          });
+        });
       });
-    });
-  }
-};
+      if (args.length > 0) {
+        this.value = args[0];
+      }
+      this.$inputs = this.$('.oj-TryEditor-inputs');
+      this.$input = this.$('.oj-TryEditor-input-editor');
+      this.$outputs = this.$('.oj-TryEditor-outputs');
+      this.$output = this.$('.oj-TryEditor-output-iframe');
+      this.$seperator = this.$('.oj-TryEditor-seperator');
+      this.$resizer = this.$('.oj-TryEditor-resizer');
+      this.$console = this.$('.oj-TryEditor-console');
+      this.$gripper = this.$('.oj-TryEditor-gripper');
+      this.$jsButton = this.$('.oj-TryEditor-bar-state.js');
+      this.$csButton = this.$('.oj-TryEditor-bar-state.cs');
+      this.$maximizeButton = this.$('.oj-TryEditor-bar-maximize');
+      if (options.js != null) {
+        this.js = oj.argumentShift(options, 'js');
+      }
+      if (options.cs != null) {
+        this.cs = oj.argumentShift(options, 'cs');
+      }
+      this.state = (_ref1 = oj.argumentShift(options, 'state')) != null ? _ref1 : 'js';
+      if (options.value != null) {
+        this.value = oj.argumentShift(options, 'js');
+      }
+      this.minWidth = (_ref2 = oj.argumentShift(options, 'minWidth')) != null ? _ref2 : 400;
+      this.minHeight = (_ref3 = oj.argumentShift(options, 'minHeight')) != null ? _ref3 : lineHeight * 1 + 2 * editorPadding;
+      this.width = oj.argumentShift(options, 'width');
+      this.height = oj.argumentShift(options, 'height');
+      this.split = (_ref4 = oj.argumentShift(options, 'split')) != null ? _ref4 : 0.5;
+      this.lineCount = (_ref5 = oj.argumentShift(options, 'lineCount')) != null ? _ref5 : 'fit';
+      this.maximize = (_ref6 = oj.argumentShift(options, 'maximize')) != null ? _ref6 : false;
+      TryEditor.base.constructor.apply(this, [options]);
+      return this._bindEvents();
+    },
+    properties: {
+      width: {
+        get: function() {
+          return this.$el.width();
+        }
+      },
+      height: {
+        get: function() {
+          var _ref;
 
-callOrMarkdown = function(v) {
-  if (v != null) {
-    if (oj.isFunction(v)) {
-      v();
-    } else {
-      markdown(v);
+          return (_ref = this._height) != null ? _ref : this.minHeight;
+        },
+        set: function(v) {
+          this._height = v;
+          return this.updateFrame();
+        }
+      },
+      lineCount: {
+        get: function() {
+          return this._lineCount;
+        },
+        set: function(v) {
+          var _ref, _ref1, _ref2, _ref3;
+
+          if (v === 'fit' && (this.value != null)) {
+            this._lineCount = Math.max(((_ref = this.cs) != null ? (_ref1 = _ref.split(/\r\n|\r|\n/)) != null ? _ref1.length : void 0 : void 0) || 1, ((_ref2 = this.js) != null ? (_ref3 = _ref2.split(/\r\n|\r|\n/)) != null ? _ref3.length : void 0 : void 0) || 1);
+          } else {
+            this._lineCount = v;
+          }
+          return this.height = this._lineCount * lineHeight + editorPadding * 2;
+        }
+      },
+      split: {
+        get: function() {
+          return this._split;
+        },
+        set: function(v) {
+          this._split = v;
+          return this.updateFrame();
+        }
+      },
+      editor: {
+        get: function() {
+          return this._editor;
+        }
+      },
+      value: {
+        get: function() {
+          return this.editor.value;
+        },
+        set: function(v) {
+          return this.editor.value = v;
+        }
+      },
+      js: {
+        get: function() {
+          return this._js;
+        },
+        set: function(v) {
+          this._js = v;
+          return this.updateValue();
+        }
+      },
+      cs: {
+        get: function() {
+          return this._cs;
+        },
+        set: function(v) {
+          this._cs = v;
+          return this.updateValue();
+        }
+      },
+      state: {
+        get: function() {
+          return this._state;
+        },
+        set: function(v) {
+          this._state = v;
+          if (v === 'js') {
+            this.editor.mode = 'oj';
+            this.$jsButton.addClass('selected');
+            this.$csButton.removeClass('selected');
+          } else {
+            this.$jsButton.addClass('selected');
+            this.editor.mode = 'ojc';
+            this.$jsButton.removeClass('selected');
+            this.$csButton.addClass('selected');
+          }
+          return this.updateValue();
+        }
+      },
+      mode: {
+        get: function() {
+          return this.editor.mode;
+        },
+        set: function(v) {
+          return this.editor.mode = v;
+        }
+      },
+      fit: {
+        get: function() {
+          var _ref;
+
+          return (_ref = this._fit) != null ? _ref : true;
+        },
+        set: function(v) {
+          return this._fit = v;
+        }
+      },
+      maximize: {
+        get: function() {
+          var _ref;
+
+          return (_ref = this._maximize) != null ? _ref : false;
+        },
+        set: function(v) {
+          var pos,
+            _this = this;
+
+          this._maximize = v;
+          if (!this.isInserted) {
+            return;
+          }
+          if (v) {
+            pos = this.$el.offset();
+            pos.top -= $(window).scrollTop();
+            pos.left -= $(window).scrollLeft();
+            this._prevWidth = this.width;
+            this._prevHeight = this.height;
+            this._prevTop = pos.top;
+            this._prevLeft = pos.left;
+            this._prevZIndex = this.$el.css('z-index');
+            this.$el.css({
+              position: 'fixed',
+              top: pos.top,
+              left: pos.left,
+              zIndex: 1000
+            });
+            $('body').css({
+              overflow: 'hidden'
+            });
+            if (oj.isClient) {
+              this.$resizer.resizable('disable');
+            }
+            this.$el.animate({
+              top: 0,
+              height: '100%'
+            }, {
+              progress: function() {
+                return _this.height = _this.$el.height();
+              },
+              complete: function() {
+                return _this.$el.animate({
+                  left: 0,
+                  width: '100%'
+                }, {
+                  duration: maximizeDuration
+                });
+              },
+              duration: maximizeDuration
+            });
+            return this.$gripper.hide();
+          } else {
+            this.$el.animate({
+              left: this._prevLeft,
+              width: this._prevWidth
+            }, {
+              duration: maximizeDuration,
+              complete: function() {
+                return _this.$el.animate({
+                  top: _this._prevTop,
+                  height: _this._prevHeight
+                }, {
+                  progress: function() {
+                    return _this.height = _this.$el.height();
+                  },
+                  complete: function() {
+                    return _this.$el.css({
+                      position: 'relative',
+                      top: '',
+                      left: ''
+                    });
+                  },
+                  duration: maximizeDuration
+                });
+              }
+            });
+            this.$gripper.show();
+            return $('body').css({
+              overflow: 'auto'
+            });
+          }
+        }
+      },
+      cs: '',
+      js: '',
+      css: '',
+      html: '',
+      $inputs: null,
+      $input: null,
+      $outputs: null,
+      $output: null,
+      $seperator: null,
+      $resizer: null,
+      $console: null,
+      $gripper: null,
+      $jsButton: null,
+      $csButton: null,
+      $maximizeButton: null
+    },
+    methods: {
+      toggleState: function() {
+        return this.state = this.state === 'js' ? 'cs' : 'js';
+      },
+      editorChanged: function() {
+        if (this.state === 'js') {
+          this._js = this.value;
+        } else {
+          this._cs = this.value;
+        }
+        return this.recompile();
+      },
+      valueChanged: function() {
+        return TryEditor.base.valueChanged.apply(this, arguments);
+      },
+      windowResized: function(innerWidth, innerHeight) {
+        if (this.maximize) {
+          return this.height = innerHeight - editorBorderWidth * 2;
+        }
+      },
+      updateValue: function() {
+        if (this.state === 'js') {
+          this.mode = 'oj';
+          this.value = this.js;
+        } else {
+          this.mode = 'ojc';
+          this.value = this.cs;
+        }
+        return this.recompile();
+      },
+      updateFrame: function() {
+        var h, w;
+
+        w = this.width;
+        h = this.height;
+        this.$resizer.width(w);
+        this.editor.height = h - editorPadding * 2;
+        this.$inputs.height(h);
+        this.$outputs.height(h);
+        if (w < phoneWidth) {
+          this.$inputs.css({
+            display: 'block'
+          });
+          this.editor.width = w - editorPadding * 2;
+          this.$outputs.width(w);
+          this.$output.width(w);
+          this.$output.height(h - editorPadding);
+          this.$console.height(h - 2 * consolePadding);
+          this.$console.width(w - 2 * consolePadding);
+          this.$seperator.hide();
+          this.$outputs.css({
+            'border-top': "" + editorBorderWidth + "px solid " + editorBorderColor
+          });
+          if (Math.abs(h / 2 - this.$resizer.height()) > 10) {
+            this.$resizer.height(h * 2);
+          }
+          return this.$el.height(h * 2);
+        } else {
+          this.$inputs.css({
+            display: 'inline-block'
+          });
+          this.editor.width = w / 2 - editorPadding * 2;
+          this.$outputs.css({
+            'border-top': ''
+          });
+          this.$outputs.height(h);
+          this.$outputs.width(w / 2);
+          this.$output.width(w / 2);
+          this.$output.height(h);
+          this.$console.width(w / 2 - 2 * consolePadding);
+          this.$console.height(h - 2 * consolePadding);
+          this.$seperator.show();
+          this.$seperator.height(this.height);
+          this.$seperator.css('left', Math.floor(this.width * this.split));
+          if (Math.abs(h - this.$resizer.height()) > 10) {
+            this.$resizer.height(h);
+          }
+          return this.$el.height(h);
+        }
+      },
+      inserted: function() {
+        var d;
+
+        TryEditor.base.inserted.apply(this);
+        this.lineCount = this.lineCount;
+        d = maximizeDuration;
+        maximizeDuration = 0;
+        this.maximize = this.maximize;
+        maximizeDuration = d;
+        this.updateFrame();
+        return this.recompile();
+      },
+      consoleError: function(message) {
+        if (this.isConstructed) {
+          this.$console.html(message);
+          this.$console.show();
+        }
+      },
+      consoleSuccess: function() {
+        if (this.isConstructed) {
+          this.$console.hide();
+        }
+      },
+      recompile: function() {
+        var code, eCoffee, eCompile, eRuntime, ojml, results, t, wrapjs, _i, _len, _ref;
+
+        if (!this.isInserted) {
+          return;
+        }
+        code = this.value;
+        if (this.state === 'cs') {
+          try {
+            code = CoffeeScript.compile(code, {
+              bare: true
+            });
+          } catch (_error) {
+            eCoffee = _error;
+            this.consoleError("<b>coffee-script error:</b> " + eCoffee.message);
+            return;
+          }
+        }
+        wrapjs = "oj(function(){with(oj){" + code + "}})";
+        try {
+          ojml = eval(wrapjs);
+        } catch (_error) {
+          eRuntime = _error;
+          this.consoleError("<b>runtime error:</b> " + eRuntime.message);
+          return;
+        }
+        try {
+          results = oj.compile({
+            debug: 1,
+            html: 1,
+            dom: 1,
+            css: 1
+          }, ojml);
+          if ((results.tags.html == null) && (results.tags.head == null) && (results.tags.body == null)) {
+            wrapjs = "oj(function(){with(oj){\n  html(function(){\n    head();\n    body(function(){\n      " + code + "\n    });\n  })\n}})";
+            ojml = eval(wrapjs);
+            results = oj.compile({
+              debug: 1,
+              html: 1,
+              dom: 1,
+              css: 1
+            }, ojml);
+          }
+          if (results.tags.html == null) {
+            this.consoleError('<b>validation error</b>: <html> tag is missing');
+            return;
+          }
+          if (results.tags.head == null) {
+            this.consoleError('<b>validation error</b>: <head> tag is missing');
+            return;
+          }
+          if (results.tags.body == null) {
+            this.consoleError('<b>validation error</b>: <body> tag is missing');
+            return;
+          }
+        } catch (_error) {
+          eCompile = _error;
+          this.consoleError("<b>oj error:</b> " + eCompile.message);
+          throw eCompile;
+        }
+        this.html = results.html;
+        this.css = results.css;
+        this.$output.contents().find('html').replaceWith($(results.dom));
+        _ref = results.types;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          t = _ref[_i];
+          t.inserted();
+        }
+        this.$output.contents().find('head').append("<style>" + results.css + "</style>");
+        return this.consoleSuccess();
+      },
+      _bindEvents: function() {
+        var _ref,
+          _this = this;
+
+        this.$jsButton.click(function() {
+          return _this.state = 'js';
+        });
+        this.$csButton.click(function() {
+          return _this.state = 'cs';
+        });
+        this.$maximizeButton.click(function() {
+          return _this.maximize = !_this.maximize;
+        });
+        if (oj.isClient) {
+          if ($.resize != null) {
+            $.resize.throttleWindow = false;
+            $.resize.delay = 100;
+            $(window).resize(function() {
+              return _this.windowResized(window.innerWidth, window.innerHeight);
+            });
+          }
+          if (((_ref = this.$resizer) != null ? _ref.resizable : void 0) != null) {
+            this.$resizer.resizable({
+              minHeight: this.minHeight,
+              minWidth: this.minWidth,
+              handles: 's'
+            });
+            this.$el.resize(function(e, ui) {
+              return _this.updateFrame();
+            });
+            return this.$resizer.resize(function(e, ui) {
+              var h;
+
+              h = $(e.currentTarget).height();
+              if (_this.width < phoneWidth) {
+                if (h / 2 > _this.minHeight) {
+                  _this.height = h / 2;
+                }
+              } else {
+                _this.height = h;
+              }
+              return _this.updateFrame();
+            });
+          }
+        }
+      }
     }
-  }
+  });
+  TryEditor.css({
+    border: "" + editorBorderWidth + "px solid " + editorBorderColor,
+    boxShadow: '2px 2px 4px RGBA(0,0,0,0.15)',
+    display: 'block',
+    position: 'relative',
+    zIndex: 20,
+    backgroundColor: 'white',
+    '.oj-TryEditor-seperator': {
+      position: 'absolute',
+      top: '0px',
+      left: '0px',
+      backgroundColor: editorBorderColor,
+      width: '2px',
+      height: '1px',
+      zIndex: 100
+    },
+    '.oj-TryEditor-resizer': {
+      position: 'absolute',
+      top: '-1px',
+      left: '-1px',
+      width: '2px',
+      height: '1px'
+    },
+    '.oj-TryEditor-inputs': {
+      display: 'inline-block',
+      zIndex: 30,
+      position: 'relative'
+    },
+    '.oj-TryEditor-input-editor': {
+      resize: 'none',
+      border: "" + editorPadding + "px solid " + editorBackgroundColor
+    },
+    '.oj-TryEditor-outputs': {
+      display: 'inline-block',
+      position: 'relative',
+      zIndex: 40
+    },
+    '.oj-TryEditor-output-iframe': {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      backgroundColor: 'white',
+      zIndex: 20
+    },
+    '.oj-TryEditor-console': {
+      position: 'absolute',
+      color: 'darkorange',
+      backgroundColor: 'RGBA(255,255,255,0.8)',
+      textAlign: 'left',
+      fontSize: '16px',
+      padding: "" + consolePadding + "px",
+      width: '100%',
+      height: '100%',
+      zIndex: 30,
+      display: 'none'
+    },
+    '.oj-TryEditor-bar': {
+      position: 'absolute',
+      top: '0px',
+      right: '0px',
+      margin: '8px 4px 0 0',
+      height: '21px',
+      zIndex: 100
+    },
+    '.oj-TryEditor-example-chooser': {
+      position: 'relative',
+      float: 'right',
+      height: '100%',
+      zIndex: 10,
+      marginLeft: '8px'
+    },
+    '.oj-TryEditor-bar-state': {
+      display: 'inline-block',
+      color: '#D5A876',
+      width: '25px',
+      height: '100%',
+      float: 'right',
+      marginLeft: '0px',
+      zIndex: 101,
+      textAlign: 'center',
+      cursor: 'pointer',
+      fontSize: '12px'
+    },
+    '.oj-TryEditor-bar-state:hover': {
+      textDecoration: 'underline'
+    },
+    '.oj-TryEditor-bar-state.selected': {
+      fontWeight: 'bold',
+      color: '#E88E00',
+      textDecoration: 'none !important'
+    },
+    '.oj-TryEditor-bar-maximize': {
+      display: 'inline-block',
+      backgroundImage: 'url(media/try_popout.png)',
+      width: '15px',
+      height: '12px',
+      float: 'right',
+      zIndex: 101,
+      cursor: 'pointer'
+    },
+    '.oj-TryEditor-gripper': {
+      position: 'absolute',
+      bottom: '2px',
+      right: '2px',
+      left: 'auto',
+      width: '12px',
+      height: '12px',
+      backgroundImage: 'url(media/try_gripper.png)',
+      zIndex: 101
+    }
+  });
+  return {
+    TryEditor: TryEditor
+  };
 };
-}}).call(this);})(RR('/_content.ojc'),P,G,'/','_content.ojc');});
+}}).call(this);})(RR('/oj.TryEditor.ojc'),P,G,'/','oj.TryEditor.ojc');});
 F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){// Generated by CoffeeScript 1.6.2
 (function() {
-  var ArrayP, FuncP, ObjP, concat, dhp, exports, jqName, jqueryEvents, key, oj, ojName, pass, plugins, root, slice, strict4, strict5, t, unshift, w3, _argsStack, _attributeCMeansClassAndAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromMediaObject, _cssFromPluginObject, _dasherize, _decamelize, _defaults, _doctypes, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _insertStyles, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _onLoadQueue, _pathNormalizeArray, _pathSplit, _pathSplitRe, _randomInteger, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleClassFromPlugin, _styleFromObject, _toArray, _triggerTypes, _uniqueSort, _uniqueSortedUnion, _values,
+  var ArrayP, FuncP, ObjP, concat, dhp, exports, jqName, jqueryEvents, key, oj, ojName, pass, plugins, root, slice, strict4, strict5, t, unshift, w3, _argumentsStack, _attributeCMeansClassAndAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromMediaObject, _cssFromPluginObject, _dasherize, _decamelize, _defaults, _doctypes, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _onLoadQueue, _pathNormalizeArray, _pathSplit, _pathSplitRe, _randomInteger, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleClassFromPlugin, _styleFromObject, _toArray, _uniqueSort, _uniqueSortedUnion, _values,
     __slice = [].slice;
 
   oj = function() {
     var ojml;
 
-    oj._argsPush();
+    oj._argumentsPush();
     ojml = oj.emit.apply(this, arguments);
-    oj._argsPop();
+    oj._argumentsPop();
     return ojml;
+  };
+
+  oj.emit = function() {
+    var ojml;
+
+    return ojml = oj.tag.apply(oj, ['oj'].concat(__slice.call(arguments)));
   };
 
   root = this;
@@ -4586,12 +3877,6 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     } else {
       _onLoadQueue.queue.push(f);
     }
-  };
-
-  oj.emit = function() {
-    var ojml;
-
-    return ojml = oj.tag.apply(oj, ['oj'].concat(__slice.call(arguments)));
   };
 
   oj.id = function(len, chars) {
@@ -5388,34 +4673,34 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return Object.defineProperty(dest, propName, info);
   };
 
-  _argsStack = [];
+  _argumentsStack = [];
 
-  oj._argsTop = function() {
-    if (_argsStack.length) {
-      return _argsStack[_argsStack.length - 1];
+  oj._argumentsTop = function() {
+    if (_argumentsStack.length) {
+      return _argumentsStack[_argumentsStack.length - 1];
     } else {
       return null;
     }
   };
 
-  oj._argsPush = function(args) {
+  oj._argumentsPush = function(args) {
     if (args == null) {
       args = [];
     }
-    _argsStack.push(args);
+    _argumentsStack.push(args);
   };
 
-  oj._argsPop = function() {
-    if (_argsStack.length) {
-      return _argsStack.pop();
+  oj._argumentsPop = function() {
+    if (_argumentsStack.length) {
+      return _argumentsStack.pop();
     }
     return null;
   };
 
-  oj._argsAppend = function(arg) {
+  oj._argumentsAppend = function(arg) {
     var top;
 
-    top = oj._argsTop();
+    top = oj._argumentsTop();
     if (top != null) {
       top.push(arg);
     }
@@ -5439,23 +4724,23 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     if (!_isEmpty(attributes)) {
       ojml.push(attributes);
     }
-    oj._argsPush(ojml);
+    oj._argumentsPush(ojml);
     for (_j = 0, _len1 = args.length; _j < _len1; _j++) {
       arg = args[_j];
       if (oj.isObject(arg)) {
         continue;
       } else if (oj.isFunction(arg)) {
-        len = oj._argsTop().length;
+        len = oj._argumentsTop().length;
         r = arg();
-        if (len === oj._argsTop().length && (r != null)) {
-          oj._argsAppend(r);
+        if (len === oj._argumentsTop().length && (r != null)) {
+          oj._argumentsAppend(r);
         }
       } else {
-        oj._argsAppend(arg);
+        oj._argumentsAppend(arg);
       }
     }
-    oj._argsPop();
-    oj._argsAppend(ojml);
+    oj._argumentsPop();
+    oj._argumentsAppend(ojml);
     return ojml;
   };
 
@@ -5748,7 +5033,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
     newline = (options != null ? options.debug : void 0) ? '\n' : '';
     css = _cssFromMediaObject(mediaMap, options);
-    return "<style class=\"" + (_styleClassFromPlugin(plugin)) + "\">" + newline + css + "</style>";
+    return "<style class=\"" + (_styleClassFromPlugin(plugin)) + "\">" + newline + css + newline + "</style>";
   };
 
   oj._minifyJS = function(js, options) {
@@ -6313,22 +5598,22 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return Out;
   };
 
-  oj.unionArguments = function(argList) {
-    var args, options, v, _j, _len1;
+  oj.argumentsUnion = function(argList) {
+    var list, obj, v, _j, _len1;
 
-    options = {};
-    args = [];
+    obj = {};
+    list = [];
     for (_j = 0, _len1 = argList.length; _j < _len1; _j++) {
       v = argList[_j];
       if (oj.isObject(v)) {
-        options = _extend(options, v);
+        obj = _extend(obj, v);
       } else {
-        args.push(v);
+        list.push(v);
       }
     }
     return {
-      options: options,
-      args: args
+      options: obj,
+      args: list
     };
   };
 
@@ -6482,15 +5767,8 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       removeTheme: function(name) {
         this.$el.removeClass("theme-" + name);
       },
-      clearThemes: function(name) {
-        var classes;
-
-        this.$el.removeClass("theme-" + name);
-        classes = this.$el.attr('class').split(' ');
-        _each(classes, function(v) {});
-      },
       emit: function() {
-        oj._argsAppend(this);
+        oj._argumentsAppend(this);
       },
       toHTML: function(options) {
         return this.el.outerHTML + ((options != null ? options.debug : void 0) ? '\n' : '');
@@ -6723,7 +6001,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.input({
           type: 'text'
@@ -6776,7 +6054,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.input({
           type: 'checkbox'
@@ -6815,7 +6093,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.textarea({
           keydown: function() {
@@ -6857,7 +6135,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       var args, options, _ref2,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.select({
           change: function() {
@@ -6904,46 +6182,18 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
 
   oj.Button = oj.createType('Button', {
     base: oj.View,
-    constructor: function() {
-      var args, options, title, _ref2,
+    constructor: function(args) {
+      var options, _ref2, _ref3,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
-      title = '';
-      if (args.length > 0) {
-        title = args[0];
-      }
-      if (options.title != null) {
-        title = oj.argumentShift(options, 'title');
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
+      if ((_ref3 = options.label) == null) {
+        options.label = args.length > 0 ? args[0] : '';
       }
       this.el = oj(function() {
-        return oj.button(title);
+        return oj.button(options.label);
       });
-      oj.Button.base.constructor.apply(this, [options]);
-      return this.title = title;
-    },
-    properties: {
-      title: {
-        get: function() {
-          var _ref2;
-
-          return (_ref2 = this._title) != null ? _ref2 : '';
-        },
-        set: function(v) {
-          this.$el.oj((this._title = v));
-        }
-      }
-    },
-    methods: {
-      click: function() {
-        var _ref2;
-
-        if (arguments.length > 0) {
-          return (_ref2 = this.$el).click.apply(_ref2, arguments);
-        } else {
-          return this.$el.click();
-        }
-      }
+      return oj.Button.base.constructor.apply(this, [options]);
     }
   });
 
@@ -6953,7 +6203,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       var args, items, options, _ref2, _ref3,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
       this._tagName = oj.argumentShift(options, 'tagName');
       this.itemTagName = oj.argumentShift(options, 'itemTagName');
       this.el = oj(function() {
@@ -7207,7 +6457,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       var arg, args, options, rows, _j, _len1, _ref2, _ref3, _ref4,
         _this = this;
 
-      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      _ref2 = oj.argumentsUnion(arguments), options = _ref2.options, args = _ref2.args;
       this.el = oj(function() {
         return oj.table();
       });
@@ -7568,7 +6818,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         if (ojml != null) {
           return this.$td(rx, cx).oj(ojml);
         } else {
-          return this.$td(rx, cx).ojValue();
+          return this.td(rx, cx).ojValue();
         }
       },
       addRow: function(rx, listOJML) {
@@ -7784,32 +7034,9 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     };
   };
 
-  _triggerTypes = function(types) {
-    var type, _k, _len2;
-
-    for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
-      type = types[_k];
-      type.inserted();
-    }
-  };
-
-  _insertStyles = function(pluginMap, options) {
-    var mediaMap, plugin;
-
-    for (plugin in pluginMap) {
-      mediaMap = pluginMap[plugin];
-      if (plugin === 'oj-style' && !(options != null ? options.global : void 0)) {
-        continue;
-      }
-      if ($('.' + _styleClassFromPlugin(plugin)).length === 0) {
-        $('head').append(oj._styleTagFromMediaObject(plugin, mediaMap));
-      }
-    }
-  };
-
   jQuery.fn.oj = _jqueryExtend({
     set: function($el, args) {
-      var cssMap, d, dom, types, _k, _len2, _ref3;
+      var d, dom, types, _k, _l, _len2, _len3, _ref3;
 
       if (args.length === 0) {
         return $el[0].oj;
@@ -7817,11 +7044,8 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       _ref3 = oj.compile.apply(oj, [{
         dom: 1,
         html: 0,
-        cssMap: 1
-      }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
-      _insertStyles(cssMap, {
-        global: 0
-      });
+        css: 0
+      }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types;
       $el.html('');
       if (!oj.isArray(dom)) {
         dom = [dom];
@@ -7830,7 +7054,10 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
         d = dom[_k];
         $el.append(d);
       }
-      _triggerTypes(types);
+      for (_l = 0, _len3 = types.length; _l < _len3; _l++) {
+        t = types[_l];
+        t.inserted();
+      }
     },
     get: function($el) {
       return $el[0].oj;
@@ -7838,12 +7065,11 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   });
 
   jQuery.ojBody = function(ojml) {
-    var bodyOnly, cssMap, dom, eCompile, types, _ref3;
+    var bodyOnly, c, cssMap, dom, eCompile, mediaMap, plugin, styleTag, types, _k, _len2, _ref3, _results;
 
     bodyOnly = {
       html: 1,
       '!DOCTYPE': 1,
-      body: 1,
       head: 1,
       meta: 1,
       title: 'deep',
@@ -7863,12 +7089,24 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
       throw new Error("oj: dom failed to compile with error: " + eCompile.message);
     }
     if (dom != null) {
-      $('body').html(dom);
+      $('body').replaceWith(dom);
     }
-    _insertStyles(cssMap, {
-      global: 1
-    });
-    return _triggerTypes(types);
+    for (plugin in cssMap) {
+      mediaMap = cssMap[plugin];
+      c = _styleClassFromPlugin(plugin);
+      if ($('.' + c).length === 0) {
+        styleTag = oj._styleTagFromMediaObject(plugin, mediaMap);
+        $('head').append(styleTag);
+      } else {
+        console.log("not adding style: ", plugin);
+      }
+    }
+    _results = [];
+    for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
+      t = types[_k];
+      _results.push(t.inserted());
+    }
+    return _results;
   };
 
   _jqGetValue = function($el, args) {
@@ -7913,19 +7151,18 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   _fn1 = function(ojName, jqName) {
     return jQuery.fn[ojName] = _jqueryExtend({
       set: function($el, args) {
-        var cssMap, dom, types, _ref3;
+        var dom, types, _k, _len2, _ref3;
 
         _ref3 = oj.compile.apply(oj, [{
           dom: 1,
           html: 0,
-          css: 0,
-          cssMap: 1
-        }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
-        _insertStyles(cssMap, {
-          global: 0
-        });
+          css: 0
+        }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types;
         $el[jqName](dom);
-        _triggerTypes(types);
+        for (_k = 0, _len2 = types.length; _k < _len2; _k++) {
+          t = types[_k];
+          t.inserted();
+        }
       },
       get: null
     });
@@ -7944,14 +7181,51 @@ RR = function(f){
   return function(m){
     return run(find(m, f));
   };
-  function run(f){    if(R[f] != null)      return R[f];    var eo = {},      mo = {exports: eo};    if(typeof F[f] != 'function')      throw new Error("file not found (" + f + ")");    F[f](mo,eo);    return R[f] = mo.exports;  }
-  function find(m,f){    var r, dir, dm, ext, ex, i;    if (F[m] && !m.match(/\//)) {      return m;    }    if (!!m.match(/\//)) {      r = oj._pathResolve(f, oj._pathJoin(oj._pathDirname(f), m));      ext = ['.ojc','.oj','.coffee','.js','.json'];      for(i = 0; i < ext.length; i++){        ex = ext[i];        if(F[r+ex])          return r+ex;      }    } else {      dir = oj._pathDirname(f);      while(true) {        dm = oj._pathJoin(dir, 'node_modules');        if(M[dm] && M[dm][m])          return oj._pathJoin(dm, m, M[dm][m]);        if(dir == '/')          break;        dir = oj._pathResolve(dir, '..');      }    }    throw new Error("module not found (" + m + ")");  }
+  function run(f){
+    if(R[f] != null)
+      return R[f];
+    var eo = {},
+      mo = {exports: eo};
+    if(typeof F[f] != 'function')
+      throw new Error("file not found (" + f + ")");
+    F[f](mo,eo);
+    return R[f] = mo.exports;
+  }
+  function find(m,f){
+    var r, dir, dm, ext, ex, i;
+
+    if (F[m] && !m.match(/\//)) {
+      return m;
+    }
+
+    if (!!m.match(/\//)) {
+      r = oj._pathResolve(f, oj._pathJoin(oj._pathDirname(f), m));
+      ext = ['.ojc','.oj','.coffee','.js','.json'];
+      for(i = 0; i < ext.length; i++){
+        ex = ext[i];
+        if(F[r+ex])
+          return r+ex;
+      }
+    } else {
+      dir = oj._pathDirname(f);
+      while(true) {
+        dm = oj._pathJoin(dir, 'node_modules');
+        if(M[dm] && M[dm][m])
+          return oj._pathJoin(dm, m, M[dm][m]);
+        if(dir == '/')
+          break;
+        dir = oj._pathResolve(dir, '..');
+      }
+    }
+    throw new Error("module not found (" + m + ")");
+  }
 };
 
-require = RR('/docs');
+require = RR('/demo');
 oj = require('oj');
-oj.load('/docs');
+oj.load('/demo');
 
 }).call(this);
 
-</script></body></html>
+</script></body>
+	</html>

@@ -175,53 +175,23 @@ var languageClasses = (
     "Namespace|QName|XML|XMLList"
 );
 
-var supportClasses = (
-    // General base views
-    "View|ModelView|CollectionView|ModelKeyView|" +
+// Support classes are those found in the oj object
+var supportClasses = [];
+var supportFunction = ['properties', 'methods', 'constructor', 'base', 'get', 'set', 'constructor'];
+var omitted = {'var':1}
+if (typeof oj != undefined) {
+    for (var k in oj) {
+        if (omitted[k])
+            continue;
 
-    // Common elements
-    "List|NumberList|BulletList|Table|Button|Link|" +
-
-    // Common form elements
-    "Form|CheckBox|ListBox|TextBox|TextArea|FilterBox|SearchBox|" +
-
-    // Plugins
-    "AceEditor"
-
-);
-
-var supportFunction = (
-    // Meta
-    "oj|type|properties|methods|constructor|base|get|set|use|" +
-
-    // Closed Tags
-    "a|abbr|acronym|address|applet|article|aside|audio|" +
-    "b|bdo|big|blockquote|body|button|" +
-    "canvas|caption|center|cite|code|colgroup|command|" +
-    "datalist|dd|del|details|dfn|dir|div|dl|dt|" +
-    "em|embed|" +
-    "fieldset|figcaption|figure|font|footer|form|frameset|" +
-    "h1|h2|h3|h4|h5|h6|head|header|hgroup|html|" +
-    "i|iframe|ins|keygen|kbd|label|legend|li|" +
-    "map|mark|menu|meter|" +
-    "nav|noframes|noscript|" +
-    "object|ol|optgroup|option|output|" +
-    "p|pre|progress|" +
-    "q|" +
-    "rp|rt|ruby|" +
-    "s|samp|script|section|select|small|source|span|strike|strong|" +
-    "style|sub|summary|sup|" +
-    "table|tbody|td|textarea|tfoot|th|thead|time|title|tr|tt|" +
-    "u|ul|video|wbr|xmp|" +
-
-    // Open Tags
-    "area|base|br|col|command|css|embed|hr|img|input|" +
-    "keygen|link|meta|param|source|track|wbr|" +
-
-    // Plugins
-    "markdown|mustache"
-);
-
+        if (k.length > 0 && k.charAt(0).toUpperCase() == k.charAt(0) && k.charAt(0) != '_' && k.charAt(0) != '!')
+            supportClasses.push(k);
+        else
+            supportFunction.push(k)
+    }
+    supportClasses = supportClasses.join('|');
+    supportFunction = supportFunction.join('|');
+}
 
 var JavaScriptHighlightRules = function() {
 
