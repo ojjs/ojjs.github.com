@@ -3233,6 +3233,9 @@
     if (settings == null) {
       settings = {};
     }
+    if (arguments.length === 0) {
+      return oj.extendGlobally();
+    }
     if (!oj.isFunction(plugin)) {
       throw new Error('oj.use: function expected for first argument');
     }
