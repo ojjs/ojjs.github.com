@@ -1,3 +1,10 @@
+//
+// oj.mustache.js v0.7.2
+// ojjs.org/plugins#oj.mustache
+//
+// Copyright 2013, Evan Moran
+// Released under the MIT License
+//
 /*!
  * mustache.js - Logic-less {{mustache}} templates with JavaScript
  * http://github.com/janl/mustache.js

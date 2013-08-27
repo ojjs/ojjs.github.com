@@ -1,3 +1,10 @@
+//
+// oj.VimeoVideo.js v0.0.2
+// ojjs.org/plugins#oj.VimeoVideo
+//
+// Copyright 2013, Evan Moran
+// Released under the MIT License
+//
 // oj.VimeoVideo.js
 
 (function(){

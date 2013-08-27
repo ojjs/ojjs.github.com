@@ -1,3 +1,10 @@
+//
+// oj.markdown.js v0.2.9
+// ojjs.org/plugins#oj.markdown
+//
+// Copyright 2013, Evan Moran
+// Released under the MIT License
+//
 /**
  * marked - a markdown parser
  * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)

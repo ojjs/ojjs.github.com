@@ -1,3 +1,10 @@
+//
+// oj.TwitterFollowButton.js v0.0.3
+// ojjs.org/plugins#oj.TwitterFollowButton
+//
+// Copyright 2013, Evan Moran
+// Released under the MIT License
+//
 // oj.TwitterFollowButton.js
 
 (function(){
