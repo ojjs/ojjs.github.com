@@ -1,5 +1,5 @@
 //
-// oj.js v0.1.2
+// oj.js v0.1.3
 // http://ojjs.org
 //
 // Copyright 2013, Evan Moran
@@ -20,7 +20,7 @@
 
   root = this;
 
-  oj.version = '0.1.2';
+  oj.version = '0.1.3';
 
   oj.isClient = !(typeof process !== "undefined" && process !== null ? (_ref = process.versions) != null ? _ref.node : void 0 : void 0);
 
@@ -1002,7 +1002,7 @@
     return oj['!DOCTYPE'](value);
   };
 
-  oj.extendGlobally = oj.extendInto = function(context) {
+  oj.useGlobally = oj.extendInto = function(context) {
     var k, o, v;
 
     if (context == null) {
@@ -1011,7 +1011,7 @@
     o = {};
     for (k in oj) {
       v = oj[k];
-      if (k[0] !== '_' && k !== 'extendInto' && k !== 'extendGlobally') {
+      if (k[0] !== '_' && k !== 'extendInto' && k !== 'useGlobally') {
         o[k] = v;
       }
     }
@@ -2203,12 +2203,16 @@
         }, {
           keydown: function() {
             if (_this.live) {
-              _this.viewChanged();
+              setTimeout((function() {
+                return _this.$el.change();
+              }), 10);
             }
           },
           keyup: function() {
             if (_this.live) {
-              _this.viewChanged();
+              setTimeout((function() {
+                return _this.$el.change();
+              }), 10);
             }
           },
           change: function() {
@@ -2328,12 +2332,16 @@
         return oj.textarea({
           keydown: function() {
             if (_this.live) {
-              _this.viewChanged();
+              setTimeout((function() {
+                return _this.$el.change();
+              }), 10);
             }
           },
           keyup: function() {
             if (_this.live) {
-              _this.viewChanged();
+              setTimeout((function() {
+                return _this.$el.change();
+              }), 10);
             }
           },
           change: function() {
@@ -3234,7 +3242,7 @@
       settings = {};
     }
     if (arguments.length === 0) {
-      return oj.extendGlobally();
+      return oj.useGlobally();
     }
     if (!oj.isFunction(plugin)) {
       throw new Error('oj.use: function expected for first argument');
