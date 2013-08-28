@@ -1,6 +1,6 @@
 //
 // oj.AceEditor.js v0.0.2
-// ojjs.org/plugins#oj.AceEditor
+// ojjs.org/plugins#AceEditor
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License

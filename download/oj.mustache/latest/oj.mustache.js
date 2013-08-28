@@ -1,6 +1,6 @@
 //
 // oj.mustache.js v0.7.2
-// ojjs.org/plugins#oj.mustache
+// ojjs.org/plugins#mustache
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License
