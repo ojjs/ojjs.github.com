@@ -1,6 +1,6 @@
 //
 // oj.JSFiddle.js v0.0.1
-// ojjs.org/plugins#oj.JSFiddle
+// ojjs.org/plugins#JSFiddle
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License

@@ -1,6 +1,6 @@
 //
 // oj.GitHubButton.js v0.0.2
-// ojjs.org/plugins#oj.GitHubButton
+// ojjs.org/plugins#GitHubButton
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License

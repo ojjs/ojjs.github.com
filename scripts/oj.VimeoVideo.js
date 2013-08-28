@@ -1,6 +1,6 @@
 //
-// oj.VimeoVideo.js v0.0.3
-// ojjs.org/plugins#oj.VimeoVideo
+// oj.VimeoVideo.js v0.0.4
+// ojjs.org/plugins#VimeoVideo
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License
@@ -97,7 +97,7 @@ var plugin = function(oj,settings){
     },
     properties: {
       width: {
-        get: function(){ return this._width || 400; },
+        get: function(){ return this._width || 300; },
         set: function(v){
           this._width = v;
           if (this.isConstructed)
@@ -106,7 +106,7 @@ var plugin = function(oj,settings){
       },
 
       height: {
-        get: function(){ return this._height || 224; },
+        get: function(){ return this._height || 178; },
         set: function(v){
           this._height = v;
           if (this.isConstructed)
