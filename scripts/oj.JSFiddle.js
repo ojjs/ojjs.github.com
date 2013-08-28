@@ -9,6 +9,28 @@
 
 (function(){
 
+// Helper methods
+
+function startsWith (strInput, strStart) {
+  return strInput.length >= strStart.length && strInput.lastIndexOf(strStart, 0) == 0;
+}
+
+function endsWith (strInput, strEnd) {
+  return strInput.length >= strEnd.length && strInput.lastIndexOf(strEnd, strInput.length - strEnd.length) == strInput.length - strEnd.length;
+}
+
+function unprepend (strInput, strStart) {
+  if(startsWith(strInput, strStart))
+    return strInput.slice(strStart.length);
+  return strInput;
+}
+
+function unappend (strInput, strEnd) {
+  if (endsWith(strInput, strEnd))
+    return strInput.slice(0, strInput.length - strEnd.length);
+  return strInput;
+}
+
 // Create plugin
 var plugin = function(oj, settings){
   if (typeof settings !== 'object')
@@ -24,12 +46,9 @@ var plugin = function(oj, settings){
       var options = union.options;
       var args = union.args;
 
-      // Accept path as first arg
-      if (args.length >= 1)
-        this.path = args[0];
-
       // Shift properties
       var props = [
+        'url',
         'tabs',
         'style',
         'width',
@@ -41,30 +60,27 @@ var plugin = function(oj, settings){
           this[prop] = oj.argumentShift(options, prop);
       }
 
+      // Accept url as first arg
+      if (!this._url && args.length >= 1)
+        this.url = args[0];
+
       // Create el
       this.el = oj(function(){
 
-        // Calculate arguments to ghbts.com
-        var order = '';
-        if (!this_.user)
-          throw new Error('oj.JSFiddle: user is not specified');
-        user = 'user=' + this_.user
-        if (this_.repo)
-          repo = '&repo=' + this_.repo
-        if (this_.size)
-          size = '&size=' + this_.size
-        if (this_.showCount)
-          count = '&count=' + this_.showCount
-        if (this_.type)
-          type = '&type=' + this_.type
+        if (!this_.url)
+          throw new Error('oj.JSFiddle: url is not specified');
 
-        src = "http://jsfiddle.net/" + user + repo + type + count + size;
+        var url = this_.url;
+
+        var tabs = this_.tabs ? this_.tabs + '/' : '';
+
+        var style = this_.style ? this_.style + '/' : '';
+
+        // Calculate src to iframe
+        var src = "http://jsfiddle.net/" + url + "/embedded/" + tabs + style;
 
         oj.iframe({
           src:src,
-          allowtransparency:"true",
-          frameborder:"0",
-          scrolling:"0",
           width:this_.width,
           height:this_.height
         });
@@ -74,15 +90,26 @@ var plugin = function(oj, settings){
     },
 
     properties: {
-      url: 'evanmoran/WrTbE',
-      tabs: 'evanmoran',
-      style: null,
+      url: {
+        get:function(){
+          return this._url || 'evanmoran/vhNcD';
+        },
+        set:function(v){
+          // Strip off unecesary parts of url
+          v = unprepend(v, 'http://');
+          v = unprepend(v, 'jsfiddle.net')
+          v = unappend(v, '/')
+          this._url = v;
+        }
+      },
+      tabs: 'result,js,html,css,resources',
+      style: '',
       width:{            // pixals if specified. Otherwise is calculate from settings
-        get:function(){return this._width || 400},
+        get:function(){return this._width || 300},
         set:function(v){this._width = v;}
       },
       height:{           // pixals if specified. Otherwise is calculate from settings
-        get:function(){return this._height || 300},
+        get:function(){return this._height || 200},
         set:function(v){this._height = v;}
       }
     },
