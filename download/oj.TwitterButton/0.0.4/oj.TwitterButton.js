@@ -1,11 +1,11 @@
 //
-// oj.TwitterFollowButton.js v0.0.3
-// ojjs.org/plugins#oj.TwitterFollowButton
+// oj.TwitterButton.js v0.0.4
+// ojjs.org/plugins#oj.TwitterButton
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License
 //
-// oj.TwitterFollowButton.js
+// oj.TwitterButton.js
 
 (function(){
 
@@ -14,7 +14,7 @@ var plugin = function(oj,settings){
   if (typeof settings !== 'object')
     settings = {}
 
-  var TwitterFollowButton = oj.createType('TwitterFollowButton', {
+  var TwitterButton = oj.createType('TwitterButton', {
 
     base: oj.View,
 
@@ -62,7 +62,7 @@ var plugin = function(oj,settings){
         );
       });
 
-      TwitterFollowButton.base.constructor.apply(this, [options]);
+      TwitterButton.base.constructor.apply(this, [options]);
 
       this.loadTwitterAPI();
     },
@@ -80,7 +80,7 @@ var plugin = function(oj,settings){
     methods: {
       loadTwitterAPI:function(){
         var this_ = this;
-        if (oj.isClient && !TwitterFollowButton._loaded) {
+        if (oj.isClient && !TwitterButton._loaded) {
           var p=/^http:/.test(document.location)?'http':'https';
           var url = p + '://platform.twitter.com/widgets.js';
           $.ajax({
@@ -91,14 +91,14 @@ var plugin = function(oj,settings){
           }).always(function(result){
             this_.$el.show()
           });
-          TwitterFollowButton._loaded = true;
+          TwitterButton._loaded = true;
         }
 
       }
     }
   });
 
-  return {TwitterFollowButton:TwitterFollowButton};
+  return {TwitterButton:TwitterButton};
 };
 
 // Export in OJ
