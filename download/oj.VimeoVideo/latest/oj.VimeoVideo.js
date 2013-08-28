@@ -1,5 +1,5 @@
 //
-// oj.VimeoVideo.js v0.0.2
+// oj.VimeoVideo.js v0.0.3
 // ojjs.org/plugins#oj.VimeoVideo
 //
 // Copyright 2013, Evan Moran
@@ -40,24 +40,14 @@ var plugin = function(oj,settings){
       var options = union.options;
       var args = union.args;
 
-      var defaults = {
-        width: 400,
-        height: 224,
-        color: '00adef'
-      };
-
-      // Default options if unspecified
-      for (k in defaults) {
-        if (options[k] == null)
-          options[k] = defaults[k];
-      }
-
       // First argument is video id
       if(args.length > 0)
         this.video = args[0];
 
       // Shift properties
       var props = [
+        'width',
+        'height',
         'video',
         'showTitle',
         'showByline',
@@ -75,6 +65,8 @@ var plugin = function(oj,settings){
       this.el = oj(function(){
         oj.iframe({
           src: this_.src,
+          width:this_.width,
+          height:this_.height,
           frameborder:0,
           webkitAllowFullScreen:1,
           mozallowfullscreen:1,
@@ -105,16 +97,20 @@ var plugin = function(oj,settings){
     },
     properties: {
       width: {
-        get: function(){ return this.$el.attr('width'); },
+        get: function(){ return this._width || 400; },
         set: function(v){
-          this.$el.attr('width', v);
+          this._width = v;
+          if (this.isConstructed)
+            this.$el.attr('width', v);
         }
       },
 
       height: {
-        get: function(){ return this.$el.attr('height'); },
+        get: function(){ return this._height || 224; },
         set: function(v){
-          this.$el.attr('height', v);
+          this._height = v;
+          if (this.isConstructed)
+            this.$el.attr('height', v);
         }
       },
 
@@ -132,7 +128,7 @@ var plugin = function(oj,settings){
 
       // Color of controls (readwrite)
       color: {
-        get: function(){return this._color;},
+        get: function(){return this._color || '00adef';},
         set: function(v){
           // Remove prefix of '#'
           if(v.length > 0 && v[0] == '#')
