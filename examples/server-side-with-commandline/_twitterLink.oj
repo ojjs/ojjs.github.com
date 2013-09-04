@@ -1,0 +1,6 @@
+
+// Create a _twitterUserLink partial
+module.exports = function(user){
+  // Generate an anchor tag with text and href
+  a('Follow ' + user.get('name') + ' on Twitter', {href:'http://twitter.com/' + user.get('twitter')});
+};
