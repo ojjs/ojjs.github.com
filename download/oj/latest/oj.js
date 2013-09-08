@@ -1,28 +1,31 @@
 //
-// oj.js v0.1.3
+// oj.js v0.1.4
 // ojjs.org
 //
 // Copyright 2013, Evan Moran
 // Released under the MIT License
 //
 (function() {
-  var ArrayP, FuncP, ObjP, concat, dhp, exports, jqName, jqueryEvents, key, oj, ojName, pass, plugins, root, slice, strict4, strict5, t, unshift, w3, _argsStack, _attributeCMeansClassAndAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _contains, _cssFromMediaObject, _cssFromPluginObject, _dasherize, _decamelize, _defaults, _doctypes, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getTagName, _has, _i, _identity, _indexOf, _inherit, _insertStyles, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _omit, _onLoadQueue, _pathNormalizeArray, _pathSplit, _pathSplitRe, _randomInteger, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleClassFromPlugin, _styleFromObject, _toArray, _triggerTypes, _uniqueSort, _uniqueSortedUnion, _values,
+  var ArrayP, FuncP, ObjP, concat, dhp, exports, jqName, jqueryEvents, key, ojName, pass, plugins, root, slice, strict4, strict5, t, typeName, unshift, w3, _argsStack, _attributeCMeansClassAndAllowsArrays, _attributeOmitFalsyValues, _attributeStyleAllowsObject, _attributesBindEventsToDOM, _attributesFilterOutEvents, _attributesFromObject, _attributesProcessedForOJ, _boundOrThrow, _breaker, _chars, _clone, _compileAny, _compileDeeper, _compileTag, _construct, _contains, _createQuietType, _cssFromMediaObject, _cssFromPluginObject, _dasherize, _decamelize, _defaults, _doctypes, _each, _extend, _flatten, _flattenCSSMap, _flattenCSSMap_, _fn, _fn1, _getInstanceOnElement, _getQuietTagName, _getTagName, _has, _i, _identity, _indexOf, _inherit, _insertStyles, _isCapitalLetter, _isEmpty, _j, _jqGetValue, _jqueryExtend, _keys, _len, _len1, _map, _omit, _onLoadQueue, _pathNormalizeArray, _pathSplit, _pathSplitRe, _randomInteger, _reduce, _ref, _ref1, _ref2, _setInstanceOnElement, _setObject, _setTagName, _some, _sortedIndex, _splitAndTrim, _styleClassFromPlugin, _styleFromObject, _toArray, _triggerTypes, _uniqueSort, _uniqueSortedUnion, _values,
     __slice = [].slice;
-
-  oj = function() {
-    var ojml;
-
-    oj._argsPush();
-    ojml = oj.emit.apply(this, arguments);
-    oj._argsPop();
-    return ojml;
-  };
 
   root = this;
 
-  oj.version = '0.1.3';
+  function oj(){
+      return oj.tag.apply(this, ['oj'].concat([].slice.call(arguments)).concat([{__quiet__:1}]));
+    };
+
+  oj.version = '0.1.4';
 
   oj.isClient = !(typeof process !== "undefined" && process !== null ? (_ref = process.versions) != null ? _ref.node : void 0 : void 0);
+
+  if (typeof $ !== 'undefined') {
+    oj.$ = $;
+  } else if (typeof require !== 'undefined') {
+    try {
+      oj.$ = require('jquery');
+    } catch (_error) {}
+  }
 
   if (typeof module !== 'undefined') {
     exports = module.exports = oj;
@@ -33,8 +36,8 @@
   oj.oj = oj;
 
   oj.load = function(page) {
-    return jQuery(function() {
-      $.ojBody(require(page));
+    return oj.$(function() {
+      oj.$.ojBody(require(page));
       return oj.onload();
     });
   };
@@ -119,6 +122,14 @@
 
   oj.isOJ = function(obj) {
     return !!(obj != null ? obj.isOJ : void 0);
+  };
+
+  oj.isOJType = function(obj) {
+    return oj.isOJ(obj) && obj.type === obj;
+  };
+
+  oj.isOJInstance = function(obj) {
+    return oj.isOJ(obj) && !oj.isOJType(obj);
   };
 
   oj.isEvent = function(obj) {
@@ -505,7 +516,7 @@
     }
   };
 
-  oj._map = function(obj, iterator, options) {
+  _map = function(obj, iterator, options) {
     var context, evaluate, iterator_, k, out, r, recurse, v;
 
     if (options == null) {
@@ -524,7 +535,7 @@
             key: k,
             object: v
           });
-          return oj._map(v, iterator, options_);
+          return _map(v, iterator, options_);
         };
       })(options);
     }
@@ -650,7 +661,7 @@
     var r;
 
     r = str.split(seperator, limit);
-    return oj._map(r, function(v) {
+    return _map(r, function(v) {
       return v.trim();
     });
   };
@@ -739,7 +750,7 @@
   oj._pathJoin = function() {
     var paths;
 
-    paths = ArrayP.slice.call(arguments, 0);
+    paths = slice.call(arguments, 0);
     return oj._pathNormalize(paths.filter(function(p, index) {
       return p && typeof p === 'string';
     }).join('/'));
@@ -760,16 +771,20 @@
     return root + dir;
   };
 
-  oj.dependency = function(name) {
-    var obj;
-
-    obj = oj.isClient ? window[name] : global[name];
-    if (!oj.isDefined(obj)) {
+  oj.dependency = function(name, check) {
+    if (check == null) {
+      check = function() {
+        if (oj.isClient) {
+          return oj.isDefined(window[name]);
+        } else {
+          return oj.isDefined(global[name]);
+        }
+      };
+    }
+    if (!check()) {
       throw new Error("oj: " + name + " dependency is missing");
     }
   };
-
-  oj.dependency('jQuery');
 
   oj.addMethods = function(obj, mapNameToMethod) {
     var method, methodName;
@@ -891,26 +906,23 @@
   };
 
   oj.tag = function() {
-    var arg, args, attributes, len, name, ojml, r, _i, _j, _len, _len1;
+    var arg, args, attributes, isQuiet, len, name, ojml, r, rest, _i, _len, _ref1;
 
-    name = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    name = arguments[0], rest = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
     if (!oj.isString(name)) {
       throw 'oj.tag error: argument 1 is not a string (expected tag name)';
     }
     ojml = [name];
-    attributes = {};
-    for (_i = 0, _len = args.length; _i < _len; _i++) {
-      arg = args[_i];
-      if (oj.isObject(arg)) {
-        _extend(attributes, arg);
-      }
+    _ref1 = oj.unionArguments(rest), args = _ref1.args, attributes = _ref1.options;
+    if (isQuiet = attributes.__quiet__) {
+      delete attributes.__quiet__;
     }
     if (!_isEmpty(attributes)) {
       ojml.push(attributes);
     }
     oj._argsPush(ojml);
-    for (_j = 0, _len1 = args.length; _j < _len1; _j++) {
-      arg = args[_j];
+    for (_i = 0, _len = args.length; _i < _len; _i++) {
+      arg = args[_i];
       if (oj.isObject(arg)) {
         continue;
       } else if (oj.isFunction(arg)) {
@@ -924,7 +936,9 @@
       }
     }
     oj._argsPop();
-    oj._argsAppend(ojml);
+    if (!isQuiet) {
+      oj._argsAppend(ojml);
+    }
     return ojml;
   };
 
@@ -949,6 +963,10 @@
     return tag.tagName;
   };
 
+  _getQuietTagName = function(tag) {
+    return '_' + tag;
+  };
+
   _setInstanceOnElement = function(el, inst) {
     if (el != null) {
       el.oj = inst;
@@ -965,10 +983,19 @@
 
   _ref1 = oj.tag.elements.all;
   _fn = function(t) {
+    var qt;
+
     oj[t] = function() {
       return oj.tag.apply(oj, [t].concat(__slice.call(arguments)));
     };
-    return _setTagName(oj[t], t);
+    qt = _getQuietTagName(t);
+    oj[qt] = function() {
+      return oj.tag.apply(oj, [t, {
+        __quiet__: 1
+      }].concat(__slice.call(arguments)));
+    };
+    _setTagName(oj[t], t);
+    return _setTagName(oj[qt], t);
   };
   for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
     t = _ref1[_i];
@@ -1003,7 +1030,7 @@
   };
 
   oj.useGlobally = oj.extendInto = function(context) {
-    var k, o, v;
+    var k, o, qn, v;
 
     if (context == null) {
       context = root;
@@ -1013,6 +1040,10 @@
       v = oj[k];
       if (k[0] !== '_' && k !== 'extendInto' && k !== 'useGlobally') {
         o[k] = v;
+        qn = _getQuietTagName(k);
+        if (oj[qn]) {
+          o[qn] = oj[qn];
+        }
       }
     }
     return _extend(context, o);
@@ -1160,7 +1191,7 @@
           selectorsNext = selectorsAcc;
           selector = (selector.slice('@media'.length)).trim();
           mediaParts = _splitAndTrim(selector, ',');
-          mediaParts = oj._map(mediaParts, function(v) {
+          mediaParts = _map(mediaParts, function(v) {
             if (medias[v] != null) {
               return medias[v];
             } else {
@@ -1307,55 +1338,47 @@
   pass = function() {};
 
   _compileAny = function(ojml, options) {
-    var els, _ref10, _ref11, _ref12, _ref13, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    var els, _ref10, _ref11, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
 
     switch (oj.typeOf(ojml)) {
       case 'array':
         _compileTag(ojml, options);
         break;
-      case 'jquery':
-        if ((_ref2 = options.html) != null) {
-          _ref2.push(ojml.html());
-        }
-        if ((_ref3 = options.dom) != null) {
-          _ref3.concat(ojml.get());
-        }
-        break;
       case 'string':
-        if ((_ref4 = options.html) != null) {
-          _ref4.push(ojml);
+        if ((_ref2 = options.html) != null) {
+          _ref2.push(ojml);
         }
         if (ojml.length > 0 && ojml[0] === '<') {
           root = document.createElement('div');
           root.innerHTML = ojml;
           els = root.childNodes;
-          if ((_ref5 = options.dom) != null) {
-            _ref5.appendChild(root);
+          if ((_ref3 = options.dom) != null) {
+            _ref3.appendChild(root);
           }
         } else {
-          if ((_ref6 = options.dom) != null) {
-            _ref6.appendChild(document.createTextNode(ojml));
+          if ((_ref4 = options.dom) != null) {
+            _ref4.appendChild(document.createTextNode(ojml));
           }
         }
         break;
       case 'boolean':
       case 'number':
-        if ((_ref7 = options.html) != null) {
-          _ref7.push("" + ojml);
+        if ((_ref5 = options.html) != null) {
+          _ref5.push("" + ojml);
         }
-        if ((_ref8 = options.dom) != null) {
-          _ref8.appendChild(document.createTextNode("" + ojml));
+        if ((_ref6 = options.dom) != null) {
+          _ref6.appendChild(document.createTextNode("" + ojml));
         }
         break;
       case 'function':
         _compileAny(oj(ojml), options);
         break;
       case 'date':
-        if ((_ref9 = options.html) != null) {
-          _ref9.push("" + (ojml.toLocaleString()));
+        if ((_ref7 = options.html) != null) {
+          _ref7.push("" + (ojml.toLocaleString()));
         }
-        if ((_ref10 = options.dom) != null) {
-          _ref10.appendChild(document.createTextNode("" + (ojml.toLocaleString())));
+        if ((_ref8 = options.dom) != null) {
+          _ref8.appendChild(document.createTextNode("" + (ojml.toLocaleString())));
         }
         break;
       case 'null':
@@ -1366,14 +1389,14 @@
         break;
       default:
         if (oj.isOJ(ojml)) {
-          if ((_ref11 = options.types) != null) {
-            _ref11.push(ojml);
+          if ((_ref9 = options.types) != null) {
+            _ref9.push(ojml);
           }
-          if ((_ref12 = options.html) != null) {
-            _ref12.push(ojml.toHTML(options));
+          if ((_ref10 = options.html) != null) {
+            _ref10.push(ojml.toHTML(options));
           }
-          if ((_ref13 = options.dom) != null) {
-            _ref13.appendChild(ojml.toDOM(options));
+          if ((_ref11 = options.dom) != null) {
+            _ref11.appendChild(ojml.toDOM(options));
           }
           if (options.css != null) {
             _extend(options.css, ojml.toCSSMap(options));
@@ -1585,11 +1608,11 @@
     _results = [];
     for (ek in events) {
       ev = events[ek];
-      if (typeof $ !== "undefined" && $ !== null) {
+      if (oj.$ != null) {
         if (oj.isArray(ev)) {
-          _results.push($(el)[ek].apply(this, ev));
+          _results.push(oj.$(el)[ek].apply(this, ev));
         } else {
-          _results.push($(el)[ek](ev));
+          _results.push(oj.$(el)[ek](ev));
         }
       } else {
         _results.push(console.error("oj: jquery is missing when binding a '" + ek + "' event"));
@@ -1636,6 +1659,10 @@
     ctor.prototype = parent.prototype;
     child.prototype = new ctor();
     child.base = parent.prototype;
+  };
+
+  oj._construct = _construct = function(Type) {
+    return new (FuncP.bind.apply(Type, arguments));
   };
 
   oj.argumentShift = function(args, key) {
@@ -1799,25 +1826,37 @@
     };
   };
 
+  _createQuietType = function(typeName) {
+    var qt;
+
+    qt = _getQuietTagName(typeName);
+    return oj[qt] = function() {
+      return _construct.apply(null, [oj[typeName]].concat(__slice.call(arguments), [{
+        __quiet__: 1
+      }]));
+    };
+  };
+
   oj["enum"] = function(name, args) {
-    throw 'NYI';
+    throw new Error('oj.enum: NYI');
   };
 
   oj.View = oj.createType('View', {
-    constructor: function(options) {
-      var _ref2;
+    constructor: function() {
+      var args, options, _ref2, _ref3;
 
-      if (options == null) {
-        options = {};
-      }
       if (!oj.isDOM(this.el)) {
         throw new Error("oj." + this.typeName + ": constructor failed to set this.el");
       }
       _setInstanceOnElement(this.el, this);
-      if (this.__autonew__) {
+      _ref2 = oj.unionArguments(arguments), options = _ref2.options, args = _ref2.args;
+      if (this.__autonew__ && !options.__quiet__) {
         this.emit();
       }
-      if ((_ref2 = options.id) == null) {
+      if (options.__quiet__ != null) {
+        delete options.__quiet__;
+      }
+      if ((_ref3 = options.id) == null) {
         options.id = oj.id();
       }
       this.$el.addClass("oj-" + this.typeName);
@@ -1849,7 +1888,7 @@
         get: function() {
           var _ref2;
 
-          return (_ref2 = this._$el) != null ? _ref2 : (this._$el = $(this.el));
+          return (_ref2 = this._$el) != null ? _ref2 : (this._$el = oj.$(this.el));
         }
       },
       id: {
@@ -1865,7 +1904,7 @@
           var out;
 
           out = {};
-          $.each(this.el.attributes, function(index, attr) {
+          oj.$.each(this.el.attributes, function(index, attr) {
             return out[attr.name] = attr.value;
           });
           return out;
@@ -1876,12 +1915,25 @@
           var out;
 
           out = {};
-          $.each(this.el.attributes, function(index, attr) {
+          oj.$.each(this.el.attributes, function(index, attr) {
             return out[attr.name] = attr.value;
           });
           return out;
+        },
+        set: function(v) {
+          var theme, _j, _len1;
+
+          if (!oj.isArray(v)) {
+            v = [v];
+          }
+          this.clearThemes();
+          for (_j = 0, _len1 = v.length; _j < _len1; _j++) {
+            theme = v[_j];
+            this.addTheme(theme);
+          }
         }
       },
+      theme: this.themes,
       isConstructed: {
         get: function() {
           var _ref2;
@@ -2025,6 +2077,7 @@
     cssMap = _setObject({}, ".oj-" + this.typeName + ".theme-" + dashName, css);
     _extend(this.cssMap["oj-" + this.typeName], cssMap);
     this.themes.push(dashName);
+    this.themes = _uniqueSort(this.themes);
   };
 
   oj.View.cssMap = {};
@@ -2783,7 +2836,7 @@
           }
           this._rows = [];
           for (rx = _j = 0, _ref2 = this.rowCount; _j < _ref2; rx = _j += 1) {
-            r = oj._map(this.$tdsRow(rx), function($td) {
+            r = _map(this.$tdsRow(rx), function($td) {
               return $td.ojValues();
             });
             this._rows.push(r);
@@ -3174,7 +3227,6 @@
         this.$colgroup.remove();
       },
       clearBody: function() {
-        console.log("clearing body: oj.litcoffee:2930");
         this.$tbody.remove();
         this.bodyChanged();
       },
@@ -3222,12 +3274,18 @@
     }
   });
 
+  for (typeName in oj) {
+    if (_isCapitalLetter(typeName[0]) && typeName.slice(typeName.length - 4) !== 'View') {
+      oj[_getQuietTagName(typeName)] = _createQuietType(typeName);
+    }
+  }
+
   oj.sandbox = {};
 
   _ref2 = _keys(oj);
   for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
     key = _ref2[_j];
-    if (key.length > 0 && key[0] !== '_') {
+    if ((key.length > 0 && key[0] !== '_') || (key.length > 0 && key[0] === '_' && (oj[key.slice(1)] != null))) {
       oj.addProperty(oj.sandbox, key, {
         value: oj[key],
         writable: false
@@ -3236,13 +3294,10 @@
   }
 
   oj.use = function(plugin, settings) {
-    var name, pluginMap, value, _results;
+    var name, pluginMap, pluginResult, value, _results;
 
     if (settings == null) {
       settings = {};
-    }
-    if (arguments.length === 0) {
-      return oj.useGlobally();
     }
     if (!oj.isFunction(plugin)) {
       throw new Error('oj.use: function expected for first argument');
@@ -3250,7 +3305,14 @@
     if (!oj.isObject(settings)) {
       throw new Error('oj.use: object expected for second argument');
     }
-    pluginMap = plugin(oj, settings);
+    pluginResult = plugin(oj, settings);
+    pluginMap = _clone(pluginResult);
+    for (name in pluginResult) {
+      value = pluginResult[name];
+      if (oj.isOJType(value)) {
+        pluginMap[_getQuietTagName(name)] = _createQuietType(value.typeName);
+      }
+    }
     _results = [];
     for (name in pluginMap) {
       value = pluginMap[name];
@@ -3281,7 +3343,7 @@
         out = [];
         for (_k = 0, _len2 = $els.length; _k < _len2; _k++) {
           el = $els[_k];
-          out.push(options.get($(el)));
+          out.push(options.get(oj.$(el)));
           if (options.first) {
             return out[0];
           }
@@ -3291,7 +3353,7 @@
         out = $els;
         for (_l = 0, _len3 = $els.length; _l < _len3; _l++) {
           el = $els[_l];
-          r = options.set($(el), args);
+          r = options.set(oj.$(el), args);
           if (r != null) {
             return r;
           }
@@ -3318,26 +3380,24 @@
       if (plugin === 'oj-style' && !(options != null ? options.global : void 0)) {
         continue;
       }
-      if ($('.' + _styleClassFromPlugin(plugin)).length === 0) {
-        $('head').append(oj._styleTagFromMediaObject(plugin, mediaMap));
+      if (oj.$('.' + _styleClassFromPlugin(plugin)).length === 0) {
+        oj.$('head').append(oj._styleTagFromMediaObject(plugin, mediaMap));
       }
     }
   };
 
-  jQuery.fn.oj = _jqueryExtend({
+  oj.$.fn.oj = _jqueryExtend({
     set: function($el, args) {
       var cssMap, d, dom, types, _k, _len2, _ref3;
 
       if (args.length === 0) {
         return $el[0].oj;
       }
-      with (oj) {;
       _ref3 = oj.compile.apply(oj, [{
         dom: 1,
         html: 0,
         cssMap: 1
       }].concat(__slice.call(args))), dom = _ref3.dom, types = _ref3.types, cssMap = _ref3.cssMap;
-      };
       _insertStyles(cssMap, {
         global: 0
       });
@@ -3356,7 +3416,7 @@
     }
   });
 
-  jQuery.ojBody = function(ojml) {
+  oj.$.ojBody = function(ojml) {
     var bodyOnly, cssMap, dom, eCompile, types, _ref3;
 
     bodyOnly = {
@@ -3382,7 +3442,7 @@
       throw new Error("oj.compile: " + eCompile.message);
     }
     if (dom != null) {
-      $('body').html(dom);
+      oj.$('body').html(dom);
     }
     _insertStyles(cssMap, {
       global: 1
@@ -3407,13 +3467,13 @@
     }
   };
 
-  jQuery.fn.ojValue = _jqueryExtend({
+  oj.$.fn.ojValue = _jqueryExtend({
     first: true,
     set: null,
     get: _jqGetValue
   });
 
-  jQuery.fn.ojValues = _jqueryExtend({
+  oj.$.fn.ojValues = _jqueryExtend({
     first: false,
     set: null,
     get: _jqGetValue
@@ -3430,7 +3490,7 @@
   };
 
   _fn1 = function(ojName, jqName) {
-    return jQuery.fn[ojName] = _jqueryExtend({
+    return oj.$.fn[ojName] = _jqueryExtend({
       set: function($el, args) {
         var cssMap, dom, types, _ref3;
 
