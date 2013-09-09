@@ -48,7 +48,7 @@ module.exports = function(){
       Table({
         header:['Button', 'Name', 'Username'],
         collection:users,
-        each:function(user, td){
+        each: function(user, td){
           // Render each row with the following:
           td(function(){
             TwitterButton(user.get('twitter'));
@@ -71,6 +71,9 @@ module.exports = function(){
           td:{
             borderBottom:'1px solid orange',
             padding: '10px'
+          },
+          'td:first-child':{
+            minWidth: '200px'
           }
       });
 

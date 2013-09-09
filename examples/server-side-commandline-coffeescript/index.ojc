@@ -1,0 +1,78 @@
+# OJ Example: Server-side Commandline Tool (CoffeeScript)
+
+# .ojc files are compiled automatically as CoffeeScript
+
+# The OJ commandline tool embraces the Node approach
+# to file including using `require` and `module.exports`
+# By requiring these modules they are automatically included in the
+# output file index.html:
+_ = require 'underscore'
+Backbone = require 'backbone'
+
+# Require the oj-twitter-button plugin to use oj.TwitterButton
+require 'oj-twitter-button'
+
+# You can include your own files and they will be unified as well
+_twitterLink = require './_twitterLink'
+
+# Export your site returning an function that uses OJ:
+module.exports = ->
+  # Nesting is does with functions
+  html ->
+    head ->
+      title 'OJ Example: Server-side Commandline Tool'
+
+    # Inside body you can do whatever you want
+    body ->
+
+      # Create a Backbone UserModel and UserCollection
+      class UserModel extends Backbone.Model
+      class UserCollection extends Backbone.Collection
+
+      # Create some users and put them in a collection
+      user1 = new UserModel name:'Evan', twitter:'evanmoran'
+      user2 = new UserModel name:'James', twitter:'iamthelawton'
+      user3 = new UserModel name:'Laura', twitter:'savinola'
+      users = new UserCollection [user1,user2,user3]
+
+      h1 'Server-side Commandline Tool (w/CoffeeScript)'
+
+      # Use the partial function included through `require`
+      p('Render twitter links with a partial function:')
+      _twitterLink user1
+      br()
+      _twitterLink user2
+      br()
+      _twitterLink user3
+      br()
+      br()
+
+      p 'Render a table from a Backbone collection:'
+      Table
+        header:['Button', 'Name', 'Username']
+        collection:users
+        each:(user, td) ->
+          # Render each row with the following:
+          td ->
+            TwitterButton user.get('twitter')
+          td user.get('name')
+          td user.get('twitter')
+
+      # Add CSS to make the table all pretty like
+      css
+        table:
+          borderCollapse: 'collapse'
+          borderSpacing: 0
+
+        th:
+          padding:'10px'
+          textAlign:'left'
+          borderBottom:'1px solid orange'
+
+        td:
+          borderBottom:'1px solid orange'
+          padding: '10px'
+
+        'td:first-child':
+          minWidth: '200px'
+

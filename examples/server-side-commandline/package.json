@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "dependencies": {
+    "underscore": "latest",
+    "backbone": "latest",
+    "oj-twitter-button": "latest"
+  }
+}
