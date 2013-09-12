@@ -55,7 +55,7 @@ var plugin = function(oj,settings){
       }
       // Create el as relatively positioned div
       this.el = oj(function(){
-        oj.div(function(){
+        oj.div('...', function(){
           oj.div({c:'oj-AceEditor-editor', style:{position:'absolute',width:options.width, height:options.height}});
           },{
             style:{

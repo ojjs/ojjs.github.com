@@ -47,15 +47,12 @@ var Mode = function() {
     this.foldingRules = new FoldMode();
     
     this.$tokenizer = new Tokenizer(highlighter.getRules());
-    this.$keywordList = highlighter.$keywordList;
 };
 oop.inherits(Mode, TextMode);
 
 (function() {
        
-    this.lineCommentStart = "#";    
-    this.$indentWithTabs = true;
-    
+    this.lineCommentStart = "#";
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
@@ -180,28 +177,12 @@ var ShHighlightRules = function() {
     var func = "(?:" + variableName + "\\s*\\(\\))";
 
     this.$rules = {
-        "start" : [{
-            token : "constant",
-            regex : /\\./
-        }, {
+        "start" : [ {
             token : ["text", "comment"],
             regex : /(^|\s)(#.*)$/
         }, {
-            token : "string",
-            regex : '"',
-            push : [{
-                token : "constant.language.escape",
-                regex : /\\(?:[$abeEfnrtv\\'"]|x[a-fA-F\d]{1,2}|u[a-fA-F\d]{4}([a-fA-F\d]{4})?|c.|\d{1,3})/
-            }, {
-                token : "constant",
-                regex : /\$\w+/
-            }, {
-                token : "string",
-                regex : '"',
-                next: "pop"
-            }, {
-                defaultToken: "string"
-            }]
+            token : "string",           // " string
+            regex : '"(?:[^\\\\]|\\\\.)*?"'
         }, {
             token : "variable.language",
             regex : builtinVariable
@@ -216,7 +197,7 @@ var ShHighlightRules = function() {
             regex : fileDescriptor
         }, {
             token : "string",           // ' string
-            start : "'", end : "'"
+            regex : "'(?:[^\\\\]|\\\\.)*?'"
         }, {
             token : "constant.numeric", // float
             regex : floatNumber
@@ -237,8 +218,6 @@ var ShHighlightRules = function() {
             regex : "[\\]\\)\\}]"
         } ]
     };
-    
-    this.normalizeRules();
 };
 
 oop.inherits(ShHighlightRules, TextHighlightRules);

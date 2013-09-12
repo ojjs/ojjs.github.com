@@ -62,180 +62,35 @@ var oop = require("../lib/oop");
 var xmlUtil = require("./xml_util");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
 
-var XmlHighlightRules = function(normalize) {
+var XmlHighlightRules = function() {
     this.$rules = {
         start : [
-            {token : "punctuation.string.begin", regex : "<\\!\\[CDATA\\[", next : "cdata"},
-            {
-                token : ["punctuation.instruction.begin", "keyword.instruction"],
-                regex : "(<\\?)(xml)(?=[\\s])", next : "xml_declaration"
-            },
-            {
-                token : ["punctuation.instruction.begin", "keyword.instruction"],
-                regex : "(<\\?)([-_a-zA-Z0-9]+)", next : "instruction"
-            },
+            {token : "text", regex : "<\\!\\[CDATA\\[", next : "cdata"},
+            {token : "xml-pe", regex : "<\\?.*?\\?>"},
             {token : "comment", regex : "<\\!--", next : "comment"},
+            {token : "xml-pe", regex : "<\\!.*?>"},
+            {token : "meta.tag", regex : "<\\/?", next : "tag"},
+            {token : "text", regex : "\\s+"},
             {
-                token : ["punctuation.doctype.begin", "meta.tag.doctype"],
-                regex : "(<\\!)(DOCTYPE)(?=[\\s])", next : "doctype"
-            },
-            {include : "tag"},
-            {include : "reference"}
+                token : "constant.character.entity", 
+                regex : "(?:&#[0-9]+;)|(?:&#x[0-9a-fA-F]+;)|(?:&[a-zA-Z0-9_:\\.-]+;)" 
+            }
         ],
-
-        xml_declaration : [
-            {include : "attributes"},
-            {include : "instruction"}
-        ],
-
-        instruction : [
-            {token : "punctuation.instruction.end", regex : "\\?>", next : "start"}
-        ],
-
-        doctype : [
-            {include : "space"},
-            {include : "string"},
-            {token : "punctuation.doctype.end", regex : ">", next : "start"},
-            {token : "xml-pe", regex : "[-_a-zA-Z0-9:]+"},
-            {token : "punctuation.begin", regex : "\\[", push : "declarations"}
-        ],
-
-        declarations : [{
-            token : "text",
-            regex : "\\s+"
-        }, {
-            token: "punctuation.end",
-            regex: "]",
-            next: "pop"
-        }, {
-            token : ["punctuation.begin", "keyword"],
-            regex : "(<\\!)([-_a-zA-Z0-9]+)",
-            push : [{
-                token : "text",
-                regex : "\\s+"
-            },
-            {
-                token : "punctuation.end",
-                regex : ">",
-                next : "pop"
-            },
-            {include : "string"}]
-        }],
-
+        
         cdata : [
-            {token : "string.end", regex : "\\]\\]>", next : "start"},
+            {token : "text", regex : "\\]\\]>", next : "start"},
             {token : "text", regex : "\\s+"},
             {token : "text", regex : "(?:[^\\]]|\\](?!\\]>))+"}
         ],
 
         comment : [
-            {token : "comment", regex : "-->", next : "start"},
-            {defaultToken : "comment"}
-        ],
-
-        tag : [{
-            token : ["meta.tag.punctuation.begin", "meta.tag.name"],
-            regex : "(<)((?:[-_a-zA-Z0-9]+:)?[-_a-zA-Z0-9]+)",
-            next: [
-                {include : "attributes"},
-                {token : "meta.tag.punctuation.end", regex : "/?>", next : "start"}
-            ]
-        }, {
-            token : ["meta.tag.punctuation.begin", "meta.tag.name"],
-            regex : "(</)((?:[-_a-zA-Z0-9]+:)?[-_a-zA-Z0-9]+)",
-            next: [
-                {include : "space"},
-                {token : "meta.tag.punctuation.end", regex : ">", next : "start"}
-            ]
-        }],
-
-        space : [
-            {token : "text", regex : "\\s+"}
-        ],
-
-        reference : [{
-            token : "constant.language.escape",
-            regex : "(?:&#[0-9]+;)|(?:&#x[0-9a-fA-F]+;)|(?:&[a-zA-Z0-9_:\\.-]+;)"
-        }, {
-            token : "invalid.illegal", regex : "&"
-        }],
-
-        string: [{
-            token : "string",
-            regex : "'",
-            push : "qstring_inner"
-        }, {
-            token : "string",
-            regex : '"',
-            push : "qqstring_inner"
-        }],
-
-        qstring_inner: [
-            {token : "string", regex: "'", next: "pop"},
-            {include : "reference"},
-            {defaultToken : "string"}
-        ],
-
-        qqstring_inner: [
-            {token : "string", regex: '"', next: "pop"},
-            {include : "reference"},
-            {defaultToken : "string"}
-        ],
-
-        attributes: [{
-            token : "entity.other.attribute-name",
-            regex : "(?:[-_a-zA-Z0-9]+:)?[-_a-zA-Z0-9]+"
-        }, {
-            token : "keyword.operator.separator",
-            regex : "="
-        }, {
-            include : "space"
-        }, {
-            include : "string"
-        }]
-    };
-
-    if (this.constructor === XmlHighlightRules)
-        this.normalizeRules();
-};
-
-
-(function() {
-
-    this.embedTagRules = function(HighlightRules, prefix, tag){
-        this.$rules.tag.unshift({
-            token : ["meta.tag.punctuation.begin", "meta.tag.name." + tag],
-            regex : "(<)(" + tag + ")",
-            next: [
-                {include : "space"},
-                {include : "attributes"},
-                {token : "meta.tag.punctuation.end", regex : "/?>", next : prefix + "start"}
-            ]
-        });
-
-        this.$rules[tag + "-end"] = [
-            {include : "space"},
-            {token : "meta.tag.punctuation.end", regex : ">",  next: "start",
-                onMatch : function(value, currentState, stack) {
-                    stack.splice(0);
-                    return this.token;
-            }}
+            {token : "comment", regex : ".*?-->", next : "start"},
+            {token : "comment", regex : ".+"}
         ]
-
-        this.embedRules(HighlightRules, prefix, [{
-            token: ["meta.tag.punctuation.begin", "meta.tag.name." + tag],
-            regex : "(</)(" + tag + ")",
-            next: tag + "-end"
-        }, {
-            token: "string.begin",
-            regex : "<\\!\\[CDATA\\["
-        }, {
-            token: "string.end",
-            regex : "\\]\\]>"
-        }]);
     };
-
-}).call(TextHighlightRules.prototype);
+    
+    xmlUtil.tag(this.$rules, "tag", "start");
+};
 
 oop.inherits(XmlHighlightRules, TextHighlightRules);
 
@@ -321,9 +176,14 @@ var CstyleBehaviour = require("./cstyle").CstyleBehaviour;
 var TokenIterator = require("../../token_iterator").TokenIterator;
 
 function hasType(token, type) {
-    var tokenTypes = token.type.split('.');
-    return type.split('.').every(function(type){
-        return (tokenTypes.indexOf(type) !== -1);
+    var hasType = true;
+    var typeList = token.type.split('.');
+    var needleList = type.split('.');
+    needleList.forEach(function(needle){
+        if (typeList.indexOf(needle) == -1) {
+            hasType = false;
+            return false;
+        }
     });
     return hasType;
 }
@@ -337,9 +197,6 @@ var XmlBehaviour = function () {
             var position = editor.getCursorPosition();
             var iterator = new TokenIterator(session, position.row, position.column);
             var token = iterator.getCurrentToken();
-
-            if (token && hasType(token, 'string') && iterator.getCurrentTokenColumn() + token.value.length > position.column)
-                return;
             var atCursor = false;
             if (!token || !hasType(token, 'meta.tag') && !(hasType(token, 'text') && token.value.match('/'))){
                 do {
@@ -348,8 +205,8 @@ var XmlBehaviour = function () {
             } else {
                 atCursor = true;
             }
-            if (!token || !hasType(token, 'meta.tag.name') || iterator.stepBackward().value.match('/')) {
-                return;
+            if (!token || !hasType(token, 'meta.tag-name') || iterator.stepBackward().value.match('/')) {
+                return
             }
             var tag = token.value;
             if (atCursor){
@@ -366,11 +223,11 @@ var XmlBehaviour = function () {
     this.add('autoindent', 'insertion', function (state, action, editor, session, text) {
         if (text == "\n") {
             var cursor = editor.getCursorPosition();
-            var line = session.getLine(cursor.row);
+            var line = session.doc.getLine(cursor.row);
             var rightChars = line.substring(cursor.column, cursor.column + 2);
             if (rightChars == '</') {
-                var next_indent = this.$getIndent(line);
-                var indent = next_indent + session.getTabString();
+                var indent = this.$getIndent(session.doc.getLine(cursor.row)) + session.getTabString();
+                var next_indent = this.$getIndent(session.doc.getLine(cursor.row));
 
                 return {
                     text: '\n' + indent + '\n' + next_indent,
@@ -749,7 +606,7 @@ oop.inherits(FoldMode, BaseFoldMode);
         var value = "";
         for (var i = 0; i < tokens.length; i++) {
             var token = tokens[i];
-            if (token.type.lastIndexOf("meta.tag", 0) === 0)
+            if (token.type.indexOf("meta.tag") === 0)
                 value += token.value;
             else
                 value += lang.stringRepeat(" ", token.value.length);
@@ -761,8 +618,9 @@ oop.inherits(FoldMode, BaseFoldMode);
     this.tagRe = /^(\s*)(<?(\/?)([-_a-zA-Z0-9:!]*)\s*(\/?)>?)/;
     this._parseTag = function(tag) {
         
-        var match = tag.match(this.tagRe);
-        var column = 0;
+        var match = this.tagRe.exec(tag);
+        var column = this.tagRe.lastIndex || 0;
+        this.tagRe.lastIndex = 0;
 
         return {
             value: tag,
@@ -782,7 +640,7 @@ oop.inherits(FoldMode, BaseFoldMode);
         var start;
         
         do {
-            if (token.type.lastIndexOf("meta.tag", 0) === 0) {
+            if (token.type.indexOf("meta.tag") === 0) {
                 if (!start) {
                     var start = {
                         row: iterator.getCurrentTokenRow(),
@@ -815,7 +673,7 @@ oop.inherits(FoldMode, BaseFoldMode);
         var end;
 
         do {
-            if (token.type.lastIndexOf("meta.tag", 0) === 0) {
+            if (token.type.indexOf("meta.tag") === 0) {
                 if (!end) {
                     end = {
                         row: iterator.getCurrentTokenRow(),

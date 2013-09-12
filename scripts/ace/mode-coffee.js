@@ -41,10 +41,8 @@ var WorkerClient = require("../worker/worker_client").WorkerClient;
 var oop = require("../lib/oop");
 
 function Mode() {
-    var highlighter = new Rules();
-    this.$tokenizer = new Tokenizer(highlighter.getRules());
+    this.$tokenizer = new Tokenizer(new Rules().getRules());
     this.$outdent = new Outdent();
-    this.$keywordList = highlighter.$keywordList;
     this.foldingRules = new FoldMode();
 }
 
@@ -194,7 +192,6 @@ ace.define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 
                     regex : '"""',
                     next : [
                         {token : "string", regex : '"""', next : "start"},
-                        {token : "paren.string", regex : '#{', push : "start"},
                         {token : "constant.language.escape", regex : stringEscape},
                         {defaultToken: "string"}
                     ]
@@ -209,7 +206,6 @@ ace.define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 
                     stateName: "qqstring",
                     token : "string.start", regex : '"', next : [
                         {token : "string.end", regex : '"', next : "start"},
-                        {token : "paren.string", regex : '#{', push : "start"},
                         {token : "constant.language.escape", regex : stringEscape},
                         {defaultToken: "string"}
                     ]
@@ -220,21 +216,6 @@ ace.define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 
                         {token : "constant.language.escape", regex : stringEscape},
                         {defaultToken: "string"}
                     ]
-                }, {
-                    regex: "[{}]", onMatch: function(val, state, stack) {
-                        this.next = "";
-                        if (val == "{" && stack.length) {
-                            stack.unshift("start", state);
-                            return "paren";
-                        }
-                        if (val == "}" && stack.length) {
-                            stack.shift();
-                            this.next = stack.shift();
-                            if (this.next.indexOf("string") != -1)
-                                return "paren.string";
-                        }
-                        return "paren";
-                    }
                 }, {
                     token : "string.regex",
                     regex : "///",
@@ -308,7 +289,7 @@ ace.define('ace/mode/coffee_highlight_rules', ['require', 'exports', 'module' , 
                 regex : '###',
                 next : "start"
             }, {
-                defaultToken : "comment"
+                defaultToken : "comment",
             }]
         };
         this.normalizeRules();

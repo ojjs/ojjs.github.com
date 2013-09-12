@@ -39,9 +39,7 @@ var MatchingParensOutdent = require("./matching_parens_outdent").MatchingParensO
 var Range = require("../range").Range;
 
 var Mode = function() {
-    var highlighter = new ClojureHighlightRules();
-    this.$tokenizer = new Tokenizer(highlighter.getRules());
-    this.$keywordList = highlighter.$keywordList;
+    this.$tokenizer = new Tokenizer(new ClojureHighlightRules().getRules());
     this.$outdent = new MatchingParensOutdent();
 };
 oop.inherits(Mode, TextMode);
@@ -226,8 +224,8 @@ var ClojureHighlightRules = function() {
                 regex : '"',
                 next: "string"
             }, {
-                token : "constant", // symbol
-                regex : /:[^()\[\]{}'"\^%`,;\s]+/
+                token : "string", // symbol
+                regex : /:[\w*+!\-_?:\/]+/
             }, {
                 token : "string.regexp", //Regular Expressions
                 regex : '/#"(?:\\.|(?:\\\")|[^\""\n])*"/g'
