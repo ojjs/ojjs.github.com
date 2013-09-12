@@ -9,28 +9,6 @@
 
 (function(){
 
-// Helper methods
-
-function startsWith (strInput, strStart) {
-  return strInput.length >= strStart.length && strInput.lastIndexOf(strStart, 0) == 0;
-}
-
-function endsWith (strInput, strEnd) {
-  return strInput.length >= strEnd.length && strInput.lastIndexOf(strEnd, strInput.length - strEnd.length) == strInput.length - strEnd.length;
-}
-
-function unprepend (strInput, strStart) {
-  if(startsWith(strInput, strStart))
-    return strInput.slice(strStart.length);
-  return strInput;
-}
-
-function unappend (strInput, strEnd) {
-  if (endsWith(strInput, strEnd))
-    return strInput.slice(0, strInput.length - strEnd.length);
-  return strInput;
-}
-
 // Create plugin
 var plugin = function(oj, settings){
   if (typeof settings !== 'object')
@@ -103,7 +81,7 @@ var plugin = function(oj, settings){
         }
       },
       tabs: 'result,js,html,css,resources',
-      style: '',
+      style: '',         // '' or 'presentation'
       width:{            // pixals if specified. Otherwise is calculate from settings
         get:function(){return this._width || 300},
         set:function(v){this._width = v;}
@@ -125,5 +103,28 @@ if (typeof oj != 'undefined')
 // Export in node
 if (typeof module != 'undefined' && typeof module.exports != 'undefined')
   module.exports = plugin;
+
+// Helper methods
+// ---------------------------------------------------------------------------
+
+function startsWith (strInput, strStart) {
+  return strInput.length >= strStart.length && strInput.lastIndexOf(strStart, 0) == 0;
+}
+
+function endsWith (strInput, strEnd) {
+  return strInput.length >= strEnd.length && strInput.lastIndexOf(strEnd, strInput.length - strEnd.length) == strInput.length - strEnd.length;
+}
+
+function unprepend (strInput, strStart) {
+  if(startsWith(strInput, strStart))
+    return strInput.slice(strStart.length);
+  return strInput;
+}
+
+function unappend (strInput, strEnd) {
+  if (endsWith(strInput, strEnd))
+    return strInput.slice(0, strInput.length - strEnd.length);
+  return strInput;
+}
 
 })(this);
