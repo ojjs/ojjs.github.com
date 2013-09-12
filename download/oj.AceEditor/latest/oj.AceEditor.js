@@ -53,10 +53,34 @@ var plugin = function(oj,settings){
         if (options[k] == null)
           options[k] = defaults[k];
       }
+      var ver = this._getVersion();
+      // ver.major = 10;
       // Create el as relatively positioned div
+      var This = this;
       this.el = oj(function(){
         oj.div(function(){
-          oj.div({c:'oj-AceEditor-editor', style:{position:'absolute',width:options.width, height:options.height}});
+
+            if(ver.major == -1)
+              oj.div({c:'oj-AceEditor-editor', style:{position:'absolute',width:options.width, height:options.height}});
+            else
+              oj.TextArea({c:'oj-AceEditor-editor',
+                change:function(){
+                  if (typeof This.viewChanged == 'function') {
+                    This.viewChanged();
+                  }
+                  if (typeof This.change == 'function') {
+                    This.change();
+                  }
+                },
+                style:{
+                  backgroundColor:'#FEFAF3',
+                  color:'#586E75',
+                  border:'none',
+                  position:'absolute',
+                  fontSize: options.fontSize,
+                  width:options.width,
+                  fontFamily:"Monaco,Menlo,Ubuntu Mono,Consolas,source-code-pro,monospace",
+                  height:options.height}});
           },{
             style:{
               position:'relative',
@@ -65,26 +89,87 @@ var plugin = function(oj,settings){
             }
           }
         );
-
       });
 
       this.$editor = this.$('.oj-AceEditor-editor');
 
-      // Create editor
-      if (oj.isClient && typeof ace != 'undefined') {
+      if (ver.major == -1) {
 
-        this.editor = ace.edit(this.$editor.get(0));
-        this.editor.resize()
+        // Create editor
+        if (oj.isClient && typeof ace != 'undefined') {
 
-        // Register for editor changes
-        // Use debounce to ensure cut and paste only fires one event change
-        var This = this;
-        this.session.doc.on('change', debounce(50, function(){
-          if (typeof This.viewChanged == 'function')
-            This.viewChanged();
-          if (typeof This.change == 'function')
-            This.change();
-        }));
+          this.editor = ace.edit(this.$editor.get(0));
+          this.editor.resize()
+
+          // Register for editor changes
+          // Use debounce to ensure cut and paste only fires one event change
+          var This = this;
+          this.session.doc.on('change', debounce(50, function(){
+            if (typeof This.viewChanged == 'function')
+              This.viewChanged();
+            if (typeof This.change == 'function')
+              This.change();
+          }));
+        }
+      }
+      else
+      {
+        this._editor = {
+          width:function(){},
+          height:function(){},
+          getSession:function(){return {
+            doc:{'on':function(){}},
+            getValue:function(){},
+            setValue:function(){},
+            getMode:function(){return {'$id':'js'}},
+            setMode:function(){},
+            getTabSize:function(){return 2;},
+            setTabSize:function(){},
+            setFoldStyle:function(){},
+            getUseSoftTabs:function(){return true},
+            setUseSoftTabs:function(){},
+            getUseWrapMode:function(){},
+            setUseWrapMode:function(){},
+            getWrapLimitRange:function(){},
+            setWrapLimitRange:function(){},
+            getUseWorker:function(){},
+            setUseWorker:function(){}
+          }},
+          setSession:function(){},
+          renderer:{
+            getShowGutter:function(){},
+            setShowGutter:function(){},
+            getPrintMarginColumn:function(){},
+            setPrintMarginColumn:function(){},
+            getHScrollBarAlwaysVisible:function(){},
+            setHScrollBarAlwaysVisible:function(){}
+          },
+          getTheme:function(){},
+          setTheme:function(){},
+          resize:function(){},
+          getReadOnly:function(){},
+          setReadOnly:function(){},
+          setFontSize:function(){},
+          getCursorPosition:function(){},
+          moveCursorToPosition:function(){},
+          getShowPrintMargin:function(){},
+          setShowPrintMargin:function(){},
+          getShowInvisibles:function(){},
+          setShowInvisibles:function(){},
+          getDisplayIndentGuides:function(){},
+          setDisplayIndentGuides:function(){},
+          getShowFoldWidgets:function(){},
+          setShowFoldWidgets:function(){},
+
+          getHighlightSelectedWord:function(){},
+          setHighlightSelectedWord:function(){},
+          getHighlightActiveLine:function(){},
+          setHighlightActiveLine:function(){},
+          getBehavioursEnabled:function(){},
+          setBehavioursEnabled:function(){}
+        }
+
+
       }
 
       // Shift editor properties
@@ -150,7 +235,13 @@ var plugin = function(oj,settings){
       // ----------------------------------------------------------------------
 
       value: {
-        get: function(){ if(this.session) return this.session.getValue(); },
+        get: function(){
+          if(this._isVer) {
+            return this._verEditor.value;
+          }
+
+          if(this.session)
+            return this.session.getValue(); },
         set: function(v){
           if(this.session) {
             // Save the location of the cursor
@@ -159,6 +250,10 @@ var plugin = function(oj,settings){
 
             // Restore the location of the cursor
             this.cursorPosition = pos;
+
+            if (this._isVer) {
+              this._verEditor.value = v
+            }
           }
         }
       },
@@ -501,7 +596,19 @@ var plugin = function(oj,settings){
 
       $scrollbar: null,
       $scroller: null,
-      $content: null
+      $content: null,
+      _isVer:{
+        get:function(){
+          return this._getVersion().major != -1
+        }
+      },
+      _verEditor:{
+        get:function(){
+          if(!this._isVer)
+            return null;
+          return this.$editor.get(0).oj;
+        }
+      }
     },
 
     methods: {
@@ -549,6 +656,17 @@ var plugin = function(oj,settings){
           $(div).remove();
           return this._scrollWidth = (w1 - w2);
         }
+      },
+      _getVersion: function(){
+        if (oj.isClient) {
+          var agent = navigator.userAgent;
+          var reg = /MSIE\s?(\d+)(?:\.(\d+))?/i;
+          var matches = agent.match(reg);
+          if (matches != null) {
+              return { major: matches[1], minor: matches[2] };
+          }
+        }
+        return { major: "-1", minor: "-1" };
       }
     }
   });
@@ -556,6 +674,8 @@ var plugin = function(oj,settings){
   return {AceEditor:AceEditor};
 
 };
+
+
 
 // Debounce from underscore to remowe the only underscore dependency
 // http://underscorejs.org/#debounce
