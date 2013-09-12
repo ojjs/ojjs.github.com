@@ -579,7 +579,7 @@ header {
 			<div class="gg"><div class="fixed row"><div class="toc-right o75 gg25 hide-phone"></div></div></div>
 			<div class="gg"><div class="relative row">
 					<div class="body gg100">
-						<div style="height: 318px;" class="oj-TryEditor" id="ojV9aOalyy"><div class="oj-TryEditor-resizer" style="width: 0px; height: 318px;"><div class="oj-TryEditor-gripper"></div></div><div class="oj-TryEditor-inputs" style="height: 159px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 151px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojLmIPdyPn"><div class="oj-AceEditor-editor" style="height: 151px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 159px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 151px; width: 0px;"></div><iframe style="width: 0px; height: 155px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
+						<div style="height: 318px;" class="oj-TryEditor" id="ojPTJhMtyF"><div class="oj-TryEditor-resizer" style="width: 0px; height: 318px;"><div class="oj-TryEditor-gripper"></div></div><div class="oj-TryEditor-inputs" style="height: 159px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 151px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="oj6we0xwf1"><div class="oj-AceEditor-editor" style="height: 151px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 159px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 151px; width: 0px;"></div><iframe style="width: 0px; height: 155px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
 
 						<div class="row">
 							<div class="toc-above gg25 show-phone"></div>
@@ -5642,14 +5642,8 @@ module.exports = function(oj, settings) {
         this.maximize = this.maximize;
         maximizeDuration = d;
         setTimeout((function() {
-          return _this.toggleState();
-        }), 500);
-        setTimeout((function() {
-          return _this.toggleState();
-        }), 1000);
-        setTimeout((function() {
           return _this.value = _this.value();
-        }), 2000);
+        }), 1000);
         return setTimeout((function() {
           return _this.updateFrame();
         }), 50);
