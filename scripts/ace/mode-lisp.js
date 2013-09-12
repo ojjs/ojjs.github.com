@@ -41,7 +41,6 @@ var Mode = function() {
     var highlighter = new LispHighlightRules();
     
     this.$tokenizer = new Tokenizer(highlighter.getRules());
-    this.$keywordList = highlighter.$keywordList;
 };
 oop.inherits(Mode, TextMode);
 

@@ -39,9 +39,7 @@ var PythonFoldMode = require("./folding/pythonic").FoldMode;
 var Range = require("../range").Range;
 
 var Mode = function() {
-    var highlighter = new PythonHighlightRules();
-    this.$tokenizer = new Tokenizer(highlighter.getRules());
-    this.$keywordList = highlighter.$keywordList;
+    this.$tokenizer = new Tokenizer(new PythonHighlightRules().getRules());
     this.foldingRules = new PythonFoldMode("\\:");
 };
 oop.inherits(Mode, TextMode);
@@ -160,28 +158,30 @@ var PythonHighlightRules = function() {
     var exponentFloat = "(?:(?:" + pointFloat + "|" +  intPart + ")" + exponent + ")";
     var floatNumber = "(?:" + exponentFloat + "|" + pointFloat + ")";
 
-    var stringEscape =  "\\\\(x[0-9A-Fa-f]{2}|[0-7]{3}|[\\\\abfnrtv'\"]|U[0-9A-Fa-f]{8}|u[0-9A-Fa-f]{4})";
-
     this.$rules = {
         "start" : [ {
             token : "comment",
             regex : "#.*$"
         }, {
-            token : "string",           // multi line """ string start
-            regex : strPre + '"{3}',
-            next : "qqstring3"
+            token : "string",           // """ string
+            regex : strPre + '"{3}(?:[^\\\\]|\\\\.)*?"{3}'
         }, {
-            token : "string",           // " string
-            regex : strPre + '"(?=.)',
+            token : "string",           // multi line """ string start
+            regex : strPre + '"{3}.*$',
             next : "qqstring"
         }, {
+            token : "string",           // " string
+            regex : strPre + '"(?:[^\\\\]|\\\\.)*?"'
+        }, {
+            token : "string",           // ''' string
+            regex : strPre + "'{3}(?:[^\\\\]|\\\\.)*?'{3}"
+        }, {
             token : "string",           // multi line ''' string start
-            regex : strPre + "'{3}",
-            next : "qstring3"
+            regex : strPre + "'{3}.*$",
+            next : "qstring"
         }, {
             token : "string",           // ' string
-            regex : strPre + "'(?=.)",
-            next : "qstring"
+            regex : strPre + "'(?:[^\\\\]|\\\\.)*?'"
         }, {
             token : "constant.numeric", // imaginary
             regex : "(?:" + floatNumber + "|\\d+)[jJ]\\b"
@@ -210,54 +210,22 @@ var PythonHighlightRules = function() {
             token : "text",
             regex : "\\s+"
         } ],
-        "qqstring3" : [ {
-            token : "constant.language.escape",
-            regex : stringEscape
-        }, {
+        "qqstring" : [ {
             token : "string", // multi line """ string end
-            regex : '"{3}',
+            regex : '(?:[^\\\\]|\\\\.)*?"{3}',
             next : "start"
         }, {
-            defaultToken : "string"
+            token : "string",
+            regex : '.+'
         } ],
-        "qstring3" : [ {
-            token : "constant.language.escape",
-            regex : stringEscape
-        }, {
+        "qstring" : [ {
             token : "string",  // multi line ''' string end
-            regex : "'{3}",
+            regex : "(?:[^\\\\]|\\\\.)*?'{3}",
             next : "start"
         }, {
-            defaultToken : "string"
-        } ],
-        "qqstring" : [{
-            token : "constant.language.escape",
-            regex : stringEscape
-        }, {
             token : "string",
-            regex : "\\\\$",
-            next  : "qqstring"
-        }, {
-            token : "string",
-            regex : '"|$',
-            next  : "start"
-        }, {
-            defaultToken: "string"
-        }],
-        "qstring" : [{
-            token : "constant.language.escape",
-            regex : stringEscape
-        }, {
-            token : "string",
-            regex : "\\\\$",
-            next  : "qstring"
-        }, {
-            token : "string",
-            regex : "'|$",
-            next  : "start"
-        }, {
-            defaultToken: "string"
-        }]
+            regex : '.+'
+        } ]
     };
 };
 

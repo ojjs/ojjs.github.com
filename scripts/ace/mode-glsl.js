@@ -41,12 +41,9 @@ var CstyleBehaviour = require("./behaviour/cstyle").CstyleBehaviour;
 var CStyleFoldMode = require("./folding/cstyle").FoldMode;
 
 var Mode = function() {
-    var highlighter = new glslHighlightRules();
-    
-    this.$tokenizer = new Tokenizer(highlighter.getRules());
+    this.$tokenizer = new Tokenizer(new glslHighlightRules().getRules());
     this.$outdent = new MatchingBraceOutdent();
     this.$behaviour = new CstyleBehaviour();
-    this.$keywordList = highlighter.$keywordList;
     this.foldingRules = new CStyleFoldMode();
 };
 oop.inherits(Mode, CMode);
@@ -67,13 +64,9 @@ var CstyleBehaviour = require("./behaviour/cstyle").CstyleBehaviour;
 var CStyleFoldMode = require("./folding/cstyle").FoldMode;
 
 var Mode = function() {
-    var highlighter = new c_cppHighlightRules();
-
-    this.$tokenizer = new Tokenizer(highlighter.getRules());
+    this.$tokenizer = new Tokenizer(new c_cppHighlightRules().getRules());
     this.$outdent = new MatchingBraceOutdent();
     this.$behaviour = new CstyleBehaviour();
-    this.$keywordList = highlighter.$keywordList;
-
     this.foldingRules = new CStyleFoldMode();
 };
 oop.inherits(Mode, TextMode);
@@ -200,17 +193,17 @@ var c_cppHighlightRules = function() {
                 next : "qstring"
             }, {
                 token : "constant.numeric", // hex
-                regex : "0[xX][0-9a-fA-F]+(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\\b"
+                regex : "0[xX][0-9a-fA-F]+\\b"
             }, {
                 token : "constant.numeric", // float
-                regex : "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\\b"
+                regex : "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?\\b"
             }, {
                 token : "keyword", // pre-compiler directives
-                regex : "#\\s*(?:include|import|pragma|line|define|undef|if|ifdef|else|elif|ifndef)\\b",
+                regex : "(?:#include|#import|#pragma|#line|#define|#undef|#if|#ifdef|#else|#elif|#ifndef)\\b",
                 next  : "directive"
             }, {
                 token : "keyword", // special case pre-compiler directive
-                regex : "(?:#\\s*endif)\\b"
+                regex : "(?:#endif)\\b"
             }, {
                 token : "support.function.C99.c",
                 regex : cFunctions

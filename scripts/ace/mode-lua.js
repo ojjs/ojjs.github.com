@@ -28,7 +28,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ace.define('ace/mode/lua', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text', 'ace/tokenizer', 'ace/mode/lua_highlight_rules', 'ace/mode/folding/lua', 'ace/range', 'ace/worker/worker_client'], function(require, exports, module) {
+ace.define('ace/mode/lua', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text', 'ace/tokenizer', 'ace/mode/lua_highlight_rules', 'ace/mode/folding/lua', 'ace/range'], function(require, exports, module) {
 
 
 var oop = require("../lib/oop");
@@ -37,14 +37,10 @@ var Tokenizer = require("../tokenizer").Tokenizer;
 var LuaHighlightRules = require("./lua_highlight_rules").LuaHighlightRules;
 var LuaFoldMode = require("./folding/lua").FoldMode;
 var Range = require("../range").Range;
-var WorkerClient = require("../worker/worker_client").WorkerClient;
 
 var Mode = function() {
-    var highlighter = new LuaHighlightRules();
-    
-    this.$tokenizer = new Tokenizer(highlighter.getRules());
+    this.$tokenizer = new Tokenizer(new LuaHighlightRules().getRules());
     this.foldingRules = new LuaFoldMode();
-    this.$keywordList = highlighter.$keywordList;
 };
 oop.inherits(Mode, TextMode);
 
@@ -141,21 +137,6 @@ oop.inherits(Mode, TextMode);
         session.outdentRows(new Range(row, 0, row + 2, 0));
     };
 
-    this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], "ace/mode/lua_worker", "Worker");
-        worker.attachToDocument(session.getDocument());
-        
-        worker.on("error", function(e) {
-            session.setAnnotations([e.data]);
-        });
-        
-        worker.on("ok", function(e) {
-            session.clearAnnotations();
-        });
-        
-        return worker;
-    };
-
 }).call(Mode.prototype);
 
 exports.Mode = Mode;
@@ -230,7 +211,7 @@ var LuaHighlightRules = function() {
         "start" : [{
             stateName: "bracketedComment",
             onMatch : function(value, currentState, stack){
-                stack.unshift(this.next, value.length - 2, currentState);
+                stack.unshift(this.next, value.length, currentState);
                 return "comment";
             },
             regex : /\-\-\[=*\[/,
@@ -246,7 +227,7 @@ var LuaHighlightRules = function() {
                         }
                         return "comment";
                     },
-                    regex : /\]=*\]/,
+                    regex : /(?:[^\\]|\\.)*?\]=*\]/,
                     next  : "start"
                 }, {
                     defaultToken : "comment"
@@ -278,7 +259,7 @@ var LuaHighlightRules = function() {
                         return "comment";
                     },
                     
-                    regex : /\]=*\]/,
+                    regex : /(?:[^\\]|\\.)*?\]=*\]/,
                     next  : "start"
                 }, {
                     defaultToken : "comment"
@@ -412,7 +393,7 @@ oop.inherits(FoldMode, BaseFoldMode);
             "elseif": -1,
             "end": -1,
             "repeat": 1,
-            "until": -1
+            "until": -1,
         };
 
         var token = stream.getCurrentToken();
