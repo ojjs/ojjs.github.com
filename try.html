@@ -3,6 +3,7 @@
 	<html>
 		<head>
 			<meta content="width=device-width" name="viewport">
+			<meta content="IE=edge" http-equiv="X-UA-Compatible">
 			<title>Try OJ - Unified templating for the people</title>
 			<link href="styles/reset.css" rel="stylesheet" type="text/css">
 			<link href="styles/gg.css" rel="stylesheet" type="text/css">
@@ -578,7 +579,7 @@ header {
 			<div class="gg"><div class="fixed row"><div class="toc-right o75 gg25 hide-phone"></div></div></div>
 			<div class="gg"><div class="relative row">
 					<div class="body gg100">
-						<div style="height: 318px;" class="oj-TryEditor" id="oj1ZqBedUG"><div class="oj-TryEditor-resizer" style="width: 0px; height: 318px;"><div class="oj-TryEditor-gripper"></div></div><div class="oj-TryEditor-inputs" style="height: 159px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 151px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="ojE0FHTzwx"><div class="oj-AceEditor-editor" style="height: 151px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 159px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 151px; width: 0px;"></div><iframe style="width: 0px; height: 155px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
+						<div style="height: 318px;" class="oj-TryEditor" id="ojU24IWV66"><div class="oj-TryEditor-resizer" style="width: 0px; height: 318px;"><div class="oj-TryEditor-gripper"></div></div><div class="oj-TryEditor-inputs" style="height: 159px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 151px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor" id="oj5QItRYjP"><div class="oj-AceEditor-editor" style="height: 151px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 159px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 151px; width: 0px;"></div><iframe style="width: 0px; height: 155px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
 
 						<div class="row">
 							<div class="toc-above gg25 show-phone"></div>
@@ -6477,6 +6478,10 @@ module.exports = _template = function(parts) {
       meta({
         name: 'viewport',
         content: 'width=device-width'
+      });
+      meta({
+        'http-equiv': "X-UA-Compatible",
+        content: 'IE=edge'
       });
       title(parts.title);
       if (_.isArray(parts.styles)) {
