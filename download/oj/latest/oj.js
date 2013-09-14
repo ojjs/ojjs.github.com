@@ -1,5 +1,5 @@
 //
-// oj.js v0.1.5
+// oj.js v0.1.6
 // ojjs.org
 //
 // Copyright 2013, Evan Moran
