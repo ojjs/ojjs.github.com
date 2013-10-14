@@ -699,7 +699,7 @@ OJ may be freely distributed under the <a href="license.html">MIT license</a></p
 </li>
 <li><p>Style attributes can be defined with an object instead of a string</p>
 </li>
-<li><p>Style attribute object keys can be written in <code>camalCase</code> and will translated to <code>dashed-case</code> for you</p>
+<li><p>Style attribute object keys can be written in <code>camelCase</code> and will translated to <code>dashed-case</code> for you</p>
 </li>
 <li><p><code>class</code> may be abbreviated as <code>c</code>. This is the only abbreviation in OJ, but the class keyword makes it helpful.</p>
 </li>
@@ -710,7 +710,7 @@ OJ may be freely distributed under the <a href="license.html">MIT license</a></p
 
 								<h2 id="tag-functions"><a class="heading2" href="#tag-functions">Tag Functions</a></h2>
 								<p>Since tags are a core part of OJ an <code>oj.&lt;tagName&gt;</code> function has been created for every tag in HTML. This includes <code>&lt;div&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;button&gt;</code>, etc.</p>
-<p>These functions support all the fanciness of <a href="#tag">oj.tag</a> including event binding, and style objects/camalCase.</p>
+<p>These functions support all the fanciness of <a href="#tag">oj.tag</a> including event binding, and style objects/camelCase.</p>
 
 								<h3>Example: Using some tag functions</h3>
 								<div style="height: 276px;" class="oj-TryEditor"><div class="oj-TryEditor-resizer" style="width: 0px; height: 276px;"><div class="oj-TryEditor-gripper"></div></div><div class="oj-TryEditor-inputs" style="height: 138px; display: block;"><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-states"><div class="oj-TryEditor-bar-state cs" title="Use CoffeeScript">CS</div><div class="oj-TryEditor-bar-state js selected" title="Use JavaScript">JS</div></div></div><div style="height: 130px; position: relative; width: 0px;" class="oj-AceEditor oj-TryEditor-input-editor"><div class="oj-AceEditor-editor" style="height: 130px; position: absolute; width: 400;"></div></div></div><div class="oj-TryEditor-outputs" style="height: 138px; width: 0px; border-top: 2px solid #ffd272;"><div class="oj-TryEditor-console" style="height: 130px; width: 0px;"></div><iframe style="width: 0px; height: 134px;"></iframe><div class="oj-TryEditor-bar"><div class="oj-TryEditor-bar-maximize" title="Maximize"></div></div></div><div class="oj-TryEditor-seperator" style="display: none;"></div></div>
@@ -723,7 +723,7 @@ OJ may be freely distributed under the <a href="license.html">MIT license</a></p
 
 								<h1 id="Creating CSS"><a class="heading1" href="#Creating CSS">Creating CSS</a></h1>
 								<h2 id="css"><a class="heading2" href="#css">oj.css</a></h2>
-								<p>The function that defines all css within OJ. This function ties data like a tag function but during the compile step converts the data to CSS. Supports nested selectors, camalCase rules, nested <code>@media</code> queries.</p>
+								<p>The function that defines all css within OJ. This function ties data like a tag function but during the compile step converts the data to CSS. Supports nested selectors, camelCase rules, nested <code>@media</code> queries.</p>
 <p>This method can be called multiple times in any context a tag function could be called. Rules will be unioned together. If exactly the same rule is made the last called will be used.</p>
 
 								<h3 class="code-heading">css(rulesObject)</h3>
@@ -1022,7 +1022,7 @@ cause fewest redraws possible.</p>
 <code>index</code> may be negative to access elements at the end.</p>
 <p>When <code>view</code> is specified the item is set to the oj view
 When <code>view</code> is omitted the item value is returned
-How this value is returned is handled by <a href="jquery-ojValue">ojValue</a>
+How this value is returned is handled by <a href="docs.html#jquery-ojValue">ojValue</a>
 a included jQuery plugin.</p>
 <pre><code>list.item(2)              // get item
 list.item(2, &#39;hello&#39;)     // set item to &#39;hello&#39;
@@ -1218,7 +1218,7 @@ cause fewest redraws possible.</p>
 <code>rx</code> may be negative to access elements at the end.</p>
 <p>When <code>ojArray</code> is specified the row cells are set to the specified oj views.</p>
 <p>When <code>ojArray</code> is omitted the row values are returned.</p>
-<p>How this value is returned is handled by <a href="jquery-ojValue">ojValue</a> jQuery plugin.</p>
+<p>How this value is returned is handled by <a href="docs.html#jquery-ojValue">ojValue</a> jQuery plugin.</p>
 </td>
 										</tr>
 										<tr class="code-item method">
@@ -1227,7 +1227,7 @@ cause fewest redraws possible.</p>
 <p><code>rx</code> and <code>cx</code> may be negative to access elements at the end.</p>
 <p>When <code>oj</code> is specified the cell is set to the value of the oj view.</p>
 <p>When <code>oj</code> is omitted the cell value is returned.</p>
-<p>How this value is returned is handled by <a href="jquery-ojValue">ojValue</a> jQuery plugin.</p>
+<p>How this value is returned is handled by <a href="docs.html#jquery-ojValue">ojValue</a> jQuery plugin.</p>
 </td>
 										</tr>
 										<tr class="code-item method">
@@ -1816,7 +1816,7 @@ data = [
         d: function() {
           md("The core function that implements the individual [tag functions](#tag-functions).\n");
           name('tag(tagName, attributes..., children...)');
-          md("`tagName` is the string name of a tag such as `\"div\"`\n\n`attributes` are any object that maps attribute name to value. These can be in any order after tagName. In addition attributes are smart in a couple ways:\n\n1. Attributes named after jQuery [mouse](http://api.jquery.com/category/events/mouse-events/) or [keyboard](http://api.jquery.com/category/events/keyboard-events/) events will be bound with jQuery\n\n1. Style attributes can be defined with an object instead of a string\n\n1. Style attribute object keys can be written in `camalCase` and will translated to `dashed-case` for you\n\n1. `class` may be abbreviated as `c`. This is the only abbreviation in OJ, but the class keyword makes it helpful.\n");
+          md("`tagName` is the string name of a tag such as `\"div\"`\n\n`attributes` are any object that maps attribute name to value. These can be in any order after tagName. In addition attributes are smart in a couple ways:\n\n1. Attributes named after jQuery [mouse](http://api.jquery.com/category/events/mouse-events/) or [keyboard](http://api.jquery.com/category/events/keyboard-events/) events will be bound with jQuery\n\n1. Style attributes can be defined with an object instead of a string\n\n1. Style attribute object keys can be written in `camelCase` and will translated to `dashed-case` for you\n\n1. `class` may be abbreviated as `c`. This is the only abbreviation in OJ, but the class keyword makes it helpful.\n");
           h3('Example: Create a div with oj.tag');
           return TryEditor({
             js: "tag('div', 'Red div', {\n  dataValue: '42',\n  style:{\n    color: 'red'\n}});",
@@ -1827,7 +1827,7 @@ data = [
         h: 'Tag Functions',
         id: 'tag-functions',
         d: function() {
-          md("Since tags are a core part of OJ an `oj.<tagName>` function has been created for every tag in HTML. This includes `<div>`, `<input>`, `<button>`, etc.\n\nThese functions support all the fanciness of [oj.tag](#tag) including event binding, and style objects/camalCase.");
+          md("Since tags are a core part of OJ an `oj.<tagName>` function has been created for every tag in HTML. This includes `<div>`, `<input>`, `<button>`, etc.\n\nThese functions support all the fanciness of [oj.tag](#tag) including event binding, and style objects/camelCase.");
           h3("Example: Using some tag functions");
           TryEditor({
             js: "button('button')\n\ninput({type:'text',\n  placeholder:'input'});\n\ninput({type:'checkbox'});",
@@ -1855,7 +1855,7 @@ data = [
         h: 'oj.css',
         id: 'css',
         d: function() {
-          md("The function that defines all css within OJ. This function ties data like a tag function but during the compile step converts the data to CSS. Supports nested selectors, camalCase rules, nested `@media` queries.\n\nThis method can be called multiple times in any context a tag function could be called. Rules will be unioned together. If exactly the same rule is made the last called will be used.");
+          md("The function that defines all css within OJ. This function ties data like a tag function but during the compile step converts the data to CSS. Supports nested selectors, camelCase rules, nested `@media` queries.\n\nThis method can be called multiple times in any context a tag function could be called. Rules will be unioned together. If exactly the same rule is made the last called will be used.");
           name('css(rulesObject)');
           h3('Example: Create CSS class selectors');
           return TryEditor({
@@ -2185,7 +2185,7 @@ data = [
             {
               h: 'item(index, oj)',
               id: 'List-item',
-              d: "Get or set the item at `index`\n`index` may be negative to access elements at the end.\n\nWhen `view` is specified the item is set to the oj view\nWhen `view` is omitted the item value is returned\nHow this value is returned is handled by [ojValue](jquery-ojValue)\na included jQuery plugin.\n\n    list.item(2)              // get item\n    list.item(2, 'hello')     // set item to 'hello'\n    list.item(2, function(){  // Set item to a TextBox\n      TextBox 'goodbye'\n    }"
+              d: "Get or set the item at `index`\n`index` may be negative to access elements at the end.\n\nWhen `view` is specified the item is set to the oj view\nWhen `view` is omitted the item value is returned\nHow this value is returned is handled by [ojValue](docs.html#jquery-ojValue)\na included jQuery plugin.\n\n    list.item(2)              // get item\n    list.item(2, 'hello')     // set item to 'hello'\n    list.item(2, function(){  // Set item to a TextBox\n      TextBox 'goodbye'\n    }"
             }, {
               h: '$item(index)',
               id: 'List-$item',
@@ -2313,11 +2313,11 @@ data = [
             {
               h: 'row(rx, ojArray)',
               id: 'Table-row',
-              d: "Get or set the row at row index `rx`\n`rx` may be negative to access elements at the end.\n\nWhen `ojArray` is specified the row cells are set to the specified oj views.\n\nWhen `ojArray` is omitted the row values are returned.\n\nHow this value is returned is handled by [ojValue](jquery-ojValue) jQuery plugin.\n"
+              d: "Get or set the row at row index `rx`\n`rx` may be negative to access elements at the end.\n\nWhen `ojArray` is specified the row cells are set to the specified oj views.\n\nWhen `ojArray` is omitted the row values are returned.\n\nHow this value is returned is handled by [ojValue](docs.html#jquery-ojValue) jQuery plugin.\n"
             }, {
               h: 'cell(rx, cx, oj)',
               id: 'Table-cell',
-              d: "Get or set the cell at row index `rx`, column index `cx`\n\n`rx` and `cx` may be negative to access elements at the end.\n\nWhen `oj` is specified the cell is set to the value of the oj view.\n\nWhen `oj` is omitted the cell value is returned.\n\nHow this value is returned is handled by [ojValue](jquery-ojValue) jQuery plugin."
+              d: "Get or set the cell at row index `rx`, column index `cx`\n\n`rx` and `cx` may be negative to access elements at the end.\n\nWhen `oj` is specified the cell is set to the value of the oj view.\n\nWhen `oj` is omitted the cell value is returned.\n\nHow this value is returned is handled by [ojValue](docs.html#jquery-ojValue) jQuery plugin."
             }, {
               h: 'clear()',
               id: 'Table-clear',
