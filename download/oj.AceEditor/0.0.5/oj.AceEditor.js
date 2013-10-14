@@ -1,5 +1,5 @@
 //
-// oj.AceEditor.js v0.0.6
+// oj.AceEditor.js v0.0.5
 // ojjs.org/plugins#AceEditor
 //
 // Copyright 2013, Evan Moran
@@ -24,24 +24,30 @@ var plugin = function(oj,settings){
     base: oj.ModelKeyView,
 
     constructor: function(){
-      var union = oj.unionArguments(arguments),
-        options = union.options,
-        args = union.args,
-        defaults = {
-          width: 400,                     // Default the height
-          height: 200,                    // Default the width
-          fontSize: 14,                   // Default font size
-          showFoldWidgets: false,         // Hide fold widgets
-          showPrintMargin: false,         // Hide print margin
-          useSoftTabs: true,              // Change tabs to spaces
-          behaviorsEnabled: true,         // Enable quote and paren matching
-          foldStyle: 'markbegin',         // Default fold style when folds are unhidden
-          hScrollBarAlwaysVisible: false, // Prevent ugly scroll bars
-          vScrollBarAlwaysVisible: false, // Ace doesn't have this property. This solution is imperfect.
+      var union = oj.unionArguments(arguments);
+      var options = union.options;
+      var args = union.args;
 
-          // Disable workers on local files because ace doesn't support this
-          useWorker: false// window.location.protocol != 'file:'
-        };
+      // Normally oj.View automatically creates an oj.id for us, but the ace editor
+      // is triggered by id so we need a reference to it at this level.
+      options.id = options.id || oj.id()
+
+      // Default options
+      var defaults = {
+        width: 400,                 // Default the height
+        height: 200,                // Default the width
+        fontSize: 14,                   // Default font size
+        showFoldWidgets: false,         // Hide fold widgets
+        showPrintMargin: false,         // Hide print margin
+        useSoftTabs: true,              // Change tabs to spaces
+        behaviorsEnabled: true,         // Enable quote and paren matching
+        foldStyle: 'markbegin',         // Default fold style when folds are unhidden
+        hScrollBarAlwaysVisible: false, // Prevent ugly scroll bars
+        vScrollBarAlwaysVisible: false,  // Ace doesn't have this property. This solution is imperfect.
+
+        // Disable workers on local files because ace doesn't support this
+        useWorker: false// window.location.protocol != 'file:'
+      };
       // Default options if unspecified
       for (k in defaults) {
         if (options[k] == null)
