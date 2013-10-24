@@ -1,0 +1,12 @@
+module.exports = function(){
+  css(
+    {'.bar':
+      {'.foo':{
+        width:'300px',
+        '@media phone':{
+          width:'100%'
+        }
+      }
+    }
+  });
+}

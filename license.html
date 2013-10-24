@@ -16,13 +16,15 @@ ga('send', 'pageview');</script>
 <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
 <p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <script>
+// Generated with oj v0.2.2
+;(function(){var M = {}, F = {}, R = {}, P, G, RR;
 
-// Generated with oj v0.2.1
-(function(){ var F = {}, M = {}, R = {}, P, G, RR;
-
+// Define modules M
 M['/node_modules'] = {"oj-markdown":"src/oj.markdown.js"};
 
-F['/license.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var md;
+// Define files F
+F['/license.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var md;
 
 md = require('oj-markdown');
 
@@ -41,7 +43,9 @@ module.exports = function() {
   });
 };
 }}).call(this);})(RR('/license.ojc'),P,G,'/','license.ojc');});
-F['/node_modules/oj-markdown/src/oj.markdown.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){/**
+
+F['/node_modules/oj-markdown/src/oj.markdown.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+/**
  * marked - a markdown parser
  * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
  * https://github.com/chjj/marked
@@ -1230,14 +1234,33 @@ if (typeof module != 'undefined' && typeof module.exports != 'undefined')
 }());
 })(RR('/node_modules/oj-markdown/src/oj.markdown.js'),P,G,'/node_modules/oj-markdown/src','oj.markdown.js');});
 
-F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){// oj
+
+F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){
+// oj
 // ===================================================================
 // Unified templating for the people. Thirsty people.
 
-;(function(){
+;(function(root, factory){
 
-  var root = this,
-    ArrP = Array.prototype,
+  // CommonJS export for Node
+  if (typeof module === 'object' && module.exports) {
+    try {$ = require('jquery')} catch (e){}
+    module.exports = factory(root, $)
+
+  // AMD export for RequireJS
+  } else if (typeof define === 'function' && define.amd) {
+    define(['jquery'], function($){
+      return factory(root, $)
+    })
+  }
+
+  // Global export for client side
+  else
+    root.oj = factory(root, (root.jQuery || root.Zepto || root.ender || root.$))
+
+}(this, function(root, $){
+
+  var ArrP = Array.prototype,
     FunP = Function.prototype,
     ObjP = Object.prototype,
     slice = ArrP.slice,
@@ -1251,24 +1274,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return oj.tag.apply(this, ['oj'].concat(slice.call(arguments)).concat([{__quiet__:1}]))
   };
 
-  oj.version = '0.2.1'
+  oj.version = '0.2.2'
 
   oj.isClient = !(typeof process !== "undefined" && process !== null ? process.versions != null ? process.versions.node : 0 : 0)
 
   // Detect jQuery globally or in required module
   if (typeof $ != _udf)
     oj.$ = $
-  else if (typeof require != _udf)
-    try {
-      oj.$ = require('jquery')
-    } catch (e){}
-
-  // Export as a module in node
-  if (typeof require != _udf)
-    module.exports = oj
-  // Export globally if not in node
-  else
-    root['oj'] = oj
 
   // Reference ourselves for template files to see
   oj.oj = oj
@@ -1574,6 +1586,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   // oj.copyProperty: Copy source.propName to dest.propName
   oj.copyProperty = function(dest, source, propName){
     var info = Object.getOwnPropertyDescriptor(source, propName)
+    info = _d(info, {value: [], enumerable: false, writable: true, configurable: true })
     if (info.value != null)
       info.value = _clone(info.value)
     return Object.defineProperty(dest, propName, info)
@@ -2405,7 +2418,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   // oj.toCSS: Compile directly to CSS only
   oj.toCSS = function(options, ojml){
     // Options is optional
-    if (!oj.isPlain(options)){
+    if (!oj.isPlainObject(options)){
       ojml = options
       options = {}
     }
@@ -4297,13 +4310,17 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return root + dir
   }
 
-}).call(this);
+  return oj
+}));
 })(P,G,'/','oj');});
 
-P = {cwd: function(){return '/';}};
-G = {process: P,Buffer: {}};
+// Define node environment: process P, global G and require factory RR
+P = {cwd: function(){return '/'}}
+G = {process: P,Buffer: {}}
 RR = function(f){
-  return function(m){return run(find(m, f));};
+  var o = function(m){return run(find(m, f))}
+  o.P = P; o.G = G; o.F = F; o.M = M, o.RR = RR
+  return o
   function run(f){
     if(R[f] != null)
       return R[f];
@@ -4345,12 +4362,10 @@ RR = function(f){
     throw new Error("module not found (" + m + ")");
   }
 };
-require = RR('/license');
 
-oj = require('oj');
-oj.load('/license');
-
-}).call(this);
-
+// Define require and oj
+require = RR('/license')
+oj = require('oj')
+oj.load('/license')}).call(this);
 </script></body>
 	</html>

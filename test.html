@@ -8,13 +8,15 @@
 		</head>
 		<body><div style="height: 200px; position: relative; width: 400px;" class="oj-AceEditor"><div class="oj-AceEditor-editor" style="height: 200px; position: absolute; width: 400;"></div></div>
 <script>
+// Generated with oj v0.2.2
+;(function(){var M = {}, F = {}, R = {}, P, G, RR;
 
-// Generated with oj v0.2.1
-(function(){ var F = {}, M = {}, R = {}, P, G, RR;
-
+// Define modules M
 M['/node_modules'] = {"oj-ace-editor":"src/oj.AceEditor.js"};
 
-F['/test.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var path;
+// Define files F
+F['/test.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var path;
 
 path = require('path');
 
@@ -48,7 +50,9 @@ module.exports = function() {
   });
 };
 }}).call(this);})(RR('/test.ojc'),P,G,'/','test.ojc');});
-F['/node_modules/oj-ace-editor/src/oj.AceEditor.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){// oj.AceEditor.js
+
+F['/node_modules/oj-ace-editor/src/oj.AceEditor.js'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+// oj.AceEditor.js
 
 (function(){
 
@@ -741,7 +745,9 @@ if (typeof module != 'undefined' && typeof module.exports != 'undefined')
   module.exports = plugin;
 
 })(this);})(RR('/node_modules/oj-ace-editor/src/oj.AceEditor.js'),P,G,'/node_modules/oj-ace-editor/src','oj.AceEditor.js');});
-F['/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){(function(){with(oj.sandbox){var SCRIPT, TEXTJ, consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth, _arraysEqual, _calculateScripts, _escapeCode, _foundScripts, _pluginScripts, _replaceIFRAME, _scriptTagForCode, _scriptTagForCodeBody, _scriptTagWithUpdater, _updateIFRAME;
+
+F['/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var SCRIPT, TEXTJ, consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth, _arraysEqual, _calculateScripts, _escapeCode, _foundScripts, _pluginScripts, _replaceIFRAME, _scriptTagForCode, _scriptTagForCodeBody, _scriptTagWithUpdater, _updateIFRAME;
 
 editorBorderColor = '#ffd272';
 
@@ -1548,14 +1554,33 @@ _updateIFRAME = function($iframe, code) {
 };
 }}).call(this);})(RR('/oj.TryEditor.ojc'),P,G,'/','oj.TryEditor.ojc');});
 
-F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){// oj
+
+F['oj'] = (function(module,exports){(function(process,global,__dirname,__filename){
+// oj
 // ===================================================================
 // Unified templating for the people. Thirsty people.
 
-;(function(){
+;(function(root, factory){
 
-  var root = this,
-    ArrP = Array.prototype,
+  // CommonJS export for Node
+  if (typeof module === 'object' && module.exports) {
+    try {$ = require('jquery')} catch (e){}
+    module.exports = factory(root, $)
+
+  // AMD export for RequireJS
+  } else if (typeof define === 'function' && define.amd) {
+    define(['jquery'], function($){
+      return factory(root, $)
+    })
+  }
+
+  // Global export for client side
+  else
+    root.oj = factory(root, (root.jQuery || root.Zepto || root.ender || root.$))
+
+}(this, function(root, $){
+
+  var ArrP = Array.prototype,
     FunP = Function.prototype,
     ObjP = Object.prototype,
     slice = ArrP.slice,
@@ -1569,24 +1594,13 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return oj.tag.apply(this, ['oj'].concat(slice.call(arguments)).concat([{__quiet__:1}]))
   };
 
-  oj.version = '0.2.1'
+  oj.version = '0.2.2'
 
   oj.isClient = !(typeof process !== "undefined" && process !== null ? process.versions != null ? process.versions.node : 0 : 0)
 
   // Detect jQuery globally or in required module
   if (typeof $ != _udf)
     oj.$ = $
-  else if (typeof require != _udf)
-    try {
-      oj.$ = require('jquery')
-    } catch (e){}
-
-  // Export as a module in node
-  if (typeof require != _udf)
-    module.exports = oj
-  // Export globally if not in node
-  else
-    root['oj'] = oj
 
   // Reference ourselves for template files to see
   oj.oj = oj
@@ -1892,6 +1906,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   // oj.copyProperty: Copy source.propName to dest.propName
   oj.copyProperty = function(dest, source, propName){
     var info = Object.getOwnPropertyDescriptor(source, propName)
+    info = _d(info, {value: [], enumerable: false, writable: true, configurable: true })
     if (info.value != null)
       info.value = _clone(info.value)
     return Object.defineProperty(dest, propName, info)
@@ -2723,7 +2738,7 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
   // oj.toCSS: Compile directly to CSS only
   oj.toCSS = function(options, ojml){
     // Options is optional
-    if (!oj.isPlain(options)){
+    if (!oj.isPlainObject(options)){
       ojml = options
       options = {}
     }
@@ -4615,9 +4630,11 @@ F['oj'] = (function(module,exports){(function(process,global,__dirname,__filenam
     return root + dir
   }
 
-}).call(this);
+  return oj
+}));
 })(P,G,'/','oj');});
-F['path'] = (function(module,exports){(function(process,global,__dirname,__filename){// Copyright Joyent, Inc. and other Node contributors.
+F['path'] = (function(module,exports){(function(process,global,__dirname,__filename){
+// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -5080,10 +5097,13 @@ if (isWindows) {
 }
 })(P,G,'/','path');});
 
-P = {cwd: function(){return '/';}};
-G = {process: P,Buffer: {}};
+// Define node environment: process P, global G and require factory RR
+P = {cwd: function(){return '/'}}
+G = {process: P,Buffer: {}}
 RR = function(f){
-  return function(m){return run(find(m, f));};
+  var o = function(m){return run(find(m, f))}
+  o.P = P; o.G = G; o.F = F; o.M = M, o.RR = RR
+  return o
   function run(f){
     if(R[f] != null)
       return R[f];
@@ -5125,12 +5145,10 @@ RR = function(f){
     throw new Error("module not found (" + m + ")");
   }
 };
-require = RR('/test');
 
-oj = require('oj');
-oj.load('/test');
-
-}).call(this);
-
+// Define require and oj
+require = RR('/test')
+oj = require('oj')
+oj.load('/test')}).call(this);
 </script></body>
 	</html>

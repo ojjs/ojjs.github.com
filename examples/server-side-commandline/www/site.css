@@ -1,0 +1,8 @@
+.bar .foo {
+	width:300px;
+}
+@media only screen and (max-width: 767px) {
+	.bar .foo {
+		width:100%;
+	}
+}

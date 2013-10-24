@@ -1,0 +1,16 @@
+// Export the template
+console.log("index.oj");
+
+module.exports = function(){
+  console.log("calling view: ", arguments);
+  // return '<html><body>view called!</body></html>';
+  html(function(){
+    head(function(){
+      title('A Title');
+    })
+    body(function(){
+      // h1(pageTitle);
+      p('hello from simple template!');
+    })
+  })
+}

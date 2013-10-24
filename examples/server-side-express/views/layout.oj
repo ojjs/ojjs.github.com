@@ -1,0 +1,12 @@
+module.exports = function(pageTitle, pageContent){
+  doctype(5);
+  html(function(){
+    head(function(){
+      title(pageTitle);
+      link({rel:'stylesheet', href:'/stylesheets/style.css'});
+    });
+    body(function(){
+      pageContent()
+    });
+  });
+};

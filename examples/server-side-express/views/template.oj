@@ -1,0 +1,13 @@
+
+// Includes are just node requires
+var layout = require('./layout')
+
+// Export the template
+module.exports = function(pageTitle){
+
+  // Layout takes a title and a content function
+  layout(pageTitle, function(){
+    h1(pageTitle);
+    p('Welcome to ' + input.title);
+  })
+}

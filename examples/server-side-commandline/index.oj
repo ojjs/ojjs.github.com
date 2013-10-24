@@ -20,6 +20,7 @@ module.exports = function(){
   html(function(){
     head(function(){
       title('OJ Example: Server-side Commandline Tool');
+      script({href:'modules/modules.js'})
     });
 
     // Inside body you can do whatever you want
