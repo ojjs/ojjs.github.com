@@ -1,5 +1,5 @@
 //
-// oj.TwitterButton.js v0.0.6
+// oj.TwitterButton.js v0.0.5
 // ojjs.org/plugins#TwitterButton
 //
 // Copyright 2013, Evan Moran
@@ -11,11 +11,11 @@
 
   // Export to Node
   if (typeof module === 'object' && module.exports)
-    module.exports = factory(root)
+    module.exports = factory(root, require('oj'))
 
   // Export to RequireJS
   else if (typeof define === 'function' && define.amd)
-    define(function(){return factory(root)})
+    define(['oj'], function($){return factory(root, oj) })
 
   // Export to OJ
   else

@@ -1,10 +1,11 @@
 {
     "name": "oj.AceEditor",
-    "version": "0.0.6",
+    "version": "0.0.8",
     "description": "Ace Editor plugin for OJ",
     "homepage": "http://ojjs.org",
     "keywords": [
         "oj",
+        "plugin",
         "ace",
         "editor"
     ],

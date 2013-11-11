@@ -1,5 +1,5 @@
 //
-// oj.js v0.3.0
+// oj.js v0.2.3
 // ojjs.org
 //
 // Copyright 2013, Evan Moran
@@ -41,7 +41,7 @@
     return oj.tag.apply(this, ['oj'].concat(slice.call(arguments)).concat([{__quiet__:1}]))
   }
 
-  oj.version = '0.3.0'
+  oj.version = '0.2.3'
 
   oj.isClient = !(typeof process !== _udf && process !== null ? process.versions != null ? process.versions.node : 0 : 0)
 

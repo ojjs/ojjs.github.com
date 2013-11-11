@@ -1,8 +1,8 @@
 {
     "name": "oj.TwitterButton",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "description": "Twitter button plugin for OJ",
-    "homepage": "http://ojjs.org/docs#TwitterButton",
+    "homepage": "http://ojjs.org/plugins.html#TwitterButton",
     "keywords": [
         "oj",
         "plugin",
