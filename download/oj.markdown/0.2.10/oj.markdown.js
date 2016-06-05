@@ -2,7 +2,7 @@
 // oj.markdown.js v0.2.10
 // ojjs.org/plugins#markdown
 //
-// Copyright 2013, Evan Moran
+// Copyright 2013-2014, Evan Moran
 // Released under the MIT License
 //
 /**

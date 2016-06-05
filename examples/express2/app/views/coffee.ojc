@@ -1,0 +1,67 @@
+# OJ natively supports Node's require syntax so anything you require will be brought down
+# to the client for you. The only complication is modules (jQuery, oj, oj-twitter-button, etc)
+# are _by far_ the biggest files so being able to share this code across multiple page
+# requests can have huge peformance savings.
+#
+# OJ supports this separation natively but to do this you must make a
+# module file in the /modules directory that will be precompiled to include all of the modules.
+# In this case /modules/index.oj is being compiled into /public/modules/index.js
+#
+# The path for /modules or /public/modules are configurable when defining
+# the oj.middleware in app.js
+
+require '../modules'
+
+module.exports = ->
+
+  html ->
+
+    head ->
+      title 'A Title'
+
+      # Add a <script> tag to include shared modules defined in /module/index.js
+      # This file is dynamically built, minified, and cached by oj.middleware defined in app.js
+      script src:'modules/index.js'
+
+    body ->
+      h1 'Use OJ with Express'
+
+      markdown 'Object-oriented templating just got *real*.'
+
+      p 'Use objects to make websites:'
+
+      myList = BulletList(
+        'Stuff',
+        'Just',
+        'Works'
+      );
+
+      p 'Edit the same object to dynamically change it:'
+
+      Button 'Move Item', click:->
+        myList.move -1, 0
+
+      Button 'Add Item', click: ->
+        myList.add 'New Item!'
+
+      Button('Add Video', click: ->
+        myList.add ->
+          YouTubeVideo('rfh4Mhp-a6U')
+
+  # In OJ, CSS can be defined wherever makes the most sense for your project!
+  # Plugins very rarely define any CSS at all, leaving it up to you
+  # to format your page.
+  #
+  # The three most common approaches to css styling
+  #
+  # 1) Just use .css files: <link> to your .css style as you would in any website
+  #
+  # 2) The require way: require('./your/style/file.oj') and use the oj.css function
+  #    to define the css you want.
+  #
+  # 3) The direct way: Place the oj.css function call close to where use that style.
+  #    This works right away:
+
+  css
+    h1:
+      color:'orange'

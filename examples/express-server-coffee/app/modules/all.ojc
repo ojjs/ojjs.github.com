@@ -1,0 +1,5 @@
+module.exports._ = require 'underscore'
+module.exports.Backbone = require 'backbone'
+oj.use require 'oj-markdown'
+oj.use require 'oj-twitter-button'
+oj.use require 'oj-youtube-video'

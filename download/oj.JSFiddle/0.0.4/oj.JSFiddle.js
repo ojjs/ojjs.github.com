@@ -2,7 +2,7 @@
 // oj.JSFiddle.js v0.0.4
 // ojjs.org/plugins#JSFiddle
 //
-// Copyright 2013, Evan Moran
+// Copyright 2013-2014, Evan Moran
 // Released under the MIT License
 //
 // oj.JSFiddle.js

@@ -1,0 +1,2075 @@
+
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta content="width=device-width" name="viewport">
+			<meta content="IE=edge" http-equiv="X-UA-Compatible">
+			<title>OJ Express - Unified Templating</title>
+			<link href="styles/reset.css" rel="stylesheet" type="text/css">
+			<link href="styles/gg.css" rel="stylesheet" type="text/css">
+			<script src="scripts/jquery.js" type="text/javascript"></script>
+			<script src="scripts/jquery.event.drag.js" type="text/javascript"></script>
+			<script src="scripts/jquery.ba-resize.min.js" type="text/javascript"></script>
+			<script src="scripts/underscore.js" type="text/javascript"></script>
+			<script src="scripts/backbone.js" type="text/javascript"></script>
+			<script src="scripts/coffee-script.js" type="text/javascript"></script>
+			<script src="scripts/ace/ace.js" type="text/javascript"></script>
+			<script src="modules/index.js" type="text/javascript"></script>
+			<script class="google-analytics" type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43475277-1', 'ojjs.org');
+ga('send', 'pageview');</script>
+		<style class="oj-style">
+h1 {
+	border-bottom:2px solid #FFD36B;
+	color:#444;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:25px;
+	font-weight:100;
+	margin-bottom:12px;
+	margin-top:40px;
+	padding-bottom:6px;
+}
+h1:before {
+	content:' ';
+	display:block;
+	height:70px;
+	margin:-70px 0 0;
+}
+h1:first-child {
+	margin-top:20px;
+}
+h2 {
+	color:#444;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:22px;
+	font-weight:100;
+	margin:32px 0 15px 0;
+	text-decoration:none;
+}
+h2:before {
+	content:' ';
+	display:block;
+	height:70px;
+	margin:-70px 0 0;
+}
+h3 {
+	color:#222;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:18px;
+	font-weight:100;
+	margin-bottom:14px;
+	margin-top:22px;
+}
+h3:before {
+	content:' ';
+	display:block;
+	height:70px;
+	margin:-70px 0 0;
+}
+a {
+	color:#E78B00;
+	text-decoration:none;
+}
+a.heading1,
+a.heading1:hover {
+	color:#444;
+	text-decoration:none;
+}
+a.heading1:before,
+a.heading1:hover:before {
+	content:' ';
+	display:block;
+	height:70px;
+	margin:-70px 0 0;
+}
+a.heading2,
+a.heading2:hover {
+	color:#444;
+	text-decoration:none;
+}
+a.heading2:before,
+a.heading2:hover:before {
+	content:' ';
+	display:block;
+	height:70px;
+	margin:-70px 0 0;
+}
+a.type {
+	color:#E78B00;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.function {
+	color:#E78B00;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.method {
+	color:#a64d09;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.event {
+	color:#a64d09;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.property {
+	color:#b3820a;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.option {
+	color:#b3820a;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a.argument {
+	color:#b3820a;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+}
+a:hover {
+	text-decoration:underline;
+}
+blockquote {
+	border-left:2px solid #ffd272;
+	padding:0 0 0 10px;
+}
+p {
+	color:#444;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:16px;
+	font-weight:lighter;
+	line-height:24px;
+	margin:16px 0 8px 0;
+}
+p strong {
+	color:#000;
+	font-family:Helvetica, Arial, sans-serif;
+	font-weight:400;
+}
+ul {
+	margin-bottom:16px;
+}
+li {
+	color:#444;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14px;
+	line-height:20px;
+	margin:10px 0 10px 20px;
+}
+.oj-TryEditor {
+	margin-bottom:30px;
+}
+.code-heading {
+	color:#444;
+	font-family:Inconsolata, Consolas, Courier New, monospace;
+	font-size:19px;
+}
+.code-subheading {
+	color:#444;
+	display:block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:16px;
+	font-style:italic;
+	font-weight:lighter;
+	line-height:20px;
+	margin-top:20px;
+}
+.code-items {
+	margin:10px 0 10px 10px;
+	width:100%;
+}
+.code-items tr {
+	width:100%;
+}
+.code-item {
+	display:block;
+	margin:0 0 4px 0;
+}
+.code-item-base {
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14px;
+	line-height:20px;
+	margin:10px 0 10px 10px;
+}
+.code-item-name {
+	display:inline-block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:16px;
+	line-height:20px;
+	margin:0 0 8px 2px;
+	min-width:135px;
+	vertical-align:top;
+}
+.code-item-def {
+	color:#444;
+	display:inline-block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14px;
+	line-height:16px;
+	position:relative;
+	width:560px;
+}
+.code-item-def p {
+	line-height:20px;
+	margin:4px 0 10px 0;
+}
+.code-item-def li {
+	margin:0px 0 6px 20px;
+}
+.code-item-def pre {
+	border:0;
+	color:#444;
+	margin:0 0 10px 0;
+}
+pre {
+	background-color:#FEFAF3;
+	border:2px solid #FFD36B;
+	color:#444;
+	font-size:14px;
+	line-height:18px;
+	padding:8px;
+}
+.toc-section {
+	color:#C76200;
+	display:block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14px;
+	font-weight:lighter;
+	margin:0 0 10px 0;
+	text-align:right;
+	text-transform:uppercase;
+}
+.toc-item {
+	color:#E78B00;
+	display:block;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:13px;
+	font-weight:lighter;
+	margin:0 0 4px 0;
+	text-align:right;
+}
+.toc-items {
+	margin-bottom:10px;
+}
+.left {
+	margin-bottom:10px;
+}
+textarea {
+	border-color:#f4f4f4;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14px;
+	height:100px;
+	width:100%;
+}
+.snippet {
+	border:1px solid orange;
+	height:100px;
+	margin:0;
+	position:relative;
+	width:100%;
+}
+.download-button {
+	background-color:#FEFAF3;
+	border:2px solid orange;
+	border-radius:5px;
+	box-shadow:2px 2px 2px RGBA(0,0,0,0.2);
+	cursor:pointer;
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:14px;
+	height:27px;
+}
+.download-button:hover {
+	background-color:#fff;
+}
+.fixed {
+	height:40px;
+	margin-top:62px;
+	position:fixed;
+	z-index:100;
+}
+.relative {
+	position:relative;
+}
+.show-phone {
+	display:none;
+}
+header {
+	background-color:white;
+	box-shadow:2px 2px 2px RGBA(0,0,0,0.1);
+	height:45px;
+	position:fixed;
+	width:100%;
+	z-index:1000;
+}
+.header-contents {
+	display:block;
+	float:none !important;
+	height:45px;
+	margin-left:auto !important;
+	margin-right:auto !important;
+}
+.header-logo {
+	background:url(media/oj_logo_small.png) no-repeat 0 center;
+	display:inline-block;
+	height:22px;
+	margin-left:91px;
+	vertical-align:middle;
+	width:32px;
+}
+.header-options {
+	display:inline-block;
+	margin-left:44px;
+	padding-top:12px;
+}
+.header-option {
+	color:#E98C00;
+	font-family:Helvetica, Arial, Tahoma;
+	font-size:18px;
+	font-weight:100;
+	vertical-align:middle;
+}
+.header-option:not(:first-child) {
+	margin-left:44px;
+}
+.header-orange-corner {
+	background-size:contain;
+	height:42px;
+	position:absolute;
+	top:0px;
+	width:42px;
+}
+.header-orange-corner.left {
+	background-image:url(media/orange_left.png);
+	left:0px;
+}
+.header-orange-corner.right {
+	background-image:url(media/orange_right.png);
+	right:0px;
+}
+@media only screen and (min-width: 740px) and (max-width: 959px) {
+	.code-item-def {
+		width:377px;
+	}
+	.show-phone {
+		display:none;
+	}
+}
+@media only screen and (max-width: 739px) {
+	.code-item-def {
+		margin-left:20px;
+		width:100%;
+	}
+	.fixed {
+		margin-top:85px;
+	}
+	.relative {
+		margin-top:62px;
+	}
+	.hide-phone {
+		display:none;
+	}
+	.show-phone {
+		display:block;
+	}
+	header {
+		height:72px;
+	}
+	.header-contents {
+		height:30px;
+		padding-top:10px;
+		text-align:center;
+	}
+	.header-logo {
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+	}
+	.header-options {
+		display:block;
+		margin-left:0px;
+		text-align:center;
+	}
+	.header-option:not(:first-child) {
+		margin-left:20px;
+	}
+	.header-option {
+		margin-top:30px;
+	}
+}
+</style></head>
+		<body>
+			<header>
+				<div class="header-contents">
+					<a class="header-logo" href="index.html"></a>
+					<div class="header-options">
+						<a class="header-option" href="learn.html">Learn</a>
+						<a class="header-option" href="try.html">Try</a>
+						<a class="header-option" href="docs.html">Docs</a>
+						<a class="header-option" href="plugins.html">Plugins</a>
+						<a class="header-option" href="download.html">Download</a>
+					</div>
+				</div>
+				<div class="header-orange-corner left"></div>
+				<div class="header-orange-corner right"></div>
+			</header>
+			<div class="gg"><div class="fixed row"><div class="toc-right o75 gg25 hide-phone">
+						<a class="toc-section" href="#starting-out">Starting Out</a>
+						<div class="toc-items">
+							<a class="toc-item" href="#intro">Introduction</a>
+							<a class="toc-item" href="#license">License</a>
+						</div>
+					</div></div></div>
+			<div class="gg"><div class="relative row">
+					<div class="body gg100"><div class="row">
+							<div class="toc-above gg25 show-phone">
+								<a class="toc-section" href="#starting-out">Starting Out</a>
+								<div class="toc-items">
+									<a class="toc-item" href="#intro">Introduction</a>
+									<a class="toc-item" href="#license">License</a>
+								</div>
+							</div>
+							<div class="content gg75">
+								<h1 id="starting-out"><a class="heading1" href="#starting-out">Starting Out</a></h1>
+								<h2 id="intro"><a class="heading2" href="#intro">Introduction</a></h2>
+								
+								<h2 id="license"><a class="heading2" href="#license">License</a></h2>
+								<p>Copyright (c) 2013 Evan Moran <br>
+OJ may be freely distributed under the <a href="license.html">MIT license</a></p>
+
+							</div>
+						</div></div>
+					<footer class="gg100"><footer></footer></footer>
+				</div></div>
+		<script>
+// Generated with oj v0.3.4
+;(function(){
+// Page files
+require.F['/pages/express.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var arguments_, attributes, data, events, inherits, methods, modules, name, options, properties, renderContent, renderTOC, _, _ref, _template;
+
+modules = require('./modules');
+
+_ = modules._;
+
+_template = require('./_template');
+
+_ref = require('./_content'), renderTOC = _ref.renderTOC, renderContent = _ref.renderContent, properties = _ref.renderProperties, attributes = _ref.renderAttributes, methods = _ref.renderMethods, events = _ref.renderEvents, inherits = _ref.renderInherits, options = _ref.renderOptions, arguments_ = _ref.renderArguments, name = _ref.renderName;
+
+module.exports = function() {
+  return _template({
+    title: 'OJ Express - Unified Templating',
+    styles: ['reset.css', 'gg.css'],
+    scripts: ['jquery.js', 'jquery.event.drag.js', 'jquery.ba-resize.min.js', 'underscore.js', 'backbone.js', 'coffee-script.js', 'ace/ace.js'],
+    content: function() {
+      return renderContent(data);
+    },
+    toc: function() {
+      return renderTOC(data);
+    },
+    body: function() {},
+    head: function() {}
+  });
+};
+
+data = [
+  {
+    h: 'Starting Out',
+    id: 'starting-out',
+    d: function() {},
+    items: [
+      {
+        h: 'Introduction',
+        id: 'intro',
+        d: ""
+      }, {
+        h: 'License',
+        id: 'license',
+        d: "Copyright (c) 2013 Evan Moran <br>\nOJ may be freely distributed under the [MIT license](license.html)"
+      }
+    ]
+  }
+];
+}}).call(this);})(require.RR('/pages/express.ojc'),require.P,require.G,'/pages','express.ojc');});
+
+require.F['/pages/modules/index.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){module.exports._ = require('underscore');
+
+oj.use(require('oj-markdown'));
+
+oj.use(require('oj-mustache'));
+
+oj.use(require('oj-ace-editor'));
+
+oj.use(require('oj-vimeo-video'));
+
+oj.use(require('oj-youtube-video'));
+
+oj.use(require('oj-twitter-button'));
+
+oj.use(require('oj-github-button'));
+
+oj.use(require('oj-jsfiddle'));
+
+oj.use(require('../oj.TryEditor'));
+}}).call(this);})(require.RR('/pages/modules/index.ojc'),require.P,require.G,'/pages/modules','index.ojc');});
+
+require.F['/pages/oj.TryEditor.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var SCRIPT, TEXTJ, consolePadding, editorBackgroundColor, editorBorderColor, editorBorderWidth, editorPadding, lineHeight, makeCSS, maximizeDuration, phoneWidth, _arraysEqual, _calculateScripts, _escapeCode, _foundScripts, _pluginScripts, _replaceIFRAME, _scriptTagForCode, _scriptTagForCodeBody, _scriptTagWithUpdater, _updateIFRAME;
+
+editorBorderColor = '#ffd272';
+
+editorBackgroundColor = '#fefaf3';
+
+editorBorderWidth = 2;
+
+editorPadding = 4;
+
+consolePadding = 4;
+
+phoneWidth = 696;
+
+maximizeDuration = 500;
+
+lineHeight = 21;
+
+makeCSS = null;
+
+SCRIPT = 'scr' + 'ipt';
+
+TEXTJ = 'text="text/javascript"';
+
+module.exports = function(oj, settings) {
+  var TryEditor;
+  TryEditor = createType('TryEditor', {
+    base: ModelKeyView,
+    constructor: function() {
+      var args, options, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6,
+        _this = this;
+      _ref = oj.unionArguments(arguments), options = _ref.options, args = _ref.args;
+      this._editor = new AceEditor({
+        c: 'oj-TryEditor-input-editor',
+        theme: 'orange',
+        mode: 'oj',
+        fontSize: 15,
+        tabSize: 2,
+        behaviorsEnabled: true,
+        useSoftTabs: true,
+        showGutter: false,
+        highlightActiveLine: false,
+        showPrintMargin: false,
+        readOnly: false,
+        showIndentGuides: false,
+        change: function() {
+          return _this.editorChanged.apply(_this, arguments);
+        }
+      });
+      this.el = oj(function() {
+        return div(function() {
+          div({
+            c: 'oj-TryEditor-resizer'
+          }, function() {
+            return div({
+              c: 'oj-TryEditor-gripper'
+            });
+          });
+          div({
+            c: 'oj-TryEditor-inputs'
+          }, function() {
+            div({
+              c: 'oj-TryEditor-bar'
+            }, function() {
+              return div({
+                c: 'oj-TryEditor-bar-states'
+              }, function() {
+                div({
+                  c: 'oj-TryEditor-bar-state cs'
+                }, 'CS', {
+                  title: 'Use CoffeeScript'
+                });
+                return div({
+                  c: 'oj-TryEditor-bar-state js selected'
+                }, 'JS', {
+                  title: 'Use JavaScript'
+                });
+              });
+            });
+            return _this.editor.emit();
+          });
+          div({
+            c: 'oj-TryEditor-outputs'
+          }, function() {
+            div({
+              c: 'oj-TryEditor-console'
+            });
+            iframe();
+            return div({
+              c: 'oj-TryEditor-bar'
+            }, function() {
+              return div({
+                c: 'oj-TryEditor-bar-maximize',
+                title: 'Maximize'
+              });
+            });
+          });
+          return div({
+            c: 'oj-TryEditor-seperator'
+          });
+        });
+      });
+      this.$inputs = this.$('.oj-TryEditor-inputs');
+      this.$input = this.$('.oj-TryEditor-input-editor');
+      this.$outputs = this.$('.oj-TryEditor-outputs');
+      this.$seperator = this.$('.oj-TryEditor-seperator');
+      this.$resizer = this.$('.oj-TryEditor-resizer');
+      this.$console = this.$('.oj-TryEditor-console');
+      this.$gripper = this.$('.oj-TryEditor-gripper');
+      this.$jsButton = this.$('.oj-TryEditor-bar-state.js');
+      this.$csButton = this.$('.oj-TryEditor-bar-state.cs');
+      this.$maximizeButton = this.$('.oj-TryEditor-bar-maximize');
+      if (oj.isString(options.state)) {
+        this.state = oj.argumentShift(options, 'state');
+      }
+      if (oj.isString(options.js)) {
+        this.js = oj.argumentShift(options, 'js');
+      }
+      if (oj.isString(options.cs)) {
+        this.cs = oj.argumentShift(options, 'cs');
+      }
+      if (args.length > 0) {
+        this.value = args.join('\n');
+      } else {
+        this.value = (this.state === 'js' ? this.js : this.cs) || '';
+      }
+      if (this.value === '') {
+        this.value = ' ';
+        this.value = '';
+      }
+      this.minWidth = (_ref1 = oj.argumentShift(options, 'minWidth')) != null ? _ref1 : 400;
+      this.minHeight = (_ref2 = oj.argumentShift(options, 'minHeight')) != null ? _ref2 : lineHeight * 1 + 2 * editorPadding;
+      if (options.width != null) {
+        this.width = oj.argumentShift(options, 'width');
+      }
+      if (options.height != null) {
+        this.height = oj.argumentShift(options, 'height');
+      }
+      this.split = (_ref3 = oj.argumentShift(options, 'split')) != null ? _ref3 : 0.5;
+      this.fontSize = (_ref4 = oj.argumentShift(options, 'fontSize')) != null ? _ref4 : 15;
+      this.lineCount = (_ref5 = oj.argumentShift(options, 'lineCount')) != null ? _ref5 : 'fit';
+      this.maximize = (_ref6 = oj.argumentShift(options, 'maximize')) != null ? _ref6 : false;
+      TryEditor.base.constructor.apply(this, [options]);
+      return this._bindEvents();
+    },
+    properties: {
+      width: {
+        get: function() {
+          return this.$el.width();
+        }
+      },
+      height: {
+        get: function() {
+          var _ref;
+          return (_ref = this._height) != null ? _ref : this.minHeight;
+        },
+        set: function(v) {
+          this._height = v;
+          return this.updateFrame();
+        }
+      },
+      fontSize: {
+        get: function() {
+          return this.editor.fontSize;
+        },
+        set: function(v) {
+          this.editor.fontSize = v;
+        }
+      },
+      lineCount: {
+        get: function() {
+          return this._lineCount;
+        },
+        set: function(v) {
+          var lineCount, _ref, _ref1, _ref2, _ref3;
+          this._lineCount = v;
+          lineCount = 1;
+          if (v === 'fit' && (this.value != null)) {
+            lineCount = Math.max(((_ref = this.cs) != null ? (_ref1 = _ref.split(/\r\n|\r|\n/)) != null ? _ref1.length : void 0 : void 0) || 1, ((_ref2 = this.js) != null ? (_ref3 = _ref2.split(/\r\n|\r|\n/)) != null ? _ref3.length : void 0 : void 0) || 1);
+          } else if (oj.isNumber(v)) {
+            lineCount = v;
+          }
+          this.height = lineCount * lineHeight + editorPadding * 2 + 4;
+        }
+      },
+      split: {
+        get: function() {
+          return this._split;
+        },
+        set: function(v) {
+          this._split = v;
+          return this.updateFrame();
+        }
+      },
+      editor: {
+        get: function() {
+          return this._editor;
+        }
+      },
+      value: {
+        get: function() {
+          var _ref;
+          return (_ref = this.editor.value) != null ? _ref : '';
+        },
+        set: function(v) {
+          if (this.state === 'cs') {
+            this._cs = v;
+          } else {
+            this._js = v;
+          }
+          this.editor.value = v;
+          return this.recompile();
+        }
+      },
+      js: {
+        get: function() {
+          var _ref;
+          return (_ref = this._js) != null ? _ref : '';
+        },
+        set: function(v) {
+          this._js = v;
+          if (this.state === 'js') {
+            this.value = v;
+          }
+        }
+      },
+      cs: {
+        get: function() {
+          var _ref;
+          return (_ref = this._cs) != null ? _ref : '';
+        },
+        set: function(v) {
+          this._cs = v;
+          if (this.state === 'cs') {
+            this.value = v;
+          }
+        }
+      },
+      state: {
+        get: function() {
+          var _ref;
+          return (_ref = this._state) != null ? _ref : 'js';
+        },
+        set: function(v) {
+          this._state = v;
+          if (v === 'js') {
+            this.value = this.js;
+            this.mode = 'oj';
+            this.$jsButton.addClass('selected');
+            return this.$csButton.removeClass('selected');
+          } else {
+            this.value = this.cs;
+            this.mode = 'ojc';
+            this.$jsButton.removeClass('selected');
+            return this.$csButton.addClass('selected');
+          }
+        }
+      },
+      mode: {
+        get: function() {
+          return this.editor.mode;
+        },
+        set: function(v) {
+          return this.editor.mode = v;
+        }
+      },
+      fit: {
+        get: function() {
+          var _ref;
+          return (_ref = this._fit) != null ? _ref : true;
+        },
+        set: function(v) {
+          return this._fit = v;
+        }
+      },
+      maximize: {
+        get: function() {
+          var _ref;
+          return (_ref = this._maximize) != null ? _ref : false;
+        },
+        set: function(v) {
+          var pos,
+            _this = this;
+          this._maximize = v;
+          if (!this.isInserted) {
+            return;
+          }
+          if (v) {
+            pos = this.$el.offset();
+            pos.top -= $(window).scrollTop();
+            pos.left -= $(window).scrollLeft();
+            this._prevWidth = this.width;
+            this._prevHeight = this.height;
+            this._prevTop = pos.top;
+            this._prevLeft = pos.left;
+            this._prevZIndex = this.$el.css('z-index');
+            this.$el.css({
+              position: 'fixed',
+              top: pos.top,
+              left: pos.left,
+              zIndex: 1000
+            });
+            $('body').css({
+              overflow: 'hidden'
+            });
+            this.$el.animate({
+              top: 0,
+              height: '100%'
+            }, {
+              progress: function() {
+                return _this.height = _this.$el.height();
+              },
+              complete: function() {
+                return _this.$el.animate({
+                  left: 0,
+                  width: '100%'
+                }, {
+                  duration: maximizeDuration
+                });
+              },
+              duration: maximizeDuration
+            });
+            return this.$gripper.hide();
+          } else {
+            this.$el.animate({
+              left: this._prevLeft,
+              width: this._prevWidth
+            }, {
+              duration: maximizeDuration,
+              complete: function() {
+                return _this.$el.animate({
+                  top: _this._prevTop,
+                  height: _this._prevHeight
+                }, {
+                  progress: function() {
+                    return _this.height = _this.$el.height();
+                  },
+                  complete: function() {
+                    return _this.$el.css({
+                      position: 'relative',
+                      top: '',
+                      left: ''
+                    });
+                  },
+                  duration: maximizeDuration
+                });
+              }
+            });
+            this.$gripper.show();
+            return $('body').css({
+              overflow: 'auto'
+            });
+          }
+        }
+      },
+      $inputs: null,
+      $input: null,
+      $outputs: null,
+      $output: {
+        get: function() {
+          return this.$('.oj-TryEditor-outputs > iframe');
+        }
+      },
+      $seperator: null,
+      $resizer: null,
+      $console: null,
+      $gripper: null,
+      $jsButton: null,
+      $csButton: null,
+      $maximizeButton: null,
+      _scriptTagsLast: null
+    },
+    methods: {
+      toggleState: function() {
+        return this.state = this.state === 'js' ? 'cs' : 'js';
+      },
+      editorChanged: function() {
+        if (this.state === 'js') {
+          this._js = this.value;
+        } else {
+          this._cs = this.value;
+        }
+        return this.recompile();
+      },
+      valueChanged: function() {
+        return TryEditor.base.valueChanged.apply(this, arguments);
+      },
+      windowResized: function(innerWidth, innerHeight) {
+        if (this.maximize) {
+          return this.height = innerHeight - editorBorderWidth * 2;
+        }
+      },
+      updateFrame: function() {
+        var h, w;
+        w = this.width;
+        h = this.height;
+        this.$resizer.width(w);
+        this.editor.height = h - editorPadding * 2;
+        this.$inputs.height(h);
+        this.$outputs.height(h);
+        if (w >= phoneWidth || this.maximize) {
+          this.$inputs.css({
+            display: 'inline-block'
+          });
+          this.editor.width = w / 2 - editorPadding * 2;
+          this.$outputs.css({
+            'border-top': ''
+          });
+          this.$outputs.height(h);
+          this.$outputs.width(w / 2);
+          this.$output.width(w / 2);
+          this.$output.height(h);
+          this.$console.width(w / 2 - 2 * consolePadding);
+          this.$console.height(h - 2 * consolePadding);
+          this.$seperator.show();
+          this.$seperator.height(this.height);
+          this.$seperator.css('left', Math.floor(this.width * this.split));
+          if (Math.abs(h - this.$resizer.height()) > 10) {
+            this.$resizer.height(h);
+          }
+          return this.$el.height(h);
+        } else {
+          this.$inputs.css({
+            display: 'block'
+          });
+          this.editor.width = w - editorPadding * 2;
+          this.$outputs.width(w);
+          this.$output.width(w);
+          this.$output.height(h - editorPadding);
+          this.$console.height(h - 2 * consolePadding);
+          this.$console.width(w - 2 * consolePadding);
+          this.$seperator.hide();
+          this.$outputs.css({
+            'border-top': "" + editorBorderWidth + "px solid " + editorBorderColor
+          });
+          if (Math.abs(h / 2 - this.$resizer.height()) > 10) {
+            this.$resizer.height(h * 2);
+          }
+          return this.$el.height(h * 2);
+        }
+      },
+      inserted: function() {
+        var d,
+          _this = this;
+        TryEditor.base.inserted.apply(this, arguments);
+        this.lineCount = this.lineCount;
+        this.editor.width = this.editor.width;
+        this.editor.value = this.value;
+        this.editor.height = this.height;
+        this.editor.mode = this.mode;
+        d = maximizeDuration;
+        maximizeDuration = 0;
+        this.maximize = this.maximize;
+        maximizeDuration = d;
+        setTimeout((function() {
+          return _this.value = _this.value;
+        }), 350);
+        return setTimeout((function() {
+          return _this.updateFrame();
+        }), 50);
+      },
+      consoleError: function(message) {
+        if (this.isConstructed) {
+          this.$console.html(message);
+          this.$console.show();
+        }
+      },
+      consoleSuccess: function() {
+        if (this.isConstructed) {
+          this.$console.hide();
+        }
+      },
+      recompile: function() {
+        var code, eCoffee, scriptTags;
+        if (!this.isInserted) {
+          return;
+        }
+        code = this.value;
+        if (this.state === 'cs') {
+          try {
+            code = CoffeeScript.compile(code, {
+              bare: true
+            });
+          } catch (_error) {
+            eCoffee = _error;
+            this.consoleError("CoffeeScript Error: " + eCoffee.message);
+            return;
+          }
+        }
+        scriptTags = _calculateScripts(code, _pluginScripts);
+        if (scriptTags === this._scriptTagsLast) {
+          _updateIFRAME(this.$output, code);
+        } else {
+          this._scriptTagsLast = scriptTags;
+          _replaceIFRAME(this.$outputs, this.$output, scriptTags, code);
+        }
+        return this.consoleSuccess();
+      },
+      _bindEvents: function() {
+        var _$gripper, _$resizer, _ref,
+          _this = this;
+        this.$jsButton.click(function() {
+          return _this.state = 'js';
+        });
+        this.$csButton.click(function() {
+          return _this.state = 'cs';
+        });
+        this.$maximizeButton.click(function() {
+          return _this.maximize = !_this.maximize;
+        });
+        if (oj.isClient) {
+          if ($.resize != null) {
+            $.resize.throttleWindow = false;
+            $.resize.delay = 100;
+            $(window).resize(function() {
+              return _this.windowResized(window.innerWidth, window.innerHeight);
+            });
+            this.$el.resize(function(e, ui) {
+              return _this.updateFrame();
+            });
+            this.$resizer.resize(function(e, ui) {
+              var h;
+              h = $(e.currentTarget).height();
+              if (_this.width < phoneWidth) {
+                if (h / 2 > _this.minHeight) {
+                  _this.height = h / 2;
+                }
+              } else {
+                _this.height = h;
+              }
+              return _this.updateFrame();
+            });
+          }
+          if (((_ref = this.$resizer) != null ? _ref.drag : void 0) != null) {
+            _$resizer = this.$resizer;
+            _$gripper = this.$gripper;
+            return this.$resizer.drag().drag("start", function(ev, dd) {
+              dd.width = $(this).width();
+              dd.height = $(this).height();
+              _$gripper.css({
+                style: {
+                  height: '100%'
+                }
+              });
+            }).drag("end", function(ev, dd) {
+              _$gripper.css({
+                style: {
+                  height: '12px'
+                }
+              });
+            }).drag(function(ev, dd) {
+              $(this).css({
+                height: Math.max(lineHeight, dd.height + dd.deltaY)
+              });
+            }, {
+              handle: '.oj-TryEditor-gripper'
+            });
+          }
+        }
+      }
+    }
+  });
+  TryEditor.css({
+    border: "" + editorBorderWidth + "px solid " + editorBorderColor,
+    boxShadow: '2px 2px 4px RGBA(0,0,0,0.15)',
+    display: 'block',
+    position: 'relative',
+    zIndex: 20,
+    backgroundColor: '#FEFAF3',
+    '.oj-TryEditor-seperator': {
+      position: 'absolute',
+      top: '0px',
+      left: '0px',
+      backgroundColor: editorBorderColor,
+      width: '2px',
+      height: '1px',
+      zIndex: 100
+    },
+    '.oj-TryEditor-resizer': {
+      position: 'absolute',
+      top: '-1px',
+      left: '-1px',
+      width: '2px',
+      height: '1px'
+    },
+    '.oj-TryEditor-inputs': {
+      display: 'inline-block',
+      zIndex: 30,
+      position: 'relative'
+    },
+    '.oj-TryEditor-input-editor': {
+      resize: 'none',
+      border: "" + editorPadding + "px solid " + editorBackgroundColor
+    },
+    '.oj-TryEditor-outputs': {
+      display: 'inline-block',
+      position: 'relative',
+      zIndex: 40
+    },
+    '.oj-TryEditor-outputs > iframe': {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      backgroundColor: 'white',
+      border: 'none',
+      zIndex: 20
+    },
+    '.oj-TryEditor-console': {
+      position: 'absolute',
+      color: 'red',
+      backgroundColor: 'RGBA(255,255,255,0.8)',
+      textAlign: 'left',
+      fontSize: '16px',
+      padding: "" + consolePadding + "px",
+      width: '100%',
+      height: '100%',
+      zIndex: 30,
+      display: 'none'
+    },
+    '.oj-TryEditor-bar': {
+      position: 'absolute',
+      top: '0px',
+      right: '0px',
+      margin: '8px 4px 0 0',
+      height: '21px',
+      zIndex: 100
+    },
+    '.oj-TryEditor-example-chooser': {
+      position: 'relative',
+      float: 'right',
+      height: '100%',
+      zIndex: 10,
+      marginLeft: '8px'
+    },
+    '.oj-TryEditor-bar-state': {
+      display: 'inline-block',
+      color: '#D5A876',
+      width: '25px',
+      height: '100%',
+      float: 'right',
+      marginLeft: '0px',
+      zIndex: 101,
+      textAlign: 'center',
+      cursor: 'pointer',
+      fontSize: '12px'
+    },
+    '.oj-TryEditor-bar-state:hover': {
+      textDecoration: 'underline'
+    },
+    '.oj-TryEditor-bar-state.selected': {
+      fontWeight: 'bold',
+      color: '#E88E00',
+      textDecoration: 'none !important'
+    },
+    '.oj-TryEditor-bar-maximize': {
+      display: 'inline-block',
+      backgroundImage: 'url(media/try_popout.png)',
+      width: '15px',
+      height: '12px',
+      float: 'right',
+      zIndex: 101,
+      cursor: 'pointer',
+      '@media only screen and (max-width: 739px)': {
+        display: 'none'
+      }
+    },
+    '.oj-TryEditor-gripper': {
+      position: 'absolute',
+      bottom: '2px',
+      right: '2px',
+      left: 'auto',
+      width: '100%',
+      height: '12px',
+      cursor: 's-resize',
+      backgroundImage: 'url(media/try_gripper.png)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+      zIndex: 101
+    }
+  });
+  return {
+    TryEditor: TryEditor
+  };
+};
+
+_pluginScripts = {
+  Backbone: ["<" + SCRIPT + " src=\"scripts/underscore.js\" " + TEXTJ + "></" + SCRIPT + ">\n", "<" + SCRIPT + " src=\"scripts/backbone.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  AceEditor: ["<" + SCRIPT + " src=\"scripts/ace/ace.js\" " + TEXTJ + "></" + SCRIPT + ">\n", "<" + SCRIPT + " src=\"scripts/oj.AceEditor.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  VimeoVideo: ["<" + SCRIPT + " src=\"scripts/oj.VimeoVideo.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  YouTubeVideo: ["<" + SCRIPT + " src=\"scripts/oj.YouTubeVideo.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  GitHubButton: ["<" + SCRIPT + " src=\"scripts/oj.GitHubButton.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  TwitterButton: ["<" + SCRIPT + " src=\"scripts/oj.TwitterButton.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  markdown: ["<" + SCRIPT + " src=\"scripts/oj.markdown.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  md: ["<" + SCRIPT + " src=\"scripts/oj.markdown.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  marked: ["<" + SCRIPT + " src=\"scripts/oj.marked.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  mustache: ["<" + SCRIPT + " src=\"scripts/oj.mustache.js\" " + TEXTJ + "></" + SCRIPT + ">\n"],
+  JSFiddle: ["<" + SCRIPT + " src=\"scripts/oj.JSFiddle.js\" " + TEXTJ + "></" + SCRIPT + ">\n"]
+};
+
+_foundScripts = function(code, pluginScripts) {
+  var out, plugin, v;
+  out = [];
+  for (plugin in pluginScripts) {
+    v = pluginScripts[plugin];
+    if (code.indexOf(plugin) !== -1) {
+      out.push(plugin);
+    }
+  }
+  return out.sort();
+};
+
+_arraysEqual = function(a, b) {
+  var i, v, _i, _len;
+  if (a === b) {
+    return true;
+  }
+  if (a === null || b === null) {
+    return false;
+  }
+  if (a.length !== b.length) {
+    return false;
+  }
+  for (i = _i = 0, _len = a.length; _i < _len; i = ++_i) {
+    v = a[i];
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+_escapeCode = function(str) {
+  return str;
+};
+
+_calculateScripts = function(code, pluginScripts) {
+  var foundScripts, out, plugin, s, _i, _j, _len, _len1, _ref;
+  out = "";
+  out += "<" + SCRIPT + " src=\"scripts/jquery.js\" " + TEXTJ + "></" + SCRIPT + ">\n";
+  out += "<" + SCRIPT + " src=\"scripts/oj.js\" " + TEXTJ + "></" + SCRIPT + ">\n";
+  foundScripts = _foundScripts(code, _pluginScripts);
+  for (_i = 0, _len = foundScripts.length; _i < _len; _i++) {
+    plugin = foundScripts[_i];
+    _ref = pluginScripts[plugin];
+    for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+      s = _ref[_j];
+      out += s;
+    }
+  }
+  return out;
+};
+
+_scriptTagWithUpdater = function() {
+  return "<" + SCRIPT + " class=\"updater\">\n(function(){\n  // Allow editor to rebuild iframe at will\n  var _code = null;\n  document.showError = function(err){\n    // Error style\n    var errorStyle = {style:{color:'red', fontSize:'16px', fontFamily:'sans-serif'}};\n\n    // Report error\n    $('body').oj([oj.div, errorStyle, err.toString()]);\n  };\n  document.rebuild = function(code){\n    if (code == _code)\n      return;\n    $('script.build').remove()\n    try {\n    $('head').append(\"<scr\"+\"ipt class='build'>\"+code+\"</scr\"+\"ipt>\");\n    } catch(eAppend) {\n      document.showError(eAppend);\n    }\n  };\n  // Allow dom manipulation within the iframe\n  document.oj = oj;\n  document.$ = $;\n})(this);\n</" + SCRIPT + ">";
+};
+
+_scriptTagForCodeBody = function(code) {
+  return "// Start onready\noj.$(function(){try{with(oj){\n\n// Insert code into body\noj.$.ojBody(function(){\n\n" + code + "\n\n});\n\n// Handle errors\n}} catch(e) {\n  document.showError(e);\n}});";
+};
+
+_scriptTagForCode = function(code) {
+  return "<" + SCRIPT + " class=\"build\">\n\n" + (_scriptTagForCodeBody(code)) + "\n\n</" + SCRIPT + ">";
+};
+
+_replaceIFRAME = function($iframeParent, $iframe, scriptTags, code) {
+  var doc, html, iframe;
+  html = "<head>\n" + scriptTags + "\n" + (_scriptTagWithUpdater()) + "\n" + (_scriptTagForCode(code)) + "\n</head>\n<body>\n</body>";
+  $iframe.remove();
+  iframe = document.createElement('iframe');
+  $iframeParent.append(iframe);
+  doc = iframe.contentWindow || iframe.contentDocument;
+  if (doc.document) {
+    doc = doc.document;
+  }
+  doc.open();
+  doc.write(html);
+  return doc.close();
+};
+
+_updateIFRAME = function($iframe, code) {
+  var $body, $html, $styles, doc$, docOJ;
+  if ($iframe.contents() && $iframe.contents()[0] && oj.isFunction($iframe.contents()[0].rebuild)) {
+    $html = $iframe.contents().find('html');
+    $body = $iframe.contents().find('body');
+    doc$ = $iframe.contents()[0].$;
+    $styles = doc$('style');
+    $styles.each(function() {
+      var $this, cls;
+      $this = $(this);
+      cls = $this.attr('class');
+      if (oj.isString(cls) && cls.match(/^oj-.*style$/)) {
+        return $this.remove();
+      }
+    });
+    doc$('body').html('');
+    $iframe.contents()[0].rebuild(_scriptTagForCodeBody(code));
+    docOJ = $iframe.contents()[0].oj;
+    if (typeof docOJ !== 'undefined' && typeof docOJ.TwitterButton !== 'undefined') {
+      docOJ.TwitterButton._loaded = false;
+    }
+    if (typeof docOJ !== 'undefined' && typeof docOJ.YouTubeVideo !== 'undefined') {
+      return docOJ.YouTubeVideo.onYouTubeIframeAPIReady();
+    }
+  }
+};
+}}).call(this);})(require.RR('/pages/oj.TryEditor.ojc'),require.P,require.G,'/pages','oj.TryEditor.ojc');});
+
+require.F['/pages/_template.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var makeFooter, makeHeader, _, _styles, _template;
+
+_ = require('underscore');
+
+_styles = require('./_styles');
+
+module.exports = _template = function(parts) {
+  var orangeSize;
+  doctype(5);
+  html(function() {
+    head(function() {
+      var s, _i, _j, _len, _len1, _ref, _ref1;
+      meta({
+        name: 'viewport',
+        content: 'width=device-width'
+      });
+      meta({
+        'http-equiv': "X-UA-Compatible",
+        content: 'IE=edge'
+      });
+      title(parts.title);
+      if (_.isArray(parts.styles)) {
+        _ref = parts.styles;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          s = _ref[_i];
+          link({
+            href: "styles/" + s,
+            rel: 'stylesheet',
+            type: 'text/css'
+          });
+        }
+      }
+      if (_.isArray(parts.scripts)) {
+        _ref1 = parts.scripts;
+        for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+          s = _ref1[_j];
+          script({
+            src: "scripts/" + s,
+            type: 'text/javascript'
+          });
+        }
+      }
+      script({
+        src: "modules/index.js",
+        type: 'text/javascript'
+      });
+      if (typeof parts.head === "function") {
+        parts.head();
+      }
+      return script({
+        c: 'google-analytics',
+        type: 'text/javascript'
+      }, "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\nm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');\n\nga('create', 'UA-43475277-1', 'ojjs.org');\nga('send', 'pageview');");
+    });
+    return body(function() {
+      header(function() {
+        return makeHeader();
+      });
+      div({
+        c: 'gg'
+      }, function() {
+        return div({
+          c: 'fixed row'
+        }, function() {
+          return div({
+            c: 'toc-right o75 gg25 hide-phone'
+          }, function() {
+            return parts != null ? typeof parts.toc === "function" ? parts.toc() : void 0 : void 0;
+          });
+        });
+      });
+      return div({
+        c: 'gg'
+      }, function() {
+        return div({
+          c: 'relative row'
+        }, function() {
+          div({
+            c: 'body gg100'
+          }, function() {
+            if (parts != null) {
+              if (typeof parts.body === "function") {
+                parts.body();
+              }
+            }
+            return div({
+              c: 'row'
+            }, function() {
+              div({
+                c: 'toc-above gg25 show-phone'
+              }, function() {
+                return parts != null ? typeof parts.toc === "function" ? parts.toc() : void 0 : void 0;
+              });
+              return div({
+                c: 'content gg75'
+              }, function() {
+                return parts != null ? typeof parts.content === "function" ? parts.content() : void 0 : void 0;
+              });
+            });
+          });
+          return footer({
+            c: 'gg100'
+          }, function() {
+            return makeFooter();
+          });
+        });
+      });
+    });
+  });
+  _styles();
+  orangeSize = '42px';
+  return css({
+    '.fixed': {
+      position: 'fixed',
+      marginTop: '62px',
+      zIndex: 100,
+      height: '40px',
+      '@media only screen and (max-width: 739px)': {
+        marginTop: '85px'
+      }
+    },
+    '.relative': {
+      position: 'relative',
+      '@media only screen and (max-width: 739px)': {
+        marginTop: '62px'
+      }
+    },
+    '.hide-phone': {
+      '@media only screen and (max-width: 739px)': {
+        display: 'none'
+      }
+    },
+    '.show-phone': {
+      '@media only screen and (max-width: 739px)': {
+        display: 'block'
+      },
+      '@media only screen and (min-width: 740px) and (max-width: 959px)': {
+        display: 'none'
+      },
+      '@media monitor': {
+        display: 'none'
+      }
+    },
+    header: {
+      position: 'fixed',
+      height: '45px',
+      width: '100%',
+      boxShadow: '2px 2px 2px RGBA(0,0,0,0.1)',
+      backgroundColor: 'white',
+      zIndex: 1000,
+      '@media only screen and (max-width: 739px)': {
+        height: '72px'
+      }
+    },
+    '.header-contents': {
+      height: '45px',
+      float: 'none !important',
+      marginLeft: 'auto !important',
+      marginRight: 'auto !important',
+      display: 'block',
+      '@media only screen and (max-width: 739px)': {
+        textAlign: 'center',
+        paddingTop: '10px',
+        height: '30px'
+      }
+    },
+    '.header-logo': {
+      background: 'url(media/oj_logo_small.png) no-repeat 0 center',
+      display: 'inline-block',
+      width: '32px',
+      height: '22px',
+      verticalAlign: 'middle',
+      marginLeft: '91px',
+      '@media only screen and (max-width: 739px)': {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'block',
+        textAlign: 'center'
+      }
+    },
+    '.header-options': {
+      display: 'inline-block',
+      marginLeft: '44px',
+      paddingTop: '12px',
+      '@media only screen and (max-width: 739px)': {
+        marginLeft: '0px',
+        textAlign: 'center',
+        display: 'block'
+      }
+    },
+    '.header-option': {
+      fontFamily: 'Helvetica, Arial, Tahoma',
+      color: '#E98C00',
+      fontSize: '18px',
+      fontWeight: '100',
+      verticalAlign: 'middle',
+      '&:not(:first-child)': {
+        marginLeft: '44px',
+        '@media only screen and (max-width: 739px)': {
+          marginLeft: '20px'
+        }
+      },
+      '@media only screen and (max-width: 739px)': {
+        marginTop: '30px'
+      }
+    },
+    '.header-orange-corner': {
+      width: orangeSize,
+      height: orangeSize,
+      position: 'absolute',
+      top: '0px',
+      backgroundSize: 'contain'
+    },
+    '.header-orange-corner.left': {
+      backgroundImage: 'url(media/orange_left.png)',
+      left: '0px'
+    },
+    '.header-orange-corner.right': {
+      backgroundImage: 'url(media/orange_right.png)',
+      right: '0px'
+    }
+  });
+};
+
+makeHeader = function() {
+  div({
+    c: 'header-contents'
+  }, function() {
+    a({
+      c: 'header-logo',
+      href: 'index.html'
+    });
+    return div({
+      c: 'header-options'
+    }, function() {
+      a('Learn', {
+        c: 'header-option',
+        href: 'learn.html'
+      });
+      a('Try', {
+        c: 'header-option',
+        href: 'try.html'
+      });
+      a('Docs', {
+        c: 'header-option',
+        href: 'docs.html'
+      });
+      a('Plugins', {
+        c: 'header-option',
+        href: 'plugins.html'
+      });
+      return a('Download', {
+        c: 'header-option',
+        href: 'download.html'
+      });
+    });
+  });
+  div({
+    c: 'header-orange-corner left'
+  });
+  return div({
+    c: 'header-orange-corner right'
+  });
+};
+
+makeFooter = function() {
+  return footer();
+};
+}}).call(this);})(require.RR('/pages/_template.ojc'),require.P,require.G,'/pages','_template.ojc');});
+
+require.F['/pages/_styles.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){module.exports = function() {
+  var argumentLinkColor, backgroundColor, borderColor, codeBackgroundColor, codeColor, codeLineColor, eventLinkColor, familyMonospace, familySanSarif, functionLinkColor, h1Color, h2Color, linkColor, methodLinkColor, optionLinkColor, propertyLinkColor, strongTextColor, textColor, tocSectionColor, typeLinkColor;
+  h1Color = '#444';
+  textColor = '#444';
+  strongTextColor = '#000';
+  h2Color = textColor;
+  backgroundColor = '#fff';
+  codeColor = '#444';
+  codeBackgroundColor = '#FEFAF3';
+  codeLineColor = '#FFD36B';
+  linkColor = '#E78B00';
+  borderColor = '#ffd272';
+  typeLinkColor = linkColor;
+  functionLinkColor = linkColor;
+  tocSectionColor = '#C76200';
+  methodLinkColor = '#a64d09';
+  propertyLinkColor = '#b3820a';
+  eventLinkColor = '#a64d09';
+  optionLinkColor = propertyLinkColor;
+  argumentLinkColor = propertyLinkColor;
+  familyMonospace = 'Inconsolata, Consolas, Courier New, monospace';
+  familySanSarif = 'Helvetica, Arial, sans-serif';
+  return css({
+    h1: {
+      fontFamily: familySanSarif,
+      fontSize: '25px',
+      fontWeight: '100',
+      marginTop: '40px',
+      marginBottom: '12px',
+      paddingBottom: '6px',
+      color: h1Color,
+      borderBottom: '2px solid #FFD36B',
+      '&:before': {
+        display: 'block',
+        content: "' '",
+        height: '70px',
+        margin: '-70px 0 0'
+      }
+    },
+    'h1:first-child': {
+      marginTop: '20px'
+    },
+    h2: {
+      fontFamily: familySanSarif,
+      fontSize: '22px',
+      fontWeight: '100',
+      margin: '32px 0 15px 0',
+      color: h2Color,
+      textDecoration: 'none',
+      '&:before': {
+        content: "' '",
+        display: 'block',
+        height: '70px',
+        margin: '-70px 0 0'
+      }
+    },
+    h3: {
+      fontFamily: familySanSarif,
+      fontSize: '18px',
+      fontWeight: '100',
+      marginTop: '22px',
+      marginBottom: '14px',
+      color: '#222',
+      '&:before': {
+        content: "' '",
+        display: 'block',
+        height: '70px',
+        margin: '-70px 0 0'
+      }
+    },
+    a: {
+      color: linkColor,
+      textDecoration: 'none'
+    },
+    'a.heading1, a.heading1:hover': {
+      color: h1Color,
+      textDecoration: 'none',
+      '&:before': {
+        content: "' '",
+        display: 'block',
+        height: '70px',
+        margin: '-70px 0 0'
+      }
+    },
+    'a.heading2, a.heading2:hover': {
+      color: h2Color,
+      textDecoration: 'none',
+      '&:before': {
+        content: "' '",
+        display: 'block',
+        height: '70px',
+        margin: '-70px 0 0'
+      }
+    },
+    'a.type': {
+      color: typeLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.function': {
+      color: functionLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.method': {
+      color: methodLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.event': {
+      color: eventLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.property': {
+      color: propertyLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.option': {
+      color: optionLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a.argument': {
+      color: argumentLinkColor,
+      fontFamily: familyMonospace
+    },
+    'a:hover': {
+      textDecoration: 'underline'
+    },
+    blockquote: {
+      padding: '0 0 0 10px',
+      borderLeft: "2px solid " + borderColor
+    },
+    p: {
+      color: textColor,
+      fontFamily: familySanSarif,
+      fontSize: '16px',
+      fontWeight: 'lighter',
+      margin: '16px 0 8px 0',
+      lineHeight: '24px'
+    },
+    'p strong': {
+      color: strongTextColor,
+      fontFamily: familySanSarif,
+      fontWeight: 400
+    },
+    ul: {
+      marginBottom: '16px'
+    },
+    li: {
+      margin: '10px 0 10px 20px',
+      color: textColor,
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      lineHeight: '20px'
+    },
+    '.oj-TryEditor': {
+      marginBottom: '30px'
+    },
+    '.code-heading': {
+      color: '#444',
+      fontFamily: familyMonospace,
+      fontSize: '19px'
+    },
+    '.code-subheading': {
+      fontFamily: familySanSarif,
+      fontSize: '16px',
+      fontStyle: 'italic',
+      fontWeight: 'lighter',
+      color: textColor,
+      display: 'block',
+      lineHeight: '20px',
+      marginTop: '20px'
+    },
+    '.code-items': {
+      margin: '10px 0 10px 10px',
+      width: '100%'
+    },
+    '.code-items tr': {
+      width: '100%'
+    },
+    '.code-item': {
+      display: 'block',
+      margin: '0 0 4px 0'
+    },
+    '.code-item-base': {
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      margin: '10px 0 10px 10px',
+      lineHeight: '20px'
+    },
+    '.code-item-name': {
+      fontFamily: familySanSarif,
+      fontSize: '16px',
+      margin: '0 0 8px 2px',
+      lineHeight: '20px',
+      minWidth: '135px',
+      display: 'inline-block',
+      verticalAlign: 'top'
+    },
+    '.code-item-def': {
+      fontFamily: familySanSarif,
+      fontSize: '14px',
+      color: textColor,
+      lineHeight: '16px',
+      display: 'inline-block',
+      position: 'relative',
+      width: '560px',
+      '@media only screen and (min-width: 740px) and (max-width: 959px)': {
+        width: '377px'
+      },
+      '@media only screen and (max-width: 739px)': {
+        width: '100%',
+        marginLeft: '20px'
+      },
+      '& p': {
+        margin: '4px 0 10px 0',
+        lineHeight: '20px'
+      },
+      '& li': {
+        margin: '0px 0 6px 20px'
+      }
+    },
+    '.code-item-def pre': {
+      margin: '0 0 10px 0',
+      border: '0',
+      color: codeColor
+    },
+    pre: {
+      border: "2px solid " + codeLineColor,
+      backgroundColor: codeBackgroundColor,
+      color: codeColor,
+      padding: '8px',
+      lineHeight: '18px',
+      fontSize: '14px'
+    },
+    '.toc-section': {
+      display: 'block',
+      color: tocSectionColor,
+      textTransform: 'uppercase',
+      fontFamily: familySanSarif,
+      margin: '0 0 10px 0',
+      fontSize: '14px',
+      textAlign: 'right',
+      fontWeight: 'lighter'
+    },
+    '.toc-item': {
+      display: 'block',
+      fontFamily: familySanSarif,
+      fontSize: '13px',
+      fontWeight: 'lighter',
+      textAlign: 'right',
+      margin: '0 0 4px 0',
+      color: linkColor
+    },
+    '.toc-items': {
+      marginBottom: '10px'
+    },
+    '.left': {
+      marginBottom: '10px'
+    },
+    textarea: {
+      width: '100%',
+      height: '100px',
+      borderColor: '#f4f4f4',
+      fontFamily: familySanSarif,
+      fontSize: '14px'
+    },
+    '.snippet': {
+      margin: 0,
+      position: 'relative',
+      width: '100%',
+      height: '100px',
+      border: '1px solid orange'
+    },
+    '.download-button': {
+      height: '27px',
+      border: '2px solid orange',
+      borderRadius: '5px',
+      backgroundColor: '#FEFAF3',
+      boxShadow: '2px 2px 2px RGBA(0,0,0,0.2)',
+      cursor: 'pointer',
+      fontSize: '14px',
+      fontFamily: familySanSarif
+    },
+    '.download-button:hover': {
+      backgroundColor: '#fff'
+    }
+  });
+};
+}}).call(this);})(require.RR('/pages/_styles.ojc'),require.P,require.G,'/pages','_styles.ojc');});
+
+require.F['/pages/_content.ojc'] = (function(module,exports){(function(require,process,global,__dirname,__filename){
+(function(){with(oj.sandbox){var callOrMarkdown, contentCodeItems, contentItem, contentSection, markdown, tocSection;
+
+markdown = require('oj-markdown');
+
+module.exports = {
+  renderTOC: function(data) {
+    var ix, section, _i, _len, _results;
+    _results = [];
+    for (ix = _i = 0, _len = data.length; _i < _len; ix = ++_i) {
+      section = data[ix];
+      _results.push(tocSection(section, ix));
+    }
+    return _results;
+  },
+  renderContent: function(data) {
+    var ix, section, _i, _len, _results;
+    _results = [];
+    for (ix = _i = 0, _len = data.length; _i < _len; ix = ++_i) {
+      section = data[ix];
+      _results.push(contentSection(section, ix));
+    }
+    return _results;
+  },
+  renderName: function(name) {
+    return h3({
+      c: 'code-heading'
+    }, name);
+  },
+  renderProperties: function(properties) {
+    div('properties:', {
+      c: 'code-subheading property'
+    });
+    return contentCodeItems(properties, 'property');
+  },
+  renderAttributes: function(attributes) {
+    div('attributes:', {
+      c: 'code-subheading attribute'
+    });
+    return contentCodeItems(attributes, 'attribute');
+  },
+  renderMethods: function(methods) {
+    div('methods:', {
+      c: 'code-subheading method'
+    });
+    return contentCodeItems(methods, 'method');
+  },
+  renderEvents: function(events) {
+    div('events:', {
+      c: 'code-subheading event'
+    });
+    return contentCodeItems(events, 'event');
+  },
+  renderArguments: function(args) {
+    div('arguments:', {
+      c: 'code-subheading argument'
+    });
+    return contentCodeItems(args, 'argument');
+  },
+  renderOptions: function(opts) {
+    div('options:', {
+      c: 'code-subheading option'
+    });
+    return contentCodeItems(opts, 'option');
+  },
+  renderInherits: function(inherits) {
+    div('base:', {
+      c: 'code-subheading inherit'
+    });
+    return div({
+      c: 'code-items'
+    }, function() {
+      return a(inherits.h, {
+        c: 'type',
+        href: '#' + inherits.id
+      });
+    });
+  }
+};
+
+tocSection = function(section, ix) {
+  a("" + section.h, {
+    c: 'toc-section',
+    href: "\#" + section.id
+  });
+  if (section.items != null) {
+    return div({
+      c: 'toc-items'
+    }, function() {
+      var item, _i, _len, _ref, _results;
+      _ref = section.items;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        item = _ref[_i];
+        _results.push(a("" + item.h, {
+          c: 'toc-item',
+          href: "\#" + item.id
+        }));
+      }
+      return _results;
+    });
+  }
+};
+
+contentSection = function(section, ix) {
+  var item, ixItem, _i, _len, _ref, _results;
+  h1({
+    id: section.id
+  }, function() {
+    return a(section.h, {
+      c: 'heading1',
+      href: '#' + section.id
+    });
+  });
+  callOrMarkdown(section.d);
+  if (section.items != null) {
+    _ref = section.items;
+    _results = [];
+    for (ixItem = _i = 0, _len = _ref.length; _i < _len; ixItem = ++_i) {
+      item = _ref[ixItem];
+      _results.push(contentItem(item, ixItem));
+    }
+    return _results;
+  }
+};
+
+contentItem = function(item, ix) {
+  h2({
+    id: "" + item.id
+  }, function() {
+    return a(item.h, {
+      href: '#' + item.id,
+      c: 'heading2'
+    });
+  });
+  return callOrMarkdown(item.d);
+};
+
+contentCodeItems = function(items, type) {
+  if ((items != null) && items.length > 0) {
+    return table({
+      c: "code-items " + type
+    }, function() {
+      return tbody(function() {
+        var prop, _i, _len, _results;
+        _results = [];
+        for (_i = 0, _len = items.length; _i < _len; _i++) {
+          prop = items[_i];
+          _results.push(tr({
+            c: "code-item " + type
+          }, function() {
+            td({
+              c: "code-item-name " + type,
+              id: prop.id
+            }, function() {
+              return a(prop.h, {
+                c: type,
+                href: '#' + prop.id
+              });
+            });
+            return td({
+              c: "code-item-def " + type
+            }, function() {
+              return callOrMarkdown(prop.d);
+            });
+          }));
+        }
+        return _results;
+      });
+    });
+  }
+};
+
+callOrMarkdown = function(v) {
+  if (v != null) {
+    if (oj.isFunction(v)) {
+      v();
+    } else {
+      markdown(v);
+    }
+  }
+};
+}}).call(this);})(require.RR('/pages/_content.ojc'),require.P,require.G,'/pages','_content.ojc');});
+
+
+oj.load('/pages/express');
+}).call(this);
+</script></body>
+	</html>
+	
+	

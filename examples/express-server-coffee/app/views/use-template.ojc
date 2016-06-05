@@ -1,0 +1,68 @@
+# use-template.ojc: Create a simple webpage that uses a template function
+
+# Require all modules at once so OJ can cache and minify this file separately
+modules = require '../modules/all.ojc'
+
+# Otherwise just require like normal
+_ = require 'underscore'
+Backbone = require 'backbone'
+
+# Require the template function we are going to use
+# To allow it to be accessed client and server
+_templatePage = require './_templatePage'
+
+# Export your site returning an function that uses OJ:
+module.exports = (data) ->
+
+  # Use the template to create the <doctype>, <html>, <head>, and <body> tags for you.
+  _templatePage
+    title: data.title
+
+    # Include script files here
+    # modules/all.js is the unified module file built by OJ
+    scripts: ['modules/all.js']
+
+    # Include css files here
+    styles: []
+
+    # Content is just called through
+    content: ->
+
+      # Create a Backbone UserModel and UserCollection
+      UserModel = Backbone.Model.extend()
+      UserCollection = Backbone.Collection.extend model:UserModel
+
+      # Create some users and put them in a collection
+      users = new UserCollection [
+        {name:'Evan', twitter:'evanmoran'},
+        {name:'James', twitter:'iamthelawton'},
+        {name:'Laura', twitter:'savinola'}
+      ]
+
+      h1 data.title
+
+      p 'Render a table from a Backbone collection:'
+      Table
+        header: ['Button', 'Name', 'Username']
+        collection: users
+        each: (user, td) ->
+          # Render each row with the following:
+          td ->
+            TwitterButton user.get 'twitter'
+          td user.get 'name'
+          td user.get 'twitter'
+
+      # Add some CSS to make the table all pretty like
+      css
+        table:
+          borderCollapse: 'collapse'
+          borderSpacing: 0
+        th:
+          padding:'10px'
+          textAlign:'left'
+          borderBottom:'1px solid orange'
+        td:
+          borderBottom:'1px solid orange'
+          padding: '10px'
+        'td:first-child':
+          minWidth: '200px'

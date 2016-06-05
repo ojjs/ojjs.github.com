@@ -1,0 +1,40 @@
+// _templatePage
+// Define a template that creates the out <html> tags of a page given data:
+//   data.title        A string defining the title
+//   data.scripts      An array of strings to define your <script> tags
+//   data.styles       An array of strings to define your <link> styles
+//   data.content      A callback function to define the content of the page
+module.exports = function(data){
+
+  // Default initialize data to accept: title, scripts, styles, and content
+  if (typeof data != 'object')
+    throw new Error('_templatePage: expect object for first argument');
+  data.title = data.title || '';
+  data.scripts = data.scripts || [];
+  data.styles = data.styles || [];
+  data.content = data.content || function(){};
+
+  // Create the page's doctype, html, head, title, and body tags
+  doctype(5);
+  html(function(){
+    head(function(){
+      // Define the title
+      title(data.title);
+
+      // Define the scripts
+      data.scripts.forEach(function(scrpt){
+        script({src:scrpt, type:'text/javascript'});
+      });
+
+      // Define the styles
+      data.styles.forEach(function(styl){
+        link({href:styl, rel:"stylesheet", type:"text/css"});
+      });
+
+    });
+    body(function(){
+      // Define content by calling through to a function passed in
+      data.content();
+    });
+  });
+};

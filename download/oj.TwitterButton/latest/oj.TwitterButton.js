@@ -2,7 +2,7 @@
 // oj.TwitterButton.js v0.0.6
 // ojjs.org/plugins#TwitterButton
 //
-// Copyright 2013, Evan Moran
+// Copyright 2013-2014, Evan Moran
 // Released under the MIT License
 //
 // oj.TwitterButton.js

@@ -1,0 +1,15 @@
+{
+  "name": "example",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "*",
+    "underscore-amd": "*",
+    "backbone-amd": "*",
+    "oj": "*",
+    "oj-github-button":"*",
+    "oj-twitter-button":"*",
+    "oj-markdown":"*",
+    "oj-youtube-video":"*"
+  }
+}

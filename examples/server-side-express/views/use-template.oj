@@ -1,0 +1,17 @@
+// Use the common modules for caching purposes (see /views/index.oj for more info)
+require('../modules');
+
+// In OJ templates are just functions. In this example
+// the function is defined in the file /views/_templateWithTitle.oj
+var _templatePage = require('./_templatePage');
+
+// Export the code to render for OJ
+module.exports = function(data){
+  // Define this page using a function _templatePage
+  // This function takes the pageTitle and content to place inside of body
+  _templatePage(data.title, function(){
+    h1(data.title);
+    p('This page was rendered with a template');
+    TwitterButton('evanmoran');
+  })
+}

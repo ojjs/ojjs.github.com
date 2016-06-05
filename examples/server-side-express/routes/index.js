@@ -1,8 +1,8 @@
-
 /*
- * GET home page.
+ * GET /
  */
 
-exports.index = function(req, res){
-  res.render('index', { title: 'OJ Express' });
+module.exports = function(req, res){
+  // Render view located at /views/index.oj
+  res.render('index', {title: 'Use OJ with Express'});
 };

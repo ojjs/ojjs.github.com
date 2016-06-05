@@ -2,7 +2,7 @@
 // oj.YouTubeVideo.js v0.0.3
 // ojjs.org/plugins#YouTubeVideo
 //
-// Copyright 2013, Evan Moran
+// Copyright 2013-2014, Evan Moran
 // Released under the MIT License
 //
 // oj.YouTubeVideo.js

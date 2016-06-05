@@ -1,0 +1,1186 @@
+<!-- OJ Example: Client-side Hello World -->
+
+<html>
+  <head>
+      <title>OJ Example: Client-side Hello World</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--Include jQuery (installed with bower) -- This is the only dependency of OJ -->
+      <script src="lib/jquery/jquery.js" type='text/javascript'></script>
+
+      <!--Include backbone -->
+      <script src="lib/underscore-amd/underscore.js" type='text/javascript'></script>
+      <script src="lib/backbone-amd/backbone.js" type='text/javascript'></script>
+
+      <!--Include bootstrap -->
+
+      <script src="lib/bootstrap/dist/js/bootstrap.js" type='text/javascript'></script>
+      <link href="lib/bootstrap/dist/css/bootstrap.css" type='text/css' rel="stylesheet"></link>
+      <link href="lib/font-awesome/css/font-awesome.min.css" type='text/css' rel="stylesheet"></link>
+
+      <!--Include oj.js (installed with bower) -->
+      <script src="lib/oj/oj.js" type="text/javascript"></script>
+
+      <!--Include oj plugins (installed with bower) -->
+      <script src="lib/oj-bootstrap/oj.Bootstrap.js" type="text/javascript"></script>
+      <script src="lib/oj-typeahead/oj.Typeahead.js" type="text/javascript"></script>
+      <script src="lib/oj-markdown/oj.markdown.js" type="text/javascript"></script>
+      <script src="lib/oj-twitter-button/oj.TwitterButton.js" type="text/javascript"></script>
+      <script src="lib/oj-github-button/oj.GitHubButton.js" type="text/javascript"></script>
+      <script src="lib/oj-youtube-video/oj.YouTubeVideo.js" type="text/javascript"></script>
+
+      <style>
+      </style>
+  </head>
+  <body>
+    <!-- OJ generates its own HTML, CSS and JavaScript code -->
+
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <h1>Jumbotron heading</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+      </div>
+
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">Project name</h3>
+      </div>
+
+      <div class="page-header">
+        <h1>Example page header <small>Subtext for header</small></h1>
+      </div>
+
+      <h1>h1. Bootstrap heading <small>Secondary text</small></h1>
+      <h2>h2. Bootstrap heading <small>Secondary text</small></h2>
+      <h3>h3. Bootstrap heading <small>Secondary text</small></h3>
+      <h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+      <h5>h5. Bootstrap heading <small>Secondary text</small></h5>
+      <h6>h6. Bootstrap heading <small>Secondary text</small></h6>
+
+      <h2>Text Alignment</h2><hr>
+      <p class="text-left">Left aligned</p>
+      <p class="text-center">Center aligned</p>
+      <p class="text-right">Right aligned</p>
+
+      <h2>Text Coloring</h2><hr>
+      <p class="text-primary">primary text</p>
+      <p class="text-success">success text</p>
+      <p class="text-info">info text</p>
+      <p class="text-warning">warning text</p>
+      <p class="text-danger">danger text</p>
+      <p class="text-muted text-right">muted text</p>
+
+
+      <h2>Tooltips</h2><hr>
+      <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tooltip on left">Tooltip on left</button>
+      <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tooltip on right">Tooltip on right</button>
+      <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top">Tooltip on top</button>
+      <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom">Tooltip on bottom</button>
+
+      <h2>Button Groups</h2><hr>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-default">Left</button>
+        <button type="button" class="btn btn-default">Middle</button>
+        <button type="button" class="btn btn-default">Right</button>
+      </div>
+
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+
+      <!--
+        // Footer is just footer
+        footer(function(){
+          p('© Company 2013')
+        })
+       -->
+
+     <h2>Input Groups</h2><hr>
+
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <input type="text" class="form-control" placeholder="Username">
+      </div>
+      <br>
+      <div class="input-group">
+        <input type="text" class="form-control">
+        <span class="input-group-addon">.00</span>
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control">
+        <span class="input-group-addon">.00</span>
+      </div>
+
+     <h2>Control Groups</h2><hr>
+       <div class="input-group">
+        <span class="input-group-addon">
+          <input type="checkbox">
+        </span>
+        <input type="text" class="form-control">
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon">
+          <input type="radio">
+        </span>
+        <input type="text" class="form-control">
+      </div>
+
+     <h2>Button Groups</h2><hr>
+
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+        <input type="text" class="form-control">
+      </div><!-- /input-group -->
+      <br>
+      <div class="input-group">
+        <input type="text" class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div><!-- /input-group -->
+
+     <h2>Tabs</h2><hr>
+
+      <ul class="nav nav-tabs" data-tabs="tabs">
+          <li class="active"><a data-toggle="tab" href="#red">Red</a></li>
+          <li><a data-toggle="tab" href="#orange">Orange</a></li>
+          <li><a data-toggle="tab" href="#yellow">Yellow</a></li>
+          <li><a data-toggle="tab" href="#green">Green</a></li>
+          <li><a data-toggle="tab" href="#blue">Blue</a></li>
+      </ul>
+      <div class="tab-content">
+          <div class="tab-pane fade in active" id="red">
+              <h2>Red</h2>
+              <p>red red red red red red</p>
+          </div>
+          <div class="tab-pane fade" id="orange">
+              <h2>Orange</h2>
+              <p>orange orange orange orange orange</p>
+          </div>
+          <div class="tab-pane fade" id="yellow">
+              <h2>Yellow</h2>
+              <p>yellow yellow yellow yellow yellow</p>
+          </div>
+          <div class="tab-pane fade" id="green">
+              <h2>Green</h2>
+              <p>green green green green green</p>
+          </div>
+          <div class="tab-pane fade" id="blue">
+              <h2>Blue</h2>
+              <p>blue blue blue blue blue</p>
+          </div>
+      </div>
+
+      <ul class="nav nav-pills nav-stacked" data-pills="tabs">
+          <li class="active"><a data-toggle="pill" href="#redtwo">Red</a></li>
+          <li><a data-toggle="pill" href="#orangetwo">Orange</a></li>
+          <li><a data-toggle="pill" href="#yellowtwo">Yellow</a></li>
+          <li><a data-toggle="pill" href="#greentwo">Green</a></li>
+          <li><a data-toggle="pill" href="#bluetwo">Blue</a></li>
+      </ul>
+      <div class="pill-content">
+          <div class="pill-pane active" id="redtwo">
+              <h2>Red</h2>
+              <p>red red red red red red</p>
+          </div>
+          <div class="pill-pane" id="orangetwo">
+              <h2>Orange</h2>
+              <p>orange orange orange orange orange</p>
+          </div>
+          <div class="pill-pane" id="yellowtwo">
+              <h2>Yellow</h2>
+              <p>yellow yellow yellow yellow yellow</p>
+          </div>
+          <div class="pill-pane" id="greentwo">
+              <h2>Green</h2>
+              <p>green green green green green</p>
+          </div>
+          <div class="pill-pane" id="bluetwo">
+              <h2>Blue</h2>
+              <p>blue blue blue blue blue</p>
+          </div>
+      </div>
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+
+     <h2>Tabs Stacked</h2><hr>
+
+      <ul class="nav nav-tabs nav-stacked">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+
+
+     <h2>Tabs Justified</h2><hr>
+
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+
+      <h2>Pills</h2><hr>
+
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+
+      <h2>Stacked Pills</h2><hr>
+
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Messages</a></li>
+      </ul>
+
+      <h2>Dropdown</h2><hr>
+
+
+      <h2>Dropdown Pull Right</h2><hr>
+      <div class="dropdown pull-right">
+        <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu2" data-toggle="dropdown">
+          Dropdown
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+        </ul>
+      </div>
+
+      <h2>Nav Bar</h2><hr>
+
+
+      <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Active Link</a></li>
+          <li><a href="#">Link</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </nav>
+
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Active Link</a></li>
+            <li><a href="#">Link</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+          <p class="navbar-text">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <h2>Breadcrumbs</h2><hr>
+
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+      </ol>
+
+      <h2>Pagination</h2><hr>
+
+      <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+
+      <h2>Pager Centered</h2><hr>
+
+      <ul class="pager">
+        <li><a href="#">Previous</a></li>
+        <li><a href="#">Next</a></li>
+      </ul>
+
+      <h2>Pager Aligned</h2><hr>
+
+      <ul class="pager">
+        <li class="previous"><a href="#">&larr; Older</a></li>
+        <li class="next"><a href="#">Newer &rarr;</a></li>
+      </ul>
+
+      <h2>Labels</h2><hr>
+
+      <h2>Badges</h2><hr>
+
+      <h2>Jumbotron</h2><hr>
+
+      <h2>Page Header</h2><hr>
+
+      <h2>Alerts</h2><hr>
+
+      <h2>Dismissable alerts</h2><hr>
+      <h2>Links in alerts</h2><hr>
+      <h2>Progress bars</h2><hr>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+          <span class="sr-only">60% Complete</span>
+        </div>
+      </div>
+      <br>
+
+      <h2>Emphasis and Stripped Progress Bars</h2><hr>
+
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+          <span class="sr-only">40% Complete (success)</span>
+        </div>
+      </div>
+      <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+          <span class="sr-only">80% Complete (danger)</span>
+        </div>
+      </div>
+
+      <div class="progress progress-striped active">
+        <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+          <span class="sr-only">45% Complete</span>
+        </div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" style="width: 35%">
+          <span class="sr-only">35% Complete (success)</span>
+        </div>
+        <div class="progress-bar progress-bar-warning" style="width: 20%">
+          <span class="sr-only">20% Complete (warning)</span>
+        </div>
+        <div class="progress-bar progress-bar-danger" style="width: 10%">
+          <span class="sr-only">10% Complete (danger)</span>
+        </div>
+      </div>
+
+      <h2>Media object</h2><hr>
+      <ul class="media-list">
+        <li class="media">
+          <a class="pull-left" href="#">
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading">Media heading</h4>
+            Text goes here describing this thing.
+          </div>
+        </li>
+      </ul>
+
+      <h2>List group</h2><hr>
+
+      <ul class="list-group">
+        <li class="list-group-item">Cras justo odio<span class="badge">14</span></li>
+        <li class="list-group-item">Dapibus ac facilisis in<span class="badge">42</span></li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        </li>
+      </ul>
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">List group text goes here. The longer the better, I say.</p>
+        </a>
+        <a href="#" class="list-group-item">
+          <h4 class="list-group-item-heading">List group item heading</h4>
+          <p class="list-group-item-text">List group text goes here. The longer the better, I say.</p>
+        </a>
+      </div>
+
+      <h1>The End</h1>
+    </div>
+
+
+
+  </body>
+  <script>
+
+    // Export everything in oj globally so you don't have to prefix everything with `oj.`
+    oj.useGlobally()
+
+    function gridcell(text){
+      return div({c:'gridcell'}, text)
+    }
+
+    function _gridcell(text){
+      return _div({c:'gridcell'}, text)
+    }
+
+    // Replace <body> with the following OJ code:
+    $('body').ojPrepend(function(){
+
+      css({'.gridcell':{
+        backgroundColor:'#fafafa',
+        color:'#333333',
+        border:'1px solid #e7e7e7',
+        textAlign:'center'
+      }})
+
+      var UserModel = Backbone.Model.extend({})
+      var user = new UserModel({name:'Evan'})
+
+      container(function(){
+        Text({key:'name', model:user})
+        TextBox({key:'name', model:user})
+        ListBox({key:'name', model:user, options:['one','two']})
+        TextArea({key:'name', model:user})
+
+        pageHeader('Typeahead')
+        Typeahead({key:'name', model:user,
+          placeholder:'Search for stuff..',
+          limit:5,
+          local:[
+            {value:'Guide', tokens:['guide','guides']},
+            {value:'Item', tokens:['item','items']},
+            {value:'Magic Resist', tokens:['MagicResist','Magic','Resist','MR']},
+            {value:'Abysal Sceptor', tokens:['item','Abysal','Sceptor', 'Ability', 'Power', 'Magic', 'Resist','MR'], tags:['Ability Power', 'Magic Resist','Item']},
+            {value:'Rod of Ages', tokens:['item','rod','of','ages', 'Ability', 'Power', 'Mana', 'Health'], tags:['Ability Power', 'Health','Mana','Item']},
+            {value:'Rod of Blue', tokens:['item','rod','of','blues'], tags:['AP','Damage','Magic Resist','Item']},
+            {value:'Infinity Edge', tokens:['item','InfinityEdge','Infinity','Edge','IE','Crit','Damage'], tags:['Damage','Crit Damage','Crit','Item']},
+            {value:'Anivia', tokens:['Anivia','champion','mage','mid'], tags:['Mage','Mid','Champion']},
+            {value:'Kassadin', tokens:['kassadin','champion','mage','mid'], tags:['Mage','Mid','Champion']},
+            {value:'Lee Sin', tokens:['LeeSin','champion','bruiser','jungle', 'lee', 'sin','jungle','mid'], tags:['Bruiser','Jungle','Mid','Champion']},
+            {value:'Taric', tokens:['taric','champion','tank','bot'], tags:['Support','Tank','Bot','Champion']},
+          ],
+          change:function(){console.log('changed');},
+          suggestion:function(data){
+            p(function(){
+              span(data.value)
+              if(oj.isArray(data.tags))
+                span({c:'tags',style:{float:'right'}},function(){
+                  data.tags.forEach(function(tag,ix){
+                    span(tag)
+                    if (ix != data.tags.length - 1)
+                      span('|')
+                  })
+                })
+            })
+          }
+        })
+        css({
+          '.tt-suggestion.tt-cursor span.tags':{
+            color:'#ccc'
+          },
+          'span.tags':{
+            color:'#888'
+          }
+        })
+
+        pageHeader('Jumbotron')
+
+        jumbotron(function(){
+          h1('Use Bootstrap in OJ', _small(' (oh yeah.)'))
+          p('The hard part of Bootstrap is creating just the right HTML and class names. Let OJ do this for you.', {emphasis:'muted'})
+          button('Hurray!', {emphasis:'danger', click:function(){alert('It is finally here!')}})
+        })
+
+        pageHeader('Page Heading', _small(' Secondary text'))
+        h1('h1. Heading', _small(' Secondary text'))
+        h2('h2. Heading', _small(' Secondary text'))
+        h3('h3. Heading', _small(' Secondary text'))
+        h4('h4. Heading', _small(' Secondary text'))
+        h5('h5. Heading', _small(' Secondary text'))
+        h6('h6. Heading', _small(' Secondary text'))
+
+        pageHeader('Emphasis Property')
+        p('Default', {emphasis:'default'})
+        p('Muted', {emphasis:'muted'})
+        p('Primary', {emphasis:'primary'})
+        p('Info', {emphasis:'info'})
+        p('Success', {emphasis:'success'})
+        p('Warning', {emphasis:'warning'})
+        p('Danger', {emphasis:'danger'})
+        pageHeader('Align Property')
+        p('Align Left', {align:'left'})
+        p('Align Center', {align:'center'})
+        p('Align Right', {align:'right'})
+        pageHeader('Pull Property')
+        p('Pull Left', {pull:'left'})
+        p('Pull Right', {pull:'right'})
+        br()
+        br()
+
+        pageHeader('Grid')
+        gridExample()
+
+        pageHeader('Glyph Icons')
+
+        glyph('star', {title:'star'})
+        glyph('heart', {title:'heart'})
+        glyph('lock', {title:'lock'})
+        glyph('plus', {title:'plus'})
+        glyph('minus', {title:'minus'})
+        glyph('search', {title:'search'})
+        glyph('ok-sign', {title:'ok-sign'})
+        glyph('info-sign', {title:'info-sign'})
+        glyph('exclamation-sign', {title:'exclamation-sign'})
+        glyph('warning-sign', {title:'warning-sign'})
+
+        pageHeader('Font Awesome Icons')
+
+        h2('Size')
+
+        icon('camera-retro')
+        icon('camera-retro', {size:'lg'})
+        icon('camera-retro', {size:'2x'})
+        icon('camera-retro', {size:'3x'})
+        icon('camera-retro', {size:'4x'})
+        icon('camera-retro', {size:'5x'})
+
+        h2('Spin')
+
+        icon('spinner', {spin:true, size:'3x'})
+        icon('refresh', {spin:true, size:'3x'})
+        icon('cog', {spin:true, size:'3x'})
+
+        h2('Rotate')
+
+        icon('shield', {rotate:'0', size:'3x', title:'rotate 0'})
+        icon('shield', {rotate:'90', size:'3x', title:'rotate 90'})
+        icon('shield', {rotate:'180', size:'3x', title:'rotate 180'})
+        icon('shield', {rotate:'270', size:'3x', title:'rotate 270'})
+        icon('shield', {rotate:'360', size:'3x', title:'rotate 360'})
+
+        h2('Flip')
+        icon('shield', {size:'3x', title:'normal'})
+        icon('shield', {flip:'horizontal', size:'3x', title:'flip horizontal'})
+        icon('shield', {flip:'vertical', size:'3x', title:'flip vertical'})
+
+        pageHeader('Badges')
+        badge(1)
+        badge(2)
+        badge(3)
+        badge(4)
+        badge(5)
+
+        pageHeader('Labels')
+        labelText('Default')
+        labelText('Primary', {emphasis:'primary'})
+        labelText('Success', {emphasis:'success'})
+        labelText('Info', {emphasis:'info'})
+        labelText('Warning', {emphasis:'warning'})
+        labelText('Danger', {emphasis:'danger'})
+
+        pageHeader('Alerts')
+        alertText('Success', {emphasis:'success'})
+        alertText('Info', {emphasis:'info'})
+        alertText('Warning', {emphasis:'warning'})
+        alertText('Danger', {emphasis:'danger'})
+
+        pageHeader('Dismiss Alerts (NYI)')
+
+        // alertText('Success', {emphasis:'success'})
+        // alertText('Info', {emphasis:'info'})
+        // alertText('Warning', {emphasis:'warning'})
+        // alertText('Danger', {emphasis:'danger'})
+
+
+        // NavGroup(
+        //   NavButton
+        //   NavLink
+        // )
+
+        // TabGroup
+        // TabGroup
+        //   _Tab('Hi', {active:true}),
+        //   _Tab('There', {menu:_Menu()})
+        // )
+
+        // Dropdown({label:'', split:true, up:true, menu:_Menu(
+        //   _MenuLink('Text', {href:'#text'}),
+        //   _MenuLink('Text2', {href:'#text2'}),
+        //   _MenuDivider(),
+        //   _MenuLink('Text3', {href:'#text3'})
+        // )});
+
+        // var tabs = Tabs(
+        //   _TabLink()
+        //   _TabDropdown('Label', _Menu(...))
+        //   _TabForm()
+        //   _TabButton()
+        // )
+        // TabContent({tabs:tabs},
+        //   ...
+        // )
+
+
+
+        // NavBar(
+
+        //   NavLink('label', {href:'#'})
+
+        //   NavDropdown({label:"My label", href:'#', menu:_Menu(
+        //       _MenuLink('Text', {href:'#text'}),
+        //       _MenuLink('Text2', {href:'#text2'}),
+        //       _MenuDivider(),
+        //       _MenuLink('Text3', {href:'#text3'})
+        //     )
+        //   }
+
+        //   NavDropdown("My label", {href:'#', menu:_Menu(
+        //       _MenuLink('Text', {href:'#text'}),
+        //       _MenuLink('Text2', {href:'#text2'}),
+        //       _MenuDivider(),
+        //       _MenuLink('Text3', {href:'#text3'})
+        //     )}
+        //   }
+
+        // )
+
+        pageHeader('Buttons')
+
+        buttonToolbar(function(){
+          Button('Default')
+          Button('Primary', {emphasis:'primary'})
+          Button('Info', {emphasis:'info'})
+          Button('Success', {emphasis:'success'})
+          Button('Warning', {emphasis:'warning'})
+          Button('Danger', {emphasis:'danger'})
+        })
+
+        pageHeader('Button Sizes')
+        buttonToolbar(function(){
+          Button('XS', {size:'xs'})
+          Button('SM', {size:'sm'})
+          Button('MD', {size:'md'})
+          Button('LG', {size:'lg'})
+        })
+
+        pageHeader('Buttons with Glyphs')
+        buttonToolbar(function(){
+          Button('Default', {glyph:'star'})
+          Button('Primary', {emphasis:'primary', glyph:'star-empty'})
+          Button('Success', {emphasis:'success', glyph:'ok-sign'})
+          Button('Info',    {emphasis:'info', glyph:'info-sign'})
+          Button('Warning', {emphasis:'warning', glyph:'exclamation-sign'})
+          Button('Danger',  {emphasis:'danger', glyph:'warning-sign'})
+        })
+
+        pageHeader('Buttons with Font Awesome Icons')
+        buttonToolbar(function(){
+          Button('Icon', {icon:'fighter-jet'})
+          Button('Rotate', {icon:'fighter-jet', iconRotate:90})
+          Button('Spin', {icon:'fighter-jet', iconSpin:true})
+          Button('Flip', {icon:'fighter-jet', iconFlip:'horizontal'})
+          Button('Size lg', {icon:'fighter-jet', iconSize:'lg'})
+          Button('Size 2x', {icon:'fighter-jet', iconSize:'2x'})
+          Button('Size 3x', {icon:'fighter-jet', iconSize:'3x'})
+          Button('Size 4x', {icon:'fighter-jet', iconSize:'4x'})
+          Button('Size 5x', {icon:'fighter-jet', iconSize:'5x'})
+        })
+
+        pageHeader('Button Groups (NYI)')
+
+        pageHeader('Button Dropdowns')
+        DropdownButton('Hello',
+          _Menu(
+            _MenuLink('Item 1', {href:'#item1'}),
+            _MenuLink('Item 2', {href:'#item2'})
+          )
+        )
+
+        pageHeader('Button Toolbar (NYI)')
+        // ToolbarGroup(
+        //   _ButtonGroup(
+        //     _Button('Button 1', {glyph:'star'}),
+        //     _Dropdown('Hello', {menu:_Menu(
+        //       _MenuLink('Text', {href:'#text'})
+        //     )})
+        //   )
+        // )
+
+        pageHeader('Images')
+        h2('Rounded (NYI)')
+        h2('Circle (NYI)')
+        h2('Polaroid (NYI)')
+
+        pageHeader('Form Styles')
+        h2('Default (NYI)')
+        h2('Inline form (NYI)')
+        h2('Horizontal form (NYI)')
+        h2('Inputs (NYI)')
+
+        pageHeader('Form Elements')
+        h2('Basic Example')
+        form(function(){
+
+          formGroup(function(){
+            label('Name Label', {'for':'nameTextBoxId'})
+            TextBox({id:'nameTextBoxId', name:'name', placeholder:'Name'})
+          })
+
+          formGroup(function(){
+            label('Email Label', {'for':'emailTextBoxId'})
+            TextBox({id:'emailTextBoxId', type:'email', name:'email', placeholder:'Email'})
+            formHelp('Form help messages go here')
+          })
+
+          formGroup(function(){
+            label('Password Label', {'for':'passwordTextBoxId'})
+            TextBox({id:'passwordTextBoxId', type:'password', name:'password', placeholder:'Password'})
+            formHelp('8+ characters with capital letters & symbols')
+          })
+
+          formGroup(function(){
+            label('Description Label', {'for':'descriptionTextBoxId'})
+            TextArea({id:'descriptionTextBoxId', type:'text', name:'description', placeholder:'Describe yourself...'})
+          })
+
+          h3('FileBox (NYI)')
+          // formGroup(function(){
+          //   label('File Label', {'for':'fileTextBoxId'})
+          //   TextBox({id:'fileTextBoxId', type:'file'})
+          // })
+
+          formGroup(function(){
+            div({c:'checkbox'}, function(){
+              var cb = CheckBox(true, {id:'exampleNewsletterCheckBoxId', name:'wantsNewsletter'})
+              label('Sign me up!', {for:cb.id})
+            })
+          })
+
+          Button('Submit Button', {type:'submit'})
+        })
+
+        h2('Inline Example (NYI -- spacing is wrong)')
+
+        formInline(function(){
+          formGroup(function(){
+            label('Email Label', {c:'sr-only', 'for':'emailTextBoxId2'})
+            TextBox({id:'emailTextBoxId2', type:'email', name:'email', placeholder:'Enter Email'})
+          })
+          formGroup(function(){
+            label('Password Label', {c:'sr-only', 'for':'passwordTextBoxId2'})
+            TextBox({id:'passwordTextBoxId2', type:'password', name:'password', placeholder:'Password'})
+          })
+          div({c:'checkbox'}, function(){
+            var cb = CheckBox(true, {id:'rememberCheckBoxId2', name:'remember'})
+            label(' Remember Me', {for:cb.id})
+          })
+
+          formGroup(function(){
+            Button('Login', {type:'submit'})
+          })
+
+        });
+
+        h2('Horizontal Example (Could be better)')
+
+        formHorizontal(function(){
+
+          formGroup(function(){
+            label('Email Label', {sm:2, c:'control-label', 'for':'emailTextBoxId3'})
+            col({sm:10}, function(){
+              TextBox({id:'emailTextBoxId3', type:'email', name:'email', placeholder:'Enter Email'})
+            })
+          })
+
+          formGroup(function(){
+            label('Password Label', {sm:2, c:'control-label', 'for':'passwordTextBoxId3'})
+            col({sm:10}, function(){
+              TextBox({id:'passwordTextBoxId3', type:'password', name:'password', placeholder:'Password'})
+            })
+          })
+
+          formGroup(function(){
+            col({sm:10, smOffset:2}, function(){
+              div({c:'checkbox'}, function(){
+                CheckBox(true, {id:'rememberCheckBoxId3', name:'remember'})
+                label('Remember Me', {'for':'rememberCheckBoxId3'})
+              })
+            })
+          });
+
+          formGroup(function(){
+            col({sm:10, smOffset:2}, function(){
+              Button('Login', {type:'submit'})
+            })
+          })
+
+        });
+
+        h2('TextArea (NYI)')
+        TextArea('This is a TextArea')
+
+        h2('ListBox (NYI)')
+        var listMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        ListBox('A List box', {options:listMonths})
+
+        h2('CheckBox (NYI)')
+        CheckBox(true)
+
+        h2('Inline CheckBox (NYI)')
+
+
+
+
+
+
+        pageHeader('Form Groups')
+        h2('Grouped Text (NYI)')
+        h2('Grouped Button (NYI)')
+        h2('Grouped DropdownButton (NYI)')
+        h2('Grouped SegmentedDropdownButton (NYI)')
+        h2('Grouped Search (NYI)')
+
+        pageHeader('Form Sizing')
+        h2('Block level inputs (NYI)')
+        h2('Relative Sizing (NYI)')
+        h2('Grid Sizing (NYI)')
+
+        pageHeader('Form Uneditable')
+
+        pageHeader('Form Actions (NYI)')
+
+        pageHeader('Form Text')
+        h2('Inline Help Text (NYI)')
+        h2('Block Help Text (NYI)')
+
+        pageHeader('Form Control States')
+        h2('Focused Inputs (NYI)')
+        h2('Invalid Inputs (NYI)')
+        h2('Disabled Inputs (NYI)')
+        h2('Validation Inputs (NYI)')
+
+        pageHeader('NavBar')
+
+        NavBar('Your Brand', {href:'#take_me_home'})
+
+        NavBar('Brand goes here', {href:'#brand'},
+          _NavGroup(
+            _Nav('Left'),
+            _NavDropdown('Dropdown', _Menu(
+                _MenuHeader('Fancy'),
+                _MenuLink('Link', {href:'#fancy'})
+              )
+            )
+          ),
+
+          // Right aligned nav group
+          _NavGroup({right:true},
+            _Nav('Right', {href:'#right'}),
+            _NavDropdown('Dropdown', _Menu(
+                _MenuHeader('Simple'),
+                _MenuLink('Link', {href:'#simple'}),
+                _MenuDivider(),
+                _MenuHeader('Nifty'),
+                _MenuLink('Link', {href:'#nifty'})
+              )
+            )
+          )
+        )
+
+        pageHeader('Nav with Search Form (NYI)')
+
+        pageHeader('Tabs')
+        var myTabs = TabGroup(
+          _Tab('One', {active:true}),
+          _Tab('Two'),
+          _Tab('Three')
+        )
+        TabContent({tabs:myTabs, fade:true},
+          function(){
+            h2('Tab One')
+            p('Living the dream in tab one. Big time.')
+          },
+          function(){
+            h2('Tab Two')
+            p('Still living the dream here in tab two. Oh yeah!')
+          },
+          function(){
+            h2('Tab Three')
+            p('What more to life is tab three? Excellent beyond words.')
+          }
+        )
+
+        pageHeader('Tabs with Dropdown')
+        var tabs = TabGroup(
+          _Tab('Tab One'),
+          _Tab('Tab Two'),
+          _TabDropdown('Tab Dropdown', _Menu(
+              _MenuLink('Hi')
+            )
+          )
+        )
+
+        TabContent({tabGroup:tabs},
+          function(){div('Content pane 1')},
+          function(){div('Content pane 2')}
+        )
+
+        pageHeader('Pills (NYI)')
+        // var myPills = PillGroup(
+        //   _Pill('One', {active:true}),
+        //   _Pill('Two'),
+        //   _Pill('Three')
+        // )
+        // PillContent({tabs:myPills, fade:true},
+        //   function(){
+        //     h2('Pill One')
+        //     p('Living the dream in tab one. Big time.')
+        //   },
+        //   function(){
+        //     h2('Pill Two')
+        //     p('Still living the dream here in tab two. Oh yeah!')
+        //   },
+        //   function(){
+        //     h2('Pill Three')
+        //     p('What more to life is tab three? Excellent beyond words.')
+        //   }
+        // )
+
+        pageHeader('Tooltips (NYI)')
+
+      })
+      // onInsert(function(){
+      //   $('.tooltip').tooltip()
+      // }
+    });
+
+    /*
+      // (Lowercase) tag functions let you create any element
+      h1('An Example OJ Website (using Bower)');
+
+      // The markdown plugin was included for your convenience!
+      markdown('Object-oriented templating just got *real*.');
+
+      // (Uppercase) Objects create and edit themselves through a returned instance
+      var myList = BulletList(
+        'Objects',
+        'Just',
+        'Work'
+      );
+
+      // Edit list by moving the elements
+      Button('Move Item', {click:function(){
+        myList.move(0, myList.length);
+      }});
+
+      // Add items to the list
+      Button('Add Item', {click:function(){
+        myList.add('New Item!');
+      }});
+
+      // Add videos to the list
+      Button('Add Video', {click:function(){
+        myList.add(function(){
+          YouTubeVideo('rfh4Mhp-a6U')
+        });
+      }});
+
+      // In OJ, CSS can be defined in several ways, so don't get caught up in specific examples,
+      // and instead do what makes the most sense for your project! =).
+
+      // The easiest way is to simply use .css files like you are use to. Just oj.link them
+      // inside your oj.head function and the browser will load them normally.
+      // This approach can also work with templating engines like stylus or less.
+
+      // Another way to do it is to require('a/file.oj') that uses oj.css function to create css.
+      // This lets you separate your css into separate files and functions, but still use JavaScript
+      // variables and functions while making them.
+
+      // The last way is to just call the oj.css function at anytime:
+
+      css({
+        h1:{
+          color:'orange'
+        },
+        'li:nth-child(odd)':{
+          color:'orange'
+        },
+        hr:{
+          opacity:0.5,
+          margin:'20px 0'
+        }
+      });
+
+      // This is great for very small websites or when testing and debugging larger sites, but keep in mind
+      // this last mechanism IS NOT the best organization for a larger sites!
+
+      // The purpose behind the oj.css function is to bring css into a language with variables, loops, and functions.
+      // With oj.css you could create a function that styles your entire site at once, or make a different function
+      // that conditionally creates css depending on which browser you are targeting.
+
+      // Just remember it is still a good idea to separate content (html) from presentation (css),
+      // but now the separation is all in code. The best way to do this is just use separate
+      // functions for creating html (templates and partials) and for creating css.
+
+      hr()
+
+      GitHubButton('ojjs', 'oj', {width:'100px'})
+
+      TwitterButton('evanmoran')
+
+    });
+
+    */
+
+    function gridExample(){
+
+      row(function(){
+        col({xs:12}, _gridcell('xs 12'))
+      });br()
+      row(function(){
+        col({xs:6}, _gridcell('xs 6'))
+        col({xs:6}, _gridcell('xs 6'))
+      });br()
+      row(function(){
+        col({xs:3}, _gridcell('xs 3'))
+        col({xs:3}, _gridcell('xs 3'))
+        col({xs:3}, _gridcell('xs 3'))
+        col({xs:3}, _gridcell('xs 3'))
+      });br()
+      row(function(){
+        col({xs:2}, _gridcell('xs 2'))
+        col({xs:2}, _gridcell('xs 2'))
+        col({xs:2}, _gridcell('xs 2'))
+        col({xs:2}, _gridcell('xs 2'))
+        col({xs:2}, _gridcell('xs 2'))
+        col({xs:2}, _gridcell('xs 2'))
+      });br()
+      row(function(){
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+        col({xs:1}, _gridcell('xs 1'))
+      });br()
+
+      row(function(){
+        col({sm:6}, _gridcell('sm 6'))
+        col({sm:6}, _gridcell('sm 6'))
+      });br()
+      row(function(){
+        col({sm:4}, function(){gridcell('sm 4')})
+        col({sm:4}, _gridcell('sm 4'))
+        col({sm:4}, _gridcell('sm 4'))
+      });br()
+
+      h3('md')
+      row(function(){
+        col({md:6}, _gridcell('md 6'))
+        col({md:6}, _gridcell('md 6'))
+      });br()
+      row(function(){
+        col({md:4}, function(){gridcell('md 4')})
+        col({md:4}, _gridcell('md 4'))
+        col({md:4}, _gridcell('md 4'))
+      });br()
+
+      h3('lg')
+      row(function(){
+        col({lg:6}, _gridcell('lg 6'))
+        col({lg:6}, _gridcell('lg 6'))
+      });br()
+
+      row(function(){
+        col({lg:4}, function(){gridcell('lg 4')})
+        col({lg:4}, _gridcell('lg 4'))
+        col({lg:4}, _gridcell('lg 4'))
+      });br()
+
+    }
+  </script>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "client-side-requirejs-project",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "requirejs": "*",
+    "jquery": "*",
+    "underscore-amd": "*",
+    "backbone-amd": "*",
+    "oj": "*",
+    "oj-markdown":"*",
+    "oj-twitter-button":"*",
+    "oj-github-button":"*",
+    "oj-youtube-video":"*"
+  }
+}

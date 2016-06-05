@@ -1,0 +1,20 @@
+{
+  "name": "example",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "jquery#2.0.3",
+    "underscore-amd": "*",
+    "backbone-amd": "*",
+    "bootstrap": "*",
+    "font-awesome": "*",
+    "oj": "*",
+    "oj-github-button": "*",
+    "oj-twitter-button": "*",
+    "oj-markdown": "*",
+    "oj-youtube-video": "*"
+  },
+  "resolutions": {
+    "jquery": "2.0.3"
+  }
+}
